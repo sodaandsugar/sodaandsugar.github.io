@@ -7,6 +7,7 @@ nav:
   - 首页: index.md
   - 专业课: 
     - 数据安全与密码学基础: 
+      - 资源分享: cryptography/index.md
       - Chapter 1 概论: cryptography/Chapter1_概论.md
       - Chapter 2 完善保密加密: cryptography/Chapter2_完善保密加密.md
       - Chapter 3 对称密钥加密以及伪随机性: cryptography/Chapter3_对称密钥加密以及伪随机性.md
