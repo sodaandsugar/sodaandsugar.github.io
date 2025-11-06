@@ -55,14 +55,18 @@
       3. $m := \text{Dec}_k(c)$
 
 * 如果对于所有 $\text{PPT}$ 敌手 $\mathcal{A}$ ，存在一个可忽略函数 $\text{negl}$ 使得：
-$$\Pr\left[\text{PrivK}^{\text{eav}}_{\mathcal{A},\Pi}(n) = 1\right] \leqslant \frac{1}{2} + \text{negl}(n)$$
+$$
+\Pr\left[\text{PrivK}^{\text{eav}}_{\mathcal{A},\Pi}(n) = 1\right] \leqslant \frac{1}{2} + \text{negl}(n)
+$$
 
   则一个对称密钥加密方案 $\Pi = (\text{Gen}, \text{Enc}, \text{Dec})$ 具备**在窃听者存在的情况下不可区分**的加密
 
 使用一个固定比特 $b$，用 $\text{output}\left( \text{PrivK}^{\text{eav}}_{\mathcal{A},\Pi}(n,b) \right)$ 来表示 $\mathcal{A}$ 在 $\text{PrivK}^{\text{eav}}_{\mathcal{A},\Pi}(n,b)$ 中的输出比特 $b'$，则有等价定义：
 
 * 如果对所有的概率多项式时间的敌手 $\mathcal{A}$ ，存在一个可忽略函数 $\text{negl}$ 使得：
-$$\left| \Pr\left[ \text{output}\left( \text{PrivK}^{\text{eav}}_{\mathcal{A},\Pi}(n,0) \right) = 1 \right] - \Pr\left[ \text{output}\left( \text{PrivK}^{\text{eav}}_{\mathcal{A},\Pi}(n,1) \right) = 1 \right] \right| \leqslant \text{negl}(n)$$
+$$
+\left| \Pr\left[ \text{output}\left( \text{PrivK}^{\text{eav}}_{\mathcal{A},\Pi}(n,0) \right) = 1 \right] - \Pr\left[ \text{output}\left( \text{PrivK}^{\text{eav}}_{\mathcal{A},\Pi}(n,1) \right) = 1 \right] \right| \leqslant \text{negl}(n)
+$$
 
   则对称密钥加密方案 $\Pi = (\text{Gen}, \text{Enc}, \text{Dec})$ 具有**窃听者存在的情况下不可区分性**
 
@@ -73,7 +77,10 @@ $$\left| \Pr\left[ \text{output}\left( \text{PrivK}^{\text{eav}}_{\mathcal{A},\P
 
 * 令 $\ell(\cdot)$ 为多项式，$G$ 为确定多项式时间算法，该算法满足：对于任何输入 $s \in \{0,1\}^n$ ，算法 $G$ 输出一个长度为 $\ell(n)$ 的字符串。如果满足下面两个条件，则称 $G$ 是一个伪随机发生器：
   1. （**扩展性：**）对每个 $n$ 来说，满足 $\ell(n) > n$
-  2. （**伪随机性：**）对所有的概率多项式时间的区分器 $D$ 来说，存在一个可忽略函数 $\text{negl}$ ，满足 $$|\Pr[D(r) = 1] - \Pr[D(G(s)) = 1]| \leq \text{negl}(n)$$
+  2. （**伪随机性：**）对所有的概率多项式时间的区分器 $D$ 来说，存在一个可忽略函数 $\text{negl}$ ，满足 
+  $$
+  |\Pr[D(r) = 1] - \Pr[D(G(s)) = 1]| \leq \text{negl}(n)
+  $$
 
   其中 $r$ 是从 $\{0,1\}^{\ell(n)}$ 中均匀随机选择的，种子 $s$ 是从 $\{0,1\}^n$ 中均匀随机选择的，函数 $\ell(\cdot)$ 被称为 $G$ 的扩展系数。
 
@@ -92,7 +99,9 @@ $$\left| \Pr\left[ \text{output}\left( \text{PrivK}^{\text{eav}}_{\mathcal{A},\P
 计算不可区分性的实际定义与概率总体有关，以下是对两个分布不可区分的形式化定义：
 
 * 两个概率总体 $X = \{X_n\}_{n \in \mathbb{N}}$ 和 $Y = \{Y_n\}_{n \in \mathbb{N}}$ 是**计算不可区分**的，表示为 $X \stackrel{c}{\equiv} Y$，如果对于每一个概率多项式时间的区分器 $D$ ，都存在一个可忽略函数 $\text{negl}$，使得：
-$$|\Pr[D(1^n, X_n) = 1] - \Pr[D(1^n, Y_n) = 1]| \leq \text{negl}(n)$$
+$$
+|\Pr[D(1^n, X_n) = 1] - \Pr[D(1^n, Y_n) = 1]| \leq \text{negl}(n)
+$$
 
   其中标记 $D(1^n, X_n)$ 表明 $x$ 的选取符合分布 $X_n$ ，然后运行 $D(1^n, x)$ 。
 
@@ -123,7 +132,9 @@ $$|\Pr[D(1^n, X_n) = 1] - \Pr[D(1^n, Y_n) = 1]| \leq \text{negl}(n)$$
 
 !!! abstract 证明（教材中给出的证明方法）
     假设存在概率多项式时间敌手 $\mathcal{A}$ ，定义敌手优势：
-    $$\varepsilon(n) \stackrel{\text{def}}{=} \Pr\left[ \text{PrivK}^{\text{eav}}_{\mathcal{A},\Pi}(n) = 1 \right] - \frac{1}{2}$$
+    $$
+    \varepsilon(n) \stackrel{\text{def}}{=} \Pr\left[ \text{PrivK}^{\text{eav}}_{\mathcal{A},\Pi}(n) = 1 \right] - \frac{1}{2}
+    $$
 
     构造区分器 $D$，指定字符串 $w \in \{0,1\}^{\ell(n)}$ 作为输入，假设 $n$ 能够被 $\ell(n)$ 确定：
       1. 运行 $\mathcal{A}(1^n)$ 获取消息对 $m_0, m_1 \in \{0,1\}^{\ell(n)}$
@@ -131,7 +142,9 @@ $$|\Pr[D(1^n, X_n) = 1] - \Pr[D(1^n, Y_n) = 1]| \leq \text{negl}(n)$$
       3. 将 $c$ 给 $\mathcal{A}$ ，若 $\mathcal{A}$ 输出 $b' = b$ ，则 $D$ 输出 1，否则输出 0
 
     * **当 $w$ 是真随机串**：此时加密等价于一次一密（完善保密），令 $\widetilde{\Pi}$ 为带安全参数的一次一密方案，则：
-    $$\Pr\left[ D(w) = 1 \right] = \Pr\left[ \text{PrivK}^{\text{eav}}_{\mathcal{A},\widetilde{\Pi}}(n) = 1 \right] = \frac{1}{2}$$
+    $$
+    \Pr\left[ D(w) = 1 \right] = \Pr\left[ \text{PrivK}^{\text{eav}}_{\mathcal{A},\widetilde{\Pi}}(n) = 1 \right] = \frac{1}{2}
+    $$
 
     * **当 $w = G(k)$**：此时加密是方案 $\Pi$ ，故
       \[
@@ -139,7 +152,9 @@ $$|\Pr[D(1^n, X_n) = 1] - \Pr[D(1^n, Y_n) = 1]| \leq \text{negl}(n)$$
       \]
 
     由上述分析，区分器 $D$ 对真随机串和 $G$ 输出的区分优势为：
-    $$\left| \Pr\left[ D(w) = 1 \right] - \Pr\left[ D(G(k)) = 1 \right] \right| = \varepsilon(n)$$
+    $$
+    \left| \Pr\left[ D(w) = 1 \right] - \Pr\left[ D(G(k)) = 1 \right] \right| = \varepsilon(n)
+    $$
     
     因为 $G$ 是伪随机发生器，所以 $\varepsilon(n)$ 必须是**可忽略函数**，结合 $\varepsilon(n)$ 的定义可得，加密方案 $\Pi$ 满足“窃听者存在下的不可区分加密”，证毕。
 
@@ -149,10 +164,10 @@ $$|\Pr[D(1^n, X_n) = 1] - \Pr[D(1^n, Y_n) = 1]| \leq \text{negl}(n)$$
     <img src="images/image3-4.jpg" style="display: block; width: 60%; margin: 0 auto;" />
 
     作规约图如上，假设 $Pr[\text{A wins EAV}] = \frac{1}{2} + \Delta$，其中 $\Delta$ 表示 not small，则：
-    $$\begin{align*}
-    Pr[R^A \text{ wins PRG}] &= P[b = 0] \cdot Pr[R^A \text{ wins} \mid b = 0] + P[b = 1] \cdot Pr[R^A \text{ wins} \mid b = 1] \\
-    &= \frac{1}{2}Pr[\text{A wins EAV}] + \frac{1}{2} \cdot \frac{1}{2} = \frac{1}{2} + \frac{\Delta}{2}
-    \end{align*}$$
+    $$
+    Pr[R^A \text{ wins PRG}] = P[b = 0] \cdot Pr[R^A \text{ wins} \mid b = 0] + P[b = 1] \cdot Pr[R^A \text{ wins} \mid b = 1] \\
+    = \frac{1}{2}Pr[\text{A wins EAV}] + \frac{1}{2} \cdot \frac{1}{2} = \frac{1}{2} + \frac{\Delta}{2}
+    $$
 
     说明 $R^A$ 可以攻破 PRG，矛盾！故有 EAV-Secure.
 
@@ -168,7 +183,9 @@ $$|\Pr[D(1^n, X_n) = 1] - \Pr[D(1^n, Y_n) = 1]| \leq \text{negl}(n)$$
 任何标准的伪随机发生器都能够被转化成为一个输出长度可变的伪随机发生器。
 
 与定长加密方案相似的，可以给出构造方案：
-$$c := G(k,1^{|m|}) \oplus m，m := G(k,1^{|c|}) \oplus c$$
+$$
+c := G(k,1^{|m|}) \oplus m，m := G(k,1^{|c|}) \oplus c
+$$
 
 ### 4. 3 流密码（Stream Ciphers）和多个加密
 上述构造方案被称作流密码，其加密的执行是先生成一个伪随机比特流，然后将该比特流和明文做异或运算。
@@ -179,7 +196,10 @@ $$c := G(k,1^{|m|}) \oplus m，m := G(k,1^{|c|}) \oplus c$$
 
     <img src="images/image3-5.png" style="display: block; width: 80%; margin: 0 auto;" />
 
-* 一个对称密钥加密方案 $\Pi = (\text{Gen}, \text{Enc}, \text{Dec})$，如果对所有的概率多项式时间敌手 $\mathcal{A}$，存在一个可忽略函数 $\text{negl}$，满足 $$\Pr\left[ \text{PrivK}^{\text{mult}}_{\mathcal{A},\Pi}(n) = 1 \right] \leqslant \frac{1}{2} + \text{negl}$$
+* 一个对称密钥加密方案 $\Pi = (\text{Gen}, \text{Enc}, \text{Dec})$，如果对所有的概率多项式时间敌手 $\mathcal{A}$，存在一个可忽略函数 $\text{negl}$，满足 
+$$
+\Pr\left[ \text{PrivK}^{\text{mult}}_{\mathcal{A},\Pi}(n) = 1 \right] \leqslant \frac{1}{2} + \text{negl}
+$$
 
   则称其具备**窃听者存在的情况下不可区分多次加密**
 
@@ -239,7 +259,9 @@ $$c := G(k,1^{|m|}) \oplus m，m := G(k,1^{|c|}) \oplus c$$
     5. 如果 $b = b'$，该实验的输出被定义为 1，否则定义为 0，若 $\text{PrivK}^{\text{cpa}}_{\mathcal{A},\Pi}(n) = 1$ ，则认为 $\mathcal{A}$ 成功
 
 * 一个对称密钥加密方案 $\Pi = (\text{Gen}, \text{Enc}, \text{Dec})$，如果对所有的概率多项式敌手 $\mathcal{A}$，存在一个可忽略函数 $\text{negl}$，使得
-$$\Pr\left[ \text{PrivK}^{\text{cpa}}_{\mathcal{A},\Pi}(n) = 1 \right] \leqslant \frac{1}{2} + \text{negl}(n)$$
+$$
+\Pr\left[ \text{PrivK}^{\text{cpa}}_{\mathcal{A},\Pi}(n) = 1 \right] \leqslant \frac{1}{2} + \text{negl}(n)
+$$
 
   则是选择明文攻击（CPA）条件下的不可区分加密
 
@@ -248,8 +270,6 @@ $$\Pr\left[ \text{PrivK}^{\text{cpa}}_{\mathcal{A},\Pi}(n) = 1 \right] \leqslant
 和多次加密的安全一样，任何确定加密方案都不能抵御选择明文攻击，即：**任何 CPA 安全的加密方案必须是概率性的**。
 
 !!! info LR 预言机实验 $\text{PrivK}^{\text{LR-cpa}}_{\mathcal{A},\Pi}(n)$
-    <br>
-
     1. $k \leftarrow \text{Gen}(1^n)$，$b \leftarrow \{0,1\}$
     2. 输入 $1^n$ 给敌手 $\mathcal{A}$，敌手 $\mathcal{A}$ 可以访问预言机 $\text{LR}_{k,b}(\cdot,\cdot)$
     3. 敌手 $\mathcal{A}$ 输出一个比特 $b'$
@@ -258,7 +278,9 @@ $$\Pr\left[ \text{PrivK}^{\text{cpa}}_{\mathcal{A},\Pi}(n) = 1 \right] \leqslant
 相似的，将 CPA 单次加密扩展到多次加密，则有：
 
 * 一个对称密钥加密方案 $\Pi = (\text{Gen}, \text{Enc}, \text{Dec})$，如果对所有的概率多项式敌手 $\mathcal{A}$，存在一个可忽略函数 $\text{negl}$，使得
-$$\Pr\left[ \text{PrivK}^{\text{LR-cpa}}_{\mathcal{A},\Pi}(n) = 1 \right] \leqslant \frac{1}{2} + \text{negl}(n)$$
+$$
+\Pr\left[ \text{PrivK}^{\text{LR-cpa}}_{\mathcal{A},\Pi}(n) = 1 \right] \leqslant \frac{1}{2} + \text{negl}(n)
+$$
 
   则是选择明文攻击（CPA）条件下的不可区分多次加密
 
@@ -267,10 +289,13 @@ $$\Pr\left[ \text{PrivK}^{\text{LR-cpa}}_{\mathcal{A},\Pi}(n) = 1 \right] \leqsl
 
 与窃听敌手（EAV）的情况不同的是，**单次加密的 CPA 安全即意味着多次加密的 CPA 安全**，即：任何在选择明文攻击条件下的不可区分加密的对称密钥加密方案，也是在选择明文攻击条件下的不可区分多次加密方案。
 
-!!! note 证明：混合论证（Hybrid Argument）
+!!! error 证明：混合论证（Hybrid Argument）
     定义 $n+1$ 个中间游戏 $\text{Game}_0, \text{Game}_1, \dots, \text{Game}_n$，其中：  
     
-    **$\text{Game}_k$规则** 为对第 $1 \sim k$ 个消息对用 $b=1$ 处理，对第 $k+1 \sim n $个消息对用 $b=0$ 处理，其返回的密文序列为：$$(c_1, \dots, c_k, c_{k+1}, \dots, c_n) = (\text{Enc}(sk, m_1^1), \dots, \text{Enc}(sk, m_1^k), \text{Enc}(sk, m_0^{k+1}), \dots, \text{Enc}(sk, m_0^n))$$  
+    **$\text{Game}_k$规则** 为对第 $1 \sim k$ 个消息对用 $b=1$ 处理，对第 $k+1 \sim n $个消息对用 $b=0$ 处理，其返回的密文序列为：
+    $$
+    (c_1, \dots, c_k, c_{k+1}, \dots, c_n) = (\text{Enc}(sk, m_1^1), \dots, \text{Enc}(sk, m_1^k), \text{Enc}(sk, m_0^{k+1}), \dots, \text{Enc}(sk, m_0^n))
+    $$  
     
     考虑相邻游戏 $\text{Game}_k$ 和 $\text{Game}_{k+1}$，二者仅第 $k+1$ 个消息对的处理方式不同，构造IND-CPA攻击者 $\mathcal{B}$，其行为如下：  
     1. $\mathcal{B}$接收IND-CPA挑战者的公钥$pk$，并需要猜测IND-CPA的挑战比特$b$（$b=0$对应加密$m_0$，$b=1$对应加密$m_1$）。  
@@ -286,13 +311,17 @@ $$\Pr\left[ \text{PrivK}^{\text{LR-cpa}}_{\mathcal{A},\Pi}(n) = 1 \right] \leqsl
     - 若IND-CPA的挑战比特$b=1$，则$c_{k+1} = \text{Enc}(sk, m_1^{k+1})$，此时$\mathcal{B}$模拟的是$\text{Game}_{k+1}$。  
 
     因此，$\mathcal{A}$在$\text{Game}_k$和$\text{Game}_{k+1}$中的区分优势，等于$\mathcal{B}$在IND-CPA中的优势：  
-    $$\left| \Pr[\mathcal{A} \text{在}\text{Game}_k\text{中输出}1] - \Pr[\mathcal{A} \text{在}\text{Game}_{k+1}\text{中输出}1] \right| = \text{Adv}_{\text{IND-CPA}}(\mathcal{B})$$  
+    $$
+    \left| \Pr[\mathcal{A} \text{在}\text{Game}_k\text{中输出}1] - \Pr[\mathcal{A} \text{在}\text{Game}_{k+1}\text{中输出}1] \right| = \text{Adv}_{\text{IND-CPA}}(\mathcal{B})
+    $$  
 
     由IND-CPA的安全性，$\text{Adv}_{\text{IND-CPA}}(\mathcal{B})$是**可忽略的**，因此$\text{Game}_k$与$\text{Game}_{k+1}$不可区分。
 
     $\because \left| \Pr[\mathcal{A} \text{在}\text{Game}_0\text{中输出}1] - \Pr[\mathcal{A} \text{在}\text{Game}_n\text{中输出}1] \right| \leq \sum_{k=0}^{n-1} \left| \Pr[\mathcal{A} \text{在}\text{Game}_k\text{中输出}1] - \Pr[\mathcal{A} \text{在}\text{Game}_{k+1}\text{中输出}1] \right|$ 
 
-    $\therefore \text{Adv}_{\text{LR-IND-CPA}}(\mathcal{A}) \leq \sum_{k=0}^{n-1} \text{Adv}_{\text{IND-CPA}}(\mathcal{B}_k)$$  
+    $$
+    \therefore \text{Adv}_{\text{LR-IND-CPA}}(\mathcal{A}) \leq \sum_{k=0}^{n-1} \text{Adv}_{\text{IND-CPA}}(\mathcal{B}_k)
+    $$  
 
     其中$\mathcal{B}_k$是针对第$k$对相邻游戏的归约算法。由于$n$是**多项式有界的**（攻击者$\mathcal{A}$的询问次数在多项式时间内），且每个$\text{Adv}_{\text{IND-CPA}}(\mathcal{B}_k)$是可忽略的，因此总和仍是可忽略的。
 
@@ -301,7 +330,10 @@ $$\Pr\left[ \text{PrivK}^{\text{LR-cpa}}_{\mathcal{A},\Pi}(n) = 1 \right] \leqsl
 ## 6 CPA 安全的加密方案构建
 
 !!! info 伪随机函数的定义
-    令 $F:\{0,1\}^*×\{0,1\}^*→\{0,1\}^*$ 是有效的、长度保留的、带密钥的函数。如果对所有多项式时间区分器 $D$，存在一个可忽略函数 $\text{negl}$，满足：$$\left| \Pr\left[D^{F_k(\cdot)}(1^n) = 1\right] - \Pr\left[D^{f(\cdot)}(1^n) = 1\right] \right| \leq \text{negl}(n),$$
+    令 $F:\{0,1\}^*×\{0,1\}^*→\{0,1\}^*$ 是有效的、长度保留的、带密钥的函数。如果对所有多项式时间区分器 $D$，存在一个可忽略函数 $\text{negl}$，满足：
+    $$
+    \left| \Pr\left[D^{F_k(\cdot)}(1^n) = 1\right] - \Pr\left[D^{f(\cdot)}(1^n) = 1\right] \right| \leq \text{negl}(n)
+    $$
 
     则称 $F$ 是一个伪随机函数，其中 $k \leftarrow \{0,1\}^n$ 是均匀随机选择的，并且 $f$ 是从将 $n$ 比特字符串映射到 $n$ 比特字符串的函数集合中均匀随机选择出来的。
 
@@ -314,15 +346,19 @@ $$\Pr\left[ \text{PrivK}^{\text{LR-cpa}}_{\mathcal{A},\Pi}(n) = 1 \right] \leqsl
 ## ？ 单向函数（One-Way Functions）
 
 !!! info 求逆实验 $\text{Invert}_{\mathcal{A},f}(n)$
-    <br>
-
     1. $x \leftarrow \{0,1\}^n$ ，$y := f(x)$
     2. $1^n$ 和 $y$ 作为 $\mathcal{A}$ 的输入，输出为 $x'$
     3. 如果 $f(x') = y$ ，那么定义该实验的输出为 $1$，否则为 $0$
 
 * 如果一个函数 $f : \{0,1\}^* \to \{0,1\}^*$ 满足下述两个条件，那么它就是**单向函数**：
   1. （**Easy to compute:**）存在一个多项式时间算法 $M_f$ 来计算 $f$ ；也就是说，对所有 $x$ ，有 $M_f(x) = f(x)$ 
-  2. （**Hard to invert:**）对任意概率多项式时间算法 $\mathcal{A}$ ，存在一个可忽略函数 $\text{negl}$ ，满足 $$\Pr\left[ \text{Invert}_{\mathcal{A},f}(n) = 1 \right] \leqslant \text{negl}(n)$$
+  2. （**Hard to invert:**）对任意概率多项式时间算法 $\mathcal{A}$ ，存在一个可忽略函数 $\text{negl}$ ，满足
+  $$
+  \Pr\left[ \text{Invert}_{\mathcal{A},f}(n) = 1 \right] \leqslant \text{negl}(n)
+  $$
 
 !!! hint
-    上式第二条可用符号表示法表述为：$$\Pr_{x \leftarrow \{0,1\}^n}\left[ \mathcal{A}(f(x)) \in f^{-1}(f(x)) \right] \leqslant \text{negl}(n)$$
+    上式第二条可用符号表示法表述为：
+    $$
+    \Pr_{x \leftarrow \{0,1\}^n}\left[ \mathcal{A}(f(x)) \in f^{-1}(f(x)) \right] \leqslant \text{negl}(n)
+    $$

@@ -1,12 +1,37 @@
 site_name: sodasugar的笔记本
+
 theme:
   name: material
+
 nav:
   - 首页: index.md
   - 专业课: 
     - 数据安全与密码学基础: 
-      - Chapter 1 概论: 数据安全与密码学基础/Chapter1_概论.md
-      - Chapter 2 完善保密加密: 数据安全与密码学基础/Chapter2_完善保密加密.md
-      - Chapter 3 对称密钥加密以及伪随机性: 数据安全与密码学基础/Chapter3_对称密钥加密以及伪随机性.md
-  # 后续添加新页面后，可以继续在这里添加导航项
-  # - 分类: category.md
+      - Chapter 1 概论: cryptography/Chapter1_概论.md
+      - Chapter 2 完善保密加密: cryptography/Chapter2_完善保密加密.md
+      - Chapter 3 对称密钥加密以及伪随机性: cryptography/Chapter3_对称密钥加密以及伪随机性.md
+
+markdown_extensions:
+  - pymdownx.arithmatex:
+      generic: true
+      block_syntax: # 明确指定由arithmatex处理的块语法
+        - dollar
+  - pymdownx.superfences
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.highlight:
+      use_pygments: true
+  - admonition
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+extra_javascript:
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+  - javascripts/mathjax-config.js
+
+extra_css:
+  - stylesheets/extra.css
+
