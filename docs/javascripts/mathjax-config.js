@@ -1,22 +1,37 @@
 window.MathJax = {
   tex: {
-    inlineMath: [['\\(', '\\)']],
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
     displayMath: [['$$', '$$'], ['\\[', '\\]']],
     processEscapes: true,
-    packages: {'[+]': ['ams', 'boldsymbol']} // 确保加载ams等宏包
+    packages: {'[+]': ['ams', 'boldsymbol']},
+    tags: 'ams',
+    tagSide: 'right',
+    useLabelIds: true,
+    multlineWidth: '85%',
+    tags: 'all',
+    ams: {
+      multlineThickness: '2px'
+    }
+  },
+  chtml: {
+    scale: 1.1,
+    displayAlign: 'center',
+    displayIndent: '0em'
   },
   options: {
-    skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-    ignoreHtmlClass: 'tex2jax_ignore',
-    processHtmlClass: 'arithmatex'
+    skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+    renderActions: {
+      addMenu: [0, '', '']
+    }
+  },
+  startup: {
+    pageReady: function() {
+      return MathJax.startup.defaultPageReady().then(function() {
+        console.log('MathJax is ready with AMS extensions');
+      });
+    }
+  },
+  loader: {
+    load: ['[tex]/ams', '[tex]/boldsymbol']
   }
 };
-
-// 解决开发服务器实时重载时公式不重新渲染的问题
-if (typeof window.MkDocsMaterial !== 'undefined') {
-  document$.subscribe(() => {
-    if (window.MathJax && window.MathJax.typesetPromise) {
-      window.MathJax.typesetPromise();
-    }
-  });
-}

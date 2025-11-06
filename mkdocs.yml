@@ -14,8 +14,6 @@ nav:
 markdown_extensions:
   - pymdownx.arithmatex:
       generic: true
-      block_syntax: # 明确指定由arithmatex处理的块语法
-        - dollar
   - pymdownx.superfences
   - toc:
       permalink: true
@@ -34,4 +32,3 @@ extra_javascript:
 
 extra_css:
   - stylesheets/extra.css
-
