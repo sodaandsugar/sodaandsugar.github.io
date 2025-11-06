@@ -1,4 +1,5 @@
 name: Deploy MkDocs site to GitHub Pages
+run: pip install -r requirements.txt
 
 on:
   push:
