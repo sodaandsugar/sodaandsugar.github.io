@@ -1,0 +1,1474 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../Chapter1_%E9%9D%99%E7%94%B5%E5%9C%BA/">
+      
+      
+        <link rel="next" href="../Chapter3_%E7%94%B5%E6%B5%81%E5%92%8C%E7%A3%81%E5%9C%BA/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>Chapter 2 静电场中的导体和电介质 - sodasugar的笔记本</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chapter-2" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="sodasugar的笔记本" class="md-header__button md-logo" aria-label="sodasugar的笔记本" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            sodasugar的笔记本
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chapter 2 静电场中的导体和电介质
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="sodasugar的笔记本" class="md-nav__button md-logo" aria-label="sodasugar的笔记本" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    sodasugar的笔记本
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    首页
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    通识课
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            通识课
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    大物乙Ⅱ
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            大物乙Ⅱ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Chapter1_%E9%9D%99%E7%94%B5%E5%9C%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 静电场
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 静电场中的导体和电介质
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 静电场中的导体和电介质
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1 电容相关
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1 电容相关">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 1 基本公式
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 2 结论型公式
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 3 电容器的常见操作
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 电介质相关
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 静电场中金属导体问题
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3 静电场中金属导体问题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#3-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 1 静电平衡
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 2 静电屏蔽
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Chapter3_%E7%94%B5%E6%B5%81%E5%92%8C%E7%A3%81%E5%9C%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 电流和磁场
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Chapter4_%E7%89%A9%E8%B4%A8%E4%B8%AD%E7%9A%84%E7%A3%81%E5%9C%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 物质中的磁场
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Chapter5_%E7%94%B5%E7%A3%81%E6%84%9F%E5%BA%94/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5 电磁感应
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../midterm_review/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    期中小结
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    专业课
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            专业课
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    数据安全与密码学基础
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            数据安全与密码学基础
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/resource/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    资源索引
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/Chapter1_%E6%A6%82%E8%AE%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 概论
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/Chapter2_%E5%AE%8C%E5%96%84%E4%BF%9D%E5%AF%86%E5%8A%A0%E5%AF%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 完善保密加密
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/Chapter3_%E5%AF%B9%E7%A7%B0%E5%AF%86%E9%92%A5%E5%8A%A0%E5%AF%86%E4%BB%A5%E5%8F%8A%E4%BC%AA%E9%9A%8F%E6%9C%BA%E6%80%A7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 对称密钥加密以及伪随机性
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    高级数据结构与算法分析
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            高级数据结构与算法分析
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/resource/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    资源索引
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem%20Set/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    题目集
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/cheatsheet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    期中考 cheat sheet
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    选修课
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            选修课
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    英语口译
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            英语口译
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interpret/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    专题二
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1 电容相关
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1 电容相关">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 1 基本公式
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 2 结论型公式
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 3 电容器的常见操作
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 电介质相关
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 静电场中金属导体问题
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3 静电场中金属导体问题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#3-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 1 静电平衡
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 2 静电屏蔽
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="chapter-2">Chapter 2 静电场中的导体和电介质<a class="headerlink" href="#chapter-2" title="Permanent link">&para;</a></h1>
+<details class="tip" open="open">
+<summary>解题思路</summary>
+<pre class="mermaid"><code>flowchart LR
+    A[设电荷量] --电介质中的高斯定理--&gt; B[求 D 分布]
+    K[求电势分布 U] --&gt; L[求电势梯度 ∇U]
+    L --负号--&gt; C
+    B --&gt; C[求电场强度 E]
+    C --&gt; D[求电势差 U]
+    D --&gt; E[求电容 C]
+    D --&gt; J[求静电场做功 W]
+    C --&gt; F[求电极化强度 P]
+    F --&gt; G[求极化电荷面密度 σ']
+    C --&gt; H[求电场的能量密度 w]
+    H --&gt; I[求电场的能量 W]</code></pre>
+</details>
+<div class="admonition tip">
+<p class="admonition-title">温馨提示</p>
+<ol>
+<li>存在电介质时，要使用<strong>电介质中的高斯定理</strong>，即先求 <span class="arithmatex">\(D\)</span> 再求 <span class="arithmatex">\(E\)</span></li>
+<li>对于击穿问题，应先利用函数找到系统内场强能够达到的最大值及其位置，再进一步求解</li>
+<li>针对仅外表面带电的导体系统（如导体球壳、导体块），通过设外表面感应电荷面密度为未知数，利用 “导体内部电势为零” 的静电平衡条件，建立方程求解该面密度</li>
+<li>解题时注意区分相对介电常数和介电常数</li>
+</ol>
+</div>
+<h2 id="1">1 电容相关<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<h3 id="1-1">1. 1 基本公式<a class="headerlink" href="#1-1" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>公式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>电容</strong></td>
+<td><span class="arithmatex">\(C = \dfrac{Q}{U_{\text{A}} - U_{\text{B}}} = \dfrac{\epsilon_0 \epsilon_r S}{d}\)</span></td>
+</tr>
+<tr>
+<td><strong>电容的串联</strong></td>
+<td><span class="arithmatex">\(\dfrac{1}{C} = \dfrac{1}{C_1} + \dfrac{1}{C_2} + \cdots + \dfrac{1}{C_n}\)</span></td>
+</tr>
+<tr>
+<td><strong>电容的并联</strong></td>
+<td><span class="arithmatex">\(C = C_1 + C_2 + \cdots + C_n\)</span></td>
+</tr>
+<tr>
+<td><strong>极板间电场强度</strong></td>
+<td><span class="arithmatex">\(E = \dfrac{\sigma}{\varepsilon_0 \varepsilon_r}\)</span></td>
+</tr>
+<tr>
+<td><strong>带电电容器的能量</strong></td>
+<td><span class="arithmatex">\(W = \dfrac{Q^{2}}{2C} = \dfrac{1}{2}C\Delta U^{2} = \dfrac{1}{2}Q\Delta U\)</span></td>
+</tr>
+</tbody>
+</table>
+<h3 id="1-2">1. 2 结论型公式<a class="headerlink" href="#1-2" title="Permanent link">&para;</a></h3>
+<details class="quote" open="open">
+<summary>前言</summary>
+<p>以下公式均由电介质中的高斯定理得到，可记可不记，留个印象就好</p>
+</details>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>平行板电容器</th>
+<th>同心球形电容器</th>
+<th>同轴圆柱形电容器</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>电场强度</strong></td>
+<td><span class="arithmatex">\(E = \dfrac{\sigma}{\varepsilon_r \varepsilon_0}\)</span></td>
+<td><span class="arithmatex">\(E = \dfrac{q}{4\pi \varepsilon_r \varepsilon_0 r^2}\)</span></td>
+<td><span class="arithmatex">\(E = \dfrac{\lambda}{2\pi \varepsilon_r \varepsilon_0 r}\)</span></td>
+</tr>
+<tr>
+<td><strong>电容</strong></td>
+<td><span class="arithmatex">\(C_0 = \dfrac{\varepsilon_0 S}{d}\)</span></td>
+<td><span class="arithmatex">\(C_0 = 4\pi\varepsilon_0 \dfrac{R_2 R_1}{R_2 - R_1}\)</span><br><em>注：<span class="arithmatex">\(R_2 \gg R_1\)</span>时，<span class="arithmatex">\(C \to 4\pi\varepsilon_0 R_1\)</span></em></td>
+<td><span class="arithmatex">\(C_0 = \dfrac{2\pi\varepsilon_0 l}{\ln(R_B/R_A)}\)</span></td>
+</tr>
+</tbody>
+</table>
+<details class="note" open="open">
+<summary>例题</summary>
+<p>设有半径都是 <span class="arithmatex">\(r\)</span> 的两条平行无限长输电线 <span class="arithmatex">\(A\)</span> 和 <span class="arithmatex">\(B\)</span> ，两轴间相距为 <span class="arithmatex">\(d\)</span> ，且满足 <span class="arithmatex">\(d\gg r\)</span> ，则两输电线单位长度的电容为<span class="arithmatex">\(\underline{\qquad}\)</span>．</p>
+<details class="success">
+<summary>答案</summary>
+<p><span class="arithmatex">\(E = \frac{\lambda}{2\pi\varepsilon_0 r} + \frac{\lambda}{2\pi\varepsilon_0 (d - r)}\)</span> ， <span class="arithmatex">\(U = \int_{r}^{d - r} \left( \frac{\lambda}{2\pi\varepsilon_0 r'} + \frac{\lambda}{2\pi\varepsilon_0 (d - r')} \right) dr' = \frac{\lambda}{\pi\varepsilon_0} \ln\frac{d - r}{r}\)</span> </p>
+<p><span class="arithmatex">\(C = \frac{Q}{U} = \frac{\lambda \cdot 1}{[\lambda/(\pi\varepsilon_0)]\ln[(d - r)/r]} = \frac{\pi\varepsilon_0}{\ln[(d - r)/r]}\)</span> </p>
+</details>
+</details>
+<h3 id="1-3">1. 3 电容器的常见操作<a class="headerlink" href="#1-3" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>断开电源</th>
+<th>不断开电源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>含义</strong></td>
+<td>电荷量不变</td>
+<td>电势差不变</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>断开电源时的操作</th>
+<th>含义</th>
+<th>示意图</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>充满电介质</strong></td>
+<td><span class="arithmatex">\(C=\varepsilon_r C_0\)</span>，<span class="arithmatex">\(E=\dfrac{E_0}{\varepsilon_r}\)</span></td>
+<td><img src="/physics2/images/image2-9.png" width="150" style="display:block;margin:auto;"></td>
+</tr>
+<tr>
+<td><strong>横向插入电介质</strong></td>
+<td>电容串联 <br> 所有电容器的带电量大小完全相等 <br> <span class="arithmatex">\(U=E_1d_1+E_2d_2\)</span></td>
+<td><img src="/physics2/images/image2-7.png" width="150" style="display:block;margin:auto;"></td>
+</tr>
+<tr>
+<td><strong>纵向插入电介质</strong></td>
+<td>电容并联</td>
+<td><img src="/physics2/images/image2-8.png" width="150" style="display:block;margin:auto;"></td>
+</tr>
+<tr>
+<td><strong>插入一定厚度的金属板</strong></td>
+<td>平行板等效距离由 <span class="arithmatex">\(d\)</span> 减小为 <span class="arithmatex">\(d-t\)</span></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<details class="note" open="open">
+<summary>例题</summary>
+<p><div style="overflow: hidden;"> <img src="/physics2/images/image2-3.png" style="float: right; width: 150px; margin-left: 10px;"> <p> 一平行板电容器，其极板面积为 <span class="arithmatex">\(S\)</span>，两板间距为 <span class="arithmatex">\(d\)</span>（ <span class="arithmatex">\(d &lt;&lt; \sqrt{S}\)</span>），中间充有各向同性的电介质，其界面与极板平行，相对介电常数分别为 <span class="arithmatex">\(\varepsilon_{r1}\)</span>和 <span class="arithmatex">\(\varepsilon_{r2}\)</span>，厚度分别为 <span class="arithmatex">\(d_1\)</span> 和 <span class="arithmatex">\(d_2\)</span>，如图所示。设两极板上所带电量分别为 <span class="arithmatex">\(+Q\)</span> 和 <span class="arithmatex">\(-Q\)</span>，求两介质交界面上的极化电荷面密度．</p>
+<details class="success">
+<summary>答案</summary>
+<p><span class="arithmatex">\(E_1 = \frac{\sigma}{\varepsilon_0 \varepsilon_{r1}} = \frac{Q}{\varepsilon_0 \varepsilon_{r1} S}\)</span>，同理得 <span class="arithmatex">\(E_2 = \frac{Q}{\varepsilon_0 \varepsilon_{r2} S}\)</span></p>
+<p><span class="arithmatex">\(\sigma' = \sigma_1' + \sigma_2' = P_{1n} + P_{2n} = \varepsilon_0 (\varepsilon_{r1} - 1)E_1 - \varepsilon_0 (\varepsilon_{r2} - 1)E_2 = \frac{\varepsilon_{r1} - \varepsilon_{r2}}{\varepsilon_{r1} \varepsilon_{r2}} \frac{Q}{S}\)</span></p>
+</details>
+</details>
+<h2 id="2">2 电介质相关<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<details class="quote">
+<summary>前置概念</summary>
+<ol>
+<li><span class="arithmatex">\(\chi_{\text{e}}\)</span> 是电介质的极化率，与电场强度 <span class="arithmatex">\(\mathbf{E}\)</span> 无关，仅与电介质的种类有关，是一个量纲为 <span class="arithmatex">\(1\)</span> 的常量</li>
+<li>电介质的相对介电常数 <span class="arithmatex">\(\varepsilon_r = 1 + \chi_e\)</span>，介电常数 <span class="arithmatex">\(\varepsilon=\varepsilon_r \varepsilon_0 = (1 + \chi_e)\varepsilon_0\)</span></li>
+</ol>
+</details>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>公式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>极化强度</strong></td>
+<td><span class="arithmatex">\(\mathbf{P}=\dfrac{\sum\mathbf{p}_{分子}}{\Delta V}= \epsilon_0(\epsilon_r-1)\mathbf{E}\)</span></td>
+</tr>
+<tr>
+<td><strong>极化（束缚）电荷面密度</strong></td>
+<td><span class="arithmatex">\(\sigma^{\prime}=P\cos\theta=P_{\text{n}}\)</span>，即电极化强度 <span class="arithmatex">\(\mathbf{P}\)</span> 沿电介质表面外法线方向的分量</td>
+</tr>
+<tr>
+<td><strong>电极化强度与束缚电荷分布的关系</strong></td>
+<td><div style="overflow: hidden;"> <img src="/physics2/images/image2-6.png" alt="电介质束缚电荷示意图" style="float: right; width: 150px; margin-left: 0px;"> <p><span class="arithmatex">\(\oint_{S} \mathbf{P} \cdot \mathrm{d} \mathbf{S}=-\sum\limits_{(S_ \text {内})} q^{\prime}=-\int_{V} \rho^{\prime} \mathrm{d} V\)</span></p> <p><em>注：<span class="arithmatex">\(q^{\prime}\)</span> 是闭合面 <span class="arithmatex">\(S\)</span> 所包围的体积 <span class="arithmatex">\(V\)</span> 内的束缚电荷，<span class="arithmatex">\(\rho^{\prime}\)</span> 是体积元 <span class="arithmatex">\(\mathrm{d}V\)</span> 处的束缚电荷体密度</em></p> </div></td>
+</tr>
+<tr>
+<td><strong>电介质中的场</strong></td>
+<td><span class="arithmatex">\(\mathbf{E} = \mathbf{E}_0 + \mathbf{E}' =\dfrac{\sigma_0}{\varepsilon_0} - \dfrac{\sigma'}{\varepsilon_0}\)</span></td>
+</tr>
+<tr>
+<td><strong>电位移</strong></td>
+<td><span class="arithmatex">\(\mathbf{D} = \varepsilon_0 \mathbf{E} + \mathbf{P} = \varepsilon_0 \varepsilon_r \mathbf{E}\)</span></td>
+</tr>
+<tr>
+<td><strong>电介质中的高斯定理</strong></td>
+<td><span class="arithmatex">\(\oint_S \mathbf{D} \cdot d\mathbf{S} = \sum\limits_{(S_内)} q_0\)</span>，其中只包含自由电荷，不包含束缚电荷</td>
+</tr>
+<tr>
+<td><strong>点电荷系统的能量</strong></td>
+<td><span class="arithmatex">\(W = \dfrac{1}{2}\sum q_{i}U_{i} = \dfrac{1}{2}\iiint_{V} Udq = \dfrac{1}{2}\iiint_{V} U\rho dV = \dfrac{1}{2}\iint_{S} U\sigma dS\)</span></td>
+</tr>
+<tr>
+<td><strong>带电导体的能量</strong></td>
+<td><span class="arithmatex">\(W_{\text{e}} = \dfrac{1}{2}\dfrac{q^{2}}{C} = \dfrac{1}{2}CU^{2} = \dfrac{1}{2}qU\)</span></td>
+</tr>
+<tr>
+<td><strong>电场的能量密度</strong></td>
+<td><span class="arithmatex">\(w_{\text{e}} = \dfrac{1}{2}\varepsilon_{0}\varepsilon_{\text{r}}E^{2} = \dfrac{1}{2}DE\)</span></td>
+</tr>
+<tr>
+<td><strong>电场的能量</strong></td>
+<td><span class="arithmatex">\(W = \int_{V} w_{\text{e}} \mathrm{d}V = \int_{V}\dfrac{1}{2}\varepsilon_{0}\varepsilon_{\text{r}}E^{2}\text{d}V\)</span></td>
+</tr>
+</tbody>
+</table>
+<details class="note" open="open">
+<summary>极化电场强度易错题</summary>
+<p>一平行板电容器中充满相对介电常数为 <span class="arithmatex">\(\varepsilon_r\)</span> 的各向同性均匀电介质．已知介质两表面极化电荷面密度分别为 <span class="arithmatex">\(\pm\sigma'\)</span>，则极化电荷在电容器中产生的电场强度大小为 _______ ．</p>
+<details class="success">
+<summary>答案</summary>
+<p>极化电荷在电容器中产生的电场强度可由高斯定理得出：<span class="arithmatex">\(E' = \dfrac{\sigma'}{\varepsilon_0}\)</span>，尽管总电场 <span class="arithmatex">\(E = \dfrac{\sigma}{\varepsilon_0 \varepsilon_r}\)</span>，但极化电荷单独产生的电场为 <span class="arithmatex">\(E' = \dfrac{\sigma'}{\varepsilon_0}\)</span>，故正确答案为 <span class="arithmatex">\(\dfrac{\sigma'}{\varepsilon_0}\)</span></p>
+</details>
+</details>
+<details class="note" open="open">
+<summary>电场能量例题</summary>
+<p>一半径为 <span class="arithmatex">\(R\)</span> 的导体球带电量为 <span class="arithmatex">\(Q\)</span>，放在相对介电常数为 <span class="arithmatex">\(\varepsilon_{r}\)</span> 的无限大均匀电介质中，则电场的总能量 <span class="arithmatex">\(W =\)</span> ______ .</p>
+<details class="success">
+<summary>答案</summary>
+<p><span class="arithmatex">\(E = \frac{Q}{4\pi\varepsilon_{0}\varepsilon_{r}r^{2}}\)</span>，<span class="arithmatex">\(W = \iiint_{V}\frac{1}{2}\varepsilon_{0}\varepsilon_{r}E^{2}\mathrm{d}V = \int_{R}^{\infty}\frac{1}{2}\varepsilon_{0}\varepsilon_{r}\left(\frac{Q}{4\pi\varepsilon_{0}\varepsilon_{r}r^{2}}\right)^{2}4\pi r^{2}\mathrm{d}r = \frac{Q^{2}}{8\pi\varepsilon_{0}\varepsilon_{r}R}\)</span> </p>
+</details>
+</details>
+<h2 id="3">3 静电场中金属导体问题<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
+<h3 id="3-1">3. 1 静电平衡<a class="headerlink" href="#3-1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>导体内部电场强度处处为零，即 <span class="arithmatex">\(\mathbf{E}=\mathbf{0}\)</span></li>
+<li>导体为等势体（内部电势 <span class="arithmatex">\(\mathbf{V}\)</span> 为常量）其表面为等势面</li>
+<li>导体表面电场强度与表面垂直，即 <span class="arithmatex">\(\mathbf{E}=\mathbf{E}_{\mathrm{n}}\)</span></li>
+<li>空心导体（导体空腔）净电荷分布与实心导体相同，仅分布于外表面上，内部无净电荷</li>
+<li>导体表面附近的电场强度为 <span class="arithmatex">\(E=\dfrac{\sigma}{\epsilon_0}\)</span></li>
+<li>孤立导体曲率越大，<span class="arithmatex">\(\sigma\)</span> 越大</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">电场强度例题</p>
+<p><div style="overflow: hidden;"> <img src="/physics2/images/image2-4.png" style="float: right; width: 100px; margin-left: 10px;"> <p> 真空中一无限大带电导体板两侧面上的电荷面密度均为 <span class="arithmatex">\(\sigma\)</span>，现在导体板右侧充满介电常数为 <span class="arithmatex">\(\varepsilon\)</span> 的均匀电介质。如图所示，试求导体板左侧面、右侧面上的自由电荷面密度 <span class="arithmatex">\(\sigma_1\)</span>、<span class="arithmatex">\(\sigma_2\)</span> 以及电介质表面的极化电荷面密度 <span class="arithmatex">\(\sigma'\)</span>。</div></p>
+<details class="success">
+<summary>答案</summary>
+<p>导体静电平衡要求内部电场为零，故左右两侧的电场在导体内部叠加抵消，即 <span class="arithmatex">\(E_2 = E_1\)</span></p>
+<p>而 <span class="arithmatex">\(E_1 = \frac{\sigma_1}{\varepsilon_0}\)</span>，<span class="arithmatex">\(E_2 =\frac{\sigma_2}{\varepsilon}\)</span>，<span class="arithmatex">\(\sigma_1 + \sigma_2 = 2\sigma\)</span>，解得 <span class="arithmatex">\(\sigma_1 = 2\sigma\frac{\varepsilon_0}{\varepsilon_0 + \varepsilon}\)</span>，<span class="arithmatex">\(\sigma_2 = 2\sigma\frac{\varepsilon}{\varepsilon_0 + \varepsilon}\)</span></p>
+<p>则 <span class="arithmatex">\(E_1 = E_2 = \frac{2\sigma}{\varepsilon_0 + \varepsilon}\)</span>，<span class="arithmatex">\(P = \varepsilon_0 (\frac{\varepsilon}{\varepsilon_0} - 1) E = 2\sigma\frac{\varepsilon - \varepsilon-0}{\varepsilon_0 + \varepsilon}\)</span>，故 <span class="arithmatex">\(\sigma' = P\cos\pi = -P = 2\sigma\frac{\varepsilon_0 - \varepsilon}{\varepsilon_0 + \varepsilon}\)</span></p>
+</details>
+</div>
+<div class="admonition note">
+<p class="admonition-title">电势例题</p>
+<p><div style="overflow: hidden;"> <img src="/physics2/images/image2-10.png" style="float: right; width: 150px; margin-left: 20px;"> <p> 如图所示，一封闭的导体空腔 <span class="arithmatex">\(\text{A}\)</span> 内有两个导体 <span class="arithmatex">\(\text{B}\)</span> 和 <span class="arithmatex">\(\text{C}\)</span>。<span class="arithmatex">\(\text{A}\)</span>、<span class="arithmatex">\(\text{C}\)</span>不带电，<span class="arithmatex">\(\text{B}\)</span> 带正电，则三个导体中电势最高的是 ______；最低的是 ______。</div></p>
+<details class="success">
+<summary>答案</summary>
+<p>当静电平衡时，导体空腔 <span class="arithmatex">\(\text{A}\)</span> 内壁感应出负电荷，外表面感应出正电荷，电场线从 <span class="arithmatex">\(\text{B}\)</span> 指向 <span class="arithmatex">\(\text{C}\)</span> 和 <span class="arithmatex">\(\text{A}\)</span> 内壁，沿电场线方向电势降低，故导体 <span class="arithmatex">\(\text{B}\)</span> 电势最高，导体 <span class="arithmatex">\(\text{A}\)</span> 电势最低</p>
+</details>
+</div>
+<h3 id="3-2">3. 2 静电屏蔽<a class="headerlink" href="#3-2" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>空腔内无带电体</strong>：达到静电平衡时，空腔内的电场强度等于零，空腔内的物体或仪器不会受到外电场的影响</li>
+<li><strong>空腔内有带电体（导体空腔本身不带电）</strong>：</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>情况</th>
+<th>结果</th>
+<th>示意图</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>外表面不接地</strong></td>
+<td>外表面上电荷产生的电场会对外界产生影响</td>
+<td><img src="/physics2/images/image2-1.png" width="150" style="display:block;margin:auto;"></td>
+</tr>
+<tr>
+<td><strong>外表面接地</strong></td>
+<td>外表面上无电荷，空腔内外的电场互不干扰</td>
+<td><img src="/physics2/images/image2-2.png" width="100" style="display:block;margin:auto;"></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>常见操作</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>接地</strong></td>
+<td>改变导体所带电荷量，使得其<strong>电势为 0</strong></td>
+</tr>
+<tr>
+<td><strong>连接</strong></td>
+<td>两个导体<strong>等电势</strong>，电荷在两个导体间<strong>重新分布</strong></td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../../javascripts/mathjax-config.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>
