@@ -1,0 +1,4191 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../6/">
+      
+      
+        <link rel="next" href="../8/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>Chapter 7 Processes - sodasugar的笔记本</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chapter-7-processes-threads" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="sodasugar的笔记本" class="md-header__button md-logo" aria-label="sodasugar的笔记本" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            sodasugar的笔记本
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chapter 7 Processes
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="sodasugar的笔记本" class="md-nav__button md-logo" aria-label="sodasugar的笔记本" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    sodasugar的笔记本
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    首页
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    通识课
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            通识课
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    大物乙Ⅱ
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            大物乙Ⅱ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/%E7%89%A9%E7%90%86%E5%AD%A6%E5%8D%95%E4%BD%8D%E6%8D%A2%E7%AE%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    物理学单位换算
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/Chapter1_%E9%9D%99%E7%94%B5%E5%9C%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 静电场
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/Chapter2_%E9%9D%99%E7%94%B5%E5%9C%BA%E4%B8%AD%E7%9A%84%E5%AF%BC%E4%BD%93%E5%92%8C%E7%94%B5%E4%BB%8B%E8%B4%A8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 静电场中的导体和电介质
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/Chapter3_%E7%94%B5%E6%B5%81%E5%92%8C%E7%A3%81%E5%9C%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 电流和磁场
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/Chapter4_%E7%89%A9%E8%B4%A8%E4%B8%AD%E7%9A%84%E7%A3%81%E5%9C%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 物质中的磁场
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/Chapter5_%E7%94%B5%E7%A3%81%E6%84%9F%E5%BA%94/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5 电磁感应
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/Chapter6_%E9%BA%A6%E5%85%8B%E6%96%AF%E9%9F%A6%E6%96%B9%E7%A8%8B%E4%B8%8E%E7%94%B5%E7%A3%81%E6%B3%A2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6 麦克斯韦方程与电磁波
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/Chapter7_%E5%85%89%E7%9A%84%E5%B9%B2%E6%B6%89/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 7 光的干涉
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/Chapter8_%E5%85%89%E7%9A%84%E8%A1%8D%E5%B0%84/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 8 光的衍射
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/Chapter9_%E5%85%89%E7%9A%84%E5%81%8F%E6%8C%AF/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 9 光的偏振
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 10 光的量子论
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 11 玻尔的原子模型
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 12 量子力学初步
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/midterm_review/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    期中小结
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    专业课
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            专业课
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    数据安全与密码学基础
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            数据安全与密码学基础
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/resource/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    资源索引
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 概论
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 完善保密加密
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 对称密钥加密以及伪随机性
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 消息鉴别码
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5 哈希函数
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/midterm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    期中考试卷
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    高级数据结构与算法分析
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            高级数据结构与算法分析
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/resource/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    资源索引
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2_2" id="__nav_3_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    题目集
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            题目集
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AVL 树
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Splay 树
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    摊还分析
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    红黑树
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    B+ 树
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    倒排索引
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    左偏堆
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    斜堆
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    二项队列
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    回溯
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    分治法
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    动态规划
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    贪心算法
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    P/NP 问题
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/15/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    近似算法
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/16/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    局部搜索
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/17/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    随机算法
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/18/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    并行算法
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/cheatsheet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    期中考 cheat sheet
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/midterm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    期中考试
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    计算机系统Ⅱ
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            计算机系统Ⅱ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 ISA Review
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 Design of Pipelining
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 Hazard of Pipelining
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 Software-Hardware Interface
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5 Intro&Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6 Structures
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Chapter 7 Processes
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 7 Processes
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-processes" class="md-nav__link">
+    <span class="md-ellipsis">
+      1 Processes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1 Processes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-1-process-concept" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 1 Process Concept
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-2-process-states" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 2 Process States
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 2 Process States">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-2-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 2. 1 概览
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-2-2-fork" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 2. 2 进程创建：fork()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-2-3-exec" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 2. 3 进程镜像替换：exec*() 家族
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-2-4-exit" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 2. 4 进程终止：exit()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-2-5-waitwaitpid" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 2. 5 父进程等待子进程：wait()/waitpid()
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-3-process-scheduling" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 3 Process Scheduling
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-4-context-switch" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 4 Context Switch
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 5 僵尸进程与孤儿进程
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 5 僵尸进程与孤儿进程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-5-1-zombie" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 5. 1 僵尸进程（Zombie）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-5-2-orphan" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 5. 2 孤儿进程（Orphan）
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-ipc" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 IPC
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2 IPC">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 1 基本概念
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 2 共享内存模型
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 3 消息传递模型
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-4-ipc" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 4 典型 IPC 技术
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 4 典型 IPC 技术">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2-4-1-pipe" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 4. 1 管道（Pipe）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-4-2-socket" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 4. 2 套接字（Socket）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-4-3-rpc-remote-procedure-calls" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 4. 3 远程过程调用（RPC, Remote Procedure Calls）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-4-4-java-java-rmi" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 4. 4 Java 远程方法调用（Java RMI）
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-threads" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 Threads
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3 Threads">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#3-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 1 基本概念
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 2 线程实现模型
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-3-thread-libraries" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 3 Thread Libraries
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-4-threading-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 4 Threading Issues
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 4 Threading Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#3-4-1-fork-exec" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 4. 1 fork() 与 exec() 的语义
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-2-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 2. 2 信号处理
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-2-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 2. 3 线程取消
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-2-4-tls-thread-local-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 2. 4 线程本地存储（TLS, Thread-local Storage）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-2-5-scheduler-activations" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 2. 5 调度器激活（Scheduler Activations）
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-5-operating-system-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 5 Operating System Examples
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 5 Operating System Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#3-5-1-windows-threads" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 5. 1 Windows Threads
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-5-2-linux-threads" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 5. 2 Linux Threads
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 8 CPU Scheduling
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    选修课
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            选修课
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    英语口译
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            英语口译
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interpret/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1 Ceremonial Speech
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interpret/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2 Tourism
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interpret/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3 Culture and Education
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interpret/text/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    课堂文本
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-processes" class="md-nav__link">
+    <span class="md-ellipsis">
+      1 Processes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1 Processes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-1-process-concept" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 1 Process Concept
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-2-process-states" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 2 Process States
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 2 Process States">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-2-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 2. 1 概览
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-2-2-fork" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 2. 2 进程创建：fork()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-2-3-exec" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 2. 3 进程镜像替换：exec*() 家族
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-2-4-exit" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 2. 4 进程终止：exit()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-2-5-waitwaitpid" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 2. 5 父进程等待子进程：wait()/waitpid()
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-3-process-scheduling" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 3 Process Scheduling
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-4-context-switch" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 4 Context Switch
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 5 僵尸进程与孤儿进程
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 5 僵尸进程与孤儿进程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-5-1-zombie" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 5. 1 僵尸进程（Zombie）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-5-2-orphan" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 5. 2 孤儿进程（Orphan）
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-ipc" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 IPC
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2 IPC">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 1 基本概念
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 2 共享内存模型
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 3 消息传递模型
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-4-ipc" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 4 典型 IPC 技术
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 4 典型 IPC 技术">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2-4-1-pipe" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 4. 1 管道（Pipe）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-4-2-socket" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 4. 2 套接字（Socket）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-4-3-rpc-remote-procedure-calls" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 4. 3 远程过程调用（RPC, Remote Procedure Calls）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-4-4-java-java-rmi" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 4. 4 Java 远程方法调用（Java RMI）
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-threads" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 Threads
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3 Threads">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#3-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 1 基本概念
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 2 线程实现模型
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-3-thread-libraries" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 3 Thread Libraries
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-4-threading-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 4 Threading Issues
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 4 Threading Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#3-4-1-fork-exec" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 4. 1 fork() 与 exec() 的语义
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-2-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 2. 2 信号处理
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-2-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 2. 3 线程取消
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-2-4-tls-thread-local-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 2. 4 线程本地存储（TLS, Thread-local Storage）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-2-5-scheduler-activations" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 2. 5 调度器激活（Scheduler Activations）
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-5-operating-system-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 5 Operating System Examples
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 5 Operating System Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#3-5-1-windows-threads" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 5. 1 Windows Threads
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-5-2-linux-threads" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 5. 2 Linux Threads
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="chapter-7-processes-threads">Chapter 7 Processes &amp; Threads<a class="headerlink" href="#chapter-7-processes-threads" title="Permanent link">&para;</a></h1>
+<h2 id="1-processes">1 Processes<a class="headerlink" href="#1-processes" title="Permanent link">&para;</a></h2>
+<h3 id="1-1-process-concept">1. 1 Process Concept<a class="headerlink" href="#1-1-process-concept" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>程序</strong>：被动实体，是存储在磁盘上的可执行文件（字节序列）</li>
+<li><strong>进程</strong>：程序的执行实例（主动实体），加载到内存后成为进程，是资源分配和保护的基本单位</li>
+<li>多个进程可关联同一个程序，在共享服务器上，每个用户都可以启动同一个应用程序的实例（如文本编辑器、命令行终端）</li>
+<li>一个运行中的系统由多个进程组成，如操作系统进程、用户进程</li>
+<li>作业（job）、任务（task）与进程（process）在一般语境下可以互换使用，用来指代一个工作单元，但在不同系统语境下有着不同的含义</li>
+</ul>
+<details class="info">
+<summary>进程地址空间布局图</summary>
+<p><img src="/sys2/images/image7-1.png" style="display: block; width: 30%; margin: 0 auto;" /></p>
+</details>
+<details class="info">
+<summary>C 程序的内存布局图</summary>
+<p><img src="/sys2/images/image7-2.png" style="display: block; width: 60%; margin: 0 auto;" /></p>
+</details>
+<ul>
+<li><strong>运行时栈（runtime stack）</strong>：可执行压入或弹出操作的栈结构，是实现程序中连续函数/方法调用的机制，其管理完全由编译器自动完成</li>
+<li><strong>活动记录（activation records）/ 栈帧(stack frames)</strong>：栈中的元素，包含了函数/方法调用的执行与返回所需的所有记录工作，包括函数参数、局部变量、返回地址、返回值、调用者寄存器状态等</li>
+<li>调用序列越长，栈的规模就越大，栈过大可能达到某些系统指定的限制或触及堆的区域</li>
+<li>栈向下增长，递归调用过深可能导致<strong>运行时栈溢出（runtime stack overflow）</strong>，会触发内核终止进程</li>
+</ul>
+<details class="info">
+<summary>同一程序不同进程的内存分区对比图</summary>
+<p><img src="/sys2/images/image7-3.png" style="display: block; width: 60%; margin: 0 auto;" /></p>
+</details>
+<details class="info">
+<summary>单任务与多任务操作系统的内存布局差异示意图</summary>
+<p><img src="/sys2/images/image7-4.png" style="display: block; width: 70%; margin: 0 auto;" /></p>
+<ul>
+<li>多任务 OS 通过创建新进程（如 Unix 的<code>fork()</code>）实现多程序并发，多个进程共享 CPU 和内存资源</li>
+</ul>
+</details>
+<h3 id="1-2-process-states">1. 2 Process States<a class="headerlink" href="#1-2-process-states" title="Permanent link">&para;</a></h3>
+<h4 id="1-2-1">1. 2. 1 概览<a class="headerlink" href="#1-2-1" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>状态</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>新建（New）</strong></td>
+<td>进程正在创建中</td>
+</tr>
+<tr>
+<td><strong>就绪（Ready）</strong></td>
+<td>等待分配 CPU，已具备执行条件</td>
+</tr>
+<tr>
+<td><strong>运行（Running）</strong></td>
+<td>指令正在 CPU 上执行</td>
+</tr>
+<tr>
+<td><strong>等待（Waiting）</strong></td>
+<td>等待事件发生（如 I/O 完成、信号），释放 CPU</td>
+</tr>
+<tr>
+<td><strong>终止（Terminated）</strong></td>
+<td>进程执行完毕，资源待回收</td>
+</tr>
+</tbody>
+</table>
+<details class="info">
+<summary>状态转换关系图</summary>
+<p><img src="/sys2/images/image7-5.png" style="display: block; width: 60%; margin: 0 auto;" /></p>
+</details>
+<ul>
+<li>
+<p>进程执行时会改变<strong>状态</strong></p>
+</li>
+<li>
+<p><strong>进程控制块（PCB）</strong>存储了进程的所有关键信息，供操作系统管理进程，每个进程唯一对应一个PCB，创建时分配、终止时释放</p>
+</li>
+</ul>
+<details class="info">
+<summary>PCB 的信息组成示意图</summary>
+<p><img src="/sys2/images/image7-6.png" style="display: block; width: 20%; margin: 0 auto;" /></p>
+<ul>
+<li><strong>进程状态</strong>：运行/就绪/等待等</li>
+<li><strong>程序计数器（PC）</strong>：下一条执行指令地址</li>
+<li><strong>CPU 寄存器集合</strong>：进程当前寄存器状态</li>
+<li><strong>CPU 调度信息</strong>：优先级、调度队列指针</li>
+<li><strong>内存管理信息</strong>：分配的内存地址空间</li>
+<li><strong>记账信息</strong>：CPU使用时间、进程启动后的流逝时钟时间、时间限制</li>
+<li><strong>I/O 状态信息</strong>：打开的文件列表、分配的 I/O 设备</li>
+</ul>
+</details>
+<div class="admonition tip">
+<p class="admonition-title">Process Representation (Linux)</p>
+<p>在 Linux 中，<strong>每个进程/线程都用 <code>task_struct</code> 结构体描述</strong>，它包含了进程的所有关键信息：</p>
+<div class="highlight"><pre><span></span><code><span class="kt">pid_t</span><span class="w"> </span><span class="n">pid</span><span class="p">;</span><span class="w">                    </span><span class="c1">// 进程唯一标识 ID</span>
+<span class="kt">long</span><span class="w"> </span><span class="n">state</span><span class="p">;</span><span class="w">                   </span><span class="c1">// 进程状态（-1不可运行/0可运行/&gt;0停止）</span>
+<span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">time_slice</span><span class="p">;</span><span class="w">      </span><span class="c1">// 调度剩余 CPU 时间片</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">task_struct</span><span class="w"> </span><span class="o">*</span><span class="n">parent</span><span class="p">;</span><span class="w">   </span><span class="c1">// 父进程指针</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">list_head</span><span class="w"> </span><span class="n">children</span><span class="p">;</span><span class="w">    </span><span class="c1">// 子进程链表头</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">files_struct</span><span class="w"> </span><span class="o">*</span><span class="n">files</span><span class="p">;</span><span class="w">   </span><span class="c1">// 打开的文件列表</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">mm_struct</span><span class="w"> </span><span class="o">*</span><span class="n">mm</span><span class="p">;</span><span class="w">         </span><span class="c1">// 进程虚拟地址空间描述</span>
+</code></pre></div>
+<p><img src="/sys2/images/image7-7.png" style="display: block; width: 50%; margin: 0 auto;" /></p>
+<p>多个 <code>task_struct</code> 通过链表连接，<code>current</code> 表示<strong>当前正在执行的进程</strong>的 <code>task_struct</code></p>
+<div class="highlight"><pre><span></span><code><span class="k">struct</span><span class="w"> </span><span class="nc">task_struct</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 宏：控制是否将 thread_info 内嵌到 task_struct</span>
+<span class="w">    </span><span class="cp">#ifdef CONFIG_THREAD_INFO_IN_TASK</span>
+<span class="w">        </span><span class="c1">// 因头文件依赖，thread_info 必须作为 task_struct 的第一个成员</span>
+<span class="w">        </span><span class="k">struct</span><span class="w"> </span><span class="nc">thread_info</span><span class="w"> </span><span class="n">thread_info</span><span class="p">;</span>
+<span class="w">    </span><span class="cp">#endif</span>
+
+<span class="w">    </span><span class="k">volatile</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">state</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// 标记 task_struct 中可随机化字段的起始位置</span>
+<span class="w">    </span><span class="n">randomized_struct_fields_start</span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">stack</span><span class="p">;</span><span class="w">          </span><span class="c1">// 指向进程/线程的栈空间指针</span>
+<span class="w">    </span><span class="n">refcount_t</span><span class="w"> </span><span class="n">usage</span><span class="p">;</span><span class="w">     </span><span class="c1">// 进程引用计数：计数为 0 时可释放该结构体</span>
+<span class="p">};</span>
+</code></pre></div>
+<p><code>thread_info</code> 是存储线程/进程基础调度信息的结构体，有两种布局方式，<code>current</code> 是内核中用来<strong>快速获取当前正在执行进程的 <code>task_struct</code></strong> 的宏，其实现方式也随着 <code>thread_info</code> 的布局而变化</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><code>thread_info</code> 不在 <code>task_struct</code> 中</th>
+<th><code>thread_info</code> 在 <code>task_struct</code> 中</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>布局图</strong></td>
+<td><img src="/sys2/images/image7-8.png" style="display: block; margin: 0 auto;" /></td>
+<td><img src="/sys2/images/image7-9.png" style="display: block; margin: 0 auto;" /></td>
+</tr>
+<tr>
+<td><strong>解释</strong></td>
+<td><span class="arithmatex">\(\textbf{·}\)</span> 线程栈的总大小为 <code>THREAD_SIZE</code>，<strong>栈的底部存放 <code>struct thread_info</code></strong> <br> <span class="arithmatex">\(\textbf{·}\)</span> <code>thread_info</code> 内有 <code>task</code> 指针，指向对应的 <code>task_struct</code> <br> <span class="arithmatex">\(\textbf{·}\)</span> 同时 <code>task_struct</code> 的 <code>stack</code> 指针指向栈的位置，实现 <code>task_struct</code> 和 <code>thread_info</code> 的双向关联</td>
+<td>ARM64 架构下，<code>task_struct</code> 的<strong>开头直接包含 <code>struct thread_info</code></strong>，栈指针直接关联到 <code>task_struct</code> 本身，无需通过<code>thread_info</code>间接关联</td>
+</tr>
+<tr>
+<td><strong>current 宏</strong></td>
+<td><img src="/sys2/images/image7-10.png" style="display: block; margin: 0 auto;" /></td>
+<td><img src="/sys2/images/image7-11.png" style="display: block; margin: 0 auto;" /></td>
+</tr>
+<tr>
+<td><strong>解释</strong></td>
+<td><span class="arithmatex">\(\textbf{·}\)</span> <code>current_thread_info</code> 函数：用当前栈指针与 <code>~(THREAD_SIZE-1)</code> 做位运算，得到栈的起始地址，即 <code>thread_info</code> 的地址<br> <span class="arithmatex">\(\textbf{·}\)</span> <code>get_current</code> 宏：通过 <code>thread_info-&gt;task</code> 获取对应的 <code>task_struct</code>，最终 <code>current</code> 等价于这个 <code>task_struct</code></td>
+<td>内核通过汇编指令 <code>mrs %0, sp_el0</code> 读取 <code>SP_EL0</code> 寄存器的值即当前 <code>task_struct</code> 的地址，直接返回该地址即可得到 <code>current</code></td>
+</tr>
+</tbody>
+</table>
+<details class="question">
+<summary>思考</summary>
+<p>当程序运行在<strong>用户空间</strong>时，SP_EL0 是用户空间栈的栈指针（SP）。那在<strong>内核空间</strong>中，SP_EL0 为何能被用作 <code>current</code>的存储载体呢？</p>
+<details class="success">
+<summary>答案</summary>
+<p>内核空间通常使用 SP_EL1 作为栈指针，从用户态切换到内核态后，SP_EL0 变为空闲，因此能用作存储 <code>current</code></p>
+</details>
+</details>
+</div>
+<h4 id="1-2-2-fork">1. 2. 2 进程创建：<code>fork()</code><a class="headerlink" href="#1-2-2-fork" title="Permanent link">&para;</a></h4>
+<details class="quote" open="open">
+<summary>前置知识</summary>
+<ul>
+<li>一个进程可以创建新的进程，此时它会成为<strong>父进程</strong>，由此我们会得到一个<strong>进程树</strong>，每个进程都有一个<strong>进程 ID（pid）</strong>，<strong>ppid</strong> 指的是父进程的进程 ID</li>
+</ul>
+<details class="info">
+<summary>进程树示例图</summary>
+<p><img src="/sys2/images/image7-12.png" style="display: block; width: 60%; margin: 0 auto;" /></p>
+</details>
+<ul>
+<li>子进程可能会继承/共享父进程的部分资源，也可能拥有完全全新的资源</li>
+<li>父进程也可以向子进程传递输入，在创建子进程后，父进程可以继续执行自身的任务，也可以等待子进程执行完成</li>
+<li>子进程可以是父进程的克隆（即拥有父进程地址空间的副本），也可以是一个全新的程序</li>
+</ul>
+</details>
+<ul>
+<li><strong>功能</strong>：创建一个新进程（子进程），子进程是父进程的副本（代码段、数据段、堆、栈初始相同），但进程 ID（pid, ppid）不同，资源使用率被初始化为 0</li>
+<li><strong><code>fork()</code> 会返回两次</strong>：给父进程返回子进程的 pid，给子进程返回 0，若失败则返回 -1，每个进程可以通过 <code>getpid()</code> 调用获取自身的 <code>pid</code>，通过 <code>getppid()</code> 调用获取自身的 <code>ppid</code></li>
+<li>调用 <code>fork()</code> 后，两个进程都会继续执行，新进程拥有<strong>独立的内存地址空间</strong>等资源，<strong>子进程修改全局变量不会影响父进程</strong></li>
+</ul>
+<details class="question">
+<summary>What does the following code print?</summary>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">12</span><span class="p">;</span>
+<span class="kt">pid_t</span><span class="w"> </span><span class="n">pid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fork</span><span class="p">();</span>
+<span class="n">If</span><span class="w"> </span><span class="p">(</span><span class="n">pid</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">fprintf</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span><span class="s">&quot;Error: can&#39;t fork()</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">perror</span><span class="p">(</span><span class="s">&quot;fork()&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">pid</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// PARENT</span>
+<span class="w">        </span><span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span><span class="w"> </span><span class="c1">// ask the OS to put me in Waiting</span>
+<span class="w">        </span><span class="n">fprintf</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span><span class="s">&quot;a = %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="n">a</span><span class="p">);</span>
+<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// CHILD</span>
+<span class="w">        </span><span class="n">a</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span>
+<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<details class="success">
+<summary>答案</summary>
+<p>a = 12</p>
+</details>
+</details>
+<details class="question">
+<summary>How many times does this code print "hello"?</summary>
+<div class="highlight"><pre><span></span><code><span class="n">pid1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fork</span><span class="p">();</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">&quot;hello</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="n">pid2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fork</span><span class="p">();</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">&quot;hello</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+</code></pre></div>
+<details class="success">
+<summary>答案</summary>
+<table>
+<thead>
+<tr>
+<th>代码行</th>
+<th>执行时的进程数</th>
+<th>该步打印次数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pid1 = fork();</td>
+<td>1（仅 P0）</td>
+<td>0</td>
+</tr>
+<tr>
+<td>printf("hello\n");</td>
+<td>2（P0、P1）</td>
+<td>2</td>
+</tr>
+<tr>
+<td>pid2 = fork();</td>
+<td>2（P0、P1）</td>
+<td>0</td>
+</tr>
+<tr>
+<td>printf("hello\n");</td>
+<td>4（P0、P1、P2、P3）</td>
+<td>4</td>
+</tr>
+</tbody>
+</table>
+<p>故总共打印 6 次 <code>hello</code></p>
+</details>
+</details>
+<details class="question">
+<summary>How many processes does this C program create?</summary>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">arg</span><span class="p">[])</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">fork</span><span class="p">();</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">fork</span><span class="w"> </span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">fork</span><span class="w"> </span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">fork</span><span class="w"> </span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+<details class="success">
+<summary>答案</summary>
+<table>
+<thead>
+<tr>
+<th>代码行</th>
+<th>执行进程数</th>
+<th>新增进程数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>第 1 个 <code>fork()</code></td>
+<td>1(仅 P0)</td>
+<td>1（P0 新增 P1）</td>
+</tr>
+<tr>
+<td><code>if</code> 内 <code>fork()</code></td>
+<td>2（P0, P1）</td>
+<td>2（P0 新增 P2, P1 新增 P3）</td>
+</tr>
+<tr>
+<td><code>if</code> 块内 <code>fork()</code></td>
+<td>2（仅父进程 P0, P1）</td>
+<td>2（P0 新增 P4, P1 新增 P5）</td>
+</tr>
+<tr>
+<td>最后 1 个 <code>fork()</code></td>
+<td>6（P0, P1, P2, P3, P4, P5）</td>
+<td>6</td>
+</tr>
+</tbody>
+</table>
+<p>故最终产生 12 个进程</p>
+</details>
+</details>
+<ul>
+<li><strong>优点</strong>：<strong>简洁</strong>（Windows 的 <code>CreateProcess</code> 需要 10 个参数）；<strong>分工明确</strong>（<code>fork</code> 搭建进程框架，<code>exec</code> 为其赋予实际功能）；<strong>能维持进程之间的关系</strong>。</li>
+<li><strong>缺点</strong>：复杂度较高，性能较差，存在安全问题</li>
+</ul>
+<details class="question">
+<summary>How does <code>fork()</code> return two values?</summary>
+<ul>
+<li>对于父进程来说，<code>fork()</code> 只是一个系统调用，和 <code>write</code> 调用类似</li>
+<li>新进程 ID（new_pid）通过系统调用的返回值（保存在 <code>pt_regs</code> 中）返回给父进程</li>
+</ul>
+<p><img src="/sys2/images/image7-34.png" style="display: block; width: 50%; margin: 0 auto;" /></p>
+</details>
+<h4 id="1-2-3-exec">1. 2. 3 进程镜像替换：<code>exec*()</code> 家族<a class="headerlink" href="#1-2-3-exec" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>功能</strong>：将当前进程的进程镜像（内存空间、代码、数据等）完全替换为指定程序的镜像，替换后进程 pid 不变，原进程的代码不会继续执行（除非 <code>exec</code> 调用出错）</li>
+<li>内核接口：<code>execve()</code>（系统调用），用户态包装函数 <code>execl</code>/<code>execle</code>/<code>execlp</code>/<code>execv</code>/<code>execvp</code> 等</li>
+</ul>
+<p><img src="/sys2/images/image7-15.png" style="display: block; width: 70%; margin: 0 auto;" /></p>
+<details class="example">
+<summary>使用示例</summary>
+<div class="highlight"><pre><span></span><code><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">fork</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// 执行 ls -l ./</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="k">const</span><span class="w"> </span><span class="n">argv</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="err">“</span><span class="n">ls</span><span class="err">”</span><span class="p">,</span><span class="w"> </span><span class="err">“</span><span class="o">-</span><span class="n">l</span><span class="err">”</span><span class="p">,</span><span class="err">”</span><span class="p">.</span><span class="o">/</span><span class="err">”</span><span class="p">,</span><span class="nb">NULL</span><span class="p">};</span>
+<span class="w">    </span><span class="c1">// 参数：可执行文件路径、命令行参数数组（以NULL结尾）、环境变量（可选）</span>
+<span class="w">    </span><span class="n">execv</span><span class="p">(</span><span class="err">“</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">ls</span><span class="err">”</span><span class="p">,</span><span class="w"> </span><span class="n">argv</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+</details>
+<details class="question">
+<summary>为什么 <code>strace</code> 不会显示 <code>fork</code>？</summary>
+<p><code>fork</code>是库函数包装器，底层调用 <code>clone</code> 系统调用，<code>strace 跟踪系统调用，因此显示</code>clone<code>而非</code>fork`</p>
+</details>
+<h4 id="1-2-4-exit">1. 2. 4 进程终止：<code>exit()</code><a class="headerlink" href="#1-2-4-exit" title="Permanent link">&para;</a></h4>
+<ul>
+<li>进程通过 <code>exit()</code> 系统调用自行终止，释放资源（物理内存与虚拟内存、已打开的文件、I/O缓冲区等），返回退出码（整数）</li>
+<li>一个进程可以通过信号和 <code>kill()</code> 系统调用终止另一个进程</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">信号（Signals）</p>
+<ul>
+<li>信号的本质是软件中断，异步通知进程处理事件（如终止、暂停、异常），可用于进程同步</li>
+<li>大多数信号可以被忽略，或者通过用户编写的处理器来执行某些操作，但出于安全原因，<code>SIGKILL</code> 和 <code>SIGSTOP</code> 等信号无法被用户忽略或处理</li>
+</ul>
+<details class="info">
+<summary>Linux 系统中进程信号的编号与名称对应表</summary>
+<p><img src="/sys2/images/image7-16.png" style="display: block; width: 60%; margin: 0 auto;" /></p>
+<ul>
+<li>SIGINT：键盘中断（Ctrl+C），默认终止</li>
+<li>SIGBUS：段错误</li>
+<li>SIGKILL：强制终止，不可忽略/处理</li>
+<li>SIGSTOP：暂停进程，不可忽略/处理</li>
+</ul>
+</details>
+<ul>
+<li><code>signal()</code> 系统调用允许进程指定收到信号时要执行的操作</li>
+</ul>
+<details class="example">
+<summary>信号处理函数示例</summary>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;signal.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+
+<span class="c1">// 自定义信号处理函数：参数 sig 用于接收触发函数的信号编号</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">handler</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">sig</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">fprintf</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span><span class="s">&quot;I don&#39;t want to die!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 忽略该信号</span>
+<span class="w">    </span><span class="c1">// signal(SIGINT, SIG_IGN);</span>
+<span class="w">    </span><span class="c1">// 将行为设为默认</span>
+<span class="w">    </span><span class="c1">// signal(SIGINT, SIG_DFL);</span>
+
+<span class="w">    </span><span class="c1">// 将 SIGINT 信号绑定到自定义 handler 函数</span>
+<span class="w">    </span><span class="n">signal</span><span class="p">(</span><span class="n">SIGINT</span><span class="p">,</span><span class="w"> </span><span class="n">handler</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// 无限循环：让程序持续运行，等待 SIGINT 信号触发（否则程序会直接退出）</span>
+<span class="w">    </span><span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+</details>
+</div>
+<h4 id="1-2-5-waitwaitpid">1. 2. 5 父进程等待子进程：<code>wait()</code>/<code>waitpid()</code><a class="headerlink" href="#1-2-5-waitwaitpid" title="Permanent link">&para;</a></h4>
+<ul>
+<li>避免子进程成为僵尸进程，回收子进程资源，获取退出码</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>系统调用</th>
+<th>特性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>wait()</code></td>
+<td>阻塞等待任意子进程终止，返回终止子进程 pid 及退出码</td>
+</tr>
+<tr>
+<td><code>waitpid()</code></td>
+<td>可指定等待的子进程 pid，支持非阻塞（<code>WNOHANG</code>）</td>
+</tr>
+</tbody>
+</table>
+<details class="example">
+<summary>进程控制代码示例</summary>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;unistd.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;sys/wait.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;fcntl.h&gt;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">rc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fork</span><span class="p">();</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">rc</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">        </span><span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;fork failed</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="c1">// 异常退出程序（退出码 1）</span>
+<span class="w">        </span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w">    </span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">rc</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;hello, I am child (pid:%d)</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="n">getpid</span><span class="p">());</span>
+
+<span class="w">        </span><span class="c1">// 关闭当前进程的标准输出（文件描述符 1）</span>
+<span class="w">        </span><span class="c1">// close(STDOUT_FILENO);</span>
+<span class="w">        </span><span class="c1">// 创建/打开文件 few.output，权限为只写、覆盖原有内容，文件权限是所有者可读可写可执行</span>
+<span class="w">        </span><span class="c1">// open(&quot;./few.output&quot;, O_CREAT | O_WRONLY | O_TRUNC, S_IRWXU);</span>
+
+<span class="w">        </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">myargs</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+<span class="w">        </span><span class="c1">// 要执行的命令：wc（Unix 下统计文件行数/字数/字节数的工具）</span>
+<span class="w">        </span><span class="n">myargs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">strdup</span><span class="p">(</span><span class="s">&quot;wc&quot;</span><span class="p">);</span><span class="w"> </span>
+<span class="w">        </span><span class="c1">// wc 的参数：要统计的目标文件</span>
+<span class="w">        </span><span class="n">myargs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">strdup</span><span class="p">(</span><span class="s">&quot;fork_exec_wait.c&quot;</span><span class="p">);</span><span class="w"> </span>
+<span class="w">        </span><span class="c1">// execvp 要求参数数组以NULL结尾</span>
+<span class="w">        </span><span class="n">myargs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span><span class="w"> </span>
+<span class="w">        </span><span class="c1">// 执行 wc命令</span>
+<span class="w">        </span><span class="n">execvp</span><span class="p">(</span><span class="n">myargs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="w"> </span><span class="n">myargs</span><span class="p">);</span><span class="w"> </span>
+<span class="w">        </span><span class="c1">// 若 execvp 成功，这行代码永远不会执行（因为子进程已经被 wc 替换了）</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;this shouldn&#39;t print out&quot;</span><span class="p">);</span><span class="w"> </span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">        </span><span class="c1">// 父进程等待子进程终止，NULL 表示不获取子进程的退出状态</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">wc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">wait</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span><span class="w"> </span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;hello, I am parent of %d (wc:%d) (pid:%d)</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">rc</span><span class="p">,</span><span class="w"> </span><span class="n">wc</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="n">getpid</span><span class="p">());</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+</details>
+<details class="info">
+<summary><code>open()</code> 系统调用</summary>
+<p><code>open()</code> 会根据 <code>pathname</code> 打开指定文件，若指定文件不存在，<code>open()</code> 可以选择性地创建该文件。</p>
+<p><code>open()</code> 的返回值是一个<strong>文件描述符</strong>（一个小型的非负整数），后续系统调用会用它来指代已打开的文件，成功调用返回的文件描述符是<strong>当前进程中未打开的编号最小的文件描述符</strong>。</p>
+<p>默认情况下，新的文件描述符会被设置为在 <code>execve(2)</code> 调用后仍保持打开状态（O_CLOEXEC 标志可以修改该默认设置），文件偏移量会被设为文件的起始位置。</p>
+<p>调用 <code>open()</code> 会创建一个新的<strong>打开文件描述（open file description）</strong>，它是系统级打开文件表中的一个条目，记录了文件偏移量和文件状态标志。文件描述符是对打开文件描述的一个引用，即便后续 <code>pathname</code> 被删除或修改，这个引用也不会受到影响。</p>
+</details>
+<h3 id="1-3-process-scheduling">1. 3 Process Scheduling<a class="headerlink" href="#1-3-process-scheduling" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>调度目标</strong>：最大化 CPU 利用率，快速切换进程至 CPU 核心，保证公平性和响应性</li>
+<li>
+<p><strong>进程调度器（process scheduler）</strong>会从就绪进程中，选择下一个在 CPU 核心上执行的进程</p>
+<details class="info">
+<summary>进程调度的状态转换示意图</summary>
+<p><img src="/sys2/images/image7-29.png" style="display: block; width: 60%; margin: 0 auto;" /></p>
+</details>
+</li>
+<li>
+<p><strong>调度队列（scheduling queues）</strong></p>
+<ul>
+<li><strong>就绪队列（ready queues）</strong>：所有驻留在主存中、处于就绪状态并等待执行的进程集合</li>
+<li><strong>等待队列（wait queues）</strong>：等待某个事件（如 I/O 操作）的进程集合</li>
+</ul>
+<details class="info">
+<summary>Ready and Wait Queues 示意图</summary>
+<p><img src="/sys2/images/image7-28.png" style="display: block; width: 60%; margin: 0 auto;" /></p>
+</details>
+<ul>
+<li>进程会在不同队列之间迁移</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-4-context-switch">1. 4 Context Switch<a class="headerlink" href="#1-4-context-switch" title="Permanent link">&para;</a></h3>
+<details class="info">
+<summary>进程上下文切换的流程示意图</summary>
+<p><img src="/sys2/images/image7-30.png" style="display: block; width: 60%; margin: 0 auto;" /></p>
+</details>
+<ul>
+<li>CPU 从一个进程切换到另一个进程时，需要通过<strong>上下文切换（Context Switch）</strong>保存旧进程状态、加载新进程状态</li>
+<li>进程的上下文由 PCB 表示</li>
+<li>上下文切换的时间属于系统开销，切换过程中 CPU 不执行有用工作，OS 和 PCB 越复杂，上下文切换的时间越长</li>
+<li>上下文切换的时间取决于硬件的支持，部分硬件会为每个 CPU 提供多组寄存器，以供一次性保存/加载多个上下文</li>
+</ul>
+<details class="example">
+<summary>Context Switch (ARM64)</summary>
+<div class="highlight"><span class="filename">函数声明</span><pre><span></span><code><span class="w">    </span><span class="k">extern</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">task_struct</span><span class="w"> </span><span class="o">*</span><span class="n">cpu_switch_to</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">task_struct</span><span class="w"> </span><span class="o">*</span><span class="n">prev</span><span class="p">,</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">task_struct</span><span class="w"> </span><span class="o">*</span><span class="n">next</span><span class="p">);</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">汇编实现</span><pre><span></span><code><span class="w">    </span><span class="nf">ENTRY</span><span class="p">(</span><span class="no">cpu_switch_to</span><span class="p">)</span>
+<span class="w">        </span><span class="nf">mov</span><span class="w">     </span><span class="no">x10</span><span class="p">,</span><span class="w"> </span><span class="c1">#THREAD_CPU_CONTEXT</span>
+<span class="w">        </span><span class="nf">add</span><span class="w">     </span><span class="no">x8</span><span class="p">,</span><span class="w"> </span><span class="no">x0</span><span class="p">,</span><span class="w"> </span><span class="no">x10</span>
+<span class="w">        </span><span class="nf">mov</span><span class="w">     </span><span class="no">x9</span><span class="p">,</span><span class="w"> </span><span class="no">sp</span>
+
+<span class="w">        </span><span class="nf">stp</span><span class="w">     </span><span class="no">x19</span><span class="p">,</span><span class="w"> </span><span class="no">x20</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="no">x8</span><span class="p">],</span><span class="w"> </span><span class="mi">#16</span>
+<span class="w">        </span><span class="nf">stp</span><span class="w">     </span><span class="no">x21</span><span class="p">,</span><span class="w"> </span><span class="no">x22</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="no">x8</span><span class="p">],</span><span class="w"> </span><span class="mi">#16</span>
+<span class="w">        </span><span class="nf">stp</span><span class="w">     </span><span class="no">x23</span><span class="p">,</span><span class="w"> </span><span class="no">x24</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="no">x8</span><span class="p">],</span><span class="w"> </span><span class="mi">#16</span>
+<span class="w">        </span><span class="nf">stp</span><span class="w">     </span><span class="no">x25</span><span class="p">,</span><span class="w"> </span><span class="no">x26</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="no">x8</span><span class="p">],</span><span class="w"> </span><span class="mi">#16</span>
+<span class="w">        </span><span class="nf">stp</span><span class="w">     </span><span class="no">x27</span><span class="p">,</span><span class="w"> </span><span class="no">x28</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="no">x8</span><span class="p">],</span><span class="w"> </span><span class="mi">#16</span>
+<span class="w">        </span><span class="nf">stp</span><span class="w">     </span><span class="no">x29</span><span class="p">,</span><span class="w"> </span><span class="no">x9</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="no">x8</span><span class="p">],</span><span class="w"> </span><span class="mi">#16</span>
+<span class="w">        </span><span class="nf">str</span><span class="w">     </span><span class="no">lr</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="no">x8</span><span class="p">]</span><span class="w">                  </span><span class="c1">; 保存链接寄存器 lr。记录 prev 下次恢复时的返回地址</span>
+<span class="w">        </span><span class="nf">add</span><span class="w">     </span><span class="no">x8</span><span class="p">,</span><span class="w"> </span><span class="no">x1</span><span class="p">,</span><span class="w"> </span><span class="no">x10</span>
+<span class="w">        </span><span class="nf">ldp</span><span class="w">     </span><span class="no">x19</span><span class="p">,</span><span class="w"> </span><span class="no">x20</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="no">x8</span><span class="p">],</span><span class="w"> </span><span class="mi">#16</span>
+<span class="w">        </span><span class="nf">ldp</span><span class="w">     </span><span class="no">x21</span><span class="p">,</span><span class="w"> </span><span class="no">x22</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="no">x8</span><span class="p">],</span><span class="w"> </span><span class="mi">#16</span>
+<span class="w">        </span><span class="nf">ldp</span><span class="w">     </span><span class="no">x23</span><span class="p">,</span><span class="w"> </span><span class="no">x24</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="no">x8</span><span class="p">],</span><span class="w"> </span><span class="mi">#16</span>
+<span class="w">        </span><span class="nf">ldp</span><span class="w">     </span><span class="no">x25</span><span class="p">,</span><span class="w"> </span><span class="no">x26</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="no">x8</span><span class="p">],</span><span class="w"> </span><span class="mi">#16</span>
+<span class="w">        </span><span class="nf">ldp</span><span class="w">     </span><span class="no">x27</span><span class="p">,</span><span class="w"> </span><span class="no">x28</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="no">x8</span><span class="p">],</span><span class="w"> </span><span class="mi">#16</span>
+<span class="w">        </span><span class="nf">ldp</span><span class="w">     </span><span class="no">x29</span><span class="p">,</span><span class="w"> </span><span class="no">x9</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="no">x8</span><span class="p">],</span><span class="w"> </span><span class="mi">#16</span>
+<span class="w">        </span><span class="nf">ldr</span><span class="w">     </span><span class="no">lr</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="no">x8</span><span class="p">]</span><span class="w">                  </span><span class="c1">; 恢复 lr</span>
+<span class="w">        </span><span class="nf">mov</span><span class="w">     </span><span class="no">sp</span><span class="p">,</span><span class="w"> </span><span class="no">x9</span><span class="w">                    </span><span class="c1">; 切换 CPU 栈指针到 next 的sp</span>
+<span class="w">        </span><span class="nf">msr</span><span class="w">     </span><span class="no">sp_el0</span><span class="p">,</span><span class="w"> </span><span class="no">x1</span><span class="w">                </span><span class="c1">; 设置 EL0（用户态）栈指针为 next 的 task_struct 地址</span>
+<span class="w">        </span><span class="nf">ret</span><span class="w">                               </span><span class="c1">; 跳转到恢复的 lr 地址，执行 next 的代码，完成上下文切换</span>
+<span class="w">    </span><span class="nf">ENDPROC</span><span class="p">(</span><span class="no">cpu_switch_to</span><span class="p">)</span>
+</code></pre></div>
+</details>
+<div class="admonition info">
+<p class="admonition-title">前置知识</p>
+<ul>
+<li>所有寄存器都运行内核代码的上下文称为<strong>内核上下文</strong></li>
+<li>上下文切换必须在内核态中进行</li>
+</ul>
+</div>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>内核线程之间的上下文切换</th>
+<th>用户线程之间的上下文切换</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>保存时间</strong></td>
+<td><code>context_switch</code> 中的 <code>cpu_switch_to</code> 中</td>
+<td><span class="arithmatex">\(\textbf{·}\)</span> <strong>用户上下文寄存器</strong>：<code>kernel_entry</code> <br> <span class="arithmatex">\(\textbf{·}\)</span> <strong>内核上下文寄存器</strong>：<code>cpu_switch_to</code></td>
+</tr>
+<tr>
+<td><strong>保存位置</strong></td>
+<td>PCB 中的 <code>thread_struct</code></td>
+<td><span class="arithmatex">\(\textbf{·}\)</span> <strong>用户上下文寄存器</strong>：<code>pt_regs</code> <br> <span class="arithmatex">\(\textbf{·}\)</span> <strong>内核上下文寄存器</strong>：<code>thread_struct</code></td>
+</tr>
+<tr>
+<td><strong>示意图</strong></td>
+<td><img src="/sys2/images/image7-31.png" style="display: block; margin: 0 auto;" /></td>
+<td><img src="/sys2/images/image7-32.png" style="display: block; margin: 0 auto;" /></td>
+</tr>
+</tbody>
+</table>
+<details class="info">
+<summary>栈结构示意图</summary>
+<p><img src="/sys2/images/image7-33.png" style="display: block; width: 50%; margin: 0 auto;" /></p>
+<ul>
+<li><code>pt_regs</code>：<ul>
+<li>位于内核栈的高端，主要用于在用户态-内核态切换时保存用户寄存器</li>
+<li>回到用户空间后，执行的第一条指令对应的地址是 <code>pt_regs-&gt;pc</code></li>
+</ul>
+</li>
+<li><code>cpu_context</code>：<ul>
+<li>位于 <code>task_struct-&gt;thread_struct</code> 中，主要用于保存上下文切换时的寄存器</li>
+<li>上下文切换到某个进程后，会立即执行 <code>cpu_context-&gt;pc</code> 对应的指令</li>
+</ul>
+</li>
+</ul>
+</details>
+<details class="question">
+<summary>Where does <code>cpu_switch_to()</code> return to? When is the value set?</summary>
+<ul>
+<li><strong>返回位置</strong>：<code>cpu_switch_to()</code> 会返回到它的调用者，最终回到调度函数 <code>schedule()</code></li>
+<li><strong>返回值的生效场景</strong>：若进程 1 调用 <code>schedule()</code> 主动放弃 CPU，当该进程后续被切回运行时，会直接返回到本次 <code>schedule()</code> 执行之后的位置</li>
+</ul>
+</details>
+<details class="quote">
+<summary>Linux 版本演进</summary>
+<table>
+<thead>
+<tr>
+<th>Linux 版本</th>
+<th><code>task_struct</code> 相关</th>
+<th>就绪队列</th>
+<th>等待队列</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Linux 0.11（1991）</td>
+<td><span class="arithmatex">\(\textbf{·}\)</span> 无链表概念 <br> <span class="arithmatex">\(\textbf{·}\)</span> 固定 PCB 表（最大64）</td>
+<td><span class="arithmatex">\(\textbf{·}\)</span> 无就绪队列 <br> <span class="arithmatex">\(\textbf{·}\)</span> 直接遍历 PCB 表选择下一个进程</td>
+<td><span class="arithmatex">\(\textbf{·}\)</span> 无等待队列 <br> <span class="arithmatex">\(\textbf{·}\)</span> 使用固定数组</td>
+</tr>
+<tr>
+<td>Linux 2.3.0（1999）</td>
+<td><span class="arithmatex">\(\textbf{·}\)</span> 引入链表 <br> <span class="arithmatex">\(\textbf{·}\)</span> 固定PCB表（最大512，<code>struct task_struct *task[NR_TASKS]={&amp;init_task,};</code>）</td>
+<td><span class="arithmatex">\(\textbf{·}\)</span> 无名就绪队列（链表实现）<br> <span class="arithmatex">\(\textbf{·}\)</span> <code>task_struct</code> 含 <code>prev_run</code>/<code>next_run</code> 字段 <br> <span class="arithmatex">\(\textbf{·}\)</span> 遍历链表选择下一个进程</td>
+<td><span class="arithmatex">\(\textbf{·}\)</span> 有名等待队列 <br> <span class="arithmatex">\(\textbf{·}\)</span> <code>sleep_on</code> 将 <code>current</code> 加入 <code>motor_wait</code> 的等待队列</td>
+</tr>
+<tr>
+<td>Linux 2.4.0（2001）</td>
+<td>数量可动态调整</td>
+<td><span class="arithmatex">\(\textbf{·}\)</span> 有名就绪队列（名为 <code>runqueue_head</code>，链表实现）<br> <span class="arithmatex">\(\textbf{·}\)</span> 用 <code>task_struct-&gt;run_list</code> <br> <span class="arithmatex">\(\textbf{·}\)</span> 通过 <code>next_task</code>/<code>prev_task</code> 链接进程 <br> <span class="arithmatex">\(\textbf{·}\)</span> 遍历链表选择下一个进程</td>
+<td><span class="arithmatex">\(\textbf{·}\)</span> 有名等待队列 <br> <span class="arithmatex">\(\textbf{·}\)</span> <code>sleep_on</code> 将 <code>current</code> 加入 <code>motor_wait</code> 的等待队列</td>
+</tr>
+<tr>
+<td>Linux 2.6.0（2003）</td>
+<td>数量可动态调整</td>
+<td><span class="arithmatex">\(\textbf{·}\)</span> 有名就绪队列（名为 <code>runqueue_head</code>，用 <code>struct runqueue</code> 实现）<br> <span class="arithmatex">\(\textbf{·}\)</span> 用 <code>task_struct-&gt;run_list</code> <br> <span class="arithmatex">\(\textbf{·}\)</span> 通过 <code>task_struct-&gt;sibling</code> 链接进程 <br> <span class="arithmatex">\(\textbf{·}\)</span> 遍历优先级数组选择下一个进程</td>
+<td><span class="arithmatex">\(\textbf{·}\)</span> 有名等待队列 <br> <span class="arithmatex">\(\textbf{·}\)</span> <code>sleep_on</code> 将 <code>current</code> 加入 <code>motor_wait</code> 的等待队列</td>
+</tr>
+<tr>
+<td>Linux 6.x（最新版本）</td>
+<td>-</td>
+<td><span class="arithmatex">\(\textbf{·}\)</span> 每个调度策略对应专用数据结构 <br> <span class="arithmatex">\(\textbf{·}\)</span>支持多种结构：链表、链表+数组、树</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3 id="1-5">1. 5 僵尸进程与孤儿进程<a class="headerlink" href="#1-5" title="Permanent link">&para;</a></h3>
+<h4 id="1-5-1-zombie">1. 5. 1 僵尸进程（Zombie）<a class="headerlink" href="#1-5-1-zombie" title="Permanent link">&para;</a></h4>
+<ul>
+<li>当子进程终止时，若父进程未调用 <code>wait()</code>/<code>waitpid()</code> 进行回收，<strong>子进程无法自行释放 PCB</strong>，会以僵尸进程的形式处于未完全消亡的状态</li>
+<li>僵尸进程并非真正的进程，不会消耗 CPU 等资源，只会占用内存中的一个位置，最终可能会占满内存位置导致 <code>fork()</code> 失败</li>
+<li>僵尸进程会持续存在，直到其父进程为该子进程调用 <code>wait()</code> 函数或其父进程终止</li>
+<li>当子进程退出时，会向父进程发送一个 SIGCHLD 信号</li>
+<li>父进程可为 SIGCHLD 信号关联一个调用 <code>wait()</code> 的处理函数，确认所有子进程的终止状态</li>
+</ul>
+<h4 id="1-5-2-orphan">1. 5. 2 孤儿进程（Orphan）<a class="headerlink" href="#1-5-2-orphan" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>产生原因</strong>：父进程先于子进程终止，子进程无父进程</li>
+<li><strong>处理机制</strong>：孤儿进程会被进程 ID（PID）为 1 的进程（Linux 系统中对应 init 进程，Mac OS X 系统中对应 launchd 进程）收养，该进程会通过 SIGCHLD 信号的处理函数（调用 <code>wait()</code>）来处理子进程的终止，故孤儿进程永远不会变成僵尸进程</li>
+<li><strong>【Trick】</strong>创建完全独立于父进程的进程（父进程后续无需承担责任）<ul>
+<li>创建孙进程并终止其子进程，此时子进程会变成僵尸进程，父进程需要正确处理子进程的退出</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-ipc">2 IPC<a class="headerlink" href="#2-ipc" title="Permanent link">&para;</a></h2>
+<h3 id="2-1">2. 1 基本概念<a class="headerlink" href="#2-1" title="Permanent link">&para;</a></h3>
+<details class="info">
+<summary>进程分类</summary>
+<ul>
+<li><strong>独立进程</strong>：不会影响其他进程的执行，也不会被其他进程的执行所影响</li>
+<li><strong>协作进程</strong>：可与其他进程相互影响（包括共享数据），存在协作需求</li>
+<li>协作进程的原因：信息共享、计算加速、模块化、便利性、安全性</li>
+</ul>
+</details>
+<p>协作进程之间的通信方式被称为<strong>进程间通信（IPC, Inter-process Communication）</strong>，有<strong>共享内存（Shared Memory）</strong> 和<strong>消息传递（Message Passing）</strong> 两种典型通信模型。</p>
+<details class="example">
+<summary>实际案例：Chrome 浏览器的多进程架构</summary>
+<p>谷歌 Chrome 浏览器采用多进程架构，解决了单进程浏览器一个页面故障导致整体崩溃的问题，包含 3 种不同类型的进程：</p>
+<ul>
+<li><strong>浏览器进程（Browser process）</strong>：负责管理用户界面、磁盘及网络 I/O 操作</li>
+<li><strong>渲染进程（Renderer process）</strong>：每个网站独立创建，负责渲染网页，处理 HTML、JavaScript，运行在<strong>沙箱</strong>环境中（限制磁盘与网络 I/O 操作，降低安全风险）</li>
+<li><strong>插件进程（Plug-in process）</strong>：每种插件对应一个独立的插件进程</li>
+</ul>
+<p><img src="/sys2/images/image7-17.png" style="display: block; width: 70%; margin: 0 auto;" /></p>
+</details>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>共享内存（Shared Memory）</th>
+<th>消息传递（Message Passing）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>核心原理</strong></td>
+<td>进程共享一块内存区域，直接读写该区域</td>
+<td>进程通过发送/接收消息通信，不共享地址空间</td>
+</tr>
+<tr>
+<td><strong>系统开销</strong></td>
+<td>低：初始少量系统调用，后续无额外开销</td>
+<td>高：每次通信都需系统调用</td>
+</tr>
+<tr>
+<td><strong>用户使用便捷性</strong></td>
+<td>高：类似操作 RAM，符合常规读写习惯</td>
+<td>较低：代码需嵌入 send/recv 操作，略显繁琐</td>
+</tr>
+<tr>
+<td><strong>操作系统实现难度</strong></td>
+<td>高：需打破内存隔离的核心抽象</td>
+<td>低：维持内存隔离，逻辑简单</td>
+</tr>
+<tr>
+<td><strong>适用场景</strong></td>
+<td>大量数据交换</td>
+<td>少量数据交换、分布式场景（跨主机）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2-2">2. 2 共享内存模型<a class="headerlink" href="#2-2" title="Permanent link">&para;</a></h3>
+<ul>
+<li>由一个进程创建共享内存段后，其他进程可以将该内存段附加到自身地址空间，这与多道程序设计的内存保护理念完全相悖</li>
+<li>进程通过对共享内存区域进行读写来实现通信，操作系统不参与中间过程</li>
+<li>需用户自行保证进程间同步（避免读写冲突），确保进程间互不干扰</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Producer-Consumer Problem</p>
+<p>Producer-Consumer 是协作进程的典型模式，生产者进程生成信息，供消费者进程消费，有无界缓冲区（对缓冲区的大小没有实际限制）和有界缓冲区（缓冲区大小固定）两种实现方式。</p>
+<details class="example">
+<summary>有界缓冲区实现代码示例</summary>
+<div class="highlight"><pre><span></span><code><span class="cp">#define BUFFER_SIZE 10</span>
+<span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="p">{}</span><span class="w"> </span><span class="n">item</span><span class="p">;</span>
+<span class="n">item</span><span class="w"> </span><span class="n">buffer</span><span class="p">[</span><span class="n">BUFFER_SIZE</span><span class="p">];</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">  </span><span class="c1">// 生产者写入位置</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="c1">// 消费者读取位置</span>
+
+<span class="c1">// 生产者逻辑：生成数据并放入缓冲区</span>
+<span class="n">item</span><span class="w"> </span><span class="n">next_produced</span><span class="p">;</span>
+<span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">produce_item</span><span class="p">(</span><span class="o">&amp;</span><span class="n">next_produced</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// 缓冲区满则等待</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(((</span><span class="n">in</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">BUFFER_SIZE</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">out</span><span class="p">);</span>
+<span class="w">    </span><span class="n">buffer</span><span class="p">[</span><span class="n">in</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">next_produced</span><span class="p">;</span>
+<span class="w">    </span><span class="n">in</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">in</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">BUFFER_SIZE</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// 消费者逻辑：从缓冲区取出数据并消费</span>
+<span class="n">item</span><span class="w"> </span><span class="n">next_consumed</span><span class="p">;</span>
+<span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 缓冲区空则等待</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">in</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">out</span><span class="p">);</span>
+<span class="w">    </span><span class="n">next_consumed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">buffer</span><span class="p">[</span><span class="n">out</span><span class="p">];</span>
+<span class="w">    </span><span class="n">out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">out</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">BUFFER_SIZE</span><span class="p">;</span>
+<span class="w">    </span><span class="n">consume_item</span><span class="p">(</span><span class="o">&amp;</span><span class="n">next_consumed</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+</details>
+</div>
+<details class="example">
+<summary>POSIX 共享内存</summary>
+<div class="highlight"><pre><span></span><code><span class="c1">// 1. 创建共享内存段（IPC_PRIVATE 表示私有，指定读写权限）</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">shmget</span><span class="p">(</span><span class="n">IPC_PRIVATE</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">,</span><span class="w"> </span><span class="n">IPC_R</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">IPC_W</span><span class="p">);</span>
+
+<span class="c1">// 2. 附加到当前进程地址空间</span>
+<span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">shared_memory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">shmat</span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+
+<span class="c1">// 3. 向共享内存读写数据</span>
+<span class="n">sprintf</span><span class="p">(</span><span class="n">shared_memory</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;hello&quot;</span><span class="p">);</span>
+
+<span class="c1">// 4. 脱离共享内存</span>
+<span class="n">shmdt</span><span class="p">(</span><span class="n">shared_memory</span><span class="p">);</span>
+
+<span class="c1">// 5. 彻底删除共享内存段</span>
+<span class="n">shmctl</span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">IPC_RMID</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
+</code></pre></div>
+</details>
+<ul>
+<li>进程获知共享内存段的 ID 没有通用的解决方案<ul>
+<li>在 <code>posix_shm_example.c</code> 中，ID 是在 <code>fork()</code> 之前创建的，这样父进程和子进程都能获取到它</li>
+<li>ID 可以作为命令行参数传递，也可以存储在文件中，还可以通过消息传递来通信</li>
+</ul>
+</li>
+<li>在支持 POSIX 的系统上，可以用 <code>ipcs -a</code> 命令查看 IPC 的状态</li>
+<li>使用 shm ipcs 的代码相当繁琐，因此共享内存类型的代码现在很少被使用，但进程在底层仍然会共享内存（如标准库函数的代码段），在多个运行上下文之间，共享内存是通过线程实现的</li>
+</ul>
+<h3 id="2-3">2. 3 消息传递模型<a class="headerlink" href="#2-3" title="Permanent link">&para;</a></h3>
+<ul>
+<li>维持内存隔离抽象，进程无共享地址空间</li>
+<li>有 <code>send</code>（发送消息）和 <code>recv</code>（接收消息）两个基本操作</li>
+<li>消息传递是分布式计算的核心机制（不同主机上的进程无法共享物理内存），在同一主机内的进程通信中也十分实用</li>
+<li>进程间通信需先建立<strong>通信链路（communication link）</strong>，可通过多种方式实现，甚至可以基于共享内存来实现<ul>
+<li>物理层面：共享内存，硬件总线，网络</li>
+<li>逻辑层面：直接式或间接式，同步式或异步式，自动缓冲或显式缓冲</li>
+</ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Direct Communication</th>
+<th>Indirect Communication</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>核心逻辑</strong></td>
+<td>进程必须明确指定彼此的名称</td>
+<td>消息通过<strong>邮箱/端口（mailboxes/ports）</strong>进行收发，邮箱 ID 唯一，进程共享邮箱即可通信</td>
+</tr>
+<tr>
+<td><strong>使用示例</strong></td>
+<td><code>send(P, message)</code>, <code>receive(Q, message)</code></td>
+<td><code>send(A, message)</code>, <code>receive(A, message)</code></td>
+</tr>
+<tr>
+<td><strong>链路特性</strong></td>
+<td>链路自动建立，一对一关联，通常双向</td>
+<td>链路需共享邮箱建立，支持多进程关联，可多链路通信，支持单向/双向</td>
+</tr>
+</tbody>
+</table>
+<details class="question">
+<summary>多进程共享邮箱时，如何确认消息接收者？</summary>
+<p>a. 限制一条链路最多关联 2 个进程</p>
+<p>b. 同一时间仅允许一个进程执行接收操作</p>
+<p>c. 由系统随机选择接收进程，并通知发送方具体接收者是谁</p>
+</details>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>阻塞/同步（blocking/synchronous）</th>
+<th>非阻塞式/异步（Non-blocking/asynchronous）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>send()</code></td>
+<td>sender 会被阻塞，直到消息被接收</td>
+<td>sender 发送消息后继续执行后续操作</td>
+</tr>
+<tr>
+<td><code>recv()</code></td>
+<td>receiver 会被阻塞，直到有消息可用</td>
+<td>receiver 接受有效消息或空消息</td>
+</tr>
+</tbody>
+</table>
+<details class="example">
+<summary>阻塞式（同步）IPC 示例代码</summary>
+<div class="highlight"><pre><span></span><code><span class="c1">// 生产者调用阻塞式的 send() 函数，等待消息被传递到接收方或邮箱</span>
+<span class="n">message</span><span class="w"> </span><span class="n">next_produced</span><span class="p">;</span>
+<span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="cm">/* 生产一个内容并存入 next_produced */</span>
+<span class="w">    </span><span class="n">send</span><span class="p">(</span><span class="n">next_produced</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// 消费者调用 `receive()`，阻塞直到有消息可用</span>
+<span class="n">message</span><span class="w"> </span><span class="n">next_consumed</span><span class="p">;</span>
+<span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">receive</span><span class="p">(</span><span class="n">next_consumed</span><span class="p">);</span>
+<span class="w">    </span><span class="cm">/* 消费 next_consumed 中的内容 */</span>
+<span class="p">}</span>
+</code></pre></div>
+</details>
+<table>
+<thead>
+<tr>
+<th>缓冲类型</th>
+<th>容量特点</th>
+<th>发送方行为</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>零容量（Zero capacity）</strong></td>
+<td>链路上无消息排队</td>
+<td>必须等待接收方</td>
+</tr>
+<tr>
+<td><strong>有界容量（Bounded capacity）</strong></td>
+<td>有限长度（可容纳 n 条消息）</td>
+<td>若链路已满，必须等待</td>
+</tr>
+<tr>
+<td><strong>无界容量（Unbounded capacity）</strong></td>
+<td>无限长度</td>
+<td>无需等待</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2-4-ipc">2. 4 典型 IPC 技术<a class="headerlink" href="#2-4-ipc" title="Permanent link">&para;</a></h3>
+<details class="info">
+<summary>典型 IPC 技术</summary>
+<p><img src="/sys2/images/image7-18.png" style="display: block; width: 60%; margin: 0 auto;" /></p>
+</details>
+<h4 id="2-4-1-pipe">2. 4. 1 管道（Pipe）<a class="headerlink" href="#2-4-1-pipe" title="Permanent link">&para;</a></h4>
+<ul>
+<li>允许两个进程进行通信的简单管道（conduit）</li>
+</ul>
+<details class="quote">
+<summary>半双工和全双工</summary>
+<ul>
+<li><strong>半双工（Half-Duplex）</strong>：同一时间只能<strong>单向</strong>传输数据</li>
+<li><strong>全双工（Full-Duplex）</strong>：同一时间可以<strong>双向</strong>传输数据</li>
+</ul>
+</details>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>普通管道（Ordinary Pipe）</th>
+<th>命名管道（Named Pipe）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>通信方向</strong></td>
+<td>管道本身是单向的，但建立两个即可实现半双工通信</td>
+<td>半双工通信</td>
+</tr>
+<tr>
+<td><strong>进程关系</strong></td>
+<td>进程之间必须存在父子进程关系，<code>fd[0]</code> 是读端，<code>fd[1]</code> 是写端</td>
+<td>无需存在父子进程关系</td>
+</tr>
+<tr>
+<td><strong>跨网络支持</strong></td>
+<td>不支持</td>
+<td><span class="arithmatex">\(\textbf{·}\)</span> 在 <strong>Windows</strong> 环境下可通过 SMB 协议实现跨网络访问 <br> <span class="arithmatex">\(\textbf{·}\)</span> 在 <strong>Linux/Unix</strong> 及通用网络编程中<strong>不支持</strong>跨网络，仅用于本地进程间通信</td>
+</tr>
+<tr>
+<td><strong>系统支持</strong></td>
+<td>UNIX、Windows 均支持，被称为匿名管道</td>
+<td>UNIX、Windows 均支持，在 UNIX/Linux 系统中被称为 FIFO</td>
+</tr>
+</tbody>
+</table>
+<details class="example">
+<summary>UNIX 管道</summary>
+<ul>
+<li>在 UNIX 中，管道是单向的，包含写端和读端两个部分，若要实现双向通信，必须使用两个管道</li>
+<li>命令行中用 <code>|</code> 表示，如 <code>ls | grep foo</code> 表示 ls 写管道，grep 读管道</li>
+<li>双向通信需两个管道，支持多管道串联，如 <code>ls -R | grep foo | grep -v bar | wc -l</code></li>
+</ul>
+</details>
+<h4 id="2-4-2-socket">2. 4. 2 套接字（Socket）<a class="headerlink" href="#2-4-2-socket" title="Permanent link">&para;</a></h4>
+<details class="quote">
+<summary>客户端-服务器通信（Client-Server Communication）</summary>
+<p>应用程序通常被构建为一组通信进程，常见于跨机器场景（如 Web 浏览器与 Web 服务器），也能在单台机器内的进程间使用，下面将介绍 3 种常用的通信方式：套接字（Sockets）、远程过程调用（RPCs）和 Java 远程方法调用（Java RMI）。</p>
+</details>
+<ul>
+<li>包含两个端点的通信抽象，可供两个进程进行通信，由 <strong>IP 地址 + 端口号</strong> 唯一标识</li>
+<li>通常用于跨主机通信（网络编程核心），也支持本机进程通信</li>
+</ul>
+<h4 id="2-4-3-rpc-remote-procedure-calls">2. 4. 3 远程过程调用（RPC, Remote Procedure Calls）<a class="headerlink" href="#2-4-3-rpc-remote-procedure-calls" title="Permanent link">&para;</a></h4>
+<ul>
+<li>将远程函数调用抽象为本地调用，隐藏消息传递细节</li>
+<li>由客户端存根（Client Stub）实现，功能如下：<ul>
+<li>编组（Marshal）：将结构化参数转换为字节流</li>
+<li>发送请求至服务器并等待响应</li>
+<li>解组（Unmarshal）：将字节流还原为结构化返回值</li>
+</ul>
+</li>
+<li>RPC 调用失败可能导致 RPC 被部分执行或 RPC 因不必要的重试被多次执行</li>
+<li>RPC 语义<ul>
+<li>最多一次（弱语义）：服务器通过记录入站消息的时间戳过滤重复请求，避免重复执行，但服务器可能始终不执行该操作</li>
+<li>恰好一次（强语义）：服务器执行后发送确认（ack），客户端重试直到收到确认（实现复杂）</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-4-4-java-java-rmi">2. 4. 4 Java 远程方法调用（Java RMI）<a class="headerlink" href="#2-4-4-java-java-rmi" title="Permanent link">&para;</a></h4>
+<ul>
+<li>本质是面向对象的 Java 版 RPC，支持跨 JVM 方法调用</li>
+<li>JVM 会自动处理参数编组/解组，对象会通过 <code>java.io.Serializable</code> 接口实现序列化和反序列化</li>
+<li>支持本地对象拷贝传递和远程对象引用传递</li>
+<li>隐藏 IPC 底层细节，便捷性高，但功能与 Socket 等价</li>
+</ul>
+<h2 id="3-threads">3 Threads<a class="headerlink" href="#3-threads" title="Permanent link">&para;</a></h2>
+<details class="quote">
+<summary>Why Threads?</summary>
+<ul>
+<li>应用程序的多项任务可以通过线程来实现，如更新显示、获取数据、拼写检查、响应网络请求等</li>
+<li>进程的创建是重量级的（需分配独立的全套资源），而线程的创建是轻量级的（线程共享所属进程的大部分资源，创建线程时只需分配线程私有资源，如线程栈、寄存器上下文、线程控制块 TCB 等）</li>
+<li>线程能够简化代码、提升效率</li>
+</ul>
+</details>
+<h3 id="3-1">3. 1 基本概念<a class="headerlink" href="#3-1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>线程是进程内的<strong>基本执行单元</strong>，一个进程可包含多个线程</li>
+<li>线程共享进程的大部分资源（如代码段、数据段、堆、已打开的文件与信号等），仅维护自身必要的执行状态（如线程 ID、PC、寄存器组、栈等）</li>
+</ul>
+<details class="info">
+<summary>单线程与多线程进程的资源结构对比图</summary>
+<p><img src="/sys2/images/image7-19.png" style="display: block; width: 60%; margin: 0 auto;" /></p>
+</details>
+<details class="info">
+<summary>多线程进程的资源分布详细视图</summary>
+<p><img src="/sys2/images/image7-20.png" style="display: block; width: 60%; margin: 0 auto;" /></p>
+</details>
+<ul>
+<li>
+<p><strong>优点</strong>：</p>
+<ul>
+<li><strong>经济性</strong>：创建线程比进程成本低（无需重新分配代码/数据/堆）；线程上下文切换无需刷新缓存，比进程切换高效</li>
+<li><strong>资源共享</strong>：天然共享进程内存空间，无需使用 IPC，在同一地址空间中实现并发活动的能力非常强大</li>
+<li><strong>响应性</strong>：并发活动的程序响应性强，一个线程阻塞时其他线程可继续执行，相比进程具备更优的资源共享性与开销优势</li>
+</ul>
+<details class="info">
+<summary>客户端-服务器架构中线程处理请求的流程示意图</summary>
+<p><img src="/sys2/images/image7-21.png" style="display: block; width: 60%; margin: 0 auto;" /></p>
+<ul>
+<li>服务器无需等待请求处理完成，直接恢复监听新的客户端请求，借助线程实现了处理请求与监听新请求的并发，让服务端更高效、响应更快</li>
+</ul>
+</details>
+<details class="example">
+<summary>NGINX 中线程池的工作机制</summary>
+<p><img src="/sys2/images/image7-22.png" style="display: block; width: 60%; margin: 0 auto;" /></p>
+<ul>
+<li>工作进程不用阻塞等待任务完成，可继续处理新事件，线程池复用已创建的线程（避免频繁创建 / 销毁线程的开销），实现轻量、高效的并发处理，提升性能</li>
+</ul>
+</details>
+<ul>
+<li><strong>可扩展性</strong>：多核心环境下，多线程可并行执行，充分利用硬件资源，相比进程具备更优的资源共享性与开销优势</li>
+</ul>
+</li>
+<li>
+<p><strong>缺点</strong>：</p>
+<ul>
+<li><strong>弱隔离性</strong>：单个线程崩溃（如段错误）会导致整个进程终止（Chrome 浏览器用采用多进程并发实现标签页隔离）</li>
+<li><strong>内存限制</strong>：受单个进程地址空间大小限制（64 位架构已基本解决该问题）</li>
+<li><strong>无内存保护</strong>：并发编程难度高（但进程结合共享内存段的并发编程同样难度不小）</li>
+</ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>并发执行（Concurrency）</th>
+<th>并行执行（Parallelism）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>定义</strong></td>
+<td>独立执行进程（广义概念，非 Linux 进程）的组合式编程</td>
+<td>（可能相关的）计算任务的同时执行式编程</td>
+</tr>
+<tr>
+<td><strong>执行方式</strong></td>
+<td><strong>单核</strong>通过分时切换多个任务（如 T₁/T₂/T₃/T₄ 交替执行），是看起来同时处理</td>
+<td>多核同时执行不同任务（如 core1 跑 T₁/T₃、core2 跑 T₂/T₄），是实际同时处理</td>
+</tr>
+<tr>
+<td><strong>核心目标</strong></td>
+<td>同时<strong>处理（dealing with）</strong>多件事</td>
+<td>同时<strong>做（doing）</strong>很多事</td>
+</tr>
+<tr>
+<td><strong>侧重方向</strong></td>
+<td>侧重<strong>结构设计</strong>（用并发结构组织任务）</td>
+<td>侧重<strong>执行效率</strong>（用多核同时执行任务）</td>
+</tr>
+<tr>
+<td><strong>关联关系</strong></td>
+<td>是一种问题解决方案的结构，<strong>可能支持并行</strong>（但不是必须）</td>
+<td>是并发结构的一种执行方式，二者相关但不相同</td>
+</tr>
+<tr>
+<td><strong>示意图</strong></td>
+<td><img src="/sys2/images/image7-23.png" style="display: block; margin: 0 auto;" /></td>
+<td><img src="/sys2/images/image7-24.png" style="display: block; margin: 0 auto;" /></td>
+</tr>
+</tbody>
+</table>
+<h3 id="3-2">3. 2 线程实现模型<a class="headerlink" href="#3-2" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>内核级线程（Kernel-level Threads）</th>
+<th>用户级线程（User-level Threads）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>定义</strong></td>
+<td>由操作系统内核直接支持和管理，内核统一维护线程表（TCB, thread control block）并提供系统调用以供线程的创建和管理</td>
+<td>完全由运行时系统（用户级库）管理，内核无感知，仅将进程视为单线程</td>
+</tr>
+<tr>
+<td><strong>优点</strong></td>
+<td>内核知晓所有线程，可优化调度，给多线程进程分配更多时间片，<strong>适合频繁阻塞的应用</strong></td>
+<td><span class="arithmatex">\(\textbf{·}\)</span> 可在不支持线程的 OS 上实现，无需修改 OS <br> <span class="arithmatex">\(\textbf{·}\)</span> 线程表示简单，仅由 PC、寄存器、栈和小型控制块表示，且都存储在用户进程的地址空间中 <br> <span class="arithmatex">\(\textbf{·}\)</span> 线程操作（创建/切换）无需内核干预，速度快（接近函数调用），<strong>适合细粒度并发</strong>场景</td>
+</tr>
+<tr>
+<td><strong>缺点</strong></td>
+<td>运行缓慢且低效；内核复杂度增加（需维护 TCB）</td>
+<td><span class="arithmatex">\(\textbf{·}\)</span> 内核无法感知用户级线程，与 OS 的集成度差，可能作出糟糕的调度决策（如调度包含空闲线程的进程、某一线程发起 I/O 操作时阻塞整个进程；或取消持有锁的线程的调度）<br> <span class="arithmatex">\(\textbf{·}\)</span> 线程与内核缺乏协调，进程整体获一个时间片，线程的控制权需要主动让渡给其他线程 <br> <span class="arithmatex">\(\textbf{·}\)</span> 依赖<strong>非阻塞系统调用</strong>（即需要多线程内核），否则一个线程阻塞会导致整个进程阻塞</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>模型</th>
+<th>Many-to-One</th>
+<th>One-to-One</th>
+<th>Many-to-Many</th>
+<th>Two-Level</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>特点</strong></td>
+<td>多个用户线程映射到 1 个内核线程</td>
+<td>1 个用户线程映射到 1 个内核线程</td>
+<td>多个用户线程映射到多个内核线程</td>
+<td>多对多基础上，支持用户线程绑定内核线程</td>
+</tr>
+<tr>
+<td><strong>优点</strong></td>
+<td>低开销，无系统调用</td>
+<td>支持多核心，无整体阻塞</td>
+<td><span class="arithmatex">\(\textbf{·}\)</span> 平衡开销与并行性 <br> <span class="arithmatex">\(\textbf{·}\)</span> 一个线程阻塞时内核可创建新的内核线程，避免整体阻塞 <br> <span class="arithmatex">\(\textbf{·}\)</span> 新建用户线程不一定需要创建新的内核线程 <br> <span class="arithmatex">\(\textbf{·}\)</span> 可在多核机器上实现真正的并发</td>
+<td>灵活优化关键线程</td>
+</tr>
+<tr>
+<td><strong>缺点</strong></td>
+<td><span class="arithmatex">\(\textbf{·}\)</span> 无法利用多核心 <br> <span class="arithmatex">\(\textbf{·}\)</span> 一个线程阻塞则全阻塞</td>
+<td>线程创建/切换需内核干预，开销较高，速度较慢</td>
+<td>实现复杂</td>
+<td>实现复杂</td>
+</tr>
+</tbody>
+</table>
+<h3 id="3-3-thread-libraries">3. 3 Thread Libraries<a class="headerlink" href="#3-3-thread-libraries" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p><strong>Pthreads</strong></p>
+<ul>
+<li>遵循 POSIX 标准（IEEE 1003.1c）的 API，用于线程的创建与同步，仅定义行为，不规定实现（可用户级/内核级）</li>
+<li>适用于 C/C++ 中的 UNIX 类系统（Linux、Mac OS X）</li>
+</ul>
+<details class="example">
+<summary>代码示例</summary>
+<div class="highlight"><span class="filename">单线程累加求和</span><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;pthread.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="n">sum</span><span class="p">;</span><span class="w"> </span><span class="c1">// 共享变量</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="nf">runner</span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">param</span><span class="p">);</span><span class="w"> </span><span class="c1">// 线程入口函数</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">pthread_t</span><span class="w"> </span><span class="n">tid</span><span class="p">;</span><span class="w">          </span><span class="c1">// 线程标识符</span>
+<span class="w">    </span><span class="n">pthread_attr_t</span><span class="w"> </span><span class="n">attr</span><span class="p">;</span><span class="w">    </span><span class="c1">// 线程属性结构体</span>
+
+<span class="w">    </span><span class="n">pthread_attr_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">attr</span><span class="p">);</span><span class="w">                       </span><span class="c1">// 初始化线程属性为默认值</span>
+<span class="w">    </span><span class="n">pthread_create</span><span class="p">(</span><span class="o">&amp;</span><span class="n">tid</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">attr</span><span class="p">,</span><span class="w"> </span><span class="n">runner</span><span class="p">,</span><span class="w"> </span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span><span class="w">   </span><span class="c1">// 创建线程</span>
+<span class="w">    </span><span class="n">pthread_join</span><span class="p">(</span><span class="n">tid</span><span class="p">,</span><span class="nb">NULL</span><span class="p">);</span><span class="w">                         </span><span class="c1">// 等待线程结束</span>
+
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;sum = %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="n">sum</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="nf">runner</span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">param</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">upper</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">atoi</span><span class="p">(</span><span class="n">param</span><span class="p">);</span>
+<span class="w">    </span><span class="n">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">upper</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">        </span><span class="n">sum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">pthread_exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">等待 10 个工作线程全部执行完毕</span><pre><span></span><code><span class="cp">#define NUM_THREADS 10</span>
+
+<span class="n">pthread_t</span><span class="w"> </span><span class="n">workers</span><span class="p">[</span><span class="n">NUM_THREADS</span><span class="p">];</span><span class="w"> </span><span class="c1">// 线程 ID 数组</span>
+
+<span class="c1">// 循环等待所有线程执行完毕</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">NUM_THREADS</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">    </span><span class="n">pthread_join</span><span class="p">(</span><span class="n">workers</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
+</code></pre></div>
+</details>
+</li>
+<li>
+<p><strong>Win32 threads</strong>：由内核实现，适用于 C/C++ 中的 Windows 系统</p>
+<details class="example">
+<summary>代码示例</summary>
+<div class="highlight"><span class="filename">Windows 平台多线程累加</span><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;windows.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+
+<span class="n">DWORD</span><span class="w"> </span><span class="n">Sum</span><span class="p">;</span><span class="w"> </span><span class="c1">// 定义全局共享变量 Sum，子线程写、主线程读</span>
+
+<span class="c1">// 线程入口函数</span>
+<span class="n">DWORD</span><span class="w"> </span><span class="n">WINAPI</span><span class="w"> </span><span class="n">Summation</span><span class="p">(</span><span class="n">LPVOID</span><span class="w"> </span><span class="n">Param</span><span class="p">){</span>
+<span class="w">    </span><span class="n">DWORD</span><span class="w"> </span><span class="n">Upper</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="p">(</span><span class="n">DWORD</span><span class="o">*</span><span class="p">)</span><span class="n">Param</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">DWORD</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">Upper</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">        </span><span class="n">Sum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="n">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">argv</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">DWORD</span><span class="w"> </span><span class="n">ThreadId</span><span class="p">;</span>
+<span class="w">    </span><span class="n">HANDLE</span><span class="w"> </span><span class="n">ThreadHandle</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">Param</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Param</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">atoi</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+
+<span class="w">    </span><span class="c1">// 创建子线程</span>
+<span class="w">    </span><span class="n">ThreadHandle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CreateThread</span><span class="p">(</span>
+<span class="w">        </span><span class="nb">NULL</span><span class="p">,</span><span class="w">           </span><span class="c1">// 默认安全属性：子线程继承当前进程的安全设置</span>
+<span class="w">        </span><span class="mi">0</span><span class="p">,</span><span class="w">              </span><span class="c1">// 默认栈大小：使用与主线程相同的栈大小</span>
+<span class="w">        </span><span class="n">Summation</span><span class="p">,</span><span class="w">      </span><span class="c1">// 子线程要执行的入口函数</span>
+<span class="w">        </span><span class="o">&amp;</span><span class="n">Param</span><span class="p">,</span><span class="w">         </span><span class="c1">// 传递给 Summation 的参数</span>
+<span class="w">        </span><span class="mi">0</span><span class="p">,</span><span class="w">              </span><span class="c1">// 默认创建标志：子线程创建后立即运行</span>
+<span class="w">        </span><span class="o">&amp;</span><span class="n">ThreadId</span><span class="p">);</span><span class="w">     </span><span class="c1">// 输出参数：将创建的子线程 ID 存入 ThreadId</span>
+
+<span class="w">    </span><span class="c1">// 等待子线程执行完毕</span>
+<span class="w">    </span><span class="n">WaitForSingleObject</span><span class="p">(</span><span class="n">ThreadHandle</span><span class="p">,</span><span class="n">INFINITE</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// 关闭线程句柄，释放线程句柄对应的系统资源</span>
+<span class="w">    </span><span class="n">CloseHandle</span><span class="p">(</span><span class="n">ThreadHandle</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;sum = %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="n">Sum</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+</details>
+</li>
+<li>
+<p><strong>OpenMP</strong></p>
+<ul>
+<li>适用于 C、C++、FORTRAN 的一套编译器指令与 API，支持共享内存环境下的并行编程，支持<strong>并行区域（parallel regions）</strong>标识，<code>#pragma omp parallel</code> 会创建与 CPU 核心数相同数量的线程</li>
+<li>是 Pthreads 之上的一层封装，便于在简单场景下便捷地实现多线程</li>
+</ul>
+<details class="example">
+<summary>代码示例</summary>
+<div class="highlight"><span class="filename">基础并行区域</span><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;omp.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">argv</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="cm">/* 串行代码区域（这部分由单个主线程执行） */</span>
+
+<span class="w">    </span><span class="cp">#pragma omp parallel</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 并行区域内的代码：每个线程都会执行这条 printf 语句</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;I am a parallel region.&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="cm">/* 串行代码区域（并行区域结束后，所有线程合并回单个主线程继续执行） */</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">并行化 for 循环</span><pre><span></span><code><span class="c1">// </span>
+<span class="cp">#pragma omp parallel for</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 每个迭代的计算任务：将数组 a、b 对应下标的元素相加，结果存入数组 c</span>
+<span class="w">    </span><span class="c1">// 注：不同线程会处理不同的 i 值，实现并行计算（替代单线程串行遍历）</span>
+<span class="w">    </span><span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="p">}</span>
+</code></pre></div>
+</details>
+</li>
+<li>
+<p><strong>Java Threads</strong></p>
+<ul>
+<li>由 JVM（Java 虚拟机）实现，依赖内核线程</li>
+<li>自动管理内存，避免内存泄漏</li>
+</ul>
+<details class="example">
+<summary>创建方式</summary>
+<div class="highlight"><span class="filename">方式 1：继承 Thread 类</span><pre><span></span><code><span class="kd">class</span> <span class="nc">MyThread</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Thread</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 重写 run 方法：线程启动后会执行此方法内的逻辑</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">run</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 线程的业务逻辑（此处省略具体代码）</span>
+<span class="w">        </span><span class="p">...</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="n">MyThread</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MyThread</span><span class="p">();</span><span class="w"> </span><span class="c1">// 创建线程</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">方式 2：实现 Runnable 接口</span><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">Runnable</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 抽象方法run：实现该接口的类需重写此方法，定义线程要执行的任务</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">abstract</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">run</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+</details>
+<details class="info" open="open">
+<summary>早期 JVM 绿色线程（用户级线程）</summary>
+<p><img src="/sys2/images/image7-25.png" style="display: block; width: 60%; margin: 0 auto;" /></p>
+<ul>
+<li>JVM 自己实现了线程管理，由内部的调度器线程负责调度、管理多个应用程序线程</li>
+<li>OS 无法直接感知 JVM 内部的应用程序线程，只能与 JVM 进程本身的线程交互，即<strong>绿色线程对 OS 不可见</strong></li>
+<li>绿色线程具备用户级线程的所有缺点，如无法利用多核、多处理器架构，在现代 JVM 中通常已不可用</li>
+</ul>
+</details>
+<details class="info" open="open">
+<summary>原生线程（native threads）</summary>
+<ul>
+<li>应用程序线程被映射到内核线程
+<img src="/sys2/images/image7-26.png" style="display: block; width: 60%; margin: 0 auto;" /></li>
+</ul>
+</details>
+</li>
+</ol>
+<h3 id="3-4-threading-issues">3. 4 Threading Issues<a class="headerlink" href="#3-4-threading-issues" title="Permanent link">&para;</a></h3>
+<h4 id="3-4-1-fork-exec">3. 4. 1 <code>fork()</code> 与 <code>exec()</code> 的语义<a class="headerlink" href="#3-4-1-fork-exec" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>fork</code>：<ol>
+<li>新进程仅复制调用 <code>fork()</code> 的线程，Linux 采用该选项</li>
+<li>新进程仅复制原进程的所有线程，包括调用 <code>fork()</code> 的线程</li>
+</ol>
+</li>
+<li><code>exec()</code>：加载新程序，替换进程的代码/数据/堆，原线程全部终止并清空</li>
+</ul>
+<h4 id="3-2-2">3. 2. 2 信号处理<a class="headerlink" href="#3-2-2" title="Permanent link">&para;</a></h4>
+<ul>
+<li>在多线程程序中，信号传递存在多种选项，包括：传递给目标线程、所有线程、特定线程，或指定线程接收所有信号</li>
+<li>大多数 UNIX 版本中，线程可以指定自己接受哪些信号、不接受哪些信号</li>
+</ul>
+<h4 id="3-2-3">3. 2. 3 线程取消<a class="headerlink" href="#3-2-3" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>异步取消（Asynchronous）</strong><ul>
+<li>一个线程立即终止另一个线程</li>
+<li>易导致状态不一致或同步问题</li>
+</ul>
+</li>
+<li><strong>延迟取消（Deferred cancellation）</strong><ul>
+<li>线程定期检查自己是否应该终止（如 <code>pthread_testcancel</code>），到达取消点时终止，随后会调用<strong>清理处理程序</strong></li>
+<li>代码繁琐，但安全，是默认的取消类型</li>
+<li>在 Linux 系统中，线程取消是通过信号来处理的</li>
+<li>在 Java 中，<code>Thread.stop()</code> 方法已被弃用，因此取消操作必须采用延迟式</li>
+</ul>
+</li>
+<li>发起线程取消操作是请求取消，但实际取消是否执行取决于线程的状态</li>
+<li>如果线程禁用了取消功能，取消请求会处于挂起状态，直到线程启用取消功能</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>模式（Mode）</th>
+<th>状态（State）</th>
+<th>类型（Type）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>关闭（Off）</td>
+<td>禁用（Disabled）</td>
+<td>—</td>
+</tr>
+<tr>
+<td>延迟（Deferred）</td>
+<td>启用（Enabled）</td>
+<td>延迟型（Deferred）</td>
+</tr>
+<tr>
+<td>异步（Asynchronous）</td>
+<td>启用（Enabled）</td>
+<td>异步型（Asynchronous）</td>
+</tr>
+</tbody>
+</table>
+<h4 id="3-2-4-tls-thread-local-storage">3. 2. 4 线程本地存储（TLS, Thread-local Storage）<a class="headerlink" href="#3-2-4-tls-thread-local-storage" title="Permanent link">&para;</a></h4>
+<ul>
+<li>允许每个线程拥有独立的数据副本，适用于线程池（无法控制线程创建过程）</li>
+<li>跨函数调用可见，区别于仅函数内可见的局部变量</li>
+<li>与静态数据类似，TLS 对每个线程来说都是唯一的</li>
+</ul>
+<h4 id="3-2-5-scheduler-activations">3. 2. 5 调度器激活（Scheduler Activations）<a class="headerlink" href="#3-2-5-scheduler-activations" title="Permanent link">&para;</a></h4>
+<div class="admonition tip">
+<p class="admonition-title">轻量级进程（LWP, Lightweight Process）</p>
+<ul>
+<li>轻量级进程（LWP）多对多模型和两级模型中，用户线程与内核线程之间的中间数据结构</li>
+<li>作为用户线程与内核线程之间的中间层，对用户线程库表现为虚拟处理器（可在其上调度用户线程）</li>
+<li>每个 LWP 都附着于一个内核线程，内核线程阻塞会导致 LWP 阻塞，进而导致用户线程阻塞</li>
+<li>内核负责调度内核线程，用户线程库负责调度用户线程，内核需将重要调度事件通知给线程库以避免次优调度</li>
+</ul>
+<details class="quote">
+<summary>Further Reading</summary>
+<ul>
+<li>
+<p>在计算机操作系统中，LWP 是实现多任务的一种方式，传统定义中（如 Unix System V 和 Solaris 系统中的用法），LWP 运行在用户空间，基于单个内核线程，且与同一进程内的其他 LWP 共享地址空间和系统资源。<strong>由线程库管理的多个用户级线程，可以部署在一个或多个 LWP 之上，这使得多任务能在用户级完成，从而带来一定的性能优势。</strong></p>
+</li>
+<li>
+<p>在部分操作系统中，内核线程与用户线程之间并没有独立的 LWP 层，<strong>这意味着用户线程是直接基于内核线程实现的。在这种场景下，LWP 一词通常指代内核线程，而线程则可指代用户线程。</strong>在 Linux 系统中，用户线程是通过让特定进程共享资源来实现的，这些进程有时也会被称为LWP。</p>
+</li>
+</ul>
+</details>
+</div>
+<ul>
+<li>核心机制：内核通过<strong>上调用（upcall）</strong>通知线程库调度事件（如线程阻塞），线程库可切换用户线程到 LWP，避免资源浪费</li>
+</ul>
+<h3 id="3-5-operating-system-examples">3. 5 Operating System Examples<a class="headerlink" href="#3-5-operating-system-examples" title="Permanent link">&para;</a></h3>
+<h4 id="3-5-1-windows-threads">3. 5. 1 Windows Threads<a class="headerlink" href="#3-5-1-windows-threads" title="Permanent link">&para;</a></h4>
+<ul>
+<li>采用一对一映射模型，属于内核级线程</li>
+<li>每个线程包含：线程ID，表示处理器状态的寄存器组，用户栈与内核栈，运行时库和动态链接库（DLL）使用的私有数据存储区</li>
+<li>寄存器组、栈以及私有存储区统称为<strong>线程的上下文</strong></li>
+<li>
+<p>核心数据结构</p>
+<ul>
+<li><strong>ETHREAD（执行线程块）</strong>：包含指向所属进程和 KTHREAD 的指针，位于内核空间</li>
+<li><strong>KTHREAD（内核线程块）</strong>：包含调度与同步信息、内核栈、指向 TEB 的指针，位于内核空间</li>
+<li><strong>TEB（线程环境块）</strong>：包含线程 ID、用户栈、TLS</li>
+</ul>
+<details class="info">
+<summary>Windows Threads 数据结构示意图</summary>
+<p><img src="/sys2/images/image7-27.png" style="display: block; width: 50%; margin: 0 auto;" /></p>
+</details>
+</li>
+</ul>
+<h4 id="3-5-2-linux-threads">3. 5. 2 Linux Threads<a class="headerlink" href="#3-5-2-linux-threads" title="Permanent link">&para;</a></h4>
+<ul>
+<li>在 Linux 中，内核线程也被称为 LWP</li>
+<li>用 <code>task_struct</code> 统一表示进程和线程</li>
+<li>进程的定义<ul>
+<li><strong>单个线程</strong> + 一个地址空间：其 PID 就是该线程的 ID</li>
+<li><strong>多个线程</strong> + 一个地址空间：其 PID 是主线程的 ID</li>
+</ul>
+</li>
+<li>
+<p><code>clone()</code> 系统调用用于创建线程或进程，与父进程共享执行上下文，通过标志控制资源共享</p>
+<details class="info">
+<summary><code>clone()</code> 标志</summary>
+<table>
+<thead>
+<tr>
+<th>标志</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CLONE_FS</td>
+<td>文件系统信息会被共享</td>
+</tr>
+<tr>
+<td>CLONE_VM</td>
+<td>共享同一内存空间</td>
+</tr>
+<tr>
+<td>CLONE_SIGHAND</td>
+<td>信号处理器会被共享</td>
+</tr>
+<tr>
+<td>CLONE_FILES</td>
+<td>已打开的文件集合会被共享</td>
+</tr>
+</tbody>
+</table>
+</details>
+</li>
+<li>
+<p>一个任务对应一个<code>task_struct</code>（即PCB），在一个线程中执行</p>
+</li>
+<li>执行空间：<ol>
+<li>用户空间：运行用户代码，使用用户空间栈</li>
+<li>内核空间（如调用系统调用时）：执行流陷入内核，运行内核代码、使用内核空间栈</li>
+</ol>
+</li>
+<li>相同的 <code>task_struct</code>（PCB）代表同一个线程，属于一对一映射（用户线程与内核线程是同一线程，可在用户态/内核态执行）</li>
+<li>内核线程：无用户空间部分，仅运行内核代码（如刷新脏缓冲区到磁盘）</li>
+</ul>
+<div class="highlight"><span class="filename">getpid 和 gettid</span><pre><span></span><code><span class="n">SYSCALL_DEFINE0</span><span class="p">(</span><span class="n">getpid</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 获取当前任务所属线程组的 ID（即进程 ID）</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">task_tgid_vnr</span><span class="p">(</span><span class="n">current</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">SYSCALL_DEFINE0</span><span class="p">(</span><span class="n">gettid</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="c1">// 获取当前 task_struct 对应的 ID（即线程自身的 ID）</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">task_pid_vnr</span><span class="p">(</span><span class="n">current</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../../javascripts/mathjax-config.js"></script>
+      
+    
+  </body>
+</html>

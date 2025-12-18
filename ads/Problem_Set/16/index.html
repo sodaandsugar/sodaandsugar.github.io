@@ -1,0 +1,2213 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../15/">
+      
+      
+        <link rel="next" href="../17/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>局部搜索 - sodasugar的笔记本</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.342714a4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="sodasugar的笔记本" class="md-header__button md-logo" aria-label="sodasugar的笔记本" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            sodasugar的笔记本
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              局部搜索
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="sodasugar的笔记本" class="md-nav__button md-logo" aria-label="sodasugar的笔记本" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    sodasugar的笔记本
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    首页
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    通识课
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            通识课
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    大物乙Ⅱ
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            大物乙Ⅱ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../physics2/%E7%89%A9%E7%90%86%E5%AD%A6%E5%8D%95%E4%BD%8D%E6%8D%A2%E7%AE%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    物理学单位换算
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../physics2/Chapter1_%E9%9D%99%E7%94%B5%E5%9C%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 静电场
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../physics2/Chapter2_%E9%9D%99%E7%94%B5%E5%9C%BA%E4%B8%AD%E7%9A%84%E5%AF%BC%E4%BD%93%E5%92%8C%E7%94%B5%E4%BB%8B%E8%B4%A8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 静电场中的导体和电介质
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../physics2/Chapter3_%E7%94%B5%E6%B5%81%E5%92%8C%E7%A3%81%E5%9C%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 电流和磁场
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../physics2/Chapter4_%E7%89%A9%E8%B4%A8%E4%B8%AD%E7%9A%84%E7%A3%81%E5%9C%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 物质中的磁场
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../physics2/Chapter5_%E7%94%B5%E7%A3%81%E6%84%9F%E5%BA%94/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5 电磁感应
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../physics2/Chapter6_%E9%BA%A6%E5%85%8B%E6%96%AF%E9%9F%A6%E6%96%B9%E7%A8%8B%E4%B8%8E%E7%94%B5%E7%A3%81%E6%B3%A2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6 麦克斯韦方程与电磁波
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../physics2/Chapter7_%E5%85%89%E7%9A%84%E5%B9%B2%E6%B6%89/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 7 光的干涉
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../physics2/Chapter8_%E5%85%89%E7%9A%84%E8%A1%8D%E5%B0%84/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 8 光的衍射
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../physics2/Chapter9_%E5%85%89%E7%9A%84%E5%81%8F%E6%8C%AF/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 9 光的偏振
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../physics2/10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 10 光的量子论
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../physics2/11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 11 玻尔的原子模型
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../physics2/12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 12 量子力学初步
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../physics2/midterm_review/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    期中小结
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    专业课
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            专业课
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    数据安全与密码学基础
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            数据安全与密码学基础
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cryptography/resource/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    资源索引
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cryptography/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 概论
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cryptography/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 完善保密加密
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cryptography/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 对称密钥加密以及伪随机性
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cryptography/4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 消息鉴别码
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cryptography/5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5 哈希函数
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cryptography/midterm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    期中考试卷
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    高级数据结构与算法分析
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            高级数据结构与算法分析
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resource/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    资源索引
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_2_2" id="__nav_3_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    题目集
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            题目集
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AVL 树
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Splay 树
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    摊还分析
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    红黑树
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    B+ 树
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    倒排索引
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    左偏堆
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    斜堆
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    二项队列
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    回溯
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    分治法
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    动态规划
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    贪心算法
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    P/NP 问题
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    近似算法
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    局部搜索
+    
+  </span>
+  
+
+      </a>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../17/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    随机算法
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../18/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    并行算法
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cheatsheet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    期中考 cheat sheet
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../midterm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    期中考试
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    计算机系统Ⅱ
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            计算机系统Ⅱ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sys2/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 ISA Review
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sys2/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 Design of Pipelining
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sys2/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 Hazard of Pipelining
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sys2/4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 Software-Hardware Interface
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sys2/5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5 Intro&Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sys2/6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6 Structures
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sys2/7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 7 Processes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sys2/8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 8 CPU Scheduling
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    选修课
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            选修课
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    英语口译
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            英语口译
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../interpret/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1 Ceremonial Speech
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../interpret/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2 Tourism
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../interpret/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3 Culture and Education
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../interpret/text/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    课堂文本
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="_1">局部搜索<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<div class="admonition question">
+<p class="admonition-title">贪心算法 VS 局部搜索</p>
+<p>Greedy method is a special case of local search.</p>
+<details class="success">
+<summary>答案</summary>
+<p>贪心算法的是不可逆的局部最优决策，目标是逼近或达到全局最优；局部搜索的核心是邻域迭代优化，目标是找到局部最优。二者的核心逻辑、执行流程不存在包含关系，因此贪心算法不是局部搜索的特例，答案为 <span class="arithmatex">\(\textnormal{F}\)</span></p>
+</details>
+</div>
+<div class="admonition question">
+<p class="admonition-title">局部最优情况</p>
+<p>In local search, if the optimization function has a constant value in a neighborhood, there will be a problem.</p>
+<details class="success">
+<summary>答案</summary>
+<p><span class="arithmatex">\(\textnormal{T}\)</span></p>
+</details>
+<p>Random restarts can help a local search algorithm to better find global maxima that are surrounded by local maxima.</p>
+<details class="success">
+<summary>答案</summary>
+<p><span class="arithmatex">\(\textnormal{T}\)</span></p>
+</details>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Metropolis 算法</p>
+<p>In Metropolis Algorithm, the probability of jumping up depends on T, the temperature. When the temperature is high, it’ll be close to the original gradiant descent method.</p>
+<details class="success">
+<summary>答案</summary>
+<p>温度高时容易引起底部振荡，温度低时接近原始的梯度下降法，故答案为 <span class="arithmatex">\(\textnormal{F}\)</span></p>
+</details>
+<p>The Gradient Descent and the Metropolis Algorithm are local search algoritms. The former may not get a globle optimal solution and the latter can but more execution time is needed.</p>
+<details class="success">
+<summary>答案</summary>
+</details>
+<p>固定温度的 Metropolis 算法不能保证收敛到全局最优解，需要结合模拟退火(simulated annealing) 算法才能得到全局最优解，故答案为 <span class="arithmatex">\(\textnormal{F}\)</span></p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">综合判断</p>
+<p>How many of the following statements is/are <strong>TRUE</strong>?</p>
+<ul>
+<li>The 0-1 knapsack problem cannot be solved by any local search algorithm.</li>
+<li>The metropolis algorithm always improves the gradient descent algorithm.</li>
+<li>In some cases, the state-flipping algorithm cannot terminate.</li>
+<li>Unless <span class="arithmatex">\(P=NP\)</span>, there is no <span class="arithmatex">\(\rho\)</span>-approximation for the maximum cut problem for any <span class="arithmatex">\(\rho&lt;2\)</span>.</li>
+</ul>
+<details class="success">
+<summary>答案</summary>
+<p>局部搜索算法可用于求解 <span class="arithmatex">\(0-1\)</span> 背包的近似解，故表述 <span class="arithmatex">\(1\)</span> 错误</p>
+<p>Metropolis 算法的核心是允许以一定概率接受更差解以逃离局部最优，但并不能总是改进梯度下降法，如对于凸函数优化问题（如线性回归），梯度下降法能高效收敛到全局最优，而 Metropolis 算法接受差解的机制反而会浪费计算资源，故表述 <span class="arithmatex">\(2\)</span> 错误 </p>
+<p>离散优化问题的状态空间是有限的，状态反转算法总能终止，故表述 <span class="arithmatex">\(3\)</span> 错误</p>
+<p>最大割问题存在经典的 <strong><span class="arithmatex">\(ρ&lt;2\)</span> 的近似算法</strong>，如 Goemans-Williamson 算法通过半定规划松弛实现近似比 <span class="arithmatex">\(\approx 1.1382\)</span>，其正确性不依赖 <span class="arithmatex">\(P=NP\)</span>，故表述 <span class="arithmatex">\(4\)</span> 错误</p>
+<p>综上所述，<strong>正确陈述个数为 <span class="arithmatex">\(0\)</span></strong></p>
+</details>
+</div>
+<div class="admonition question">
+<p class="admonition-title">K-L 启发式算法</p>
+<p>Insider the Kernighan and Lin's K-L heuristic (local search) for graph partition problem, locally optimal solutions are computable in polynomial time. </p>
+<details class="success">
+<summary>答案</summary>
+<p>K-L 启发式算法是一种多项式时间的启发式算法，但它并不保证在多项式时间内找到局部最优解。事实上，图划分问题在交换邻域下是PLS完全的，这意味着寻找局部最优解是计算困难的问题，除非PLS=P，否则不存在多项式时间算法，故答案为 <span class="arithmatex">\(\textnormal{F}\)</span></p>
+</details>
+</div>
+<div class="admonition question">
+<p class="admonition-title">SAT &amp; N-Queen Problems 的搜索空间</p>
+<p>Local search algorithm can be used to solve lots of classic problems, such as SAT and <span class="arithmatex">\(N\)</span>-Queen problems. Define the configuration of SAT to be <span class="arithmatex">\(X =\)</span> vector of assignments of <span class="arithmatex">\(N\)</span> boolean variables, and that of <span class="arithmatex">\(N\)</span>-Queen to be <span class="arithmatex">\(Y =\)</span> positions of the <span class="arithmatex">\(N\)</span> queens in each column. The sizes of the search spaces of SAT and <span class="arithmatex">\(N\)</span>-Queen are <span class="arithmatex">\(O(2^N)\)</span> and <span class="arithmatex">\(O(N^N)\)</span>, respectively.</p>
+<details class="success">
+<summary>答案</summary>
+<p>每个布尔变量有 <span class="arithmatex">\(2\)</span> 种赋值选择，<span class="arithmatex">\(N\)</span> 个变量的总赋值组合数为 <span class="arithmatex">\(2^N\)</span>，故 SAT 问题的搜索空间为 <span class="arithmatex">\(O(2^N)\)</span></p>
+<p>皇后放置时每列有 <span class="arithmatex">\(N\)</span> 种行号选择，搜索空间指的是所有可能，故总配置数为 <span class="arithmatex">\(N^N\)</span>，<span class="arithmatex">\(N-\)</span> 皇后问题的搜索空间为 <span class="arithmatex">\(O(N^N)\)</span></p>
+<p>综上所述，答案为 <span class="arithmatex">\(\textnormal{T}\)</span></p>
+</details>
+</div>
+<div class="admonition question">
+<p class="admonition-title">K-center Problems</p>
+<p>We are given a set of sites <span class="arithmatex">\(S = \{s_1, s_2, \cdots, s_n\}\)</span> in the plane, and we want to choose a set of <span class="arithmatex">\(k\)</span> centers <span class="arithmatex">\(C = \{c_1, c_2, \cdots, c_k\}\)</span> so that the maximum distance from a site to the nearest center is minimized. Here <span class="arithmatex">\(c_i\)</span> can be an arbitrary point in the plane.</p>
+<p>A local search algorithm arbitrarily choose <span class="arithmatex">\(k\)</span> points in the plane to be the centers, then
+- (1) divide <span class="arithmatex">\(S\)</span> into <span class="arithmatex">\(k\)</span> sets, where <span class="arithmatex">\(S_i\)</span> is the set of all sites for which <span class="arithmatex">\(c_i\)</span> is the nearest center; and
+- (2) for each <span class="arithmatex">\(S_i\)</span>, compute the central position as a new center for all the sites in <span class="arithmatex">\(S_i\)</span>.</p>
+<p>If steps (1) and (2) cause the covering radius to strictly decrease, we perform another iteration, otherwise the algorithm stops.</p>
+<p>When the above local search algorithm terminates, the covering radius of its solution is at most 2 times the optimal covering radius.</p>
+<details class="success">
+<summary>答案</summary>
+<p><span class="arithmatex">\(\textnormal{F}\)</span></p>
+</details>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Spanning Tree Problem</p>
+<p>Given an undirected graph <span class="arithmatex">\(G = (V, E)\)</span>, where <span class="arithmatex">\(|V| = n\)</span> and <span class="arithmatex">\(|E| = m\)</span>. Let <span class="arithmatex">\(F\)</span> be the set of all spanning trees of <span class="arithmatex">\(G\)</span>. Define <span class="arithmatex">\(d(u)\)</span> to be the degree of a vertex <span class="arithmatex">\(u \in V\)</span>. Define <span class="arithmatex">\(w(e)\)</span> to be the weight of an edge <span class="arithmatex">\(e \in E\)</span>.</p>
+<p>We have the following three variants of spanning tree problems:</p>
+<ul>
+<li>
+<p>(1) <strong>Max Leaf Spanning Tree</strong>: find a spanning tree <span class="arithmatex">\(T \in F\)</span> with a maximum number of leaves.</p>
+</li>
+<li>
+<p>(2) <strong>Minimum Spanning Tree</strong>: find a spanning tree <span class="arithmatex">\(T \in F\)</span> with a minimum total weight of all the edges in <span class="arithmatex">\(T\)</span>.</p>
+</li>
+<li>
+<p>(3) <strong>Minimum Degree Spanning Tree</strong>: find a spanning tree <span class="arithmatex">\(T \in F\)</span> such that its maximum degree of all the vertices is the smallest.</p>
+</li>
+</ul>
+<p>For a pair of edges <span class="arithmatex">\((e, e')\)</span> where <span class="arithmatex">\(e \in T\)</span> and <span class="arithmatex">\(e' \in (G - T)\)</span> such that <span class="arithmatex">\(e\)</span> belongs to the unique cycle of <span class="arithmatex">\(T \cup e'\)</span>, we define <span class="arithmatex">\(\text{edge-swap}(e, e')\)</span> to be <span class="arithmatex">\((T - e) \cup e'\)</span>.</p>
+<p>Here is a local search algorithm:
+<div class="highlight"><pre><span></span><code>T = any spanning tree in F;
+while (there is an edge-swap(e, e&#39;) which reduces Cost(T)) {
+    T = T - e + e&#39;;
+}
+return T;
+</code></pre></div></p>
+<p>Here <span class="arithmatex">\(\text{Cost(T)}\)</span> is the number of leaves in <span class="arithmatex">\(\text{T}\)</span> in <strong>Max Leaf Spanning Tree</strong>; or is the total weight of <span class="arithmatex">\(\text{T}\)</span> in <strong>Minimum Spanning Tree</strong>; or else is the minimum degree of <span class="arithmatex">\(\text{T}\)</span> in <strong>Minimum Degree Spanning Tree</strong>.</p>
+<p>Which of the following statements is TRUE?</p>
+<p><span class="arithmatex">\(\textnormal{A}\)</span>. The local search always return an optimal solution for Max Leaf Spanning Tree</p>
+<p><span class="arithmatex">\(\textnormal{B}\)</span>. The local search always return an optimal solution for Minimum Spanning Tree</p>
+<p><span class="arithmatex">\(\textnormal{C}\)</span>. The local search always return an optimal solution for Minimum Degree Spanning Tree</p>
+<p><span class="arithmatex">\(\textnormal{D}\)</span>. For neither of the problems that this local search always return an optimal solution</p>
+<details class="tip">
+<summary>Review: Minimum Spanning Tree</summary>
+<ul>
+<li><strong>Tree</strong>：无环且边的数量为 <span class="arithmatex">\(|V| - 1\)</span></li>
+<li><strong>Minimum</strong>：保证生成树的所有边的权重和最小</li>
+<li><strong>Spanning</strong>：覆盖所有的顶点</li>
+</ul>
+</details>
+<details class="success">
+<summary>答案</summary>
+<ul>
+<li>对于最大叶片生成树，成本是叶子数量，该算法降低成本，最小化叶子数量，与预期目标相反，故 <span class="arithmatex">\(\textnormal{A}\)</span> 错误</li>
+<li>对于最小生成树，成本是总重量，该算法会降低权重，直到没有改进的交换存在，故 <span class="arithmatex">\(\textnormal{B}\)</span> 正确</li>
+<li>对于最小度生成树，成本是最小度，算法在树有叶子（度数为 <span class="arithmatex">\(1\)</span>）后停止，未能优化最大度，故 <span class="arithmatex">\(\textnormal{C}\)</span> 错误</li>
+</ul>
+<p>综上所述，正确答案为 <span class="arithmatex">\(\textnormal{B}\)</span></p>
+<p>（这题看起来很复杂，还以为要分析可行性之类的，结果发现似乎完全是成本定义的问题，好诡异的一道题啊……</p>
+</details>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Partition Problems</p>
+<p>There are <span class="arithmatex">\(n\)</span> jobs, and each job <span class="arithmatex">\(j\)</span> has a processing time <span class="arithmatex">\(t_j\)</span>. We will use a local search algorithm to partition the jobs into two groups <span class="arithmatex">\(A\)</span> and <span class="arithmatex">\(B\)</span>, where set <span class="arithmatex">\(A\)</span> is assigned to machine <span class="arithmatex">\(M_1\)</span> and set <span class="arithmatex">\(B\)</span> to <span class="arithmatex">\(M_2\)</span>. The time needed to process all of the jobs on the two machines is <span class="arithmatex">\(T_1 = \sum_{j \in A} t_j\)</span>, <span class="arithmatex">\(T_2 = \sum_{j \in B} t_j\)</span>. The problem is to minimize <span class="arithmatex">\(|T_1 - T_2|\)</span>.</p>
+<p>Local search: Start by assigning jobs <span class="arithmatex">\(1, \dots, n/2\)</span> to <span class="arithmatex">\(M_1\)</span>, and the rest to <span class="arithmatex">\(M_2\)</span>.
+The local moves are to move a single job from one machine to the other, and we only move a job if the move decreases the absolute difference in the processing times. Which of the following statement is true?</p>
+<p><span class="arithmatex">\(\textnormal{A}\)</span>. The problem is NP-hard and the local search algorithm will not terminate.</p>
+<p><span class="arithmatex">\(\textnormal{B}\)</span>. When there are many candidate jobs that can be moved to reduce the absolute difference, if we always move the job <span class="arithmatex">\(j\)</span> with maximum <span class="arithmatex">\(t_j\)</span>, then the local search terminates in at most <span class="arithmatex">\(n\)</span> moves.</p>
+<p><span class="arithmatex">\(\textnormal{C}\)</span>. The local search algorithm always returns an optimal solution.</p>
+<p><span class="arithmatex">\(\textnormal{D}\)</span>. The local search algorithm always returns a local solution with <span class="arithmatex">\(\frac{1}{2} T_1 \leq T_2 \leq 2T_1\)</span>.</p>
+<details class="success">
+<summary>答案</summary>
+<p>对于选项 <span class="arithmatex">\(\textnormal{A}\)</span>，<span class="arithmatex">\(|T_1 - T_2|\)</span>是非负整数，每次移动都会严格减小它，而其取值范围有限，因此算法必然终止，故 <span class="arithmatex">\(\textnormal{A}\)</span> 错误</p>
+<p>对于选项 <span class="arithmatex">\(\textnormal{B}\)</span>，当选择最大 <span class="arithmatex">\(t_j\)</span> 的作业移动时，每个作业最多被移动 <span class="arithmatex">\(1\)</span> 次，因此最多移动 <span class="arithmatex">\(n\)</span> 次算法终止，故 <span class="arithmatex">\(\textnormal{B}\)</span> 正确</p>
+<p>对于选项 <span class="arithmatex">\(\textnormal{C}\)</span>，局部搜索只能找到<strong>局部最优解</strong>，无法保证全局最优（例如存在更好的划分，但移动单个作业的局部操作无法到达），故 <span class="arithmatex">\(\textnormal{C}\)</span> 错误</p>
+<p>对于选项 <span class="arithmatex">\(\textnormal{D}\)</span>，存在反例 <span class="arithmatex">\(A = \{1, 1\}\)</span>, <span class="arithmatex">\(B = \{10\}\)</span> 不满足条件，故 <span class="arithmatex">\(\textnormal{D}\)</span> 错误</p>
+<p>综上所述，正确答案为 <span class="arithmatex">\(\textnormal{B}\)</span></p>
+</details>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Maximum Cut Problem</p>
+<p>Given an undirected graph <span class="arithmatex">\(G = (V, E)\)</span> with positive integer edge weights <span class="arithmatex">\(w_e\)</span>, find a node partition <span class="arithmatex">\((A, B)\)</span> such that <span class="arithmatex">\(w(A, B)\)</span>, the total weight of edges crossing the cut, is maximized. Let us define <span class="arithmatex">\(S'\)</span> be the neighbor of <span class="arithmatex">\(S\)</span> such that <span class="arithmatex">\(S'\)</span> can be obtained from <span class="arithmatex">\(S\)</span> by moving one node from <span class="arithmatex">\(A\)</span> to <span class="arithmatex">\(B\)</span>, or one from <span class="arithmatex">\(B\)</span> to <span class="arithmatex">\(A\)</span>. We only choose a node which, when flipped, increases the cut value by at least <span class="arithmatex">\(w(A, B)/|V|\)</span>. Then which of the following is true?</p>
+<p><span class="arithmatex">\(\textnormal{A}\)</span>. Upon the termination of the algorithm, the algorithm returns a cut <span class="arithmatex">\((A, B)\)</span> so that <span class="arithmatex">\(2.5w(A, B) \geq w(A^*, B^*)\)</span>, where <span class="arithmatex">\((A^*, B^*)\)</span> is an optimal partition.</p>
+<p><span class="arithmatex">\(\textnormal{B}\)</span>. The algorithm terminates after at most <span class="arithmatex">\(O(\log |V| \log W)\)</span> flips, where <span class="arithmatex">\(W\)</span> is the total weight of edges.</p>
+<p><span class="arithmatex">\(\textnormal{C}\)</span>. Upon the termination of the algorithm, the algorithm returns a cut <span class="arithmatex">\((A, B)\)</span> so that <span class="arithmatex">\(2w(A, B) \geq w(A^*, B^*)\)</span>.</p>
+<p><span class="arithmatex">\(\textnormal{D}\)</span>. The algorithm terminates after at most <span class="arithmatex">\(O(|V|^2)\)</span> flips.</p>
+<details class="success">
+<summary>答案</summary>
+<p>大提升翻转（big-improvement-flip）挑选能够提升至少 <span class="arithmatex">\(\dfrac{2\varepsilon}{|V|}w(A,B)\)</span> 割值的顶点进行翻转</p>
+<ul>
+<li>
+<p>算法中止后会返回一个割集 <span class="arithmatex">\((A,B)\)</span>，满足：<span class="arithmatex">\((2+\varepsilon)w(A,B)\geq w(A^*,B^*)\)</span>，因此该算法是一个 <span class="arithmatex">\((2+\varepsilon)-\)</span>近似算法</p>
+</li>
+<li>
+<p>该算法最多在 <span class="arithmatex">\(O\left(\frac{n}{\varepsilon}\log W\right)\)</span> 次翻转后终止，其中 <span class="arithmatex">\(W = \sum w\)</span></p>
+</li>
+</ul>
+<p>故正确答案为 <span class="arithmatex">\(\textnormal{A}\)</span></p>
+</details>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Schedule Problems</p>
+<p><strong>Scheduling Job Problem</strong>: There are <span class="arithmatex">\(n\)</span> jobs and <span class="arithmatex">\(m\)</span> identical machines (running in parallel) to which each job may be assigned. Each job <span class="arithmatex">\(j =1, \cdots, n\)</span> must be processed on one of these machines for <span class="arithmatex">\(t_j\)</span> time units without interruption. Each machine can process at most one job at a time. The aim is to complete all jobs as soon as possible; that is, if job <span class="arithmatex">\(j\)</span> completes at a time <span class="arithmatex">\(C_j\)</span> (the schedule starts at time <span class="arithmatex">\(0\)</span>), then we wish to minimize <span class="arithmatex">\(C_{max} = max_{j=1,\cdots, n}C_j\)</span>. The length of an optimal schedule is denoted as <span class="arithmatex">\(OPT(C_{max})\)</span>.</p>
+<p><strong>Local Search Algorithm</strong>: Start with any schedule; consider the job <span class="arithmatex">\(l\)</span> that finishes last; check whether or not there exists a machine to which it can be reassigned that would cause this job to finish earlier. If so, transfer job <span class="arithmatex">\(l\)</span> to this other machine. The local search algorithm repeats this procedure until the last job to complete cannot be transferred.</p>
+<p>Which of the following statement is false?</p>
+<p><span class="arithmatex">\(\textnormal{A}\)</span>. <span class="arithmatex">\(OPT(C_{max}) \geq \sum\limits_{j=1}^{n} \frac{t_j}{m}\)</span></p>
+<p><span class="arithmatex">\(\textnormal{B}\)</span>. When transfering a job, if we always reassign that job to the machine that is currently finishing earliest, then no job is transferred twice.</p>
+<p><span class="arithmatex">\(\textnormal{C}\)</span>. Upon the termination of the algorithm, the algorithm may return a schedule that has length at least <span class="arithmatex">\(2OPT(C_{max})\)</span></p>
+<p><span class="arithmatex">\(\textnormal{D}\)</span>. Suppose that we first order the jobs in a list arbitrarily, then consequently assign each job to the machine that is currently of earliest completion time, the schedule obtained cannont be improved by the local search procedure.</p>
+<details class="success">
+<summary>答案</summary>
+<p>对于选项 <span class="arithmatex">\(\textnormal{A}\)</span>，最优调度的完工时间至少为所有作业处理时间之和除以机器数，即 <span class="arithmatex">\(OPT(C_{\text{max}}) \geq \frac{\sum_{j=1}^n t_j}{m}\)</span>，这是经典下界，故 <span class="arithmatex">\(\textnormal{A}\)</span> 表述正确</p>
+<p>对于选项 <span class="arithmatex">\(\textnormal{B}\)</span>，若每次都将作业重新分配到当前完工时间最早的机器上，则不会再有机器满足重新分配该任务后能够提前完成该任务，故每个作业至多被转移一次，<span class="arithmatex">\(\textnormal{B}\)</span> 表述正确</p>
+<p>对于选项 <span class="arithmatex">\(\textnormal{C}\)</span>，已知该局部搜索算法的近似比上界为 <span class="arithmatex">\(2 - \frac{1}{m}\)</span>，不可能返回长度至少为 <span class="arithmatex">\(2 \cdot OPT(C_{\text{max}})\)</span> 的调度，故 <span class="arithmatex">\(\textnormal{C}\)</span> 表述错误</p>
+<p>对于选项 <span class="arithmatex">\(\textnormal{D}\)</span>，贪心算法得到的调度中，最后一个完成的作业无法通过转移到其他机器而更早完成，该调度已是局部最优，故 <span class="arithmatex">\(\textnormal{D}\)</span> 表述正确</p>
+<p>综上所述，答案为 <span class="arithmatex">\(\textnormal{C}\)</span></p>
+<details class="quote">
+<summary><span class="arithmatex">\(\textnormal{C}\)</span> 选项的详细证明</summary>
+<p>设算法终止时得到的调度长度为 <span class="arithmatex">\(C_{\max}\)</span>，最后完成的作业 <span class="arithmatex">\(l\)</span> 的处理时间为 <span class="arithmatex">\(t_l\)</span>。</p>
+<p>由于算法已终止，将作业 <span class="arithmatex">\(l\)</span> 转移到任何其他机器 <span class="arithmatex">\(k\)</span> 上均不能使其完成时间提前，即对任意 <span class="arithmatex">\(k \neq i\)</span>（<span class="arithmatex">\(i\)</span> 为 <span class="arithmatex">\(l\)</span> 当前所在机器），有 <span class="arithmatex">\(L_k + t_l \geq C_{\max}\)</span>，其中 <span class="arithmatex">\(L_k\)</span> 为机器 <span class="arithmatex">\(k\)</span> 的总负载。</p>
+<p>所有机器的总负载为：
+$$
+\sum_{j=1}^n t_j = \sum_{k=1}^m L_k = L_i + \sum_{k \neq i} L_k \geq C_{\max} + (m-1)(C_{\max} - t_l) = m C_{\max} - (m-1) t_l
+$$</p>
+<p>整理得：
+$$
+C_{\max} \leq \frac{\sum_{j=1}^n t_j}{m} + \frac{m-1}{m} t_l.
+$$
+由下界 <span class="arithmatex">\(OPT \geq \frac{\sum_{j=1}^n t_j}{m}\)</span> 和 <span class="arithmatex">\(OPT \geq t_l\)</span>，可得：
+$$
+C_{\max} \leq OPT + \frac{m-1}{m} OPT = \left(2 - \frac{1}{m}\right) OPT.
+$$
+即算法返回的调度长度严格小于 <span class="arithmatex">\(2 \cdot OPT\)</span>（当 <span class="arithmatex">\(m \geq 2\)</span> 时），不可能达到 <span class="arithmatex">\(2 \cdot OPT\)</span></p>
+</details>
+</details>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Load balancing problem</p>
+<p><strong>Load balancing problem</strong>: We have <span class="arithmatex">\(n\)</span> jobs <span class="arithmatex">\(j=1, 2, \ldots, n\)</span> each with processing time <span class="arithmatex">\(p_ j\)</span> being an integer number.
+Our task is to find a schedule assigning <span class="arithmatex">\(n\)</span> jobs to <span class="arithmatex">\(10\)</span> identical machines so as to minimize the makespan (the maximum completion time over all the machines).
+We adopt the following local search to solve the above load balancing problem.</p>
+<p><strong>LocalSearch</strong>: Start with an arbitrary schedule.Repeat the following until no job can be re-assigned:</p>
+<ul>
+<li>
+<p>Let <span class="arithmatex">\(l\)</span> be a job that finishes last.</p>
+</li>
+<li>
+<p>If there exists a machine <span class="arithmatex">\(i\)</span> such that assigning job <span class="arithmatex">\(l\)</span> to <span class="arithmatex">\(i\)</span> allows <span class="arithmatex">\(l\)</span> finish earlier, then re-assign <span class="arithmatex">\(l\)</span> to be the last job on machine <span class="arithmatex">\(i\)</span>.</p>
+</li>
+<li>
+<p>If such a machine is not unique, always select the one with the minimum completion time.</p>
+</li>
+</ul>
+<p>We claim the following four statements:</p>
+<ol>
+<li>The algorithm LocalSearch finishes within polynomial time.</li>
+<li>The Load-balancing problem is NP<span class="arithmatex">\(-\)</span>hard.</li>
+<li>Let OPT be the makespan of an optimal algorithm. Then the algorithm LocalSearch finds a schedule with the makespan at most of 1.8 OPT.</li>
+<li>This algorithm finishes within <span class="arithmatex">\(O(n^2)\)</span>.</li>
+</ol>
+<p>How many statments are correct ?</p>
+<details class="success">
+<summary>答案</summary>
+<p>整体思路与 Schedule Problems 一致，近似比 <span class="arithmatex">\(= 2 - \frac{1}{m} = 1.9\)</span>，表述 <span class="arithmatex">\(3\)</span> 错误，其余表述均正确，答案为 <span class="arithmatex">\(3\)</span></p>
+</details>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../../../javascripts/mathjax-config.js"></script>
+      
+    
+  </body>
+</html>

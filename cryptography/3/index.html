@@ -1,0 +1,2920 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../2/">
+      
+      
+        <link rel="next" href="../4/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>Chapter 3 对称密钥加密以及伪随机性 - sodasugar的笔记本</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chapter-3" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="sodasugar的笔记本" class="md-header__button md-logo" aria-label="sodasugar的笔记本" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            sodasugar的笔记本
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chapter 3 对称密钥加密以及伪随机性
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="sodasugar的笔记本" class="md-nav__button md-logo" aria-label="sodasugar的笔记本" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    sodasugar的笔记本
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    首页
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    通识课
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            通识课
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    大物乙Ⅱ
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            大物乙Ⅱ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/%E7%89%A9%E7%90%86%E5%AD%A6%E5%8D%95%E4%BD%8D%E6%8D%A2%E7%AE%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    物理学单位换算
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/Chapter1_%E9%9D%99%E7%94%B5%E5%9C%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 静电场
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/Chapter2_%E9%9D%99%E7%94%B5%E5%9C%BA%E4%B8%AD%E7%9A%84%E5%AF%BC%E4%BD%93%E5%92%8C%E7%94%B5%E4%BB%8B%E8%B4%A8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 静电场中的导体和电介质
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/Chapter3_%E7%94%B5%E6%B5%81%E5%92%8C%E7%A3%81%E5%9C%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 电流和磁场
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/Chapter4_%E7%89%A9%E8%B4%A8%E4%B8%AD%E7%9A%84%E7%A3%81%E5%9C%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 物质中的磁场
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/Chapter5_%E7%94%B5%E7%A3%81%E6%84%9F%E5%BA%94/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5 电磁感应
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/Chapter6_%E9%BA%A6%E5%85%8B%E6%96%AF%E9%9F%A6%E6%96%B9%E7%A8%8B%E4%B8%8E%E7%94%B5%E7%A3%81%E6%B3%A2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6 麦克斯韦方程与电磁波
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/Chapter7_%E5%85%89%E7%9A%84%E5%B9%B2%E6%B6%89/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 7 光的干涉
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/Chapter8_%E5%85%89%E7%9A%84%E8%A1%8D%E5%B0%84/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 8 光的衍射
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/Chapter9_%E5%85%89%E7%9A%84%E5%81%8F%E6%8C%AF/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 9 光的偏振
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 10 光的量子论
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 11 玻尔的原子模型
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 12 量子力学初步
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/midterm_review/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    期中小结
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    专业课
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            专业课
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    数据安全与密码学基础
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            数据安全与密码学基础
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../resource/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    资源索引
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 概论
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 完善保密加密
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 对称密钥加密以及伪随机性
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 对称密钥加密以及伪随机性
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1 密码学的计算方法
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1 密码学的计算方法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 1 有效的算法和可忽略的成功概率
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 2 规约证明
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-eav-secure" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 EAV-Secure
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-pseudorandom-generator-prg" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 伪随机发生器（Pseudorandom Generator, PRG）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3 伪随机发生器（Pseudorandom Generator, PRG）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#3-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 1 直观定义
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-computational-indistinguishability" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 计算不可区分性（Computational Indistinguishability）
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      4 构造安全加密方案
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4 构造安全加密方案">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#4-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. 1 一个安全的定长加密方案
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. 2 处理变长消息
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-3-stream-ciphers" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. 3 流密码（Stream Ciphers）和多个加密
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. 4 提高扩展系数
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-cpa" class="md-nav__link">
+    <span class="md-ellipsis">
+      5 选择明文攻击（CPA）的安全性
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-cpa" class="md-nav__link">
+    <span class="md-ellipsis">
+      6 CPA 安全的加密方案构建
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6 CPA 安全的加密方案构建">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#6-1-cpa" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. 1 基于伪随机函数的 CPA 安全加密
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. 2 伪随机置换和分组加密
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. 3 加密操作模式
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. 3 加密操作模式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1ecb" class="md-nav__link">
+    <span class="md-ellipsis">
+      模式 1：电子密码本（ECB）模式
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2cbc" class="md-nav__link">
+    <span class="md-ellipsis">
+      模式 2：密码分组链接（CBC）模式
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3ofb" class="md-nav__link">
+    <span class="md-ellipsis">
+      模式 3：输出反馈（OFB）模式
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4ctr" class="md-nav__link">
+    <span class="md-ellipsis">
+      模式4：计数器（CTR）模式
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#one-way-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      ？ 单向函数（One-Way Functions）
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 消息鉴别码
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5 哈希函数
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../midterm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    期中考试卷
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    高级数据结构与算法分析
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            高级数据结构与算法分析
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/resource/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    资源索引
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2_2" id="__nav_3_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    题目集
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            题目集
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AVL 树
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Splay 树
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    摊还分析
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    红黑树
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    B+ 树
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    倒排索引
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    左偏堆
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    斜堆
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    二项队列
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    回溯
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    分治法
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    动态规划
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    贪心算法
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    P/NP 问题
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/15/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    近似算法
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/16/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    局部搜索
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/17/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    随机算法
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/18/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    并行算法
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/cheatsheet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    期中考 cheat sheet
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/midterm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    期中考试
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    计算机系统Ⅱ
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            计算机系统Ⅱ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 ISA Review
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 Design of Pipelining
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 Hazard of Pipelining
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 Software-Hardware Interface
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5 Intro&Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6 Structures
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 7 Processes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 8 CPU Scheduling
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    选修课
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            选修课
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    英语口译
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            英语口译
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interpret/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1 Ceremonial Speech
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interpret/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2 Tourism
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interpret/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3 Culture and Education
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interpret/text/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    课堂文本
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1 密码学的计算方法
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1 密码学的计算方法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 1 有效的算法和可忽略的成功概率
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 2 规约证明
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-eav-secure" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 EAV-Secure
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-pseudorandom-generator-prg" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 伪随机发生器（Pseudorandom Generator, PRG）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3 伪随机发生器（Pseudorandom Generator, PRG）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#3-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 1 直观定义
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-computational-indistinguishability" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 计算不可区分性（Computational Indistinguishability）
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      4 构造安全加密方案
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4 构造安全加密方案">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#4-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. 1 一个安全的定长加密方案
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. 2 处理变长消息
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-3-stream-ciphers" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. 3 流密码（Stream Ciphers）和多个加密
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. 4 提高扩展系数
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-cpa" class="md-nav__link">
+    <span class="md-ellipsis">
+      5 选择明文攻击（CPA）的安全性
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-cpa" class="md-nav__link">
+    <span class="md-ellipsis">
+      6 CPA 安全的加密方案构建
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6 CPA 安全的加密方案构建">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#6-1-cpa" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. 1 基于伪随机函数的 CPA 安全加密
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. 2 伪随机置换和分组加密
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. 3 加密操作模式
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. 3 加密操作模式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1ecb" class="md-nav__link">
+    <span class="md-ellipsis">
+      模式 1：电子密码本（ECB）模式
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2cbc" class="md-nav__link">
+    <span class="md-ellipsis">
+      模式 2：密码分组链接（CBC）模式
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3ofb" class="md-nav__link">
+    <span class="md-ellipsis">
+      模式 3：输出反馈（OFB）模式
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4ctr" class="md-nav__link">
+    <span class="md-ellipsis">
+      模式4：计数器（CTR）模式
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#one-way-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      ？ 单向函数（One-Way Functions）
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="chapter-3">Chapter 3 对称密钥加密以及伪随机性<a class="headerlink" href="#chapter-3" title="Permanent link">&para;</a></h1>
+<div class="admonition quote">
+<p class="admonition-title">引言</p>
+<p>在上一讲中，我们假设敌手拥有无限计算能力，这样的方案叫做<strong>信息理论安全（information-theoretic notions of security）</strong>，又称<strong>完美安全</strong>，而本讲讨论的<strong>计算安全（Computational security）</strong> 稍弱一些，包含了以下两个放宽条件：</p>
+<ol>
+<li>安全性仅在对抗<strong>有效 (指在可行的时间里运行)</strong> 的敌手时存在</li>
+<li>敌手潜在的成功概率是<strong>非常小</strong>的</li>
+</ol>
+</div>
+<h2 id="1">1 密码学的计算方法<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<h3 id="1-1">1. 1 有效的算法和可忽略的成功概率<a class="headerlink" href="#1-1" title="Permanent link">&para;</a></h3>
+<details class="info">
+<summary>概念补充</summary>
+<ul>
+<li>
+<p>如果对于每个多项式 <span class="arithmatex">\(p(\cdot)\)</span> ，存在一个 <span class="arithmatex">\(N\)</span> ，使得对于所有的整数 <span class="arithmatex">\(n &gt; N\)</span> ，都满足 <span class="arithmatex">\(f(n) &lt; \frac{1}{p(n)}\)</span>，则称函数 <span class="arithmatex">\(f\)</span> 为<strong>可忽略的（negligible）</strong></p>
+</li>
+<li>
+<p>如果存在一个多项式 <span class="arithmatex">\(p(\cdot)\)</span> ，使得对于每个输入 <span class="arithmatex">\(x \in \{0,1\}^*\)</span> ，<span class="arithmatex">\(A(x)\)</span> 的计算最多在 <span class="arithmatex">\(p(|x|)\)</span> 个步骤内终止（<span class="arithmatex">\(|x|\)</span> 指字符串 <span class="arithmatex">\(x\)</span> 的长度），则该算法 <span class="arithmatex">\(A\)</span> 被认为<strong>在多项式时间内运行</strong></p>
+</li>
+<li>
+<p>有效的运算是指能够在<strong>概率多项式时间（PPT, probabilistic polynomial-time）</strong>内执行的计算</p>
+</li>
+</ul>
+</details>
+<p>在课程中，我们使用渐进方法来定义计算安全，即：</p>
+<ul>
+<li>如果每个 <span class="arithmatex">\(\text{PPT}\)</span> 敌手以<strong>可忽略的</strong>概率成功攻破一个方案，那么该方案是安全的。</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">示例</p>
+<p>函数 <span class="arithmatex">\(2^{-n}\)</span>，<span class="arithmatex">\(2^{-\sqrt{n}}\)</span> 以及 <span class="arithmatex">\(n^{-\log n}\)</span> 都是可忽略的函数，但它们接近零的速度是非常不同的</p>
+</div>
+<details class="note">
+<summary>补充</summary>
+<p>令 <span class="arithmatex">\(\text{negl}_1\)</span> 和 <span class="arithmatex">\(\text{negl}_2\)</span> 为可忽略函数，则：</p>
+<ol>
+<li>
+<p>函数 <span class="arithmatex">\(\text{negl}_3 (n) = \text{negl}_1 (n) + \text{negl}_2 (n)\)</span> 是可忽略的</p>
+</li>
+<li>
+<p>对于任何正多项式 <span class="arithmatex">\(p\)</span>，函数 <span class="arithmatex">\(\text{negl}_4 (n) = p(n) \cdot \text{negl}_1 (n)\)</span> 是可忽略的</p>
+</li>
+</ol>
+</details>
+<h3 id="1-2">1. 2 规约证明<a class="headerlink" href="#1-2" title="Permanent link">&para;</a></h3>
+<ol>
+<li>指定 <span class="arithmatex">\(\text{PPT}\)</span> 敌手 <span class="arithmatex">\(\mathcal{A}\)</span> 攻击 <span class="arithmatex">\(\Pi\)</span>，将敌手的成功概率表示为 <span class="arithmatex">\(\varepsilon(n)\)</span></li>
+<li>构造一个叫做<strong>规约</strong>的有效算法 <span class="arithmatex">\(\mathcal{A}'\)</span>，该算法将敌手 <span class="arithmatex">\(\mathcal{A}\)</span> 作为子程序来使用，试图解决难题 <span class="arithmatex">\(X\)</span>。这里很重要的一点是，<span class="arithmatex">\(\mathcal{A}'\)</span> 对 <span class="arithmatex">\(\mathcal{A}\)</span> 是如何工作的一无所知，<span class="arithmatex">\(\mathcal{A}'\)</span> 知道的唯一的事情就是 <span class="arithmatex">\(\mathcal{A}\)</span> 想要攻击 <span class="arithmatex">\(\Pi\)</span>。所以，指定难题 <span class="arithmatex">\(X\)</span> 的某个输入实例 <span class="arithmatex">\(x\)</span>，算法 <span class="arithmatex">\(\mathcal{A}'\)</span> 将会对 <span class="arithmatex">\(\mathcal{A}\)</span> 模拟出一个 <span class="arithmatex">\(\Pi\)</span> 的实例，满足：</li>
+<li>就 <span class="arithmatex">\(\mathcal{A}\)</span> 而言，它和 <span class="arithmatex">\(\Pi\)</span> 交互。更正式地说，当 <span class="arithmatex">\(\mathcal{A}\)</span> 作为子程序被 <span class="arithmatex">\(\mathcal{A}'\)</span> 运行时，<span class="arithmatex">\(\mathcal{A}\)</span> 的分布应该和当 <span class="arithmatex">\(\mathcal{A}\)</span> 自身和 <span class="arithmatex">\(\Pi\)</span> 交互时的分布是相同的（或至少是很接近的）</li>
+<li>如果 <span class="arithmatex">\(\mathcal{A}\)</span> 成功攻破了由 <span class="arithmatex">\(\mathcal{A}'\)</span> 模拟的 <span class="arithmatex">\(\Pi\)</span> 的实例，则 <span class="arithmatex">\(\mathcal{A}'\)</span> 解决给出的难题实例 <span class="arithmatex">\(x\)</span> 成功的概率至少为多项式的倒数，即 <span class="arithmatex">\(1/p(n)\)</span></li>
+</ol>
+<p><img src="/cryptography/images/image3-1.png" style="display: block; width: 50%; margin: 0 auto;" /></p>
+<ol>
+<li>总起来考虑，如果 <span class="arithmatex">\(\varepsilon(n)\)</span> 不是可忽略的，则 <span class="arithmatex">\(\mathcal{A}'\)</span> 解决难题 <span class="arithmatex">\(X\)</span> 的概率为不可忽略的概率 <span class="arithmatex">\(\varepsilon(n)/p(n)\)</span>。如果 <span class="arithmatex">\(\mathcal{A}\)</span> 是有效的，则存在有效的算法 <span class="arithmatex">\(\mathcal{A}'\)</span> 以不可忽略的概率解决 <span class="arithmatex">\(X\)</span>，与原假设矛盾</li>
+<li>因而结论是，给定一个关于 <span class="arithmatex">\(X\)</span> 的假设，不存在有效的敌手 <span class="arithmatex">\(\mathcal{A}\)</span> 能够以不可忽略的概率成功攻破 <span class="arithmatex">\(\Pi\)</span>，换句话说，<span class="arithmatex">\(\Pi\)</span> 是计算上安全的</li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">温馨提示</p>
+<p>规约证明的纯文字叙述较为晦涩，简而言之，就是假设有敌手 <span class="arithmatex">\(\mathcal{A}\)</span> 能攻破 <span class="arithmatex">\(\Pi\)</span>，则可构造以 <span class="arithmatex">\(\mathcal{A}\)</span> 为子程序的敌手 <span class="arithmatex">\(\mathcal{R}^{\mathcal{A}}\)</span> 攻破 <span class="arithmatex">\(\Pi'\)</span>，常用于反证法</p>
+</div>
+<h2 id="2-eav-secure">2 EAV-Secure<a class="headerlink" href="#2-eav-secure" title="Permanent link">&para;</a></h2>
+<details class="info">
+<summary>对称密钥加密方案</summary>
+<ol>
+<li>
+<p><span class="arithmatex">\(k \leftarrow \text{Gen}(1^n)\)</span>，<span class="arithmatex">\(|k| \geq n\)</span></p>
+</li>
+<li>
+<p><span class="arithmatex">\(c \leftarrow \text{Enc}_k(m)\)</span>，<span class="arithmatex">\(m \in \{0,1\}^*\)</span> </p>
+</li>
+<li>
+<p><span class="arithmatex">\(m := \text{Dec}_k(c)\)</span></p>
+</li>
+</ol>
+</details>
+<ul>
+<li>如果对于所有 <span class="arithmatex">\(\text{PPT}\)</span> 敌手 <span class="arithmatex">\(\mathcal{A}\)</span> ，存在一个可忽略函数 <span class="arithmatex">\(\text{negl}\)</span> 使得：
+$$
+\Pr\left[\text{PrivK}^{\text{eav}}_{\mathcal{A},\Pi}(n) = 1\right] \leqslant \frac{1}{2} + \text{negl}(n)
+$$</li>
+</ul>
+<p>则一个对称密钥加密方案 <span class="arithmatex">\(\Pi = (\text{Gen}, \text{Enc}, \text{Dec})\)</span> 具备<strong>在窃听者存在的情况下不可区分</strong>的加密</p>
+<p>使用一个固定比特 <span class="arithmatex">\(b\)</span>，用 <span class="arithmatex">\(\text{output}\left( \text{PrivK}^{\text{eav}}_{\mathcal{A},\Pi}(n,b) \right)\)</span> 来表示 <span class="arithmatex">\(\mathcal{A}\)</span> 在 <span class="arithmatex">\(\text{PrivK}^{\text{eav}}_{\mathcal{A},\Pi}(n,b)\)</span> 中的输出比特 <span class="arithmatex">\(b'\)</span>，则有等价定义：</p>
+<ul>
+<li>如果对所有的概率多项式时间的敌手 <span class="arithmatex">\(\mathcal{A}\)</span> ，存在一个可忽略函数 <span class="arithmatex">\(\text{negl}\)</span> 使得：</li>
+</ul>
+<div class="arithmatex">\[
+\left| \Pr\left[ \text{output}\left( \text{PrivK}^{\text{eav}}_{\mathcal{A},\Pi}(n,0) \right) = 1 \right] - \Pr\left[ \text{output}\left( \text{PrivK}^{\text{eav}}_{\mathcal{A},\Pi}(n,1) \right) = 1 \right] \right| \leqslant \text{negl}(n)
+\]</div>
+<p>则对称密钥加密方案 <span class="arithmatex">\(\Pi = (\text{Gen}, \text{Enc}, \text{Dec})\)</span> 具有<strong>窃听者存在的情况下不可区分性</strong></p>
+<h2 id="3-pseudorandom-generator-prg">3 伪随机发生器（Pseudorandom Generator, PRG）<a class="headerlink" href="#3-pseudorandom-generator-prg" title="Permanent link">&para;</a></h2>
+<h3 id="3-1">3. 1 直观定义<a class="headerlink" href="#3-1" title="Permanent link">&para;</a></h3>
+<p>直观上来看，如果<strong>没有多项式时间的区分器能够区分一个根据 <span class="arithmatex">\(D\)</span> 采样的字符串和一个均匀随机选择的字符串</strong>，则一个分布 <span class="arithmatex">\(D\)</span> 是伪随机的。</p>
+<ul>
+<li>令 <span class="arithmatex">\(\ell(\cdot)\)</span> 为多项式，<span class="arithmatex">\(G\)</span> 为确定多项式时间算法，该算法满足：对于任何输入 <span class="arithmatex">\(s \in \{0,1\}^n\)</span> ，算法 <span class="arithmatex">\(G\)</span> 输出一个长度为 <span class="arithmatex">\(\ell(n)\)</span> 的字符串。如果满足下面两个条件，则称 <span class="arithmatex">\(G\)</span> 是一个伪随机发生器：<ol>
+<li>（<strong>扩展性：</strong>）对每个 <span class="arithmatex">\(n\)</span> 来说，满足 <span class="arithmatex">\(\ell(n) &gt; n\)</span></li>
+<li>（<strong>伪随机性：</strong>）对所有的概率多项式时间的区分器 <span class="arithmatex">\(D\)</span> 来说，存在一个可忽略函数 <span class="arithmatex">\(\text{negl}\)</span> ，满足 
+$$
+\left|\Pr[D(r) = 1] - \Pr[D(G(s)) = 1]\right| \leq \text{negl}(n)
+$$</li>
+</ol>
+</li>
+</ul>
+<p>其中 <span class="arithmatex">\(r\)</span> 是从 <span class="arithmatex">\(\{0,1\}^{\ell(n)}\)</span> 中均匀随机选择的，种子 <span class="arithmatex">\(s\)</span> 是从 <span class="arithmatex">\(\{0,1\}^n\)</span> 中均匀随机选择的，函数 <span class="arithmatex">\(\ell(\cdot)\)</span> 被称为 <span class="arithmatex">\(G\)</span> 的扩展系数。</p>
+<h3 id="32-computational-indistinguishability">3.2 计算不可区分性（Computational Indistinguishability）<a class="headerlink" href="#32-computational-indistinguishability" title="Permanent link">&para;</a></h3>
+<details class="info">
+<summary>概念补充</summary>
+<ul>
+<li><strong>概率总体（Probability Ensemble）</strong><ul>
+<li>无限的概率分布序列</li>
+<li>若对每个自然数 <span class="arithmatex">\(n\)</span> ，都存在一个概率分布 <span class="arithmatex">\(X_n\)</span> ，则集合 <span class="arithmatex">\(\mathcal{X} = \{ X_n \}_{n \in \mathbb{N}}\)</span> 称为一个概率总体</li>
+<li>若分布 <span class="arithmatex">\(X_n\)</span> 可通过某个函数 <span class="arithmatex">\(t\)</span> 与另一序列的分布关联，即 <span class="arithmatex">\(X_n = Y_{t(n)}\)</span> ，则概率总体可表示为 <span class="arithmatex">\(\{ Y_{t(n)} \}_{n \in \mathbb{N}}\)</span>
+<br></li>
+</ul>
+</li>
+<li><strong>高效可采样的概率总体（Efficiently Sampleable Probability Ensemble）</strong><ul>
+<li>若概率总体 <span class="arithmatex">\(\mathcal{X} = \{ X_n \}_{n \in \mathbb{N}}\)</span> 满足：存在一个<strong>概率多项式时间算法 <span class="arithmatex">\(S\)</span> </strong>，使得“算法 <span class="arithmatex">\(S\)</span> 输入 <span class="arithmatex">\(1^n\)</span> （长度为 <span class="arithmatex">\(n\)</span> 的全 1 字符串，传递安全参数规模）后输出的随机变量”与“分布 <span class="arithmatex">\(X_n\)</span> 的随机变量”<strong>同分布</strong>，则称 <span class="arithmatex">\(\mathcal{X}\)</span> 是<strong>高效可采样的</strong></li>
+</ul>
+</li>
+</ul>
+</details>
+<p>计算不可区分性的实际定义与概率总体有关，以下是对两个分布不可区分的形式化定义：</p>
+<ul>
+<li>两个概率总体 <span class="arithmatex">\(X = \{X_n\}_{n \in \mathbb{N}}\)</span> 和 <span class="arithmatex">\(Y = \{Y_n\}_{n \in \mathbb{N}}\)</span> 是<strong>计算不可区分</strong>的，表示为 <span class="arithmatex">\(X \stackrel{c}{\equiv} Y\)</span>，如果对于每一个概率多项式时间的区分器 <span class="arithmatex">\(D\)</span> ，都存在一个可忽略函数 <span class="arithmatex">\(\text{negl}\)</span>，使得：
+$$
+|\Pr[D(1^n, X_n) = 1] - \Pr[D(1^n, Y_n) = 1]| \leq \text{negl}(n)
+$$</li>
+</ul>
+<p>其中标记 <span class="arithmatex">\(D(1^n, X_n)\)</span> 表明 <span class="arithmatex">\(x\)</span> 的选取符合分布 <span class="arithmatex">\(X_n\)</span> ，然后运行 <span class="arithmatex">\(D(1^n, x)\)</span> 。</p>
+<div class="admonition note">
+<p class="admonition-title">补充</p>
+<p>计算不可区分性具有传递性，即：若 <span class="arithmatex">\(\mathcal{X} \stackrel{c}{\equiv} \mathcal{Y}\)</span> 且 <span class="arithmatex">\(\mathcal{Y} \stackrel{c}{\equiv} \mathcal{Z}\)</span>，则 <span class="arithmatex">\(\mathcal{X} \stackrel{c}{\equiv} \mathcal{Z}\)</span></p>
+</div>
+<p>伪随机性只是计算不可区分性的一个特例，令 <span class="arithmatex">\(U_{l(n)}\)</span> 表示 <span class="arithmatex">\(\{0,1\}^{l(n)}\)</span> 上的<strong>均匀分布(uniform distribution)</strong>，则有下列定义：</p>
+<ul>
+<li>如果对于某个多项式 <span class="arithmatex">\(l\)</span> ，全体 <span class="arithmatex">\(X\)</span> 和全体 <span class="arithmatex">\(U = \{U_{l(n)}\}_{n \in \mathbb{N}}\)</span> 是计算不可区分的，则全体 <span class="arithmatex">\(X = \{X_n\}_{n \in \mathbb{N}}\)</span> 是伪随机的。</li>
+</ul>
+<p>据此，我们可以对伪随机发生器重新进行定义：</p>
+<ul>
+<li>令 <span class="arithmatex">\(l(\cdot)\)</span> 是多项式，同时令 <span class="arithmatex">\(G\)</span> 为（确定的）多项式时间算法，其中对于所有 <span class="arithmatex">\(s\)</span> 有 <span class="arithmatex">\(|G(s)| = l(|s|)\)</span> 成立。如果下列两个条件成立，就称 <span class="arithmatex">\(G\)</span> 是伪随机发生器：<ol>
+<li>（<strong>可扩展性：</strong>）对于每一个 <span class="arithmatex">\(n\)</span> 有 <span class="arithmatex">\(l(n) &gt; n\)</span> 成立</li>
+<li>（<strong>伪随机性：</strong>）全体 <span class="arithmatex">\(\{G(U_n)\}_{n \in \mathbb{N}}\)</span> 是伪随机的</li>
+</ol>
+</li>
+</ul>
+<h2 id="4">4 构造安全加密方案<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
+<h3 id="4-1">4. 1 一个安全的定长加密方案<a class="headerlink" href="#4-1" title="Permanent link">&para;</a></h3>
+<p>给出使用伪随机发生器的加密方案如下：</p>
+<p><img src="/cryptography/images/image3-2.png" style="display: block; width: 40%; margin: 0 auto;" />
+<br>
+<img src="/cryptography/images/image3-3.png" style="display: block; width: 90%; margin: 0 auto;" />
+<br></p>
+<ul>
+<li><strong>若 <span class="arithmatex">\(G\)</span> 是伪随机发生器，则上述加密方案是窃听者存在下的不可区分长密钥对称加密方案。</strong></li>
+</ul>
+<details class="abstract">
+<summary>证明（教材中给出的证明方法）</summary>
+<p>假设存在概率多项式时间敌手 <span class="arithmatex">\(\mathcal{A}\)</span> ，定义敌手优势：
+$$
+\varepsilon(n) \stackrel{\text{def}}{=} \Pr\left[ \text{PrivK}^{\text{eav}}_{\mathcal{A},\Pi}(n) = 1 \right] - \frac{1}{2}
+$$</p>
+<p>构造区分器 <span class="arithmatex">\(D\)</span>，指定字符串 <span class="arithmatex">\(w \in \{0,1\}^{\ell(n)}\)</span> 作为输入，假设 <span class="arithmatex">\(n\)</span> 能够被 <span class="arithmatex">\(\ell(n)\)</span> 确定：
+  1. 运行 <span class="arithmatex">\(\mathcal{A}(1^n)\)</span> 获取消息对 <span class="arithmatex">\(m_0, m_1 \in \{0,1\}^{\ell(n)}\)</span>
+  2. 随机选比特 <span class="arithmatex">\(b \leftarrow \{0,1\}\)</span> ，计算密文 <span class="arithmatex">\(c := w \oplus m_b\)</span>
+  3. 将 <span class="arithmatex">\(c\)</span> 给 <span class="arithmatex">\(\mathcal{A}\)</span> ，若 <span class="arithmatex">\(\mathcal{A}\)</span> 输出 <span class="arithmatex">\(b' = b\)</span> ，则 <span class="arithmatex">\(D\)</span> 输出 1，否则输出 0</p>
+<ul>
+<li>
+<p><strong>当 <span class="arithmatex">\(w\)</span> 是真随机串</strong>：此时加密等价于一次一密（完善保密），令 <span class="arithmatex">\(\widetilde{\Pi}\)</span> 为带安全参数的一次一密方案，则：
+$$
+\Pr\left[ D(w) = 1 \right] = \Pr\left[ \text{PrivK}^{\text{eav}}_{\mathcal{A},\widetilde{\Pi}}(n) = 1 \right] = \frac{1}{2}
+$$</p>
+</li>
+<li>
+<p><strong>当 <span class="arithmatex">\(w = G(k)\)</span></strong>：此时加密是方案 <span class="arithmatex">\(\Pi\)</span> ，故
+  $$
+  \Pr\left[ D(G(k)) = 1 \right] = \Pr\left[ \text{PrivK}^{\text{eav}}_{\mathcal{A},\Pi}(n) = 1 \right] = \frac{1}{2} + \varepsilon(n)
+  $$</p>
+</li>
+</ul>
+<p>由上述分析，区分器 <span class="arithmatex">\(D\)</span> 对真随机串和 <span class="arithmatex">\(G\)</span> 输出的区分优势为：
+$$
+\left| \Pr\left[ D(w) = 1 \right] - \Pr\left[ D(G(k)) = 1 \right] \right| = \varepsilon(n)
+$$</p>
+<p>因为 <span class="arithmatex">\(G\)</span> 是伪随机发生器，所以 <span class="arithmatex">\(\varepsilon(n)\)</span> 必须是<strong>可忽略函数</strong>，结合 <span class="arithmatex">\(\varepsilon(n)\)</span> 的定义可得，加密方案 <span class="arithmatex">\(\Pi\)</span> 满足“窃听者存在下的不可区分加密”，证毕。</p>
+</details>
+<details class="abstract">
+<summary>证明（作规约图证明）</summary>
+<p>运用反证法，假设<strong>存在敌手 A 能攻破上述加密方案的 EAV-安全</strong>，则可以<strong>构造一个敌手 B 来攻破 PRG 的安全性</strong></p>
+<p><img src="/cryptography/images/image3-4.jpg" style="display: block; width: 60%; margin: 0 auto;" /></p>
+<p>作规约图如上，假设 <span class="arithmatex">\(Pr[\text{A wins EAV}] = \frac{1}{2} + \Delta\)</span>，其中 <span class="arithmatex">\(\Delta\)</span> 表示 not small，则：
+$$
+\begin{aligned}
+Pr[R^A \text{ wins PRG}] &amp;= P[b = 0] \cdot Pr[R^A \text{ wins} \mid b = 0] + P[b = 1] \cdot Pr[R^A \text{ wins} \mid b = 1] \\
+&amp;= \frac{1}{2}Pr[\text{A wins EAV}] + \frac{1}{2} \cdot \frac{1}{2} = \frac{1}{2} + \frac{\Delta}{2}
+\end{aligned}
+$$</p>
+<p>说明 <span class="arithmatex">\(R^A\)</span> 可以攻破 PRG，矛盾！故有 EAV-Secure.</p>
+<div class="admonition warning">
+<p class="admonition-title">注意</p>
+<p>上面的规约图画得有一点小问题，但差不多是这个意思。</p>
+</div>
+</details>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>其实上述两种证明方法本质上是一样的，本门课程中通常使用作规约图证明的方法。</p>
+</div>
+<h3 id="4-2">4. 2 处理变长消息<a class="headerlink" href="#4-2" title="Permanent link">&para;</a></h3>
+<ul>
+<li>一个确定的多项式时间算法 <span class="arithmatex">\(G\)</span>，如果满足以下三个条件，则 <span class="arithmatex">\(G\)</span> 是一个<strong>输出长度可变的伪随机发生器</strong>，如果满足以下条件：<ol>
+<li>令 <span class="arithmatex">\(s\)</span> 为一个字符串，整数 <span class="arithmatex">\(\ell &gt; 0\)</span>。则 <span class="arithmatex">\(G(s,1^\ell)\)</span> 输出一个长度为 <span class="arithmatex">\(\ell\)</span> 的字符串</li>
+<li>对所有的 <span class="arithmatex">\(s, \ell, \ell'\)</span>， <span class="arithmatex">\(\ell &lt; \ell'\)</span>，字符串 <span class="arithmatex">\(G(s,1^\ell)\)</span> 是 <span class="arithmatex">\(G(s,1^{\ell'})\)</span> 的前缀</li>
+<li>定义 <span class="arithmatex">\(G_\ell(s) \stackrel{\text{def}}{=} G(s,1^{\ell(|s|)})\)</span>，则对于每个多项式 <span class="arithmatex">\(\ell(\cdot)\)</span>，有 <span class="arithmatex">\(G_\ell\)</span> 是一个扩展因子为 <span class="arithmatex">\(\ell\)</span> 的伪随机发生器</li>
+</ol>
+</li>
+</ul>
+<p>任何标准的伪随机发生器都能够被转化成为一个输出长度可变的伪随机发生器。</p>
+<p>与定长加密方案相似的，可以给出构造方案：
+$$
+c := G(k,1^{|m|}) \oplus m，m := G(k,1^{|c|}) \oplus c
+$$</p>
+<h3 id="4-3-stream-ciphers">4. 3 流密码（Stream Ciphers）和多个加密<a class="headerlink" href="#4-3-stream-ciphers" title="Permanent link">&para;</a></h3>
+<p>上述构造方案被称作流密码，其加密的执行是先生成一个伪随机比特流，然后将该比特流和明文做异或运算。</p>
+<details class="note">
+<summary>补充</summary>
+<p>流密码有同步模式与非同步模式两种工作机制：</p>
+<p><img src="/cryptography/images/image3-5.png" style="display: block; width: 80%; margin: 0 auto;" /></p>
+</details>
+<ul>
+<li>一个对称密钥加密方案 <span class="arithmatex">\(\Pi = (\text{Gen}, \text{Enc}, \text{Dec})\)</span>，如果对所有的概率多项式时间敌手 <span class="arithmatex">\(\mathcal{A}\)</span>，存在一个可忽略函数 <span class="arithmatex">\(\text{negl}\)</span>，满足 
+$$
+\Pr\left[ \text{PrivK}^{\text{mult}}_{\mathcal{A},\Pi}(n) = 1 \right] \leqslant \frac{1}{2} + \text{negl}
+$$</li>
+</ul>
+<p>则称其具备<strong>窃听者存在的情况下不可区分多次加密</strong></p>
+<details class="info">
+<summary>多消息窃听实验 <span class="arithmatex">\(\text{PrivK}^{\text{mult}}_{\mathcal{A},\Pi}(n)\)</span></summary>
+<ol>
+<li>敌手 <span class="arithmatex">\(\mathcal{A}\)</span> 被给定输入 <span class="arithmatex">\(1^n\)</span> ，输出一对消息向量 <span class="arithmatex">\(\vec{M_0} = (m_0^1, \dots, m_0^t)\)</span> 以及 <span class="arithmatex">\(\vec{M_1} = (m_1^1, \dots, m_1^t)\)</span> ，对于所有 <span class="arithmatex">\(i\)</span> ，满足 <span class="arithmatex">\(|m_0^i| = |m_1^i|\)</span></li>
+<li>通过运行 <span class="arithmatex">\(\text{Gen}(1^n)\)</span> 生成一个密钥 <span class="arithmatex">\(k\)</span> 和选择一个随机比特 <span class="arithmatex">\(b \leftarrow \{0,1\}\)</span> 。对于所有 <span class="arithmatex">\(i\)</span> ，计算密文 <span class="arithmatex">\(c^i \leftarrow \text{Enc}_k(m_b^i)\)</span> ，并且将密文向量 <span class="arithmatex">\(\vec{C} = (c^1, \dots, c^t)\)</span> 给 <span class="arithmatex">\(\mathcal{A}\)</span></li>
+<li><span class="arithmatex">\(\mathcal{A}\)</span> 输出一个比特 <span class="arithmatex">\(b'\)</span></li>
+<li>如果 <span class="arithmatex">\(b' = b\)</span> ，该实验的输出为 1，否则输出 0。</li>
+</ol>
+</details>
+<p>值得注意的，<strong>单个加密的安全并不意味着在多次加密下的安全</strong>，即：</p>
+<ul>
+<li>存在这样的对称密钥加密方案，满足窃听者存在情况下不可区分的加密，但不满足窃听者存在情况下不可区分的多次加密。</li>
+</ul>
+<details class="abstract">
+<summary>证明</summary>
+<p>仍然使用前面构造的加密方案，其单次加密的安全性已经得证，构造敌手 <span class="arithmatex">\(\mathcal{A}\)</span> 参与多消息窃听实验 <span class="arithmatex">\(\text{PrivK}^{\text{mult}}_{\mathcal{A},\Pi}(n)\)</span> ，执行如下操作：</p>
+<ul>
+<li>
+<p>输出消息向量 <span class="arithmatex">\(\vec{M_0} = (0^n, 0^n)\)</span> 和 <span class="arithmatex">\(\vec{M_1} = (0^n, 1^n)\)</span>，满足所有位置明文长度相等</p>
+</li>
+<li>
+<p>接收密文向量 <span class="arithmatex">\(\vec{C} = (c^1, c^2)\)</span> ，若 <span class="arithmatex">\(c^1 = c^2\)</span> 则输出 <span class="arithmatex">\(b' = 0\)</span> ，否则输出 <span class="arithmatex">\(b' = 1\)</span></p>
+</li>
+</ul>
+<p>我们采用的构造方法的加密函数 <span class="arithmatex">\(\text{Enc}\)</span> 是<strong>确定函数</strong>，相同密钥和明文会产生相同密文，所以有：</p>
+<ul>
+<li>
+<p>若 <span class="arithmatex">\(b = 0\)</span> ：加密 <span class="arithmatex">\(\vec{M_0}\)</span> ，两个明文均为 <span class="arithmatex">\(0^n\)</span> ，故 <span class="arithmatex">\(c^1 = \text{Enc}_k(0^n) = c^2\)</span> ，敌手输出 <span class="arithmatex">\(b' = 0 = b\)</span></p>
+</li>
+<li>
+<p>若 <span class="arithmatex">\(b = 1\)</span> ：加密 <span class="arithmatex">\(\vec{M_1}\)</span> ，明文分别为 <span class="arithmatex">\(0^n\)</span> 和 <span class="arithmatex">\(1^n\)</span> ，故 <span class="arithmatex">\(c^1 = \text{Enc}_k(0^n) \neq \text{Enc}_k(1^n) = c^2\)</span> ，敌手输出 <span class="arithmatex">\(b' = 1 = b\)</span></p>
+</li>
+</ul>
+<p>综上，敌手 <span class="arithmatex">\(\mathcal{A}\)</span> 输出 <span class="arithmatex">\(b' = b\)</span> 的概率为 <span class="arithmatex">\(1\)</span>，该加密方案不具备窃听者存在情况下的不可区分多次加密，命题得证</p>
+</details>
+<p>根据以上可以知道，<strong>相同消息被重复发送是危险的，概率加密是必要的</strong>，可形式化为以下定理：</p>
+<ul>
+<li>令 <span class="arithmatex">\(\Pi = (\text{Gen}, \text{Enc}, \text{Dec})\)</span> 为一个加密方案， <span class="arithmatex">\(\text{Enc}\)</span> 是密钥和消息的一个确定函数，则 <span class="arithmatex">\(\Pi\)</span> 不具备窃听者存在情况下不可区分多次加密。</li>
+</ul>
+<h3 id="4-4">4. 4 提高扩展系数<a class="headerlink" href="#4-4" title="Permanent link">&para;</a></h3>
+<ul>
+<li>如果存在扩展系数为 <span class="arithmatex">\(l(n) = n + 1\)</span> 的伪随机发生器 <span class="arithmatex">\(\hat{G}\)</span>，那么对于任意多项式 <span class="arithmatex">\(p(n) &gt; n\)</span>，存在扩展系数为 <span class="arithmatex">\(l(n) = p(n)\)</span> 的伪随机发生器 <span class="arithmatex">\(G\)</span> </li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">构造方法</p>
+<p>令输入的种子 <span class="arithmatex">\(s \in \{0,1\}^n\)</span>，则 <span class="arithmatex">\(G'\)</span> 的构造方法如下：</p>
+<ol>
+<li>令 <span class="arithmatex">\(p'(n) = p(n) - n\)</span>，这是所期望的 <span class="arithmatex">\(G\)</span> 对输入长度的扩展量</li>
+<li>设 <span class="arithmatex">\(s_0 := s\)</span> ，对于 <span class="arithmatex">\(i = 1, \cdots, p'(n)\)</span> ，则：</li>
+<li>令 <span class="arithmatex">\(s'_{i-1}\)</span> 表示 <span class="arithmatex">\(s_{i-1}\)</span> 的开始 <span class="arithmatex">\(n\)</span> 比特，令 <span class="arithmatex">\(\sigma_{i-1}\)</span> 表示剩下的 <span class="arithmatex">\(n - 1\)</span> 比特（当 <span class="arithmatex">\(i = 1\)</span> 时， <span class="arithmatex">\(\sigma_0\)</span> 为空串）</li>
+<li>设 <span class="arithmatex">\(s_i := (\hat{G}(s'_{i-1}), \sigma_{i-1})\)</span> </li>
+<li>输出 <span class="arithmatex">\(s_{p'(n)}\)</span></li>
+</ol>
+<p>简而言之，就是如果我们有一个 “每次能多造 1 位伪随机数” 的基础工具，想造多长的伪随机串，就把这个工具反复用多少次，每次多攒 1 位，最后凑出需要的长度。</p>
+<div class="admonition tip">
+<p class="admonition-title">温馨提示</p>
+<p>有时我们使用 <span class="arithmatex">\(||\)</span> 表示拼接，例如上式可以写作 <span class="arithmatex">\(s_i := \hat{G}(s'_{i-1}) \, || \, \sigma_{i-1}\)</span></p>
+</div>
+</div>
+<h2 id="5-cpa">5 选择明文攻击（CPA）的安全性<a class="headerlink" href="#5-cpa" title="Permanent link">&para;</a></h2>
+<p><strong>加密预言机 (encryption oracle)</strong> 可视为一个黑盒子，会使用密钥 <span class="arithmatex">\(k\)</span> 加密 <span class="arithmatex">\(\mathcal{A}\)</span> 选择的消息，在 <strong>选择明文攻击 (chosen-plaintext attacks)</strong> 中，敌手 <span class="arithmatex">\(\mathcal{A}\)</span> 被允许和加密预言机自由交互。当 <span class="arithmatex">\(\mathcal{A}\)</span> 询问预言机并提供明文消息 <span class="arithmatex">\(m\)</span> 作为输入时，预言机将返回密文 <span class="arithmatex">\(c \leftarrow \text{Enc}_k(m)\)</span>，当 <span class="arithmatex">\(\text{Enc}\)</span> 是随机的时，预言机每次回答一个询问时都会保证新的随机性。</p>
+<p>安全性的定义要求：即使 <span class="arithmatex">\(\mathcal{A}\)</span> 具备访问加密预言机能力， <span class="arithmatex">\(\mathcal{A}\)</span> 也不能区分两个任意消息的加密。</p>
+<details class="info">
+<summary>CPA 不可区分实验 <span class="arithmatex">\(\text{PrivK}^{\text{cpa}}_{\mathcal{A},\Pi}(n)\)</span></summary>
+<ol>
+<li><span class="arithmatex">\(k \leftarrow \text{Gen}(1^n)\)</span></li>
+<li>输入 <span class="arithmatex">\(1^n\)</span> 给敌手 <span class="arithmatex">\(\mathcal{A}\)</span>，敌手 <span class="arithmatex">\(\mathcal{A}\)</span> 可以访问预言机 <span class="arithmatex">\(\text{Enc}_k(\cdot)\)</span> ，输出一对长度相等的消息 <span class="arithmatex">\(m_0, m_1\)</span></li>
+<li><span class="arithmatex">\(b \leftarrow \{0,1\}\)</span>，<span class="arithmatex">\(c \leftarrow \text{Enc}_k(m_b)\)</span>，交给 <span class="arithmatex">\(\mathcal{A}\)</span></li>
+<li>敌手 <span class="arithmatex">\(\mathcal{A}\)</span> 继续访问预言机 <span class="arithmatex">\(\text{Enc}_k(\cdot)\)</span> ，输出一个比特 <span class="arithmatex">\(b'\)</span></li>
+<li>如果 <span class="arithmatex">\(b = b'\)</span>，该实验的输出被定义为 1，否则定义为 0，若 <span class="arithmatex">\(\text{PrivK}^{\text{cpa}}_{\mathcal{A},\Pi}(n) = 1\)</span> ，则认为 <span class="arithmatex">\(\mathcal{A}\)</span> 成功</li>
+</ol>
+</details>
+<ul>
+<li>一个对称密钥加密方案 <span class="arithmatex">\(\Pi = (\text{Gen}, \text{Enc}, \text{Dec})\)</span>，如果对所有的概率多项式敌手 <span class="arithmatex">\(\mathcal{A}\)</span>，存在一个可忽略函数 <span class="arithmatex">\(\text{negl}\)</span>，使得
+$$
+\Pr\left[ \text{PrivK}^{\text{cpa}}_{\mathcal{A},\Pi}(n) = 1 \right] \leqslant \frac{1}{2} + \text{negl}(n)
+$$</li>
+</ul>
+<p>则是选择明文攻击（CPA）条件下的不可区分加密。</p>
+<p><strong>任何方案如果是选择明文攻击条件下的不可区分加密，则也是窃听者存在的情况下不可区分加密</strong>，因为 <span class="arithmatex">\(\text{PrivK}^{\text{eav}}\)</span> 是 <span class="arithmatex">\(\text{PrivK}^{\text{cpa}}\)</span> 的一种特殊情况，即敌手没有使用预言机。</p>
+<p>和多次加密的安全一样，任何确定加密方案都不能抵御选择明文攻击，即：<strong>任何 CPA 安全的加密方案必须是概率性的</strong>。</p>
+<details class="info">
+<summary>LR 预言机实验 <span class="arithmatex">\(\text{PrivK}^{\text{LR-cpa}}_{\mathcal{A},\Pi}(n)\)</span></summary>
+<ol>
+<li><span class="arithmatex">\(k \leftarrow \text{Gen}(1^n)\)</span>，<span class="arithmatex">\(b \leftarrow \{0,1\}\)</span></li>
+<li>输入 <span class="arithmatex">\(1^n\)</span> 给敌手 <span class="arithmatex">\(\mathcal{A}\)</span>，敌手 <span class="arithmatex">\(\mathcal{A}\)</span> 可以访问预言机 <span class="arithmatex">\(\text{LR}_{k,b}(\cdot,\cdot)\)</span></li>
+<li>敌手 <span class="arithmatex">\(\mathcal{A}\)</span> 输出一个比特 <span class="arithmatex">\(b'\)</span></li>
+<li>如果 <span class="arithmatex">\(b = b'\)</span>，该实验的输出被定义为 1，否则定义为 0，若 <span class="arithmatex">\(\text{PrivK}^{\text{LR-cpa}}_{\mathcal{A},\Pi}(n) = 1\)</span> ，则认为 <span class="arithmatex">\(\mathcal{A}\)</span> 成功</li>
+</ol>
+</details>
+<p>相似的，将 CPA 单次加密扩展到多次加密，则有：</p>
+<ul>
+<li>一个对称密钥加密方案 <span class="arithmatex">\(\Pi = (\text{Gen}, \text{Enc}, \text{Dec})\)</span>，如果对所有的概率多项式敌手 <span class="arithmatex">\(\mathcal{A}\)</span>，存在一个可忽略函数 <span class="arithmatex">\(\text{negl}\)</span>，使得
+$$
+\Pr\left[ \text{PrivK}^{\text{LR-cpa}}_{\mathcal{A},\Pi}(n) = 1 \right] \leqslant \frac{1}{2} + \text{negl}(n)
+$$</li>
+</ul>
+<p>则是选择明文攻击（CPA）条件下的不可区分多次加密。</p>
+<div class="admonition tip">
+<p class="admonition-title">温馨提示</p>
+<p>CPA 实验是敌手先自由要密文，再选消息对赌密文；LR 实验是敌手直接和预言机赌加密的是左消息还是右消息，两者本质等价，但交互形式和预言机功能不同，LR 实验更直接地刻画了 CPA 下的不可区分性，可直接运用于多次加密。</p>
+</div>
+<p>与窃听敌手（EAV）的情况不同的是，<strong>单次加密的 CPA 安全即意味着多次加密的 CPA 安全</strong>，即：任何在选择明文攻击条件下的不可区分加密的对称密钥加密方案，也是在选择明文攻击条件下的不可区分多次加密方案。</p>
+<details class="warning">
+<summary>证明：混合论证（Hybrid Argument）（待整理）</summary>
+<p>定义 <span class="arithmatex">\(n+1\)</span> 个中间游戏 <span class="arithmatex">\(\text{Game}_0, \text{Game}_1, \dots, \text{Game}_n\)</span>，其中：  </p>
+<p><strong><span class="arithmatex">\(\text{Game}_k\)</span>规则</strong> 为对第 <span class="arithmatex">\(1 \sim k\)</span> 个消息对用 <span class="arithmatex">\(b=1\)</span> 处理，对第 $k+1 \sim n $个消息对用 <span class="arithmatex">\(b=0\)</span> 处理，其返回的密文序列为：
+$$
+(c_1, \dots, c_k, c_{k+1}, \dots, c_n) = (\text{Enc}(sk, m_1^1), \dots, \text{Enc}(sk, m_1^k), \text{Enc}(sk, m_0^{k+1}), \dots, \text{Enc}(sk, m_0^n))
+$$  </p>
+<p>考虑相邻游戏 <span class="arithmatex">\(\text{Game}_k\)</span> 和 <span class="arithmatex">\(\text{Game}_{k+1}\)</span>，二者仅第 <span class="arithmatex">\(k+1\)</span> 个消息对的处理方式不同，构造IND-CPA攻击者 <span class="arithmatex">\(\mathcal{B}\)</span>，其行为如下：<br />
+1. <span class="arithmatex">\(\mathcal{B}\)</span>接收IND-CPA挑战者的公钥<span class="arithmatex">\(pk\)</span>，并需要猜测IND-CPA的挑战比特<span class="arithmatex">\(b\)</span>（<span class="arithmatex">\(b=0\)</span>对应加密<span class="arithmatex">\(m_0\)</span>，<span class="arithmatex">\(b=1\)</span>对应加密<span class="arithmatex">\(m_1\)</span>）。<br />
+2. <span class="arithmatex">\(\mathcal{B}\)</span>模拟<span class="arithmatex">\(\text{Game}_k\)</span>或<span class="arithmatex">\(\text{Game}_{k+1}\)</span>的挑战者，与LR-IND-CPA攻击者<span class="arithmatex">\(\mathcal{A}\)</span>交互：<br />
+  - 接收<span class="arithmatex">\(\mathcal{A}\)</span>提交的<span class="arithmatex">\(n\)</span>个消息对<span class="arithmatex">\((m_0^1, m_1^1), \dots, (m_0^n, m_1^n)\)</span>。<br />
+  - 对第<span class="arithmatex">\(1 \sim k\)</span>个消息对：加密<span class="arithmatex">\(m_1^i\)</span>（生成<span class="arithmatex">\(c_1, \dots, c_k\)</span>）。<br />
+  - 对第<span class="arithmatex">\(k+1\)</span>个消息对：将<span class="arithmatex">\((m_0^{k+1}, m_1^{k+1})\)</span>作为IND-CPA的挑战消息对提交给IND-CPA挑战者，接收挑战密文<span class="arithmatex">\(c_{k+1}\)</span>（此时<span class="arithmatex">\(c_{k+1}\)</span>是<span class="arithmatex">\(\text{Enc}(sk, m_b^{k+1})\)</span>，<span class="arithmatex">\(b\)</span>是IND-CPA的挑战比特）。<br />
+  - 对第<span class="arithmatex">\(k+2 \sim n\)</span>个消息对：加密<span class="arithmatex">\(m_0^i\)</span>（生成<span class="arithmatex">\(c_{k+2}, \dots, c_n\)</span>）。<br />
+  - 将密文序列<span class="arithmatex">\((c_1, \dots, c_n)\)</span>发送给<span class="arithmatex">\(\mathcal{A}\)</span>，接收<span class="arithmatex">\(\mathcal{A}\)</span>的猜测<span class="arithmatex">\(b'\)</span>。<br />
+3. <span class="arithmatex">\(\mathcal{B}\)</span>输出<span class="arithmatex">\(b'\)</span>作为对IND-CPA挑战比特的猜测。  </p>
+<ul>
+<li>若 IND-CPA 的挑战比特<span class="arithmatex">\(b=0\)</span>，则<span class="arithmatex">\(c_{k+1} = \text{Enc}(sk, m_0^{k+1})\)</span>，此时<span class="arithmatex">\(\mathcal{B}\)</span>模拟的是<span class="arithmatex">\(\text{Game}_k\)</span>；  </li>
+<li>若IND-CPA的挑战比特<span class="arithmatex">\(b=1\)</span>，则<span class="arithmatex">\(c_{k+1} = \text{Enc}(sk, m_1^{k+1})\)</span>，此时<span class="arithmatex">\(\mathcal{B}\)</span>模拟的是<span class="arithmatex">\(\text{Game}_{k+1}\)</span>。  </li>
+</ul>
+<p>因此，<span class="arithmatex">\(\mathcal{A}\)</span>在<span class="arithmatex">\(\text{Game}_k\)</span>和<span class="arithmatex">\(\text{Game}_{k+1}\)</span>中的区分优势，等于<span class="arithmatex">\(\mathcal{B}\)</span>在IND-CPA中的优势：<br />
+$$
+\left| \Pr[\mathcal{A} \text{在}\text{Game}<em k_1="k+1">k\text{中输出}1] - \Pr[\mathcal{A} \text{在}\text{Game}</em>)
+$$  }\text{中输出}1] \right| = \text{Adv}_{\text{IND-CPA}}(\mathcal{B</p>
+<p>由IND-CPA的安全性，<span class="arithmatex">\(\text{Adv}_{\text{IND-CPA}}(\mathcal{B})\)</span>是<strong>可忽略的</strong>，因此<span class="arithmatex">\(\text{Game}_k\)</span>与<span class="arithmatex">\(\text{Game}_{k+1}\)</span>不可区分。</p>
+<p><span class="arithmatex">\(\because \left| \Pr[\mathcal{A} \text{在}\text{Game}_0\text{中输出}1] - \Pr[\mathcal{A} \text{在}\text{Game}_n\text{中输出}1] \right| \leq \sum_{k=0}^{n-1} \left| \Pr[\mathcal{A} \text{在}\text{Game}_k\text{中输出}1] - \Pr[\mathcal{A} \text{在}\text{Game}_{k+1}\text{中输出}1] \right|\)</span> </p>
+<div class="arithmatex">\[
+\therefore \text{Adv}_{\text{LR-IND-CPA}}(\mathcal{A}) \leq \sum_{k=0}^{n-1} \text{Adv}_{\text{IND-CPA}}(\mathcal{B}_k)
+\]</div>
+<p>其中<span class="arithmatex">\(\mathcal{B}_k\)</span>是针对第<span class="arithmatex">\(k\)</span>对相邻游戏的归约算法。由于<span class="arithmatex">\(n\)</span>是<strong>多项式有界的</strong>（攻击者<span class="arithmatex">\(\mathcal{A}\)</span>的询问次数在多项式时间内），且每个<span class="arithmatex">\(\text{Adv}_{\text{IND-CPA}}(\mathcal{B}_k)\)</span>是可忽略的，因此总和仍是可忽略的。</p>
+</details>
+<h2 id="6-cpa">6 CPA 安全的加密方案构建<a class="headerlink" href="#6-cpa" title="Permanent link">&para;</a></h2>
+<h3 id="6-1-cpa">6. 1 基于伪随机函数的 CPA 安全加密<a class="headerlink" href="#6-1-cpa" title="Permanent link">&para;</a></h3>
+<div class="admonition info">
+<p class="admonition-title">伪随机函数的定义</p>
+<p>令 <span class="arithmatex">\(F:\{0,1\}^*×\{0,1\}^*→\{0,1\}^*\)</span> 是有效的、长度保留的、带密钥的函数。如果对所有多项式时间区分器 <span class="arithmatex">\(D\)</span>，存在一个可忽略函数 <span class="arithmatex">\(\text{negl}\)</span>，满足：
+$$
+\left| \Pr\left[D^{F_k(\cdot)}(1^n) = 1\right] - \Pr\left[D^{f(\cdot)}(1^n) = 1\right] \right| \leq \text{negl}(n)
+$$</p>
+<p>则称 <span class="arithmatex">\(F\)</span> 是一个伪随机函数，其中 <span class="arithmatex">\(k \leftarrow \{0,1\}^n\)</span> 是均匀随机选择的，并且 <span class="arithmatex">\(f\)</span> 是从将 <span class="arithmatex">\(n\)</span> 比特字符串映射到 <span class="arithmatex">\(n\)</span> 比特字符串的函数集合中均匀随机选择出来的。</p>
+</div>
+<p>设 <span class="arithmatex">\(F\)</span> 是一个伪随机函数，则有构造 CPA 安全的加密方案如下：</p>
+<ul>
+<li><span class="arithmatex">\(k \leftarrow \text{Gen} \, (1^n)\)</span>，<span class="arithmatex">\(c := &lt;r , F_{k}(r) \oplus m&gt;\)</span>，<span class="arithmatex">\(m := F_{k}(r) \oplus s\)</span></li>
+</ul>
+<p>其中 <span class="arithmatex">\(r\)</span> 为随机数，<span class="arithmatex">\(s = F_{k}(r) \oplus m\)</span></p>
+<h3 id="6-2">6. 2 伪随机置换和分组加密<a class="headerlink" href="#6-2" title="Permanent link">&para;</a></h3>
+<div class="admonition tip">
+<p class="admonition-title">伪随机置换 (Pseudorandom Permutations)</p>
+<p>令 <span class="arithmatex">\(F:* \times \{0,1\}^* \to \{0,1\}^*\)</span>是有效的、长度保留的、带密钥的函数。如果对每个 <span class="arithmatex">\(k\)</span>，函数 <span class="arithmatex">\(F_k(\cdot)\)</span> 是单射（因为 <span class="arithmatex">\(F\)</span> 是长度保留的，因而 <span class="arithmatex">\(F_k\)</span> 实际上是双射）。把 <span class="arithmatex">\(F\)</span> 称作一个带密钥的置换。如果给定 <span class="arithmatex">\(k\)</span> 和 <span class="arithmatex">\(x\)</span>，存在一个多项式时间算法能够计算 <span class="arithmatex">\(F_k(x)\)</span>，并且如果给定 <span class="arithmatex">\(k\)</span> 和 <span class="arithmatex">\(x\)</span>，也存在一个多项式时间算法能够计算 <span class="arithmatex">\(F_k^{-1}(x)\)</span>，则这个带密钥的置换是有效的。</p>
+<p>对于空间 <span class="arithmatex">\(\{0,1\}^n\)</span>，<span class="arithmatex">\(size(\text{Perm}_n) = (2^n)!\)</span></p>
+</div>
+<ul>
+<li>如果 <span class="arithmatex">\(F\)</span> 是一个伪随机置换，则也是一个伪随机函数。</li>
+</ul>
+<div class="admonition quote">
+<p class="admonition-title">强伪随机置换</p>
+<p>令 <span class="arithmatex">\(F:\{0,1\}^* \times \{0,1\}^* \to \{0,1\}^*\)</span> 是有效的带密钥的置换。如果对于所有概率多项式时间区分器 <span class="arithmatex">\(D\)</span>，存在一个可忽略函数 <span class="arithmatex">\(\mathrm{negl}\)</span>，使得</p>
+<div class="arithmatex">\[
+\left| \Pr\left[ D^{F_k(\cdot),F_k^{-1}(\cdot)}(1^n) = 1 \right] - \Pr\left[ D^{f(\cdot),f^{-1}(\cdot)}(1^n) = 1 \right] \right| \leqslant \mathrm{negl}(n),
+\]</div>
+<p>则称 <span class="arithmatex">\(F\)</span> 是强伪随机置换，其中 <span class="arithmatex">\(k \leftarrow \{0,1\}^n\)</span> 是随机均匀选择的，<span class="arithmatex">\(f\)</span> 是从 <span class="arithmatex">\(n\)</span> 比特字符串置换的集合中均匀随机选择的。</p>
+</div>
+<h3 id="6-3">6. 3 加密操作模式<a class="headerlink" href="#6-3" title="Permanent link">&para;</a></h3>
+<h4 id="1ecb">模式 1：电子密码本（ECB）模式<a class="headerlink" href="#1ecb" title="Permanent link">&para;</a></h4>
+<p>给定一个明文消息 <span class="arithmatex">\(m = m_1, m_2, \cdots, m_\ell\)</span>，密文 <span class="arithmatex">\(c = \langle F_k(m_1), F_k(m_2), \cdots, F_k(m_\ell) \rangle\)</span>，解密过程使用有效可计算的<span class="arithmatex">\(F_k^{-1}\)</span>。</p>
+<p><img src="/cryptography/images/image3-6.png" style="display: block; width: 60%; margin: 0 auto;" /></p>
+<p>这里，加密过程是确定性的，因此，该操作模式<strong>不可能是 CPA 安全的</strong>；且在窃听者存在的情况下，ECB 加密模式并<strong>不具备不可区分性</strong>。因此，ECB 模式应该永远不被使用。</p>
+<h4 id="2cbc">模式 2：密码分组链接（CBC）模式<a class="headerlink" href="#2cbc" title="Permanent link">&para;</a></h4>
+<p>选择一个长度为 <span class="arithmatex">\(n\)</span> 的随机初始向量（<span class="arithmatex">\(IV\)</span>），令<span class="arithmatex">\(c_0 := IV\)</span>，<span class="arithmatex">\(c_i := F_k(c_{i-1} \oplus m_i)\)</span>，<span class="arithmatex">\(c := \langle c_0, c_1, \cdots, c_\ell \rangle\)</span>，其中 <span class="arithmatex">\(IV\)</span> 不加密并作为密文的一部分发送。</p>
+<p><img src="/cryptography/images/image3-7.png" style="display: block; width: 60%; margin: 0 auto;" /></p>
+<p>CBC 模式的加密是概率的，如果 <span class="arithmatex">\(F\)</span> 为伪随机置换，那么 CBC 加密模式<strong>是 CPA 安全的</strong>。该模式的主要缺陷是加密必须依次执行，因此，如果并行处理是可行的，则 CBC 模式不是最有效率的选择。</p>
+<details class="question">
+<summary>变体：在每次加密时使用不同的<span class="arithmatex">\(IV\)</span>（而不是随机的<span class="arithmatex">\(IV\)</span>）</summary>
+<p>不安全！</p>
+</details>
+<h4 id="3ofb">模式 3：输出反馈（OFB）模式<a class="headerlink" href="#3ofb" title="Permanent link">&para;</a></h4>
+<p>本质上是使用分组密码来生成伪随机流，然后和消息作异或操作。选择一个随机 <span class="arithmatex">\(IV \leftarrow \{0,1\}^n\)</span>，令 <span class="arithmatex">\(r_0 := IV\)</span>，<span class="arithmatex">\(r_i := F_k(r_{i-1})\)</span>，<span class="arithmatex">\(c_i := m_i \oplus r_i\)</span>。</p>
+<p>和 CBC 模式一样，为了解密，<span class="arithmatex">\(IV\)</span> 是密文的一部分；相对于 CBC 模式，这里不需要 <span class="arithmatex">\(F\)</span> 是可逆的（事实上，<span class="arithmatex">\(F\)</span>甚至不需要是个置换）。</p>
+<p><img src="/cryptography/images/image3-8.png" style="display: block; width: 60%; margin: 0 auto;" /></p>
+<p>该模式也是概率的，如果 <span class="arithmatex">\(F\)</span> 是伪随机函数，则它是 CPA 安全的加密方案。这里，加密和解密都必须依次执行。该模式的优点是大块的计算（也就是伪随机流的计算）能够独立于实际加密消息进行。所以，在预处理之前，准备好一个流是可能的，此后加密明文（一旦已知）是非常快的。</p>
+<h4 id="4ctr">模式4：计数器（CTR）模式<a class="headerlink" href="#4ctr" title="Permanent link">&para;</a></h4>
+<p>有很多不同的 CTR 加密模式的变体，这里描述随机化的计数器模式。和 OFB 一样，计数器模式能够看成是一种用分组密码生成伪随机流的方法。</p>
+<p>选择一个随机 <span class="arithmatex">\(IV \leftarrow \{0,1\}^n\)</span> 并用ctr表示，令 <span class="arithmatex">\(r_i := F_k(\text{ctr} + i)\)</span>（其中 <span class="arithmatex">\(\text{ctr}\)</span> 和 <span class="arithmatex">\(i\)</span> 被看作是整数，加法是模 <span class="arithmatex">\(2^n\)</span> 的加法），<span class="arithmatex">\(c_i := r_i \oplus m_i\)</span>，<span class="arithmatex">\(IV\)</span> 再次作为密文的一部分发送。该解密不要求<span class="arithmatex">\(F\)</span>是可逆的，甚至不要求是置换。</p>
+<p><img src="/cryptography/images/image3-9.png" style="display: block; width: 60%; margin: 0 auto;" /></p>
+<p>随机计数模式是 <strong>CPA 安全</strong>的；加密和解密都能<strong>完全并行</strong>；只解密第 <span class="arithmatex">\(i\)</span> 个密文分组而不解密任何其他的密文是可能的，该特点被叫做<strong>随机访问</strong>。</p>
+<h2 id="one-way-functions">？ 单向函数（One-Way Functions）<a class="headerlink" href="#one-way-functions" title="Permanent link">&para;</a></h2>
+<details class="info">
+<summary>求逆实验 <span class="arithmatex">\(\text{Invert}_{\mathcal{A},f}(n)\)</span></summary>
+<ol>
+<li><span class="arithmatex">\(x \leftarrow \{0,1\}^n\)</span> ，<span class="arithmatex">\(y := f(x)\)</span></li>
+<li><span class="arithmatex">\(1^n\)</span> 和 <span class="arithmatex">\(y\)</span> 作为 <span class="arithmatex">\(\mathcal{A}\)</span> 的输入，输出为 <span class="arithmatex">\(x'\)</span></li>
+<li>如果 <span class="arithmatex">\(f(x') = y\)</span> ，那么定义该实验的输出为 <span class="arithmatex">\(1\)</span>，否则为 <span class="arithmatex">\(0\)</span></li>
+</ol>
+</details>
+<ul>
+<li>如果一个函数 <span class="arithmatex">\(f : \{0,1\}^* \to \{0,1\}^*\)</span> 满足下述两个条件，那么它就是<strong>单向函数</strong>：<ol>
+<li>（<strong>Easy to compute:</strong>）存在一个多项式时间算法 <span class="arithmatex">\(M_f\)</span> 来计算 <span class="arithmatex">\(f\)</span> ；也就是说，对所有 <span class="arithmatex">\(x\)</span> ，有 <span class="arithmatex">\(M_f(x) = f(x)\)</span> </li>
+<li>（<strong>Hard to invert:</strong>）对任意概率多项式时间算法 <span class="arithmatex">\(\mathcal{A}\)</span> ，存在一个可忽略函数 <span class="arithmatex">\(\text{negl}\)</span> ，满足
+$$
+  \Pr\left[ \text{Invert}_{\mathcal{A},f}(n) = 1 \right] \leqslant \text{negl}(n)
+  $$</li>
+</ol>
+</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">温馨提示</p>
+<p>上式第二条可用符号表示法表述为：
+$$
+\Pr_{x \leftarrow {0,1}^n}\left[ \mathcal{A}(f(x)) \in f^{-1}(f(x)) \right] \leqslant \text{negl}(n)
+$$</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../../javascripts/mathjax-config.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,2259 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../02/">
+      
+      
+        <link rel="next" href="../04/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>摊还分析 - sodasugar的笔记本</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.342714a4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="sodasugar的笔记本" class="md-header__button md-logo" aria-label="sodasugar的笔记本" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            sodasugar的笔记本
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              摊还分析
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="sodasugar的笔记本" class="md-nav__button md-logo" aria-label="sodasugar的笔记本" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    sodasugar的笔记本
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    首页
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    通识课
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            通识课
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    大物乙Ⅱ
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            大物乙Ⅱ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../physics2/%E7%89%A9%E7%90%86%E5%AD%A6%E5%8D%95%E4%BD%8D%E6%8D%A2%E7%AE%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    物理学单位换算
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../physics2/Chapter1_%E9%9D%99%E7%94%B5%E5%9C%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 静电场
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../physics2/Chapter2_%E9%9D%99%E7%94%B5%E5%9C%BA%E4%B8%AD%E7%9A%84%E5%AF%BC%E4%BD%93%E5%92%8C%E7%94%B5%E4%BB%8B%E8%B4%A8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 静电场中的导体和电介质
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../physics2/Chapter3_%E7%94%B5%E6%B5%81%E5%92%8C%E7%A3%81%E5%9C%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 电流和磁场
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../physics2/Chapter4_%E7%89%A9%E8%B4%A8%E4%B8%AD%E7%9A%84%E7%A3%81%E5%9C%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 物质中的磁场
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../physics2/Chapter5_%E7%94%B5%E7%A3%81%E6%84%9F%E5%BA%94/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5 电磁感应
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../physics2/Chapter6_%E9%BA%A6%E5%85%8B%E6%96%AF%E9%9F%A6%E6%96%B9%E7%A8%8B%E4%B8%8E%E7%94%B5%E7%A3%81%E6%B3%A2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6 麦克斯韦方程与电磁波
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../physics2/Chapter7_%E5%85%89%E7%9A%84%E5%B9%B2%E6%B6%89/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 7 光的干涉
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../physics2/Chapter8_%E5%85%89%E7%9A%84%E8%A1%8D%E5%B0%84/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 8 光的衍射
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../physics2/Chapter9_%E5%85%89%E7%9A%84%E5%81%8F%E6%8C%AF/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 9 光的偏振
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../physics2/10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 10 光的量子论
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../physics2/11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 11 玻尔的原子模型
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../physics2/12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 12 量子力学初步
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../physics2/midterm_review/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    期中小结
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    专业课
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            专业课
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    数据安全与密码学基础
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            数据安全与密码学基础
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cryptography/resource/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    资源索引
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cryptography/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 概论
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cryptography/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 完善保密加密
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cryptography/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 对称密钥加密以及伪随机性
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cryptography/4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 消息鉴别码
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cryptography/5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5 哈希函数
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cryptography/midterm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    期中考试卷
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    高级数据结构与算法分析
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            高级数据结构与算法分析
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resource/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    资源索引
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_2_2" id="__nav_3_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    题目集
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            题目集
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AVL 树
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Splay 树
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    摊还分析
+    
+  </span>
+  
+
+      </a>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    红黑树
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    B+ 树
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    倒排索引
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    左偏堆
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    斜堆
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    二项队列
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    回溯
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    分治法
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    动态规划
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    贪心算法
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    P/NP 问题
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    近似算法
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../16/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    局部搜索
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../17/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    随机算法
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../18/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    并行算法
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cheatsheet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    期中考 cheat sheet
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../midterm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    期中考试
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    计算机系统Ⅱ
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            计算机系统Ⅱ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sys2/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 ISA Review
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sys2/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 Design of Pipelining
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sys2/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 Hazard of Pipelining
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sys2/4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 Software-Hardware Interface
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sys2/5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5 Intro&Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sys2/6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6 Structures
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sys2/7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 7 Processes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sys2/8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 8 CPU Scheduling
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    选修课
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            选修课
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    英语口译
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            英语口译
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../interpret/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1 Ceremonial Speech
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../interpret/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2 Tourism
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../interpret/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3 Culture and Education
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../interpret/text/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    课堂文本
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>摊还分析</h1>
+
+<div class="admonition question">
+<p class="admonition-title">题目 1</p>
+<p>In amortized analysis, a good potential function should always assume its <strong>minimum</strong> at the start of the sequence.</p>
+<details class="success">
+<summary>答案</summary>
+<p><span class="arithmatex">\(\textnormal{T}\)</span></p>
+</details>
+</div>
+<div class="admonition question">
+<p class="admonition-title">题目 2</p>
+<p>A queue can be implemented by using two stacks <span class="arithmatex">\(SA\)</span> and <span class="arithmatex">\(SB\)</span> as follows:
+- To enqueue x, we push x onto <span class="arithmatex">\(SA\)</span>.
+- To dequeue from the queue, we pop and return the top item from <span class="arithmatex">\(SB\)</span>. However, if <span class="arithmatex">\(SB\)</span> is empty, we first fill it (and empty <span class="arithmatex">\(SA\)</span>) by popping the top item from <span class="arithmatex">\(SA\)</span>, pushing this item onto <span class="arithmatex">\(SB\)</span>, and repeat until <span class="arithmatex">\(SA\)</span> is empty.</p>
+<p>Assuming that push and pop operations take O(1) worst-case time, please select a potential function <span class="arithmatex">\(\phi\)</span> which can help us prove that enqueue and dequeue operations take O(1) amortized time (when starting from an empty queue).</p>
+<p><span class="arithmatex">\(\text{A}. \, \,\phi=2\ |\ SA\ |\)</span></p>
+<p><span class="arithmatex">\(\text{B}. \, \, \phi= |\ SA\ |\)</span></p>
+<p><span class="arithmatex">\(\text{C}. \, \, \phi=2\ |\ SB\ |\)</span></p>
+<p><span class="arithmatex">\(\text{D}. \, \, \phi= |\ SB\ |\)</span></p>
+<details class="success">
+<summary>答案</summary>
+<p>考虑 <span class="arithmatex">\(\text{SB}\)</span> 为空时的出栈操作，实际成本 <span class="arithmatex">\(c_i = 2 |\text{SA}| + 1\)</span>，均摊成本分析如下：</p>
+<table>
+<thead>
+<tr>
+<th>势能函数</th>
+<th><span class="arithmatex">\(\Phi_{\text{before}}\)</span></th>
+<th><span class="arithmatex">\(\Phi_{\text{after}}\)</span></th>
+<th><span class="arithmatex">\(\Delta \Phi\)</span></th>
+<th>均摊成本 <span class="arithmatex">\(a_i\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(\Phi= 2 \| \text{SA} \|\)</span></td>
+<td><span class="arithmatex">\(2k\)</span></td>
+<td><span class="arithmatex">\(0\)</span></td>
+<td><span class="arithmatex">\(-2k\)</span></td>
+<td><span class="arithmatex">\(1\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\Phi= \| \text{SA} \|\)</span></td>
+<td><span class="arithmatex">\(k\)</span></td>
+<td><span class="arithmatex">\(0\)</span></td>
+<td><span class="arithmatex">\(-k\)</span></td>
+<td><span class="arithmatex">\(k + 1\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\Phi= 2 \| \text{SB} \|\)</span></td>
+<td><span class="arithmatex">\(0\)</span></td>
+<td><span class="arithmatex">\(2(k-1)\)</span></td>
+<td><span class="arithmatex">\(2(k-1)\)</span></td>
+<td><span class="arithmatex">\(4k - 1\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\Phi= \| \text{SB} \|\)</span></td>
+<td><span class="arithmatex">\(0\)</span></td>
+<td><span class="arithmatex">\(k-1\)</span></td>
+<td><span class="arithmatex">\(k-1\)</span></td>
+<td><span class="arithmatex">\(3k\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>综上，正确答案为 <span class="arithmatex">\(\textnormal{A}\)</span></p>
+</details>
+</div>
+<div class="admonition question">
+<p class="admonition-title">题目 3</p>
+<p>For one operation, if its <strong>amortized time bound</strong> is <span class="arithmatex">\(O(logN)\)</span>, then its <strong>worst-case time bound</strong> must be <span class="arithmatex">\(O(logN)\)</span>.</p>
+<details class="success">
+<summary>答案</summary>
+<p><span class="arithmatex">\(\textnormal{F}\)</span></p>
+</details>
+<p>For one operation, if its <strong>worst-case time bound</strong> is <span class="arithmatex">\(O(logN)\)</span>, then its <strong>amortized time bound</strong> must be <span class="arithmatex">\(O(logN)\)</span>.</p>
+<details class="success">
+<summary>答案</summary>
+<p><span class="arithmatex">\(\textnormal{T}\)</span></p>
+</details>
+<p>For one operation, if its <strong>average time bound</strong> is <span class="arithmatex">\(O(logN)\)</span>, then its <strong>amortized time bound</strong> must be <span class="arithmatex">\(O(logN)\)</span>.</p>
+<details class="success">
+<summary>答案</summary>
+<p><span class="arithmatex">\(\textnormal{F}\)</span></p>
+</details>
+<p>Recall the amortized analysis for Splay Tree and Leftist Heap, from which we can conclude that the amortized cost (time) is never less than the average cost (time).</p>
+<details class="success">
+<summary>答案</summary>
+<p><span class="arithmatex">\(\textnormal{F}\)</span></p>
+</details>
+</div>
+<div class="admonition question">
+<p class="admonition-title">题目 4</p>
+<p>Recall that the worst-case time complexities of insertions and deletions in a heap of size <span class="arithmatex">\(N\)</span> are both <span class="arithmatex">\(O(\log N)\)</span>. Then, without changing the data structure, the amortized time complexity of insertions in a heap is also <span class="arithmatex">\(O(\log N)\)</span>, and that of deletions is <span class="arithmatex">\(O(1)\)</span>.</p>
+<details class="success">
+<summary>答案</summary>
+<p><span class="arithmatex">\(\textnormal{T}\)</span></p>
+</details>
+</div>
+<div class="admonition question">
+<p class="admonition-title">题目 5</p>
+<p>In this problem, we would like to find the amortized cost of insertion in a dynamic table <span class="arithmatex">\(T\)</span>. Initially the size of the table <span class="arithmatex">\(T\)</span> is 1. The cost of insertion is 1 if the table is not full. When an item is inserted into a full table, the table <span class="arithmatex">\(T\)</span> is expanded as a new table of size 5 times larger. Then, we copy all the elements of the old table into this new table, and insert the item in the new table.</p>
+<p>Let <span class="arithmatex">\(num(T)\)</span> be the number of elements in the table <span class="arithmatex">\(T\)</span>, and <span class="arithmatex">\(size(T)\)</span> be the total number of slots of the table. Let <span class="arithmatex">\(D_i\)</span> denote the table after applying the <span class="arithmatex">\(i\)</span> th operation on <span class="arithmatex">\(D_{i-1}\)</span>.</p>
+<p>Which of the following potential function <span class="arithmatex">\(\Phi(D_i)\)</span> can help us achieve <span class="arithmatex">\(O(1)\)</span> amortized cost per insertion?</p>
+<p><span class="arithmatex">\(\textnormal{A}\)</span>. <span class="arithmatex">\(\Phi(D_i) = num(T) - \frac{size(T)}{5}\)</span></p>
+<p><span class="arithmatex">\(\textnormal{B}\)</span>. <span class="arithmatex">\(\Phi(D_i) = num(T) + \frac{size(T)}{5}\)</span></p>
+<p><span class="arithmatex">\(\textnormal{C}\)</span>. <span class="arithmatex">\(\Phi(D_i) = \frac{5}{4}\left(num(T) - \frac{size(T)}{5}\right)\)</span></p>
+<p><span class="arithmatex">\(\textnormal{D}\)</span>. <span class="arithmatex">\(\Phi(D_i) = \frac{5}{4}\left(num(T) + \frac{size(T)}{5}\right)\)</span></p>
+<details class="success">
+<summary>答案</summary>
+<p>若插入时表不满，则实际成本 <span class="arithmatex">\(c_i = 1\)</span>，插入后 <span class="arithmatex">\(\text{size}\)</span> 不变；若插入时表满，则实际成本 <span class="arithmatex">\(c_i = 1 + s\)</span>，插入后 <span class="arithmatex">\(\text{size} =5s\)</span>，而 <span class="arithmatex">\(a_i = c_i + (\Phi_2 - \Phi_1)\)</span></p>
+<p>对于选项 <span class="arithmatex">\(\textnormal{A}\)</span>，分析如下：</p>
+<table>
+<thead>
+<tr>
+<th><span class="arithmatex">\(\Phi(D_i) = num(T) - \frac{size(T)}{5}\)</span></th>
+<th>表不满</th>
+<th>表满</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>初始势能 <span class="arithmatex">\(\Phi_1\)</span></td>
+<td><span class="arithmatex">\(num - \frac{size}{5}\)</span></td>
+<td><span class="arithmatex">\(s - \frac{s}{5} = \frac{4s}{5}\)</span></td>
+</tr>
+<tr>
+<td>最终势能 <span class="arithmatex">\(\Phi_2\)</span></td>
+<td><span class="arithmatex">\((num+1) - \frac{size}{5}\)</span></td>
+<td><span class="arithmatex">\((s+1) - \frac{5s}{5} = 1\)</span></td>
+</tr>
+<tr>
+<td>势能变化 <span class="arithmatex">\(\Delta\Phi\)</span></td>
+<td><span class="arithmatex">\(1\)</span></td>
+<td><span class="arithmatex">\(1 - \frac{4s}{5}\)</span></td>
+</tr>
+<tr>
+<td>均摊成本 <span class="arithmatex">\(a_i\)</span></td>
+<td><span class="arithmatex">\(1 + 1 = 2\)</span></td>
+<td><span class="arithmatex">\(2 + \frac{s}{5}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>对于选项 <span class="arithmatex">\(\textnormal{B}\)</span>，分析如下：</p>
+<table>
+<thead>
+<tr>
+<th><span class="arithmatex">\(\Phi(D_i) = num(T) + \frac{size(T)}{5}\)</span></th>
+<th>表不满</th>
+<th>表满</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>初始势能 <span class="arithmatex">\(\Phi_1\)</span></td>
+<td><span class="arithmatex">\(num + \frac{size}{5}\)</span></td>
+<td><span class="arithmatex">\(s + \frac{s}{5} = \frac{6s}{5}\)</span></td>
+</tr>
+<tr>
+<td>最终势能 <span class="arithmatex">\(\Phi_2\)</span></td>
+<td><span class="arithmatex">\((num+1) + \frac{size}{5}\)</span></td>
+<td><span class="arithmatex">\((s+1) + \frac{5s}{5} = 2s + 1\)</span></td>
+</tr>
+<tr>
+<td>势能变化 <span class="arithmatex">\(\Delta\Phi\)</span></td>
+<td><span class="arithmatex">\(1\)</span></td>
+<td><span class="arithmatex">\(\frac{4s}{5} + 1\)</span></td>
+</tr>
+<tr>
+<td>均摊成本 <span class="arithmatex">\(a_i\)</span></td>
+<td><span class="arithmatex">\(1 + 1 = 2\)</span></td>
+<td><span class="arithmatex">\(2 + \frac{9s}{5}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>对于选项 <span class="arithmatex">\(\textnormal{C}\)</span>，分析如下：</p>
+<table>
+<thead>
+<tr>
+<th><span class="arithmatex">\(\Phi(D_i) = \frac{5}{4}\left(num(T) - \frac{size(T)}{5}\right)\)</span></th>
+<th>表不满</th>
+<th>表满</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>初始势能 <span class="arithmatex">\(\Phi_1\)</span></td>
+<td><span class="arithmatex">\(\frac{5}{4}num - \frac{size}{4}\)</span></td>
+<td><span class="arithmatex">\(\frac{5}{4}s - \frac{s}{4} = s\)</span></td>
+</tr>
+<tr>
+<td>最终势能 <span class="arithmatex">\(\Phi_2\)</span></td>
+<td><span class="arithmatex">\(\frac{5}{4}(num+1) - \frac{size}{4}\)</span></td>
+<td><span class="arithmatex">\(\frac{5}{4}(s+1) - \frac{5s}{4} = \frac{5}{4}\)</span></td>
+</tr>
+<tr>
+<td>势能变化 <span class="arithmatex">\(\Delta\Phi\)</span></td>
+<td><span class="arithmatex">\(\frac{5}{4}\)</span></td>
+<td><span class="arithmatex">\(\frac{5}{4} - s\)</span></td>
+</tr>
+<tr>
+<td>均摊成本 <span class="arithmatex">\(a_i\)</span></td>
+<td><span class="arithmatex">\(\frac{9}{4}\)</span></td>
+<td><span class="arithmatex">\(\frac{9}{4}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>对于选项 <span class="arithmatex">\(\textnormal{D}\)</span>，分析如下：</p>
+<table>
+<thead>
+<tr>
+<th><span class="arithmatex">\(\Phi(D_i) = \frac{5}{4}\left(num(T) + \frac{size(T)}{5}\right)\)</span></th>
+<th>表不满</th>
+<th>表满</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>初始势能 <span class="arithmatex">\(\Phi_1\)</span></td>
+<td><span class="arithmatex">\(\frac{5}{4}num + \frac{size}{4}\)</span></td>
+<td><span class="arithmatex">\(\frac{5}{4}s + \frac{s}{4} = \frac{3s}{2}\)</span></td>
+</tr>
+<tr>
+<td>最终势能 <span class="arithmatex">\(\Phi_2\)</span></td>
+<td><span class="arithmatex">\(\frac{5}{4}(num+1) + \frac{size}{4}\)</span></td>
+<td><span class="arithmatex">\(\frac{5}{4}(s+1) + \frac{5s}{4} = \frac{10s + 5}{4}\)</span></td>
+</tr>
+<tr>
+<td>势能变化 <span class="arithmatex">\(\Delta\Phi\)</span></td>
+<td><span class="arithmatex">\(\frac{5}{4}\)</span></td>
+<td><span class="arithmatex">\(\frac{10s + 5}{4} - \frac{3s}{2} = \frac{4s + 5}{4}\)</span></td>
+</tr>
+<tr>
+<td>均摊成本 <span class="arithmatex">\(a_i\)</span></td>
+<td><span class="arithmatex">\(1 + \frac{5}{4} = \frac{9}{4}\)</span></td>
+<td><span class="arithmatex">\((1 + s) + \frac{4s + 5}{4} = 2s + \frac{9}{4}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>综上，只有 <span class="arithmatex">\(\Phi(D_i) = \frac{5}{4}\left(num(T) - \frac{size(T)}{5}\right)\)</span> 能使两次插入场景的均摊成本均为常数，故正确答案为 <span class="arithmatex">\(\textnormal{C}\)</span></p>
+</details>
+</div>
+<div class="admonition question">
+<p class="admonition-title">题目 6</p>
+<p>A <span class="arithmatex">\(n\)</span>-nodes AVL tree <span class="arithmatex">\(T\)</span> performs insertion or deletion in the worst case that costs <span class="arithmatex">\(a_0 \lg n + b_0\)</span>, <span class="arithmatex">\(a_1 \lg n + b_1\)</span>, respectively, where <span class="arithmatex">\(a_0, a_1, b_0, b_1\)</span> are constants. Now, we start from an empty tree, perform a sequence of <span class="arithmatex">\(n\)</span> insertions or deletions in the AVL tree. To analysis the amortized cost per insertion or deletion, we define a potential function <span class="arithmatex">\(\Phi(T) = a_1 \sum_{i=1}^{n} \lg i\)</span>. What is the amortized cost per insertion or deletion?</p>
+<p><span class="arithmatex">\(\textnormal{A}\)</span>. <span class="arithmatex">\(O(\lg n )\)</span> for insertion <span class="arithmatex">\(O(\lg n)\)</span> for deletion</p>
+<p><span class="arithmatex">\(\textnormal{B}\)</span>. <span class="arithmatex">\(O(\lg n )\)</span> for insertion <span class="arithmatex">\(O(1)\)</span> for deletion</p>
+<p><span class="arithmatex">\(\textnormal{C}\)</span>. <span class="arithmatex">\(O(1)\)</span> for insertion, <span class="arithmatex">\(O(\lg n)\)</span> for deletion</p>
+<p><span class="arithmatex">\(\textnormal{D}\)</span>. <span class="arithmatex">\(O(1)\)</span> for insertion, <span class="arithmatex">\(O(1)\)</span> for deletion</p>
+<details class="success">
+<summary>答案</summary>
+<p><span class="arithmatex">\(\hat{c}_{\text{insert}} = c_{\text{insert}} + \Delta\Phi = (a_0 \lg k + b_0) + a_1 \lg(k+1) = O(\lg n)\)</span></p>
+<p><span class="arithmatex">\(\hat{c}_{\text{delete}} = c_{\text{delete}} + \Delta\Phi = (a_1 \lg k + b_1) - a_1 \lg k = b_1 = O(1)\)</span></p>
+<p>故正确答案为 <span class="arithmatex">\(\textnormal{B}\)</span></p>
+</details>
+<details class="tip">
+<summary>温馨提示</summary>
+<p>若将 AVL 树改为红黑树，答案仍为 <span class="arithmatex">\(\textnormal{B}\)</span></p>
+</details>
+</div>
+<div class="admonition question">
+<p class="admonition-title">题目 7</p>
+<p>Consider the following buffer management problem. Initially the buffer size (the number of blocks) is one. Each block can accommodate exactly one item. As soon as a new item arrives, check if there is an available block. If yes, put the item into the block, induced a cost of one. Otherwise, the buffer size is doubled, and then the item is able to put into. Moreover, the old items have to be moved into the new buffer so it costs <span class="arithmatex">\(k+1\)</span> to make this insertion, where <span class="arithmatex">\(k\)</span> is the number of old items. Clearly, if there are <span class="arithmatex">\(N\)</span> items, the worst-case cost for one insertion can be <span class="arithmatex">\(\Omega (N)\)</span>. To show that the average cost is <span class="arithmatex">\(O(1)\)</span>, let us turn to the amortized analysis. To simplify the problem, assume that the buffer is full after all the <span class="arithmatex">\(N\)</span> items are placed. Which of the following potential functions works?</p>
+<p><span class="arithmatex">\(\textnormal{A}\)</span>. The number of items currently in the buffer</p>
+<p><span class="arithmatex">\(\textnormal{B}\)</span>. The opposite number of items currently in the buffer</p>
+<p><span class="arithmatex">\(\textnormal{C}\)</span>. The number of available blocks currently in the buffer</p>
+<p><span class="arithmatex">\(\textnormal{D}\)</span>. The opposite number of available blocks in the buffer</p>
+<details class="success">
+<summary>答案</summary>
+<p>高成本操作需要势能的大幅下降来抵消实际 cost，故正确答案为 <span class="arithmatex">\(\textnormal{D}\)</span></p>
+</details>
+</div>
+<div class="admonition question">
+<p class="admonition-title">题目 8</p>
+<p>If a data structure supports an operation QI such that a sequence of <span class="arithmatex">\(n\)</span> QI’s takes <span class="arithmatex">\(\Theta(\frac{n^2}{\log n})\)</span> time to perform in the worst case, then the amortized cost of a QI operation is <span class="arithmatex">\(\Theta(\frac{n}{\log n})\)</span> , while the actual time of a single QI operation could be as high as <span class="arithmatex">\(\Theta(\frac{n^2}{\log n})\)</span>.</p>
+<details class="success">
+<summary>答案</summary>
+<p><span class="arithmatex">\(\textnormal{T}\)</span></p>
+</details>
+</div>
+<div class="admonition question">
+<p class="admonition-title">题目 9</p>
+<p>Amortized bounds are weaker than the corresponding worst-case bounds, because there is no guarantee for any single operation.</p>
+<details class="success">
+<summary>答案</summary>
+<p><span class="arithmatex">\(\textnormal{T}\)</span></p>
+</details>
+<p>Average-case bounds are stronger than the equivalent amortized bounds, because there is a guarantee for any single operation.</p>
+<details class="success">
+<summary>答案</summary>
+<p>平均情况分析和摊还分析<strong>均没有对单个操作的保证</strong>，前者依赖于概率假设，后者是一种最坏情况分析，通常认为摊还界限比平均情况界限更具说服力和实用性，故答案为 <span class="arithmatex">\(\textnormal{F}\)</span></p>
+</details>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../../../javascripts/mathjax-config.js"></script>
+      
+    
+  </body>
+</html>
