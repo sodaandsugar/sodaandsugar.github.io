@@ -1117,6 +1117,29 @@
   
   
     <li class="md-nav__item">
+      <a href="../6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6 数论和密码学困难性假设
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../midterm/" class="md-nav__link">
         
   
@@ -2455,7 +2478,7 @@
 <h1 id="chapter-3">Chapter 3 对称密钥加密以及伪随机性<a class="headerlink" href="#chapter-3" title="Permanent link">&para;</a></h1>
 <div class="admonition quote">
 <p class="admonition-title">引言</p>
-<p>在上一讲中，我们假设敌手拥有无限计算能力，这样的方案叫做<strong>信息理论安全（information-theoretic notions of security）</strong>，又称<strong>完美安全</strong>，而本讲讨论的<strong>计算安全（Computational security）</strong> 稍弱一些，包含了以下两个放宽条件：</p>
+<p>在上一讲中，我们假设敌手拥有无限计算能力，这样的方案叫做<strong>信息理论安全（information-theoretic notions of security）</strong>，又称<strong>完美安全</strong>，而本讲讨论的<strong>计算安全（Computational security）</strong>稍弱一些，包含了以下两个放宽条件：</p>
 <ol>
 <li>安全性仅在对抗<strong>有效 (指在可行的时间里运行)</strong> 的敌手时存在</li>
 <li>敌手潜在的成功概率是<strong>非常小</strong>的</li>
@@ -2463,8 +2486,8 @@
 </div>
 <h2 id="1">1 密码学的计算方法<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
 <h3 id="1-1">1. 1 有效的算法和可忽略的成功概率<a class="headerlink" href="#1-1" title="Permanent link">&para;</a></h3>
-<details class="info">
-<summary>概念补充</summary>
+<div class="admonition quote">
+<p class="admonition-title">前置知识</p>
 <ul>
 <li>
 <p>如果对于每个多项式 <span class="arithmatex">\(p(\cdot)\)</span> ，存在一个 <span class="arithmatex">\(N\)</span> ，使得对于所有的整数 <span class="arithmatex">\(n &gt; N\)</span> ，都满足 <span class="arithmatex">\(f(n) &lt; \frac{1}{p(n)}\)</span>，则称函数 <span class="arithmatex">\(f\)</span> 为<strong>可忽略的（negligible）</strong></p>
@@ -2476,7 +2499,7 @@
 <p>有效的运算是指能够在<strong>概率多项式时间（PPT, probabilistic polynomial-time）</strong>内执行的计算</p>
 </li>
 </ul>
-</details>
+</div>
 <p>在课程中，我们使用渐进方法来定义计算安全，即：</p>
 <ul>
 <li>如果每个 <span class="arithmatex">\(\text{PPT}\)</span> 敌手以<strong>可忽略的</strong>概率成功攻破一个方案，那么该方案是安全的。</li>
@@ -2486,7 +2509,7 @@
 <p>函数 <span class="arithmatex">\(2^{-n}\)</span>，<span class="arithmatex">\(2^{-\sqrt{n}}\)</span> 以及 <span class="arithmatex">\(n^{-\log n}\)</span> 都是可忽略的函数，但它们接近零的速度是非常不同的</p>
 </div>
 <details class="note">
-<summary>补充</summary>
+<summary>可忽略函数的运算性质（可作无穷小量理解）</summary>
 <p>令 <span class="arithmatex">\(\text{negl}_1\)</span> 和 <span class="arithmatex">\(\text{negl}_2\)</span> 为可忽略函数，则：</p>
 <ol>
 <li>
@@ -2500,13 +2523,17 @@
 <h3 id="1-2">1. 2 规约证明<a class="headerlink" href="#1-2" title="Permanent link">&para;</a></h3>
 <ol>
 <li>指定 <span class="arithmatex">\(\text{PPT}\)</span> 敌手 <span class="arithmatex">\(\mathcal{A}\)</span> 攻击 <span class="arithmatex">\(\Pi\)</span>，将敌手的成功概率表示为 <span class="arithmatex">\(\varepsilon(n)\)</span></li>
-<li>构造一个叫做<strong>规约</strong>的有效算法 <span class="arithmatex">\(\mathcal{A}'\)</span>，该算法将敌手 <span class="arithmatex">\(\mathcal{A}\)</span> 作为子程序来使用，试图解决难题 <span class="arithmatex">\(X\)</span>。这里很重要的一点是，<span class="arithmatex">\(\mathcal{A}'\)</span> 对 <span class="arithmatex">\(\mathcal{A}\)</span> 是如何工作的一无所知，<span class="arithmatex">\(\mathcal{A}'\)</span> 知道的唯一的事情就是 <span class="arithmatex">\(\mathcal{A}\)</span> 想要攻击 <span class="arithmatex">\(\Pi\)</span>。所以，指定难题 <span class="arithmatex">\(X\)</span> 的某个输入实例 <span class="arithmatex">\(x\)</span>，算法 <span class="arithmatex">\(\mathcal{A}'\)</span> 将会对 <span class="arithmatex">\(\mathcal{A}\)</span> 模拟出一个 <span class="arithmatex">\(\Pi\)</span> 的实例，满足：</li>
+<li>
+<p>构造一个叫做<strong>规约</strong>的有效算法 <span class="arithmatex">\(\mathcal{A}'\)</span>，该算法将敌手 <span class="arithmatex">\(\mathcal{A}\)</span> 作为子程序来使用，试图解决难题 <span class="arithmatex">\(X\)</span>。这里很重要的一点是，<span class="arithmatex">\(\mathcal{A}'\)</span> 对 <span class="arithmatex">\(\mathcal{A}\)</span> 是如何工作的一无所知，<span class="arithmatex">\(\mathcal{A}'\)</span> 知道的唯一的事情就是 <span class="arithmatex">\(\mathcal{A}\)</span> 想要攻击 <span class="arithmatex">\(\Pi\)</span>。所以，指定难题 <span class="arithmatex">\(X\)</span> 的某个输入实例 <span class="arithmatex">\(x\)</span>，算法 <span class="arithmatex">\(\mathcal{A}'\)</span> 将会对 <span class="arithmatex">\(\mathcal{A}\)</span> 模拟出一个 <span class="arithmatex">\(\Pi\)</span> 的实例，满足：</p>
+<ol>
 <li>就 <span class="arithmatex">\(\mathcal{A}\)</span> 而言，它和 <span class="arithmatex">\(\Pi\)</span> 交互。更正式地说，当 <span class="arithmatex">\(\mathcal{A}\)</span> 作为子程序被 <span class="arithmatex">\(\mathcal{A}'\)</span> 运行时，<span class="arithmatex">\(\mathcal{A}\)</span> 的分布应该和当 <span class="arithmatex">\(\mathcal{A}\)</span> 自身和 <span class="arithmatex">\(\Pi\)</span> 交互时的分布是相同的（或至少是很接近的）</li>
 <li>如果 <span class="arithmatex">\(\mathcal{A}\)</span> 成功攻破了由 <span class="arithmatex">\(\mathcal{A}'\)</span> 模拟的 <span class="arithmatex">\(\Pi\)</span> 的实例，则 <span class="arithmatex">\(\mathcal{A}'\)</span> 解决给出的难题实例 <span class="arithmatex">\(x\)</span> 成功的概率至少为多项式的倒数，即 <span class="arithmatex">\(1/p(n)\)</span></li>
 </ol>
 <p><img src="/cryptography/images/image3-1.png" style="display: block; width: 50%; margin: 0 auto;" /></p>
-<ol>
-<li>总起来考虑，如果 <span class="arithmatex">\(\varepsilon(n)\)</span> 不是可忽略的，则 <span class="arithmatex">\(\mathcal{A}'\)</span> 解决难题 <span class="arithmatex">\(X\)</span> 的概率为不可忽略的概率 <span class="arithmatex">\(\varepsilon(n)/p(n)\)</span>。如果 <span class="arithmatex">\(\mathcal{A}\)</span> 是有效的，则存在有效的算法 <span class="arithmatex">\(\mathcal{A}'\)</span> 以不可忽略的概率解决 <span class="arithmatex">\(X\)</span>，与原假设矛盾</li>
+</li>
+<li>
+<p>总起来考虑，如果 <span class="arithmatex">\(\varepsilon(n)\)</span> 不是可忽略的，则 <span class="arithmatex">\(\mathcal{A}'\)</span> 解决难题 <span class="arithmatex">\(X\)</span> 的概率为不可忽略的概率 <span class="arithmatex">\(\varepsilon(n)/p(n)\)</span>。如果 <span class="arithmatex">\(\mathcal{A}\)</span> 是有效的，则存在有效的算法 <span class="arithmatex">\(\mathcal{A}'\)</span> 以不可忽略的概率解决 <span class="arithmatex">\(X\)</span>，与原假设矛盾</p>
+</li>
 <li>因而结论是，给定一个关于 <span class="arithmatex">\(X\)</span> 的假设，不存在有效的敌手 <span class="arithmatex">\(\mathcal{A}\)</span> 能够以不可忽略的概率成功攻破 <span class="arithmatex">\(\Pi\)</span>，换句话说，<span class="arithmatex">\(\Pi\)</span> 是计算上安全的</li>
 </ol>
 <div class="admonition tip">
@@ -2514,49 +2541,60 @@
 <p>规约证明的纯文字叙述较为晦涩，简而言之，就是假设有敌手 <span class="arithmatex">\(\mathcal{A}\)</span> 能攻破 <span class="arithmatex">\(\Pi\)</span>，则可构造以 <span class="arithmatex">\(\mathcal{A}\)</span> 为子程序的敌手 <span class="arithmatex">\(\mathcal{R}^{\mathcal{A}}\)</span> 攻破 <span class="arithmatex">\(\Pi'\)</span>，常用于反证法</p>
 </div>
 <h2 id="2-eav-secure">2 EAV-Secure<a class="headerlink" href="#2-eav-secure" title="Permanent link">&para;</a></h2>
-<details class="info">
-<summary>对称密钥加密方案</summary>
-<ol>
-<li>
-<p><span class="arithmatex">\(k \leftarrow \text{Gen}(1^n)\)</span>，<span class="arithmatex">\(|k| \geq n\)</span></p>
-</li>
-<li>
-<p><span class="arithmatex">\(c \leftarrow \text{Enc}_k(m)\)</span>，<span class="arithmatex">\(m \in \{0,1\}^*\)</span> </p>
-</li>
-<li>
-<p><span class="arithmatex">\(m := \text{Dec}_k(c)\)</span></p>
-</li>
-</ol>
-</details>
+<div class="admonition tip">
+<p class="admonition-title">对称密钥加密方案</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">密钥</th>
+<th style="text-align: center;">密文</th>
+<th style="text-align: center;">明文</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(k \leftarrow \text{Gen}(1^n), \lvert k \rvert \geq n\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(c \leftarrow \text{Enc}_k(m)\)</span>，<span class="arithmatex">\(m \in \{0,1\}^*\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(m := \text{Dec}_k(c)\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
 <ul>
-<li>如果对于所有 <span class="arithmatex">\(\text{PPT}\)</span> 敌手 <span class="arithmatex">\(\mathcal{A}\)</span> ，存在一个可忽略函数 <span class="arithmatex">\(\text{negl}\)</span> 使得：
+<li>
+<p>如果对于所有 <span class="arithmatex">\(\text{PPT}\)</span> 敌手 <span class="arithmatex">\(\mathcal{A}\)</span> ，存在一个可忽略函数 <span class="arithmatex">\(\text{negl}\)</span> 使得：
 $$
 \Pr\left[\text{PrivK}^{\text{eav}}_{\mathcal{A},\Pi}(n) = 1\right] \leqslant \frac{1}{2} + \text{negl}(n)
-$$</li>
-</ul>
+$$</p>
 <p>则一个对称密钥加密方案 <span class="arithmatex">\(\Pi = (\text{Gen}, \text{Enc}, \text{Dec})\)</span> 具备<strong>在窃听者存在的情况下不可区分</strong>的加密</p>
+</li>
+</ul>
 <p>使用一个固定比特 <span class="arithmatex">\(b\)</span>，用 <span class="arithmatex">\(\text{output}\left( \text{PrivK}^{\text{eav}}_{\mathcal{A},\Pi}(n,b) \right)\)</span> 来表示 <span class="arithmatex">\(\mathcal{A}\)</span> 在 <span class="arithmatex">\(\text{PrivK}^{\text{eav}}_{\mathcal{A},\Pi}(n,b)\)</span> 中的输出比特 <span class="arithmatex">\(b'\)</span>，则有等价定义：</p>
 <ul>
-<li>如果对所有的概率多项式时间的敌手 <span class="arithmatex">\(\mathcal{A}\)</span> ，存在一个可忽略函数 <span class="arithmatex">\(\text{negl}\)</span> 使得：</li>
-</ul>
+<li>
+<p>如果对所有的概率多项式时间的敌手 <span class="arithmatex">\(\mathcal{A}\)</span> ，存在一个可忽略函数 <span class="arithmatex">\(\text{negl}\)</span> 使得：</p>
 <div class="arithmatex">\[
 \left| \Pr\left[ \text{output}\left( \text{PrivK}^{\text{eav}}_{\mathcal{A},\Pi}(n,0) \right) = 1 \right] - \Pr\left[ \text{output}\left( \text{PrivK}^{\text{eav}}_{\mathcal{A},\Pi}(n,1) \right) = 1 \right] \right| \leqslant \text{negl}(n)
 \]</div>
 <p>则对称密钥加密方案 <span class="arithmatex">\(\Pi = (\text{Gen}, \text{Enc}, \text{Dec})\)</span> 具有<strong>窃听者存在的情况下不可区分性</strong></p>
+</li>
+</ul>
 <h2 id="3-pseudorandom-generator-prg">3 伪随机发生器（Pseudorandom Generator, PRG）<a class="headerlink" href="#3-pseudorandom-generator-prg" title="Permanent link">&para;</a></h2>
 <h3 id="3-1">3. 1 直观定义<a class="headerlink" href="#3-1" title="Permanent link">&para;</a></h3>
 <p>直观上来看，如果<strong>没有多项式时间的区分器能够区分一个根据 <span class="arithmatex">\(D\)</span> 采样的字符串和一个均匀随机选择的字符串</strong>，则一个分布 <span class="arithmatex">\(D\)</span> 是伪随机的。</p>
 <ul>
-<li>令 <span class="arithmatex">\(\ell(\cdot)\)</span> 为多项式，<span class="arithmatex">\(G\)</span> 为确定多项式时间算法，该算法满足：对于任何输入 <span class="arithmatex">\(s \in \{0,1\}^n\)</span> ，算法 <span class="arithmatex">\(G\)</span> 输出一个长度为 <span class="arithmatex">\(\ell(n)\)</span> 的字符串。如果满足下面两个条件，则称 <span class="arithmatex">\(G\)</span> 是一个伪随机发生器：<ol>
+<li>
+<p>令 <span class="arithmatex">\(\ell(\cdot)\)</span> 为多项式，<span class="arithmatex">\(G\)</span> 为确定多项式时间算法，该算法满足：对于任何输入 <span class="arithmatex">\(s \in \{0,1\}^n\)</span> ，算法 <span class="arithmatex">\(G\)</span> 输出一个长度为 <span class="arithmatex">\(\ell(n)\)</span> 的字符串。如果满足下面两个条件，则称 <span class="arithmatex">\(G\)</span> 是一个伪随机发生器：</p>
+<ol>
 <li>（<strong>扩展性：</strong>）对每个 <span class="arithmatex">\(n\)</span> 来说，满足 <span class="arithmatex">\(\ell(n) &gt; n\)</span></li>
 <li>（<strong>伪随机性：</strong>）对所有的概率多项式时间的区分器 <span class="arithmatex">\(D\)</span> 来说，存在一个可忽略函数 <span class="arithmatex">\(\text{negl}\)</span> ，满足 
 $$
 \left|\Pr[D(r) = 1] - \Pr[D(G(s)) = 1]\right| \leq \text{negl}(n)
 $$</li>
 </ol>
+<p>其中 <span class="arithmatex">\(r\)</span> 是从 <span class="arithmatex">\(\{0,1\}^{\ell(n)}\)</span> 中均匀随机选择的，种子 <span class="arithmatex">\(s\)</span> 是从 <span class="arithmatex">\(\{0,1\}^n\)</span> 中均匀随机选择的，函数 <span class="arithmatex">\(\ell(\cdot)\)</span> 被称为 <span class="arithmatex">\(G\)</span> 的扩展系数。</p>
 </li>
 </ul>
-<p>其中 <span class="arithmatex">\(r\)</span> 是从 <span class="arithmatex">\(\{0,1\}^{\ell(n)}\)</span> 中均匀随机选择的，种子 <span class="arithmatex">\(s\)</span> 是从 <span class="arithmatex">\(\{0,1\}^n\)</span> 中均匀随机选择的，函数 <span class="arithmatex">\(\ell(\cdot)\)</span> 被称为 <span class="arithmatex">\(G\)</span> 的扩展系数。</p>
 <h3 id="32-computational-indistinguishability">3.2 计算不可区分性（Computational Indistinguishability）<a class="headerlink" href="#32-computational-indistinguishability" title="Permanent link">&para;</a></h3>
 <details class="info">
 <summary>概念补充</summary>
@@ -2576,15 +2614,16 @@ $$</li>
 </details>
 <p>计算不可区分性的实际定义与概率总体有关，以下是对两个分布不可区分的形式化定义：</p>
 <ul>
-<li>两个概率总体 <span class="arithmatex">\(X = \{X_n\}_{n \in \mathbb{N}}\)</span> 和 <span class="arithmatex">\(Y = \{Y_n\}_{n \in \mathbb{N}}\)</span> 是<strong>计算不可区分</strong>的，表示为 <span class="arithmatex">\(X \stackrel{c}{\equiv} Y\)</span>，如果对于每一个概率多项式时间的区分器 <span class="arithmatex">\(D\)</span> ，都存在一个可忽略函数 <span class="arithmatex">\(\text{negl}\)</span>，使得：
+<li>
+<p>两个概率总体 <span class="arithmatex">\(X = \{X_n\}_{n \in \mathbb{N}}\)</span> 和 <span class="arithmatex">\(Y = \{Y_n\}_{n \in \mathbb{N}}\)</span> 是<strong>计算不可区分</strong>的，表示为 <span class="arithmatex">\(X \stackrel{c}{\equiv} Y\)</span>，如果对于每一个概率多项式时间的区分器 <span class="arithmatex">\(D\)</span> ，都存在一个可忽略函数 <span class="arithmatex">\(\text{negl}\)</span>，使得：
 $$
 |\Pr[D(1^n, X_n) = 1] - \Pr[D(1^n, Y_n) = 1]| \leq \text{negl}(n)
-$$</li>
-</ul>
+$$</p>
 <p>其中标记 <span class="arithmatex">\(D(1^n, X_n)\)</span> 表明 <span class="arithmatex">\(x\)</span> 的选取符合分布 <span class="arithmatex">\(X_n\)</span> ，然后运行 <span class="arithmatex">\(D(1^n, x)\)</span> 。</p>
-<div class="admonition note">
-<p class="admonition-title">补充</p>
-<p>计算不可区分性具有传递性，即：若 <span class="arithmatex">\(\mathcal{X} \stackrel{c}{\equiv} \mathcal{Y}\)</span> 且 <span class="arithmatex">\(\mathcal{Y} \stackrel{c}{\equiv} \mathcal{Z}\)</span>，则 <span class="arithmatex">\(\mathcal{X} \stackrel{c}{\equiv} \mathcal{Z}\)</span></p>
+</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">计算不可区分性具有传递性，即：若 <span class="arithmatex">\(\mathcal{X} \stackrel{c}{\equiv} \mathcal{Y}\)</span> 且 <span class="arithmatex">\(\mathcal{Y} \stackrel{c}{\equiv} \mathcal{Z}\)</span>，则 <span class="arithmatex">\(\mathcal{X} \stackrel{c}{\equiv} \mathcal{Z}\)</span></p>
 </div>
 <p>伪随机性只是计算不可区分性的一个特例，令 <span class="arithmatex">\(U_{l(n)}\)</span> 表示 <span class="arithmatex">\(\{0,1\}^{l(n)}\)</span> 上的<strong>均匀分布(uniform distribution)</strong>，则有下列定义：</p>
 <ul>
@@ -2600,15 +2639,19 @@ $$</li>
 </ul>
 <h2 id="4">4 构造安全加密方案<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
 <h3 id="4-1">4. 1 一个安全的定长加密方案<a class="headerlink" href="#4-1" title="Permanent link">&para;</a></h3>
-<p>给出使用伪随机发生器的加密方案如下：</p>
-<p><img src="/cryptography/images/image3-2.png" style="display: block; width: 40%; margin: 0 auto;" />
-<br>
-<img src="/cryptography/images/image3-3.png" style="display: block; width: 90%; margin: 0 auto;" />
-<br></p>
+<div class="admonition example">
+<p class="admonition-title">伪随机发生器的加密方案</p>
+<p>令 <span class="arithmatex">\(G\)</span> 是一个带扩展因子 <span class="arithmatex">\(\ell\)</span> 的伪随机发生器。定义一个消息长度为 <span class="arithmatex">\(\ell\)</span> 的对称密钥加密方案如下：</p>
+<ul>
+<li><span class="arithmatex">\(\text{Gen}\)</span>：输入 <span class="arithmatex">\(1^n\)</span> ，输出密钥 <span class="arithmatex">\(k \leftarrow \{0,1\}^n\)</span></li>
+<li><span class="arithmatex">\(\text{Enc}\)</span>：输入密钥 <span class="arithmatex">\(k \in \{0,1\}^n\)</span> 和消息 <span class="arithmatex">\(m \in \{0,1\}^{\ell(n)}\)</span> ，输出密文 <span class="arithmatex">\(c := G(k) \oplus m\)</span></li>
+<li><span class="arithmatex">\(\textnormal{Dec}\)</span>：输入密钥 <span class="arithmatex">\(k \in \{0,1\}^n\)</span> 和密文 <span class="arithmatex">\(c \in \{0,1\}^{\ell(n)}\)</span> ，输出明文 <span class="arithmatex">\(m := G(k) \oplus c\)</span></li>
+</ul>
+</div>
 <ul>
 <li><strong>若 <span class="arithmatex">\(G\)</span> 是伪随机发生器，则上述加密方案是窃听者存在下的不可区分长密钥对称加密方案。</strong></li>
 </ul>
-<details class="abstract">
+<details class="tip">
 <summary>证明（教材中给出的证明方法）</summary>
 <p>假设存在概率多项式时间敌手 <span class="arithmatex">\(\mathcal{A}\)</span> ，定义敌手优势：
 $$
@@ -2662,45 +2705,46 @@ $$</p>
 <h3 id="4-2">4. 2 处理变长消息<a class="headerlink" href="#4-2" title="Permanent link">&para;</a></h3>
 <ul>
 <li>一个确定的多项式时间算法 <span class="arithmatex">\(G\)</span>，如果满足以下三个条件，则 <span class="arithmatex">\(G\)</span> 是一个<strong>输出长度可变的伪随机发生器</strong>，如果满足以下条件：<ol>
-<li>令 <span class="arithmatex">\(s\)</span> 为一个字符串，整数 <span class="arithmatex">\(\ell &gt; 0\)</span>。则 <span class="arithmatex">\(G(s,1^\ell)\)</span> 输出一个长度为 <span class="arithmatex">\(\ell\)</span> 的字符串</li>
+<li>令 <span class="arithmatex">\(s\)</span> 为一个字符串，整数 <span class="arithmatex">\(\ell &gt; 0\)</span>，则 <span class="arithmatex">\(G(s,1^\ell)\)</span> 输出一个长度为 <span class="arithmatex">\(\ell\)</span> 的字符串</li>
 <li>对所有的 <span class="arithmatex">\(s, \ell, \ell'\)</span>， <span class="arithmatex">\(\ell &lt; \ell'\)</span>，字符串 <span class="arithmatex">\(G(s,1^\ell)\)</span> 是 <span class="arithmatex">\(G(s,1^{\ell'})\)</span> 的前缀</li>
 <li>定义 <span class="arithmatex">\(G_\ell(s) \stackrel{\text{def}}{=} G(s,1^{\ell(|s|)})\)</span>，则对于每个多项式 <span class="arithmatex">\(\ell(\cdot)\)</span>，有 <span class="arithmatex">\(G_\ell\)</span> 是一个扩展因子为 <span class="arithmatex">\(\ell\)</span> 的伪随机发生器</li>
 </ol>
 </li>
 </ul>
-<p>任何标准的伪随机发生器都能够被转化成为一个输出长度可变的伪随机发生器。</p>
-<p>与定长加密方案相似的，可以给出构造方案：
+<p>任何标准的伪随机发生器都能够被转化成为一个输出长度可变的伪随机发生器。与定长加密方案相似的，可以给出构造方案：
 $$
 c := G(k,1^{|m|}) \oplus m，m := G(k,1^{|c|}) \oplus c
 $$</p>
 <h3 id="4-3-stream-ciphers">4. 3 流密码（Stream Ciphers）和多个加密<a class="headerlink" href="#4-3-stream-ciphers" title="Permanent link">&para;</a></h3>
 <p>上述构造方案被称作流密码，其加密的执行是先生成一个伪随机比特流，然后将该比特流和明文做异或运算。</p>
-<details class="note">
-<summary>补充</summary>
+<details class="quote">
+<summary>流密码的两种工作机制</summary>
 <p>流密码有同步模式与非同步模式两种工作机制：</p>
 <p><img src="/cryptography/images/image3-5.png" style="display: block; width: 80%; margin: 0 auto;" /></p>
 </details>
-<ul>
-<li>一个对称密钥加密方案 <span class="arithmatex">\(\Pi = (\text{Gen}, \text{Enc}, \text{Dec})\)</span>，如果对所有的概率多项式时间敌手 <span class="arithmatex">\(\mathcal{A}\)</span>，存在一个可忽略函数 <span class="arithmatex">\(\text{negl}\)</span>，满足 
-$$
-\Pr\left[ \text{PrivK}^{\text{mult}}_{\mathcal{A},\Pi}(n) = 1 \right] \leqslant \frac{1}{2} + \text{negl}
-$$</li>
-</ul>
-<p>则称其具备<strong>窃听者存在的情况下不可区分多次加密</strong></p>
-<details class="info">
+<details class="example">
 <summary>多消息窃听实验 <span class="arithmatex">\(\text{PrivK}^{\text{mult}}_{\mathcal{A},\Pi}(n)\)</span></summary>
 <ol>
 <li>敌手 <span class="arithmatex">\(\mathcal{A}\)</span> 被给定输入 <span class="arithmatex">\(1^n\)</span> ，输出一对消息向量 <span class="arithmatex">\(\vec{M_0} = (m_0^1, \dots, m_0^t)\)</span> 以及 <span class="arithmatex">\(\vec{M_1} = (m_1^1, \dots, m_1^t)\)</span> ，对于所有 <span class="arithmatex">\(i\)</span> ，满足 <span class="arithmatex">\(|m_0^i| = |m_1^i|\)</span></li>
 <li>通过运行 <span class="arithmatex">\(\text{Gen}(1^n)\)</span> 生成一个密钥 <span class="arithmatex">\(k\)</span> 和选择一个随机比特 <span class="arithmatex">\(b \leftarrow \{0,1\}\)</span> 。对于所有 <span class="arithmatex">\(i\)</span> ，计算密文 <span class="arithmatex">\(c^i \leftarrow \text{Enc}_k(m_b^i)\)</span> ，并且将密文向量 <span class="arithmatex">\(\vec{C} = (c^1, \dots, c^t)\)</span> 给 <span class="arithmatex">\(\mathcal{A}\)</span></li>
 <li><span class="arithmatex">\(\mathcal{A}\)</span> 输出一个比特 <span class="arithmatex">\(b'\)</span></li>
-<li>如果 <span class="arithmatex">\(b' = b\)</span> ，该实验的输出为 1，否则输出 0。</li>
+<li>如果 <span class="arithmatex">\(b' = b\)</span> ，该实验的输出为 <span class="arithmatex">\(1\)</span>，否则输出 <span class="arithmatex">\(0\)</span>。</li>
 </ol>
 </details>
+<ul>
+<li>
+<p>一个对称密钥加密方案 <span class="arithmatex">\(\Pi = (\text{Gen}, \text{Enc}, \text{Dec})\)</span>，如果对所有的概率多项式时间敌手 <span class="arithmatex">\(\mathcal{A}\)</span>，存在一个可忽略函数 <span class="arithmatex">\(\text{negl}\)</span>，满足 
+$$
+\Pr\left[ \text{PrivK}^{\text{mult}}_{\mathcal{A},\Pi}(n) = 1 \right] \leqslant \frac{1}{2} + \text{negl}
+$$</p>
+<p>则称其具备<strong>窃听者存在的情况下不可区分多次加密</strong>。</p>
+</li>
+</ul>
 <p>值得注意的，<strong>单个加密的安全并不意味着在多次加密下的安全</strong>，即：</p>
 <ul>
 <li>存在这样的对称密钥加密方案，满足窃听者存在情况下不可区分的加密，但不满足窃听者存在情况下不可区分的多次加密。</li>
 </ul>
-<details class="abstract">
+<details class="tip">
 <summary>证明</summary>
 <p>仍然使用前面构造的加密方案，其单次加密的安全性已经得证，构造敌手 <span class="arithmatex">\(\mathcal{A}\)</span> 参与多消息窃听实验 <span class="arithmatex">\(\text{PrivK}^{\text{mult}}_{\mathcal{A},\Pi}(n)\)</span> ，执行如下操作：</p>
 <ul>
@@ -2730,7 +2774,7 @@ $$</li>
 <ul>
 <li>如果存在扩展系数为 <span class="arithmatex">\(l(n) = n + 1\)</span> 的伪随机发生器 <span class="arithmatex">\(\hat{G}\)</span>，那么对于任意多项式 <span class="arithmatex">\(p(n) &gt; n\)</span>，存在扩展系数为 <span class="arithmatex">\(l(n) = p(n)\)</span> 的伪随机发生器 <span class="arithmatex">\(G\)</span> </li>
 </ul>
-<div class="admonition note">
+<div class="admonition example">
 <p class="admonition-title">构造方法</p>
 <p>令输入的种子 <span class="arithmatex">\(s \in \{0,1\}^n\)</span>，则 <span class="arithmatex">\(G'\)</span> 的构造方法如下：</p>
 <ol>
@@ -2740,7 +2784,7 @@ $$</li>
 <li>设 <span class="arithmatex">\(s_i := (\hat{G}(s'_{i-1}), \sigma_{i-1})\)</span> </li>
 <li>输出 <span class="arithmatex">\(s_{p'(n)}\)</span></li>
 </ol>
-<p>简而言之，就是如果我们有一个 “每次能多造 1 位伪随机数” 的基础工具，想造多长的伪随机串，就把这个工具反复用多少次，每次多攒 1 位，最后凑出需要的长度。</p>
+<p>简而言之，就是如果我们有一个 “每次能多造 <span class="arithmatex">\(1\)</span> 位伪随机数” 的基础工具，想造多长的伪随机串，就把这个工具反复用多少次，每次多攒 <span class="arithmatex">\(1\)</span> 位，最后凑出需要的长度。</p>
 <div class="admonition tip">
 <p class="admonition-title">温馨提示</p>
 <p>有时我们使用 <span class="arithmatex">\(||\)</span> 表示拼接，例如上式可以写作 <span class="arithmatex">\(s_i := \hat{G}(s'_{i-1}) \, || \, \sigma_{i-1}\)</span></p>
@@ -2749,93 +2793,103 @@ $$</li>
 <h2 id="5-cpa">5 选择明文攻击（CPA）的安全性<a class="headerlink" href="#5-cpa" title="Permanent link">&para;</a></h2>
 <p><strong>加密预言机 (encryption oracle)</strong> 可视为一个黑盒子，会使用密钥 <span class="arithmatex">\(k\)</span> 加密 <span class="arithmatex">\(\mathcal{A}\)</span> 选择的消息，在 <strong>选择明文攻击 (chosen-plaintext attacks)</strong> 中，敌手 <span class="arithmatex">\(\mathcal{A}\)</span> 被允许和加密预言机自由交互。当 <span class="arithmatex">\(\mathcal{A}\)</span> 询问预言机并提供明文消息 <span class="arithmatex">\(m\)</span> 作为输入时，预言机将返回密文 <span class="arithmatex">\(c \leftarrow \text{Enc}_k(m)\)</span>，当 <span class="arithmatex">\(\text{Enc}\)</span> 是随机的时，预言机每次回答一个询问时都会保证新的随机性。</p>
 <p>安全性的定义要求：即使 <span class="arithmatex">\(\mathcal{A}\)</span> 具备访问加密预言机能力， <span class="arithmatex">\(\mathcal{A}\)</span> 也不能区分两个任意消息的加密。</p>
-<details class="info">
+<details class="example">
 <summary>CPA 不可区分实验 <span class="arithmatex">\(\text{PrivK}^{\text{cpa}}_{\mathcal{A},\Pi}(n)\)</span></summary>
 <ol>
 <li><span class="arithmatex">\(k \leftarrow \text{Gen}(1^n)\)</span></li>
 <li>输入 <span class="arithmatex">\(1^n\)</span> 给敌手 <span class="arithmatex">\(\mathcal{A}\)</span>，敌手 <span class="arithmatex">\(\mathcal{A}\)</span> 可以访问预言机 <span class="arithmatex">\(\text{Enc}_k(\cdot)\)</span> ，输出一对长度相等的消息 <span class="arithmatex">\(m_0, m_1\)</span></li>
 <li><span class="arithmatex">\(b \leftarrow \{0,1\}\)</span>，<span class="arithmatex">\(c \leftarrow \text{Enc}_k(m_b)\)</span>，交给 <span class="arithmatex">\(\mathcal{A}\)</span></li>
 <li>敌手 <span class="arithmatex">\(\mathcal{A}\)</span> 继续访问预言机 <span class="arithmatex">\(\text{Enc}_k(\cdot)\)</span> ，输出一个比特 <span class="arithmatex">\(b'\)</span></li>
-<li>如果 <span class="arithmatex">\(b = b'\)</span>，该实验的输出被定义为 1，否则定义为 0，若 <span class="arithmatex">\(\text{PrivK}^{\text{cpa}}_{\mathcal{A},\Pi}(n) = 1\)</span> ，则认为 <span class="arithmatex">\(\mathcal{A}\)</span> 成功</li>
+<li>如果 <span class="arithmatex">\(b = b'\)</span>，该实验的输出被定义为 <span class="arithmatex">\(1\)</span>，否则定义为 <span class="arithmatex">\(0\)</span>，若 <span class="arithmatex">\(\text{PrivK}^{\text{cpa}}_{\mathcal{A},\Pi}(n) = 1\)</span> ，则认为 <span class="arithmatex">\(\mathcal{A}\)</span> 成功</li>
 </ol>
 </details>
 <ul>
-<li>一个对称密钥加密方案 <span class="arithmatex">\(\Pi = (\text{Gen}, \text{Enc}, \text{Dec})\)</span>，如果对所有的概率多项式敌手 <span class="arithmatex">\(\mathcal{A}\)</span>，存在一个可忽略函数 <span class="arithmatex">\(\text{negl}\)</span>，使得
+<li>
+<p>一个对称密钥加密方案 <span class="arithmatex">\(\Pi = (\text{Gen}, \text{Enc}, \text{Dec})\)</span>，如果对所有的概率多项式敌手 <span class="arithmatex">\(\mathcal{A}\)</span>，存在一个可忽略函数 <span class="arithmatex">\(\text{negl}\)</span>，使得
 $$
 \Pr\left[ \text{PrivK}^{\text{cpa}}_{\mathcal{A},\Pi}(n) = 1 \right] \leqslant \frac{1}{2} + \text{negl}(n)
-$$</li>
-</ul>
+$$</p>
 <p>则是选择明文攻击（CPA）条件下的不可区分加密。</p>
+</li>
+</ul>
 <p><strong>任何方案如果是选择明文攻击条件下的不可区分加密，则也是窃听者存在的情况下不可区分加密</strong>，因为 <span class="arithmatex">\(\text{PrivK}^{\text{eav}}\)</span> 是 <span class="arithmatex">\(\text{PrivK}^{\text{cpa}}\)</span> 的一种特殊情况，即敌手没有使用预言机。</p>
 <p>和多次加密的安全一样，任何确定加密方案都不能抵御选择明文攻击，即：<strong>任何 CPA 安全的加密方案必须是概率性的</strong>。</p>
-<details class="info">
+<details class="example">
 <summary>LR 预言机实验 <span class="arithmatex">\(\text{PrivK}^{\text{LR-cpa}}_{\mathcal{A},\Pi}(n)\)</span></summary>
 <ol>
 <li><span class="arithmatex">\(k \leftarrow \text{Gen}(1^n)\)</span>，<span class="arithmatex">\(b \leftarrow \{0,1\}\)</span></li>
 <li>输入 <span class="arithmatex">\(1^n\)</span> 给敌手 <span class="arithmatex">\(\mathcal{A}\)</span>，敌手 <span class="arithmatex">\(\mathcal{A}\)</span> 可以访问预言机 <span class="arithmatex">\(\text{LR}_{k,b}(\cdot,\cdot)\)</span></li>
 <li>敌手 <span class="arithmatex">\(\mathcal{A}\)</span> 输出一个比特 <span class="arithmatex">\(b'\)</span></li>
-<li>如果 <span class="arithmatex">\(b = b'\)</span>，该实验的输出被定义为 1，否则定义为 0，若 <span class="arithmatex">\(\text{PrivK}^{\text{LR-cpa}}_{\mathcal{A},\Pi}(n) = 1\)</span> ，则认为 <span class="arithmatex">\(\mathcal{A}\)</span> 成功</li>
+<li>如果 <span class="arithmatex">\(b = b'\)</span>，该实验的输出被定义为 <span class="arithmatex">\(1\)</span>，否则定义为 <span class="arithmatex">\(0\)</span>，若 <span class="arithmatex">\(\text{PrivK}^{\text{LR-cpa}}_{\mathcal{A},\Pi}(n) = 1\)</span> ，则认为 <span class="arithmatex">\(\mathcal{A}\)</span> 成功</li>
 </ol>
 </details>
 <p>相似的，将 CPA 单次加密扩展到多次加密，则有：</p>
 <ul>
-<li>一个对称密钥加密方案 <span class="arithmatex">\(\Pi = (\text{Gen}, \text{Enc}, \text{Dec})\)</span>，如果对所有的概率多项式敌手 <span class="arithmatex">\(\mathcal{A}\)</span>，存在一个可忽略函数 <span class="arithmatex">\(\text{negl}\)</span>，使得
+<li>
+<p>一个对称密钥加密方案 <span class="arithmatex">\(\Pi = (\text{Gen}, \text{Enc}, \text{Dec})\)</span>，如果对所有的概率多项式敌手 <span class="arithmatex">\(\mathcal{A}\)</span>，存在一个可忽略函数 <span class="arithmatex">\(\text{negl}\)</span>，使得
 $$
 \Pr\left[ \text{PrivK}^{\text{LR-cpa}}_{\mathcal{A},\Pi}(n) = 1 \right] \leqslant \frac{1}{2} + \text{negl}(n)
-$$</li>
-</ul>
+$$</p>
 <p>则是选择明文攻击（CPA）条件下的不可区分多次加密。</p>
+</li>
+</ul>
 <div class="admonition tip">
 <p class="admonition-title">温馨提示</p>
 <p>CPA 实验是敌手先自由要密文，再选消息对赌密文；LR 实验是敌手直接和预言机赌加密的是左消息还是右消息，两者本质等价，但交互形式和预言机功能不同，LR 实验更直接地刻画了 CPA 下的不可区分性，可直接运用于多次加密。</p>
 </div>
-<p>与窃听敌手（EAV）的情况不同的是，<strong>单次加密的 CPA 安全即意味着多次加密的 CPA 安全</strong>，即：任何在选择明文攻击条件下的不可区分加密的对称密钥加密方案，也是在选择明文攻击条件下的不可区分多次加密方案。</p>
-<details class="warning">
-<summary>证明：混合论证（Hybrid Argument）（待整理）</summary>
-<p>定义 <span class="arithmatex">\(n+1\)</span> 个中间游戏 <span class="arithmatex">\(\text{Game}_0, \text{Game}_1, \dots, \text{Game}_n\)</span>，其中：  </p>
-<p><strong><span class="arithmatex">\(\text{Game}_k\)</span>规则</strong> 为对第 <span class="arithmatex">\(1 \sim k\)</span> 个消息对用 <span class="arithmatex">\(b=1\)</span> 处理，对第 $k+1 \sim n $个消息对用 <span class="arithmatex">\(b=0\)</span> 处理，其返回的密文序列为：
-$$
-(c_1, \dots, c_k, c_{k+1}, \dots, c_n) = (\text{Enc}(sk, m_1^1), \dots, \text{Enc}(sk, m_1^k), \text{Enc}(sk, m_0^{k+1}), \dots, \text{Enc}(sk, m_0^n))
-$$  </p>
-<p>考虑相邻游戏 <span class="arithmatex">\(\text{Game}_k\)</span> 和 <span class="arithmatex">\(\text{Game}_{k+1}\)</span>，二者仅第 <span class="arithmatex">\(k+1\)</span> 个消息对的处理方式不同，构造IND-CPA攻击者 <span class="arithmatex">\(\mathcal{B}\)</span>，其行为如下：<br />
-1. <span class="arithmatex">\(\mathcal{B}\)</span>接收IND-CPA挑战者的公钥<span class="arithmatex">\(pk\)</span>，并需要猜测IND-CPA的挑战比特<span class="arithmatex">\(b\)</span>（<span class="arithmatex">\(b=0\)</span>对应加密<span class="arithmatex">\(m_0\)</span>，<span class="arithmatex">\(b=1\)</span>对应加密<span class="arithmatex">\(m_1\)</span>）。<br />
-2. <span class="arithmatex">\(\mathcal{B}\)</span>模拟<span class="arithmatex">\(\text{Game}_k\)</span>或<span class="arithmatex">\(\text{Game}_{k+1}\)</span>的挑战者，与LR-IND-CPA攻击者<span class="arithmatex">\(\mathcal{A}\)</span>交互：<br />
-  - 接收<span class="arithmatex">\(\mathcal{A}\)</span>提交的<span class="arithmatex">\(n\)</span>个消息对<span class="arithmatex">\((m_0^1, m_1^1), \dots, (m_0^n, m_1^n)\)</span>。<br />
-  - 对第<span class="arithmatex">\(1 \sim k\)</span>个消息对：加密<span class="arithmatex">\(m_1^i\)</span>（生成<span class="arithmatex">\(c_1, \dots, c_k\)</span>）。<br />
-  - 对第<span class="arithmatex">\(k+1\)</span>个消息对：将<span class="arithmatex">\((m_0^{k+1}, m_1^{k+1})\)</span>作为IND-CPA的挑战消息对提交给IND-CPA挑战者，接收挑战密文<span class="arithmatex">\(c_{k+1}\)</span>（此时<span class="arithmatex">\(c_{k+1}\)</span>是<span class="arithmatex">\(\text{Enc}(sk, m_b^{k+1})\)</span>，<span class="arithmatex">\(b\)</span>是IND-CPA的挑战比特）。<br />
-  - 对第<span class="arithmatex">\(k+2 \sim n\)</span>个消息对：加密<span class="arithmatex">\(m_0^i\)</span>（生成<span class="arithmatex">\(c_{k+2}, \dots, c_n\)</span>）。<br />
-  - 将密文序列<span class="arithmatex">\((c_1, \dots, c_n)\)</span>发送给<span class="arithmatex">\(\mathcal{A}\)</span>，接收<span class="arithmatex">\(\mathcal{A}\)</span>的猜测<span class="arithmatex">\(b'\)</span>。<br />
-3. <span class="arithmatex">\(\mathcal{B}\)</span>输出<span class="arithmatex">\(b'\)</span>作为对IND-CPA挑战比特的猜测。  </p>
+<p>与窃听敌手（EAV）的情况不同的是，<strong>单次加密的 CPA 安全即意味着多次加密的 CPA 安全</strong>，即：</p>
 <ul>
-<li>若 IND-CPA 的挑战比特<span class="arithmatex">\(b=0\)</span>，则<span class="arithmatex">\(c_{k+1} = \text{Enc}(sk, m_0^{k+1})\)</span>，此时<span class="arithmatex">\(\mathcal{B}\)</span>模拟的是<span class="arithmatex">\(\text{Game}_k\)</span>；  </li>
-<li>若IND-CPA的挑战比特<span class="arithmatex">\(b=1\)</span>，则<span class="arithmatex">\(c_{k+1} = \text{Enc}(sk, m_1^{k+1})\)</span>，此时<span class="arithmatex">\(\mathcal{B}\)</span>模拟的是<span class="arithmatex">\(\text{Game}_{k+1}\)</span>。  </li>
+<li>任何在选择明文攻击条件下的不可区分加密的对称密钥加密方案，也是在选择明文攻击条件下的不可区分多次加密方案。</li>
 </ul>
-<p>因此，<span class="arithmatex">\(\mathcal{A}\)</span>在<span class="arithmatex">\(\text{Game}_k\)</span>和<span class="arithmatex">\(\text{Game}_{k+1}\)</span>中的区分优势，等于<span class="arithmatex">\(\mathcal{B}\)</span>在IND-CPA中的优势：<br />
-$$
-\left| \Pr[\mathcal{A} \text{在}\text{Game}<em k_1="k+1">k\text{中输出}1] - \Pr[\mathcal{A} \text{在}\text{Game}</em>)
-$$  }\text{中输出}1] \right| = \text{Adv}_{\text{IND-CPA}}(\mathcal{B</p>
-<p>由IND-CPA的安全性，<span class="arithmatex">\(\text{Adv}_{\text{IND-CPA}}(\mathcal{B})\)</span>是<strong>可忽略的</strong>，因此<span class="arithmatex">\(\text{Game}_k\)</span>与<span class="arithmatex">\(\text{Game}_{k+1}\)</span>不可区分。</p>
-<p><span class="arithmatex">\(\because \left| \Pr[\mathcal{A} \text{在}\text{Game}_0\text{中输出}1] - \Pr[\mathcal{A} \text{在}\text{Game}_n\text{中输出}1] \right| \leq \sum_{k=0}^{n-1} \left| \Pr[\mathcal{A} \text{在}\text{Game}_k\text{中输出}1] - \Pr[\mathcal{A} \text{在}\text{Game}_{k+1}\text{中输出}1] \right|\)</span> </p>
+<details class="tip">
+<summary>证明：混合论证（Hybrid Argument）</summary>
+<p>定义 <span class="arithmatex">\(n+1\)</span> 个中间游戏 <span class="arithmatex">\(\text{Game}_0, \text{Game}_1, \dots, \text{Game}_n\)</span>，其中 <span class="arithmatex">\(\text{Game}_k\)</span> 规则为对第 <span class="arithmatex">\(1 \sim k\)</span> 个消息对用 <span class="arithmatex">\(b=1\)</span> 处理，对第 $k+1 \sim n $个消息对用 <span class="arithmatex">\(b=0\)</span> 处理，其返回的密文序列为：</p>
 <div class="arithmatex">\[
-\therefore \text{Adv}_{\text{LR-IND-CPA}}(\mathcal{A}) \leq \sum_{k=0}^{n-1} \text{Adv}_{\text{IND-CPA}}(\mathcal{B}_k)
+(c_1, \cdots, c_k, c_{k+1}, \cdots, c_n) = (\text{Enc}(sk, m_1^1), \cdots, \text{Enc}(sk, m_1^k), \text{Enc}(sk, m_0^{k+1}), \cdots, \text{Enc}(sk, m_0^n))
 \]</div>
-<p>其中<span class="arithmatex">\(\mathcal{B}_k\)</span>是针对第<span class="arithmatex">\(k\)</span>对相邻游戏的归约算法。由于<span class="arithmatex">\(n\)</span>是<strong>多项式有界的</strong>（攻击者<span class="arithmatex">\(\mathcal{A}\)</span>的询问次数在多项式时间内），且每个<span class="arithmatex">\(\text{Adv}_{\text{IND-CPA}}(\mathcal{B}_k)\)</span>是可忽略的，因此总和仍是可忽略的。</p>
+<p>考虑相邻游戏 <span class="arithmatex">\(\text{Game}_k\)</span> 和 <span class="arithmatex">\(\text{Game}_{k+1}\)</span>，二者仅第 <span class="arithmatex">\(k+1\)</span> 个消息对的处理方式不同，即只相差一次 CPA，则：</p>
+<p>因此，<span class="arithmatex">\(\mathcal{A}\)</span>在<span class="arithmatex">\(\text{Game}_k\)</span>和<span class="arithmatex">\(\text{Game}_{k+1}\)</span>中的区分优势，等于<span class="arithmatex">\(\mathcal{B}\)</span>在IND-CPA中的优势：  </p>
+<div class="arithmatex">\[
+\left| \Pr[\mathcal{A} \, \text{outputs 1 in Game}_k] - \Pr[\mathcal{A} \, \text{outputs 1 in Game}_{k+1}] \right| = \text{Adv}_{\text{IND-CPA}}(\mathcal{B})
+\]</div>
+<p>由 IND-CPA 的安全性知 <span class="arithmatex">\(\text{Adv}_{\text{IND-CPA}}(\mathcal{B})\)</span> 是可忽略的，则 <span class="arithmatex">\(\text{Game}_k\)</span> 与 <span class="arithmatex">\(\text{Game}_{k+1}\)</span> 不可区分，则：</p>
+<div class="arithmatex">\[
+\left| \Pr[\mathcal{A} \, \text{outputs 1 in Game}_0] - \Pr[\mathcal{A} \, \text{outputs 1 in Game}_n] \right| \leq \sum_{k=0}^{n-1} \left| \Pr[\mathcal{A} \, \text{outputs 1 in Game}_k] - \Pr[\mathcal{A} \, \text{outputs 1 in Game}_{k+1}] \right|
+\]</div>
+<p><span class="arithmatex">\(\therefore \text{Adv}_{\text{LR-IND-CPA}}(\mathcal{A}) \leq \sum_{k=0}^{n-1} \text{Adv}_{\text{IND-CPA}}(\mathcal{B}_k)\)</span>，为可忽略函数</p>
 </details>
 <h2 id="6-cpa">6 CPA 安全的加密方案构建<a class="headerlink" href="#6-cpa" title="Permanent link">&para;</a></h2>
 <h3 id="6-1-cpa">6. 1 基于伪随机函数的 CPA 安全加密<a class="headerlink" href="#6-1-cpa" title="Permanent link">&para;</a></h3>
-<div class="admonition info">
-<p class="admonition-title">伪随机函数的定义</p>
+<div class="admonition tip">
+<p class="admonition-title">伪随机函数（PRFs, Pseudorandom functions）</p>
 <p>令 <span class="arithmatex">\(F:\{0,1\}^*×\{0,1\}^*→\{0,1\}^*\)</span> 是有效的、长度保留的、带密钥的函数。如果对所有多项式时间区分器 <span class="arithmatex">\(D\)</span>，存在一个可忽略函数 <span class="arithmatex">\(\text{negl}\)</span>，满足：
 $$
 \left| \Pr\left[D^{F_k(\cdot)}(1^n) = 1\right] - \Pr\left[D^{f(\cdot)}(1^n) = 1\right] \right| \leq \text{negl}(n)
 $$</p>
 <p>则称 <span class="arithmatex">\(F\)</span> 是一个伪随机函数，其中 <span class="arithmatex">\(k \leftarrow \{0,1\}^n\)</span> 是均匀随机选择的，并且 <span class="arithmatex">\(f\)</span> 是从将 <span class="arithmatex">\(n\)</span> 比特字符串映射到 <span class="arithmatex">\(n\)</span> 比特字符串的函数集合中均匀随机选择出来的。</p>
 </div>
-<p>设 <span class="arithmatex">\(F\)</span> 是一个伪随机函数，则有构造 CPA 安全的加密方案如下：</p>
 <ul>
-<li><span class="arithmatex">\(k \leftarrow \text{Gen} \, (1^n)\)</span>，<span class="arithmatex">\(c := &lt;r , F_{k}(r) \oplus m&gt;\)</span>，<span class="arithmatex">\(m := F_{k}(r) \oplus s\)</span></li>
-</ul>
+<li>
+<p>设 <span class="arithmatex">\(F\)</span> 是一个伪随机函数，则有构造 CPA 安全的加密方案如下：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">密钥</th>
+<th style="text-align: center;">密文</th>
+<th style="text-align: center;">明文</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(k \leftarrow \text{Gen} \, (1^n)\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(c := &lt;r , F_{k}(r) \oplus m&gt;\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(m := F_{k}(r) \oplus s\)</span></td>
+</tr>
+</tbody>
+</table>
 <p>其中 <span class="arithmatex">\(r\)</span> 为随机数，<span class="arithmatex">\(s = F_{k}(r) \oplus m\)</span></p>
+</li>
+</ul>
 <h3 id="6-2">6. 2 伪随机置换和分组加密<a class="headerlink" href="#6-2" title="Permanent link">&para;</a></h3>
 <div class="admonition tip">
 <p class="admonition-title">伪随机置换 (Pseudorandom Permutations)</p>

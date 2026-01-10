@@ -949,6 +949,29 @@
   
   
     <li class="md-nav__item">
+      <a href="../6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6 数论和密码学困难性假设
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../midterm/" class="md-nav__link">
         
   
@@ -2125,24 +2148,17 @@
 <li><strong>解密算法 <span class="arithmatex">\(\text{Dec}_k(c)\)</span></strong>：输入为密钥 <span class="arithmatex">\(k\)</span> 和密文<span class="arithmatex">\(c\)</span>，输出明文 <span class="arithmatex">\(m\)</span></li>
 <li><strong>密钥空间 <span class="arithmatex">\(\mathcal{K}\)</span></strong>：<span class="arithmatex">\(\text{Gen}\)</span> 输出的所有可能的密钥</li>
 <li><strong>明文（或消息）空间 <span class="arithmatex">\(\mathcal{M}\)</span></strong>：所有合法消息（即被加密算法支持的消息）的集合</li>
+<li>集合 <span class="arithmatex">\(\mathcal{K}\)</span> 和 <span class="arithmatex">\(\mathcal{M}\)</span> 共同定义了所有可能密文的集合 <span class="arithmatex">\(\mathcal{C}\)</span>，一个加密方案可通过明确 <span class="arithmatex">\(\text{Gen, Enc, Dec}\)</span> 三个算法和明文空间 <span class="arithmatex">\(\mathcal{M}\)</span> 来完全定义。</li>
 </ul>
-<div class="admonition tip">
-<p class="admonition-title">注意</p>
-<p>集合 <span class="arithmatex">\(\mathcal{K}\)</span> 和 <span class="arithmatex">\(\mathcal{M}\)</span> 共同定义了所有可能密文的集合 <span class="arithmatex">\(\mathcal{C}\)</span>，一个加密方案可通过明确 <span class="arithmatex">\(\text{Gen, Enc, Dec}\)</span> 三个算法和明文空间 <span class="arithmatex">\(\mathcal{M}\)</span> 来完全定义。</p>
-</div>
 <p><img src="/cryptography/images/image1-1.png" style="display: block; width: 60%; margin: 0 auto;" /></p>
 <ul>
-<li>对任意加密方案的基本要求是，对于任意通过 <span class="arithmatex">\(\text{Gen}\)</span> 输出的密钥 <span class="arithmatex">\(k\)</span>，每个明文消息 <span class="arithmatex">\(m \in \mathcal{M}\)</span>，满足：
-$$
-\text{Dec}_k(\text{Enc}_k(m)) = m
-$$</li>
+<li>
+<p>对任意加密方案的基本要求是，对于任意通过 <span class="arithmatex">\(\text{Gen}\)</span> 输出的密钥 <span class="arithmatex">\(k\)</span>，每个明文消息 <span class="arithmatex">\(m \in \mathcal{M}\)</span>，满足：<span class="arithmatex">\(\text{Dec}_k(\text{Enc}_k(m)) = m\)</span></p>
+</li>
+<li>
+<p><strong>加密方案的正确性</strong>：<span class="arithmatex">\(\forall m \in M,\ {\Pr}\ [Dec(Enc(sk,m))=m]=1\)</span></p>
+</li>
 </ul>
-<details class="info">
-<summary>加密方案的正确性</summary>
-<div class="arithmatex">\[
-\forall m \in M,\ {\Pr}\ [Dec(Enc(sk,m))=m]=1
-\]</div>
-</details>
 <h3 id="1-2-kerckhoffs">1. 2 Kerckhoffs 原则<a class="headerlink" href="#1-2-kerckhoffs" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>加密方案本身不必保密，唯一需要保密的是通信双方共享的秘密密钥</strong></li>
@@ -2164,8 +2180,11 @@ $$</li>
 <li><strong>选择密文攻击（Chosen-ciphertext attack）</strong>：敌手可以选择密文并得到相应的明文，目的是确定其他密文的明文</li>
 </ol>
 <h2 id="2">2 古典加密术及其密钥分析<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
-<p>对于 <strong>移位加密（shift ciper）</strong>，密文字符 <span class="arithmatex">\(c_i = (m_i + k) \bmod 26\)</span>，明文字符 <span class="arithmatex">\(m_i = (c_i - k) \bmod 26\)</span>，<strong>凯撒加密（Caesar’s cipher, k=3）</strong> 和 <strong>ROT-13（k=13）</strong> 可以视为移位加密的特例。</p>
-<p>由于密钥数量只有 26 个，使用 <strong>蛮力攻击（brute-force attack）</strong> 或 <strong>穷举攻击（exhaustive-search attack）</strong> 很容易就能破解，故无安全性。</p>
+<ul>
+<li><strong>移位加密（shift ciper）</strong>：<span class="arithmatex">\(c_i = (m_i + k) \bmod 26\)</span>，<span class="arithmatex">\(m_i = (c_i - k) \bmod 26\)</span></li>
+<li><strong>凯撒加密（Caesar’s cipher, k=3）</strong>和<strong>ROT-13（k=13）</strong>可以视为移位加密的特例</li>
+<li>由于密钥数量只有 26 个，使用<strong>蛮力攻击（brute-force attack）</strong>或<strong>穷举攻击（exhaustive-search attack）</strong>很容易就能破解，故无安全性</li>
+</ul>
 <div class="admonition tip">
 <p class="admonition-title">密钥空间充分性原则（sufficient key-space principle）</p>
 <p>任何安全的加密方案必须拥有一个能够抵御穷举搜索的密钥空间。</p>
@@ -2186,7 +2205,7 @@ I_j \stackrel{\text{def}}{=} \sum_{i=0}^{25} p_i \cdot q_{i+j}
 $$</p>
 <p>期望发现 <span class="arithmatex">\(I_k \approx 0.065\)</span>，，故 <strong>密钥恢复攻击（key-recovery attack）</strong> 非常容易自动进行：<strong>对于所有 <span class="arithmatex">\(j\)</span> 计算 <span class="arithmatex">\(I_j\)</span>，并输出所有 <span class="arithmatex">\(I_k\)</span> 接近 <span class="arithmatex">\(0.065\)</span> 的 <span class="arithmatex">\(k\)</span></strong></p>
 </details>
-<p><strong>弗吉尼亚加密（Vigenere ciper）</strong>又称<strong>多字母移位加密（poly-alphabetic shift cipher）</strong>，依次运用多个移位加密，破解这种加密方法看似困难，但可以使用 Kasiski 方法进行破解，在 CTF101 中有相应例题，这里不过多赘述。</p>
+<p><strong>弗吉尼亚加密（Vigenere ciper）</strong>又称<strong>多字母移位加密（poly-alphabetic shift cipher）</strong>，依次运用多个移位加密，破解这种加密方法看似困难，但可以使用 Kasiski 方法进行破解，在 CTF 短学期课程中有相应讲解，这里不过多赘述。</p>
 <p><img src="/cryptography/images/image1-3.png" style="display: block; width: 50%; margin: 0 auto;" /></p>
 <h2 id="3">3 现代密码学的基本原则<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
 <ol>
