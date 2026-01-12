@@ -1,0 +1,2975 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../physics2/midterm_review/">
+      
+      
+        <link rel="next" href="../../cryptography/resource/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>期末复习 - sodasugar的笔记本</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="sodasugar的笔记本" class="md-header__button md-logo" aria-label="sodasugar的笔记本" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            sodasugar的笔记本
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              期末复习
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="sodasugar的笔记本" class="md-nav__button md-logo" aria-label="sodasugar的笔记本" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    sodasugar的笔记本
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    首页
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    通识课
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            通识课
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    大物乙Ⅱ
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            大物乙Ⅱ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/%E7%89%A9%E7%90%86%E5%AD%A6%E5%8D%95%E4%BD%8D%E6%8D%A2%E7%AE%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    物理学单位换算
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 静电场
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 静电场中的导体和电介质
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 电流和磁场
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 物质中的磁场
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5 电磁感应
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6 麦克斯韦方程与电磁波
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 7 光的干涉
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 8 光的衍射
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 9 光的偏振
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 10 光的量子论
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 11 玻尔的原子模型
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 12 量子力学初步
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/midterm_review/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    期中小结
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    大物实验
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            大物实验
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    期末复习
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    期末复习
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1 绪论
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 示波器的使用
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2 示波器的使用">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 1 实验原理
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 1 实验原理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2-1-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 1. 1 示波管工作原理
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-1-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 1. 2 波形扫描原理
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-1-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 1. 3 李萨如图形
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 2 实验仪器的基本调节方法
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 3 实验内容
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 3 实验内容">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2-3-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 3. 1 电压的测量
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-3-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 3. 2 频率或周期的测量
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-3-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 3. 5 二极管正向导通电压测量
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-3-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 3. 6 相位差的测量
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 分光计的调整和使用
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3 分光计的调整和使用">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#3-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 1 实验原理
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 1 实验原理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#3-1-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 1. 1 反射法测量三棱镜棱角
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-1-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 1. 2 自准直法（望远镜调焦无穷远）
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 2 实验装置
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 2 实验装置">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#3-2-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 2. 1 望远镜
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-2-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 2. 2 平行光管
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-2-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 2. 3 载物平台
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-2-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 2. 4 读数装置
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 3 实验内容
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 3 实验内容">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#3-3-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 3. 1 粗调
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-3-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 3. 2 望远镜调焦无穷远
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-3-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 3. 3 调整望远镜光轴、载物平台面与分光计中心轴垂直
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-3-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 3. 4 调整平行光管光轴与分光计中心轴垂直
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    专业课
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            专业课
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    数据安全与密码学基础
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            数据安全与密码学基础
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/resource/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    资源索引
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 概论
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 完善保密加密
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 对称密钥加密以及伪随机性
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 消息鉴别码
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5 哈希函数
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6 数论和密码学困难性假设
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/midterm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    期中考试卷
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    高级数据结构与算法分析
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            高级数据结构与算法分析
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/resource/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    资源索引
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2_2" id="__nav_3_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    题目集
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            题目集
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/blank/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    程序填空题集锦
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/function/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    函数题集锦
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1 AVL Trees, Splay Trees and Amortized Analysis
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2 Red-Black Trees and B+ Trees
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3 Inverted File Index
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    4 Leftist Heaps and Skew Heaps
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    5 Binomial Queue
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    6 Backtracking
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    7 Divide and Conquer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    8 Dynamic Programming
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    9 Greedy Algorithms
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    10 P/NP Problems
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    11 Approximation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    12 Local Search
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    13 Randomized Algorithms
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    14 Parallel Algorithms
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/15/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    15 External Sorting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/cheatsheet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    期中考 cheat sheet
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/midterm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    期中考试
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    计算机系统Ⅱ
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            计算机系统Ⅱ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 ISA Review
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 Design of Pipelining
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 Hazard of Pipelining
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 Software-Hardware Interface
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5 Intro&Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6 Structures
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 7 Processes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 8 CPU Scheduling
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 9 Synchronization
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    选修课
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            选修课
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    英语口译
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            英语口译
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interpret/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1 Ceremonial Speech
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interpret/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2 Tourism
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interpret/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3 Culture and Education
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interpret/5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    5 International Reports
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interpret/text/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    课堂文本
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interpret/cheatsheet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    真题
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1 绪论
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 示波器的使用
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2 示波器的使用">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 1 实验原理
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 1 实验原理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2-1-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 1. 1 示波管工作原理
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-1-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 1. 2 波形扫描原理
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-1-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 1. 3 李萨如图形
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 2 实验仪器的基本调节方法
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 3 实验内容
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 3 实验内容">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2-3-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 3. 1 电压的测量
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-3-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 3. 2 频率或周期的测量
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-3-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 3. 5 二极管正向导通电压测量
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-3-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 3. 6 相位差的测量
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 分光计的调整和使用
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3 分光计的调整和使用">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#3-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 1 实验原理
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 1 实验原理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#3-1-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 1. 1 反射法测量三棱镜棱角
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-1-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 1. 2 自准直法（望远镜调焦无穷远）
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 2 实验装置
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 2 实验装置">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#3-2-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 2. 1 望远镜
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-2-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 2. 2 平行光管
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-2-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 2. 3 载物平台
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-2-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 2. 4 读数装置
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 3 实验内容
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 3 实验内容">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#3-3-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 3. 1 粗调
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-3-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 3. 2 望远镜调焦无穷远
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-3-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 3. 3 调整望远镜光轴、载物平台面与分光计中心轴垂直
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-3-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 3. 4 调整平行光管光轴与分光计中心轴垂直
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="_1">期末复习<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<h2 id="1">1 绪论<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<h2 id="2">2 示波器的使用<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<div class="admonition quote">
+<p class="admonition-title">示波器的功能简述</p>
+<ol>
+<li>示波器是用途广泛的电子测量仪器，核心功能是<strong>观测电信号波形（电压与时间关系）</strong>，可直接测量<strong>幅度、周期、频率、相位</strong>等参数。</li>
+<li>配合<strong>传感器</strong>，可观测<strong>转化为电压的电学量（电流、电功率、电抗等）</strong>和<strong>非电学量（温度、位移、速度、压力、光强、磁场等）</strong>。</li>
+<li><strong>双踪示波器</strong>可测两个信号的<strong>时间差</strong>，高性能示波器能<strong>存储</strong>电信号用于分析比较。</li>
+</ol>
+</div>
+<h3 id="2-1">2. 1 实验原理<a class="headerlink" href="#2-1" title="Permanent link">&para;</a></h3>
+<h4 id="2-1-1">2. 1. 1 示波管工作原理<a class="headerlink" href="#2-1-1" title="Permanent link">&para;</a></h4>
+<ul>
+<li>示波器基本组成：<strong>示波管、放大器（<span class="arithmatex">\(X\)</span> 轴放大 <span class="arithmatex">\(+\)</span> <span class="arithmatex">\(Y\)</span> 轴放大）、扫描与触发同步系统、电源</strong>。</li>
+<li>示波管结构：密封在高真空玻璃壳内的<strong>电子枪、偏转系统、荧光屏</strong>三部分。<ul>
+<li>电子枪：灯丝加热阴极，阴极发射大量电子，电子经控制栅极和阳极小孔，在电场作用下高速射向荧光屏。</li>
+<li>偏转系统：<span class="arithmatex">\(Y\)</span>（或 <span class="arithmatex">\(X\)</span>）偏转板加电压时，电子束受电场力偏转，<strong>荧光屏亮点位移与偏转板间电压成正比</strong>（<span class="arithmatex">\(X、Y\)</span> 轴电压需放大）。</li>
+<li>荧光屏：荧光物质在电子轰击下发光，呈现亮点。</li>
+</ul>
+</li>
+</ul>
+<p><img src="/cpe/images/image1.png" style="display: block; width: 60%; margin: 0 auto;" /></p>
+<h4 id="2-1-2">2. 1. 2 波形扫描原理<a class="headerlink" href="#2-1-2" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>扫描电压</strong>：<span class="arithmatex">\(X\)</span> 轴偏转板（即水平偏转板）加有的<strong>周期性锯齿波电压</strong></li>
+</ul>
+<p><img src="/cpe/images/image2.png" style="display: block; width: 40%; margin: 0 auto;" /></p>
+<details class="quote">
+<summary>水平基线的形成过程</summary>
+<ul>
+<li>扫描电压随时间均匀增大，光点沿 <span class="arithmatex">\(X\)</span> 轴自左向右匀速移动，因荧光粉余辉和人眼视觉暂留，屏上形成水平时间基线。</li>
+<li>扫描电压达最大值后迅速返回原点，重复产生锯齿波时，亮点往复运动，频率较快时呈现水平亮线，此过程为扫描。</li>
+</ul>
+</details>
+<ul>
+<li>
+<p>稳定波形条件：<span class="arithmatex">\(X\)</span> 轴加扫描电压的同时，<span class="arithmatex">\(Y\)</span> 轴加待测正弦电压，当正弦电压周期 <span class="arithmatex">\(T_y\)</span> 与锯齿波电压周期 <span class="arithmatex">\(T_x\)</span> 满足 <span class="arithmatex">\(T_x = nT_y\)</span>（<span class="arithmatex">\(n\)</span> 为正整数 <span class="arithmatex">\(1, 2, \cdots\)</span>）时，屏上显示清晰稳定的波形。</p>
+<ul>
+<li><span class="arithmatex">\(n=1\)</span>：显示 <span class="arithmatex">\(1\)</span> 个完整波形；</li>
+<li><span class="arithmatex">\(n=2\)</span>：显示 <span class="arithmatex">\(2\)</span> 个完整波形，以此类推。</li>
+</ul>
+<p><img src="/cpe/images/image3.png" style="display: block; width: 40%; margin: 0 auto;" /></p>
+</li>
+<li>
+<p>波形移动规律：<span class="arithmatex">\(T_y &gt; T_x\)</span> 时波形向右移动；<span class="arithmatex">\(T_y &lt; T_x\)</span> 时波形向左移动。</p>
+</li>
+</ul>
+<h4 id="2-1-3">2. 1. 3 李萨如图形<a class="headerlink" href="#2-1-3" title="Permanent link">&para;</a></h4>
+<ul>
+<li>形成条件：<span class="arithmatex">\(X\)</span> 轴和 <span class="arithmatex">\(Y\)</span> 轴均输入正弦变化电压信号，两信号频率相同或成简单整数比，电子束做两个相互垂直谐振动的合振动，荧光屏描绘的合成图形即为李萨如图形。</li>
+<li><span class="arithmatex">\(f_y : f_x = N_x : N_y\)</span>，其中 <span class="arithmatex">\(N_y\)</span>、<span class="arithmatex">\(N_x\)</span> 为 <span class="arithmatex">\(Y、X\)</span>方向一条直线与李萨如图形相交的最多交点个数（或相切的最少切点个数）。</li>
+</ul>
+<p><img src="/cpe/images/image4.png" style="display: block; width: 40%; margin: 0 auto;" /></p>
+<ul>
+<li><span class="arithmatex">\(f_{y}\)</span> 和 <span class="arithmatex">\(f_{x}\)</span> 之比越接近整数比关系，李萨如图翻转速度越慢，即越稳定；反之则翻转越快、越不稳定。</li>
+<li>在观察李萨如图实验中，示波器应处于 <span class="arithmatex">\(X-Y\)</span> 状态。</li>
+</ul>
+<h3 id="2-2">2. 2 实验仪器的基本调节方法<a class="headerlink" href="#2-2" title="Permanent link">&para;</a></h3>
+<details class="quote">
+<summary>SS-7804 示波器前面板各部分功能</summary>
+<p><img src="/cpe/images/image6.png" style="display: block; width: 80%; margin: 0 auto;" /></p>
+<ul>
+<li>电源开关：控制仪器电源通断。</li>
+<li>调整旋钮：含屏幕亮度（INTEN）、屏幕读出亮度（READOUT）、聚焦（FOCUS）、标尺亮度（SCALE）四个旋钮。</li>
+<li>校正电压输出及接地：<ul>
+<li>CAL 连接器：输出 <span class="arithmatex">\(1 \, \text{kHz}\)</span>、<span class="arithmatex">\(0.6 \, U_{PP}\)</span> 的校正电压信号，用于仪器操作检测和探头波形调整；</li>
+<li>接地端：用于接地测量。</li>
+</ul>
+</li>
+<li>垂直调节部分：<ul>
+<li>接口：CH1、CH2（输入信号连接）、EXT（触发源连接）；</li>
+<li>旋钮/按钮：VOLTS/DIV（偏转因数选择）、POSITION（垂直位移调节）、CH1/CH2（通道显示选择）、GND（接地选择）、DC/AC（交直流耦合选择）、ADD（CH1与CH2信号叠加）、INV（倒相选择）。</li>
+</ul>
+</li>
+<li>水平调节部分：<ul>
+<li>旋钮/按钮：POSITION（水平位移调节）、TIME/DIV（扫描速率和幅度选择）、FINE（水平位移微调）、MAGx10（光标水平扫描速度扩大10倍）、ALT（交替显示模式）、CHOP（断续显示模式）。</li>
+</ul>
+</li>
+<li>触发部分：TRIG LEVEL（触发电平幅值调节）、SLOPE（触发斜率选择）、SOURCE（触发源选择）、COUPL（触发耦合模式选择）。</li>
+<li>水平显示模式：A（单踪或双踪显示选择）、X-Y（李萨如图等闭合曲线显示选择）。</li>
+<li>扫描模式选择：AUTO（自动）、NORM（常态）、SCL/RST（扫描复位）。</li>
+<li>FUNCTION：光标测量功能。</li>
+</ul>
+<p><img src="/cpe/images/image7.png" style="display: block; width: 60%; margin: 0 auto;" /></p>
+</details>
+<ol>
+<li>调节亮度（INTEN）和<strong>聚焦（FOCUS）</strong>旋钮，使屏幕显示<strong>清晰光点/波形</strong>。</li>
+<li>选择合适触发源（SOURCE 键）和触发耦合（COUP L键）。</li>
+<li>调节水平（POSITION）和垂直（POSITION）位移旋钮，配合 VOLTS/DIV（偏转因数）、TIME/DIV（扫描速率）旋钮，使屏幕显示合适大小的波形。</li>
+<li>若<strong>波形左移或右移</strong>，调节<strong>触发电平幅值（TRIG LEVEL 旋钮）</strong>使波形稳定。</li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">温馨提示</p>
+<ul>
+<li>欲在<strong>纵向放大图形</strong>，应当<strong>调小 VOLTS/DIV 的档位</strong>（纵向是电压轴，每格代表的电压越小，波形纵向放大）。</li>
+<li>欲<strong>减少屏幕上波形个数</strong>，应当<strong>调大 TIME/DIV 的档位</strong>（扫描速度变慢，波形被拉长，显示个数减少），同时还需相应<strong>调节 TRIG LEVEL</strong></li>
+</ul>
+</div>
+<h3 id="2-3">2. 3 实验内容<a class="headerlink" href="#2-3" title="Permanent link">&para;</a></h3>
+<h4 id="2-3-1">2. 3. 1 电压的测量<a class="headerlink" href="#2-3-1" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>测量方法</th>
+<th>操作步骤</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>直接测量法</strong></td>
+<td>. 旋转 CH1/CH2 的 VOLTS/DIV 选择偏转因数 <span class="arithmatex">\(D\)</span> <br> 2. 调节垂直位移旋钮，使波形固定在某一位置 <br> 3. 读出正弦波峰 <span class="arithmatex">\(-\)</span> 峰所占高度 <span class="arithmatex">\(h\)</span>，计算被测电压峰 <span class="arithmatex">\(-\)</span> 峰值 <span class="arithmatex">\(U_{p-p} = D \cdot h\)</span></td>
+</tr>
+<tr>
+<td><strong>光标测量法</strong></td>
+<td>1. 按下 <span class="arithmatex">\(\Delta U-\Delta t-OFF\)</span> 选择 <span class="arithmatex">\(\Delta U\)</span>，屏上出现两条水平光标 <br> 2. 按下 TCK/C2 选择其中一条光标（光标前出现小亮线），通过 FUNCTION 旋钮调至目标位置 <br> 3. 再选择另一条光标调至另一目标位置，屏幕下方显示的两光标间距即为 <span class="arithmatex">\(U_{p-p}\)</span></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">注意</p>
+<p>由于直接测量法是直接从标尺上读取，所以测量的精确度会受<strong>光迹的宽度、人眼的视差以及衰减器与放大器的误差</strong>限制。</p>
+</div>
+<h4 id="2-3-2">2. 3. 2 频率或周期的测量<a class="headerlink" href="#2-3-2" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>测量方法</th>
+<th>操作步骤</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>直接测量法</strong></td>
+<td>旋转 TIME/DIV 选择时基因素 <span class="arithmatex">\(Q\)</span>，测出信号一个周期占有的格数 <span class="arithmatex">\(x\)</span>，计算周期 <span class="arithmatex">\(T_x=Q \cdot x\)</span> 后求频率 <span class="arithmatex">\(f=1/T_x\)</span></td>
+</tr>
+<tr>
+<td><strong>光标测量法</strong></td>
+<td>按下 <span class="arithmatex">\(\Delta U-\Delta t-OFF\)</span> 选择 <span class="arithmatex">\(\Delta t\)</span>，屏上出现两条垂直光标，参照电压光标测量法，调节光标位置，测量周期</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">注意</p>
+<p>光标测量法需进行时基信号校准，测量误差约 <span class="arithmatex">\(±5 \%\)</span>，可通过示波器自带的标准检验信号（幅度、频率准确，正弦波或方波）鉴定仪器状态，将其接入 <span class="arithmatex">\(Y\)</span> 轴，观察显示是否与标准信号一致。</p>
+</div>
+<h4 id="2-3-5">2. 3. 5 二极管正向导通电压测量<a class="headerlink" href="#2-3-5" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>实验原理</strong>：晶体二极管<strong>单向导通</strong>，具有<strong>整流</strong>作用。</li>
+<li><strong>线路连接</strong>：信号发生器输出端接电路输入端，示波器 CH1 接电路输入端，CH2 接电路输出端。</li>
+<li><strong>操作步骤</strong>：示波器置于 <span class="arithmatex">\(A\)</span> 状态，调节信号发生器（频率 <span class="arithmatex">\(2 \, \text{kHz}\)</span>，电压 <span class="arithmatex">\(5 \, \text{V}\)</span>），测量 CH1 信号峰 <span class="arithmatex">\(-\)</span> 峰值 <span class="arithmatex">\(U_{1p-p}\)</span> 和 CH2 半波信号的峰值 <span class="arithmatex">\(U_{2p}\)</span>，正向导通电压 <span class="arithmatex">\(=\frac{U_{1p-p}}{2}-U_{2p}\)</span>（理论值 <span class="arithmatex">\(0.6 - 0.7 \, \text{V}\)</span>）。</li>
+</ul>
+<h4 id="2-3-6">2. 3. 6 相位差的测量<a class="headerlink" href="#2-3-6" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>实验原理</strong>：利用双踪信号测量两信号（电容导致输出信号滞后输入信号）的相位差。</li>
+<li><strong>线路连接</strong>：信号发生器输出端接电路输入端，示波器CH1接电路输入端，CH2接电路输出端。</li>
+<li><strong>操作步骤</strong>：示波器置于 <span class="arithmatex">\(A\)</span> 状态，调节信号发生器（频率 <span class="arithmatex">\(2 \, \text{kHz}\)</span>，电压 <span class="arithmatex">\(5 \, \text{V}\)</span>），测量正弦波一个周期在 <span class="arithmatex">\(X\)</span> 方向所占距离 <span class="arithmatex">\(x\)</span>，测量 <span class="arithmatex">\(X\)</span> 方向上两波形起点（或波峰）间的距离 <span class="arithmatex">\(x_1\)</span>。（电容损耗会导致两信号幅度不等，可测波峰间距作为 <span class="arithmatex">\(x_1\)</span>）</li>
+<li><strong>公式</strong>：相位差 <span class="arithmatex">\(\Delta \Phi=\frac{x_1(cm)}{x(cm)} ×360^{\circ}\)</span></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">注意：亮度（辉度）不可过高，禁止亮点长时间固定在同一位置。</p>
+</div>
+<h2 id="3">3 分光计的调整和使用<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
+<div class="admonition quote">
+<p class="admonition-title">分光计的功能简述</p>
+<p>分光计又称<strong>测角仪</strong>，是<strong>测量光线偏转角</strong>的精密光学仪器，可通过测量角度推导光波<strong>波长、折射率、光栅常量</strong>等物理量，使用前必须调整，以保证测量精度、减小误差。</p>
+</div>
+<h3 id="3-1">3. 1 实验原理<a class="headerlink" href="#3-1" title="Permanent link">&para;</a></h3>
+<h4 id="3-1-1">3. 1. 1 反射法测量三棱镜棱角<a class="headerlink" href="#3-1-1" title="Permanent link">&para;</a></h4>
+<ul>
+<li>棱角 <span class="arithmatex">\(∠A = \dfrac{\alpha}{2}\)</span>，其中 <span class="arithmatex">\(\alpha\)</span> 反射光线的夹角。</li>
+</ul>
+<p><img src="/cpe/images/image8.png" style="display: block; width: 40%; margin: 0 auto;" /></p>
+<ul>
+<li>分光计读数装置设计成相对的两个读数窗 <span class="arithmatex">\(I\)</span> 和 <span class="arithmatex">\(II\)</span>，其目的是<strong>消除偏心差</strong>，<strong>减小系统误差</strong>。<ul>
+<li><span class="arithmatex">\(α_I = |∠右_I - ∠左_I|\)</span>，<span class="arithmatex">\(α_{II} = |∠右_{II} - ∠左_{II}|\)</span>，<span class="arithmatex">\(α = \dfrac{(α_I + α_{II})}{2}\)</span></li>
+</ul>
+</li>
+<li>在拿放三棱镜时<strong>不能直接触碰其光学表面</strong>，只能拿磨砂的非光学面或棱边。</li>
+<li>利用棱脊分束法测量三棱镜顶角时，棱镜应当摆放在<strong>载物台中心偏下（靠近望远镜）</strong>的位置。</li>
+</ul>
+<h4 id="3-1-2">3. 1. 2 自准直法（望远镜调焦无穷远）<a class="headerlink" href="#3-1-2" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>原理</strong>：载物平台上放置镜面垂直于望远镜光轴的平面反射镜，调节亮十字与物镜的距离，若亮十字在物镜焦平面上，其发出的光经物镜变为平行光，经反射镜反射后，经物镜所成的亮十字像会准确落在亮十字所在平面。</li>
+<li><strong>判定标准</strong>：在亮十字所在平面看到清晰的反射亮十字像时，望远镜已调焦至无穷远。</li>
+</ul>
+<p><img src="/cpe/images/image9.png" style="display: block; width: 40%; margin: 0 auto;" /></p>
+<h3 id="3-2">3. 2 实验装置<a class="headerlink" href="#3-2" title="Permanent link">&para;</a></h3>
+<p><img src="/cpe/images/image10.png" style="display: block; width: 70%; margin: 0 auto;" /></p>
+<h4 id="3-2-1">3. 2. 1 望远镜<a class="headerlink" href="#3-2-1" title="Permanent link">&para;</a></h4>
+<ul>
+<li>作用：观察和确定光线行进方向。</li>
+<li>组成：物镜、目镜、全反射小棱镜、带 <span class="arithmatex">\(+\)</span> 形叉丝的分划板、灯珠。<ul>
+<li>小棱镜紧贴分划板的一面刻有透光十字，灯珠光线经棱镜反射后，由物镜投射到反射镜，反射回的像为亮十字像。</li>
+</ul>
+</li>
+<li>关键判定：当望远镜光轴与反射镜镜面垂直时，亮十字像与分划板“十”形叉丝的上刻线重合。</li>
+</ul>
+<p><img src="/cpe/images/image11.png" style="display: block; width: 40%; margin: 0 auto;" /></p>
+<div class="admonition tip">
+<p class="admonition-title">望远镜的调节顺序：目镜 <span class="arithmatex">\(\rightarrow\)</span> 物镜 <span class="arithmatex">\(\rightarrow\)</span> 倾角</p>
+</div>
+<h4 id="3-2-2">3. 2. 2 平行光管<a class="headerlink" href="#3-2-2" title="Permanent link">&para;</a></h4>
+<ul>
+<li>作用：产生平行光。</li>
+<li>组成：可改变缝宽的狭缝、会聚透镜，狭缝至透镜距离可调节。</li>
+<li>平行光条件：狭缝位于透镜焦平面时，入射光束经透镜后为平行光。</li>
+</ul>
+<p><img src="/cpe/images/image12.png" style="display: block; width: 40%; margin: 0 auto;" /></p>
+<h4 id="3-2-3">3. 2. 3 载物平台<a class="headerlink" href="#3-2-3" title="Permanent link">&para;</a></h4>
+<ul>
+<li>作用：放置光学元件（反射镜、三棱镜等）。</li>
+<li>调节结构：平台下有 <span class="arithmatex">\(3\)</span> 个倾斜度调节螺钉，可改变平台倾斜度，高度可升降，也可绕分光计的主轴转动。</li>
+<li>反射镜放置方法：垂直于 1、2 脚连线且通过平台中心，或平行于1、2脚连线且通过平台中心。</li>
+</ul>
+<p><img src="/cpe/images/image13.png" style="display: block; width: 40%; margin: 0 auto;" /></p>
+<h4 id="3-2-4">3. 2. 4 读数装置<a class="headerlink" href="#3-2-4" title="Permanent link">&para;</a></h4>
+<ul>
+<li>关联关系：望远镜与刻度盘相连，载物台与角游标相连，通过两读数窗（I窗、II窗，相隔 <span class="arithmatex">\(180°\)</span>）读取相对转动角度。</li>
+<li>精度参数：<ul>
+<li>主刻度盘每小格 <span class="arithmatex">\(20'\)</span>，角游标最小分度 <span class="arithmatex">\(30''\)</span></li>
+<li>角游标 <span class="arithmatex">\(40\)</span> 分格弧长与刻度盘 <span class="arithmatex">\(39\)</span> 分格弧长相等，每小格差值 <span class="arithmatex">\(30''\)</span></li>
+</ul>
+</li>
+<li>读数方法：角游标 <span class="arithmatex">\(0\)</span> 刻线对应的刻度盘角度 <span class="arithmatex">\(+\)</span> 刻度盘与角游标对齐刻线对应的游标角度</li>
+</ul>
+<h3 id="3-3">3. 3 实验内容<a class="headerlink" href="#3-3" title="Permanent link">&para;</a></h3>
+<div class="admonition tip">
+<p class="admonition-title">核心要求</p>
+<ol>
+<li>平行光管发射平行光</li>
+<li>望远镜接收平行光（调焦无穷远）</li>
+<li>望远镜光轴、平行光管光轴和载物平台平面均与分光计中心轴垂直</li>
+</ol>
+</div>
+<h4 id="3-3-1">3. 3. 1 粗调<a class="headerlink" href="#3-3-1" title="Permanent link">&para;</a></h4>
+<ol>
+<li>开启分光计电源，载物平台上放置平面反射镜（镜面垂直于望远镜光轴）。</li>
+<li>目测调节望远镜倾角调节螺钉，使望远镜光轴基本垂直于分光计中心轴。</li>
+<li>目测调节载物平台下3个倾斜螺钉，使平台平面初步垂直于中心轴（避免反射像超出望远镜视场）。</li>
+</ol>
+<p><img src="/cpe/images/image5.png" style="display: block; width: 60%; margin: 0 auto;" /></p>
+<h4 id="3-3-2">3. 3. 2 望远镜调焦无穷远<a class="headerlink" href="#3-3-2" title="Permanent link">&para;</a></h4>
+<ol>
+<li>反射镜反光面正对望远镜，调整目镜调节滚轮，清晰看到“十”形叉丝。</li>
+<li>调节望远镜倾斜螺钉，左右移动望远镜找到亮十字像。</li>
+<li>调节望远镜十字调焦螺钉，使<strong>亮十字像清晰</strong>，且与“十”形叉丝上刻线重合，此时望远镜调焦至无穷远。</li>
+</ol>
+<h4 id="3-3-3">3. 3. 3 调整望远镜光轴、载物平台面与分光计中心轴垂直<a class="headerlink" href="#3-3-3" title="Permanent link">&para;</a></h4>
+<ol>
+<li>第一步：反射镜垂直平分1、2螺钉连线放置<ul>
+<li>望远镜正对反射镜一面，微调望远镜倾斜螺钉，使亮十字像处于“十”形叉丝<strong>上刻线</strong>偏上位置。</li>
+<li><strong>转动游标盘（不得用手直接转动载物台）</strong>，使载物台转过 <span class="arithmatex">\(180 ^\circ\)</span>，针对不同情况调节：<ul>
+<li>看不到亮十字像：若偏上，调望远镜倾斜螺钉使像下移1cm；若偏下，调载物台1、2螺钉使像上移1cm，重复至两面均能看到像。</li>
+<li>像偏上：调节望远镜倾斜螺钉，使像与上刻线重合。</li>
+<li>像偏下：用“二分之一调节法”，调载物台1、2螺钉，使两面反射像与上刻线的垂直距离各减小一半，重复至重合。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>反射镜平行于 1、2 螺钉连线放置：调节载物台螺钉3，使亮十字像与“十”形叉丝上刻线重合（不可调螺钉1、2及望远镜倾斜螺钉）。</li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">口诀：都上都下调望远镜螺钉，一上一下调平台螺钉（减半逼近法）</p>
+</div>
+<h4 id="3-3-4">3. 3. 4 调整平行光管光轴与分光计中心轴垂直<a class="headerlink" href="#3-3-4" title="Permanent link">&para;</a></h4>
+<ol>
+<li>移走反射镜，利用已调好的望远镜，调节平行光管狭缝至透镜距离，使<strong>狭缝像清晰</strong>且与“十”形叉丝<strong>无视差</strong>（<strong>平行光管发射平行光</strong>）。</li>
+<li>转动狭缝器使平行光<strong>水平</strong>，调节平行光管倾角，使狭缝像与 <span class="arithmatex">\(+\)</span> 形叉丝<strong>下刻线</strong>重合。</li>
+<li>转动狭缝器使平行光<strong>竖立</strong>，调节狭缝大小至约2mm，完成调整。</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../../javascripts/mathjax-config.js"></script>
+      
+    
+  </body>
+</html>
