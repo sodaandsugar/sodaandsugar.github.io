@@ -1,0 +1,3746 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../4/">
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>Chapter 5 Composition and Inheritance - sodasugar的笔记本</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/web/pdf_viewer.min.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chapter-5-composition-and-inheritance" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="sodasugar的笔记本" class="md-header__button md-logo" aria-label="sodasugar的笔记本" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            sodasugar的笔记本
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chapter 5 Composition and Inheritance
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/sodaandsugar/sodaandsugar.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    sodasugar-notebook
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  🏡首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../physics2/1/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  ⚛️ 物理
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../interpret/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  🔤外语
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../cryptography/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  专业课
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="sodasugar的笔记本" class="md-nav__button md-logo" aria-label="sodasugar的笔记本" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    sodasugar的笔记本
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/sodaandsugar/sodaandsugar.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    sodasugar-notebook
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🏡首页
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    ⚛️ 物理
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            ⚛️ 物理
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    大物乙Ⅱ
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            大物乙Ⅱ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 静电场
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 静电场中的导体和电介质
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 电流和磁场
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 物质中的磁场
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5 电磁感应
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6 麦克斯韦方程与电磁波
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 7 光的干涉
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 8 光的衍射
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 9 光的偏振
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 10 光的量子论
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 11 玻尔的原子模型
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 12 量子力学初步
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/midterm_review/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    期中小结
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/%E7%89%A9%E7%90%86%E5%AD%A6%E5%8D%95%E4%BD%8D%E6%8D%A2%E7%AE%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    物理学单位换算
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    大物实验
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            大物实验
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cpe/final/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    期末复习
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    🔤外语
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            🔤外语
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../interpret/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    英语口译
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            英语口译
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interpret/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1 Ceremonial Speech
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interpret/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2 Tourism
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interpret/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3 Culture and Education
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interpret/5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    5 International Reports
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interpret/text/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    课堂文本
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interpret/cheatsheet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    真题
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    文学品读与翻译入门
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            文学品读与翻译入门
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../frtl/1.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 English & Chinese：Major Differences
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    专业课
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            专业课
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../cryptography/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    数据安全与密码学基础
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            数据安全与密码学基础
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/resource/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    资源索引
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 概论
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 完善保密加密
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 对称密钥加密以及伪随机性
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 消息鉴别码
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5 哈希函数
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6 数论和密码学困难性假设
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/midterm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    期中考试卷
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    高级数据结构与算法分析
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            高级数据结构与算法分析
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/resource/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    资源索引
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_2" id="__nav_4_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    题目集
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            题目集
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/blank/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    程序填空题集锦
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/function/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    函数题集锦
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1 AVL Trees, Splay Trees and Amortized Analysis
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2 Red-Black Trees and B+ Trees
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3 Inverted File Index
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    4 Leftist Heaps and Skew Heaps
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    5 Binomial Queue
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    6 Backtracking
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    7 Divide and Conquer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    8 Dynamic Programming
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    9 Greedy Algorithms
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    10 P/NP Problems
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    11 Approximation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    12 Local Search
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    13 Randomized Algorithms
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    14 Parallel Algorithms
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/15/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    15 External Sorting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/cheatsheet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    期中考 cheat sheet
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/midterm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    期中考试
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    计算机系统 Ⅱ
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            计算机系统 Ⅱ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 ISA Review
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 Design of Pipelining
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 Hazard of Pipelining
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 Software-Hardware Interface
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5 Intro&Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6 Structures
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 7 Processes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 8 CPU Scheduling
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 9 Synchronization
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/pbfx/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    朋辈辅学
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    计算机系统 Ⅲ
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            计算机系统 Ⅲ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys3/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 Fundamentals of computer system
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys3/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 Instruction-Level Parallelism (ILP)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys3/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 Memory Hierarchy
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    数据库系统
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            数据库系统
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../db/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../db/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 Intro to Relational Model
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../db/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 Introduction to SQL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../db/4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 Intermediate SQL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../db/5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5 Advanced SQL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    隐私计算与安全合规
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            隐私计算与安全合规
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mpc/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 引言
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mpc/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 现代密码学与基础原语
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mpc/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 一个安全多方计算协议的例子
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mpc/4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 安全模型
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_7" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_7" id="__nav_4_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    面向对象程序设计
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_7">
+            <span class="md-nav__icon md-icon"></span>
+            面向对象程序设计
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 Using Objects
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 Class
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 Object Interaction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5 Composition and Inheritance
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5 Composition and Inheritance
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-composition" class="md-nav__link">
+    <span class="md-ellipsis">
+      1 Composition
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-inheritance" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 Inheritance
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-access-protection" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 Access Protection
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-composition" class="md-nav__link">
+    <span class="md-ellipsis">
+      1 Composition
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-inheritance" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 Inheritance
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-access-protection" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 Access Protection
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="chapter-5-composition-and-inheritance">Chapter 5 Composition and Inheritance<a class="headerlink" href="#chapter-5-composition-and-inheritance" title="Permanent link">&para;</a></h1>
+<h2 id="1-composition">1 Composition<a class="headerlink" href="#1-composition" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>组合（Composition）</strong>：用已有对象构造新对象，表示 <strong>has-a</strong> 关系</li>
+</ul>
+<details class="example">
+<summary><code>car</code> 有 <code>engine</code>、<code>tyre</code></summary>
+<p><img src="/oop/images/image5-1.png" style="display: block; width: 50%; margin: 0 auto;" /></p>
+</details>
+<ul>
+<li><strong>组合的包含方式</strong><ul>
+<li><strong>Fully embedded</strong>：完整嵌入子对象</li>
+<li><strong>By reference</strong>：通过引用/指针关联，允许多个对象共享同一子对象</li>
+</ul>
+</li>
+</ul>
+<details class="example">
+<summary>Employee 组合关系</summary>
+<p>一个 <code>Employee</code> 可能包含 <code>Name</code>、<code>Address</code>、<code>Health Plan</code>、<code>Salary History</code> 和 <code>Supervisor</code>（另一个 <code>Employee</code>）。</p>
+<p><img src="/oop/images/image5-2.png" style="display: block; width: 60%; margin: 0 auto;" /></p>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
+
+<span class="c1">// 前向声明：HealthPlan 和 SalaryHistory 类的完整实现省略</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">HealthPlan</span><span class="w"> </span><span class="p">{...};</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">SalaryHistory</span><span class="w"> </span><span class="p">{...};</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Employee</span><span class="w"> </span><span class="p">{</span>
+<span class="k">private</span><span class="o">:</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">name</span><span class="p">;</span><span class="w">                  </span><span class="c1">// 员工姓名</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">address</span><span class="p">;</span><span class="w">               </span><span class="c1">// 员工地址</span>
+<span class="w">    </span><span class="n">HealthPlan</span><span class="w"> </span><span class="n">healthPlan</span><span class="p">;</span><span class="w">             </span><span class="c1">// 医保计划</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">SalaryHistory</span><span class="o">&gt;</span><span class="w"> </span><span class="n">salaryHistories</span><span class="p">;</span><span class="w">  </span><span class="c1">// 薪资历史记录</span>
+<span class="w">    </span><span class="n">Employee</span><span class="o">*</span><span class="w"> </span><span class="n">supervisor</span><span class="p">;</span><span class="w">              </span><span class="c1">// 直属上级指针，无上级时为 nullptr</span>
+
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="c1">// 构造函数：初始化姓名、地址，上级指针默认置空</span>
+<span class="w">    </span><span class="n">Employee</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">address</span><span class="p">)</span>
+<span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="n">name</span><span class="p">(</span><span class="n">name</span><span class="p">),</span><span class="w"> </span><span class="n">address</span><span class="p">(</span><span class="n">address</span><span class="p">),</span><span class="w"> </span><span class="n">supervisor</span><span class="p">(</span><span class="k">nullptr</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+
+<span class="w">    </span><span class="c1">// 添加一条薪资历史记录</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">addSalaryHistory</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">SalaryHistory</span><span class="o">&amp;</span><span class="w"> </span><span class="n">history</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">salaryHistories</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">history</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// 获取所有薪资历史记录（返回拷贝，保护内部数据）</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">SalaryHistory</span><span class="o">&gt;</span><span class="w"> </span><span class="n">getSalaryHistories</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">salaryHistories</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// 设置直属上级</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">setSupervisor</span><span class="p">(</span><span class="n">Employee</span><span class="o">*</span><span class="w"> </span><span class="n">sup</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">supervisor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sup</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// 获取直属上级指针</span>
+<span class="w">    </span><span class="n">Employee</span><span class="o">*</span><span class="w"> </span><span class="n">getSupervisor</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">supervisor</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// 析构函数（默认实现，无手动释放的资源）</span>
+<span class="w">    </span><span class="o">~</span><span class="n">Employee</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+<span class="p">};</span>
+</code></pre></div>
+</details>
+<ul>
+<li><strong>嵌入对象（Embedded Objects）</strong><ul>
+<li>所有嵌入对象都必须被初始化</li>
+<li>若未显式提供参数，则会尝试调用其默认构造函数</li>
+<li>构造函数初始化列表可以为各个子对象传参</li>
+<li>语法：<code>name( args ) [':' init-list] '{'</code></li>
+</ul>
+</li>
+</ul>
+<details class="example">
+<summary>SavingsAccount</summary>
+<div class="highlight"><pre><span></span><code><span class="c1">// 前向声明：Person（储户信息）和 Currency（货币/余额）类的完整实现省略</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Person</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">};</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Currency</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">};</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">SavingsAccount</span><span class="w"> </span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="c1">// 构造函数：初始化储户姓名、地址、初始余额（单位：分，避免浮点数精度问题）</span>
+<span class="w">    </span><span class="n">SavingsAccount</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">address</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">cents</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// 析构函数：释放账户相关资源</span>
+<span class="w">    </span><span class="o">~</span><span class="n">SavingsAccount</span><span class="p">();</span>
+
+<span class="w">    </span><span class="c1">// 打印账户完整信息（储户信息+余额）</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">print</span><span class="p">();</span>
+
+<span class="k">private</span><span class="o">:</span>
+<span class="w">    </span><span class="n">Person</span><span class="w"> </span><span class="n">m_saver</span><span class="p">;</span><span class="w">    </span><span class="c1">// 储户对象（组合关系，账户包含储户）</span>
+<span class="w">    </span><span class="n">Currency</span><span class="w"> </span><span class="n">m_balance</span><span class="p">;</span><span class="c1">// 账户余额对象（组合关系，账户包含余额）</span>
+<span class="p">};</span>
+
+<span class="c1">// SavingsAccount 类成员函数实现</span>
+<span class="n">SavingsAccount</span><span class="o">::</span><span class="n">SavingsAccount</span><span class="p">(</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">address</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">cents</span>
+<span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">m_saver</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">address</span><span class="p">),</span><span class="w"> </span>
+<span class="w">    </span><span class="n">m_balance</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">cents</span><span class="p">)</span>
+<span class="p">{}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">SavingsAccount</span><span class="o">::</span><span class="n">print</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">m_saver</span><span class="p">.</span><span class="n">print</span><span class="p">();</span>
+<span class="w">    </span><span class="n">m_balance</span><span class="p">.</span><span class="n">print</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+</details>
+<details class="question">
+<summary>为什么不用构造函数体内赋值？</summary>
+<div class="highlight"><pre><span></span><code><span class="n">SavingsAccount</span><span class="o">::</span><span class="n">SavingsAccount</span><span class="p">(</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">address</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">cents</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">m_saver</span><span class="p">.</span><span class="n">set_name</span><span class="p">(</span><span class="n">name</span><span class="p">);</span>
+<span class="w">    </span><span class="n">m_saver</span><span class="p">.</span><span class="n">set_address</span><span class="p">(</span><span class="n">address</span><span class="p">);</span>
+<span class="w">    </span><span class="n">m_balance</span><span class="p">.</span><span class="n">set_cents</span><span class="p">(</span><span class="n">cents</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<ul>
+<li>这样写时，子对象会先默认构造，再被赋值</li>
+<li>若子对象没有默认构造函数，代码甚至无法编译</li>
+<li>即使能编译，也比直接初始化多做一步工作</li>
+</ul>
+</details>
+<p>嵌入对象通常设为 private，因为它们通常属于实现细节，新类不一定要暴露子对象的完整接口。</p>
+<p>只有当你<strong>确实希望外部直接使用子对象的完整公共接口</strong>时才考虑设为 public。</p>
+<details class="example">
+<summary>public 子对象</summary>
+<div class="highlight"><pre><span></span><code><span class="c1">// 前向声明：Person 类的完整实现省略</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Person</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">};</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">SavingsAccount</span><span class="w"> </span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="n">Person</span><span class="w"> </span><span class="n">m_saver</span><span class="p">;</span><span class="w">  </span><span class="c1">// 公有成员变量：储户对象（Person类型）</span>
+<span class="w">    </span><span class="c1">// ... 其他成员（变量/函数）省略</span>
+<span class="p">};</span><span class="w">  </span>
+
+<span class="c1">// 假设 Person 类中包含 set_name() 成员函数</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">SavingsAccount</span><span class="w"> </span><span class="n">account</span><span class="p">;</span><span class="w">  </span><span class="c1">// 创建 SavingsAccount 类的实例 account</span>
+<span class="w">    </span><span class="c1">// 通过公有成员访问储户对象，并调用 set_name 方法设置姓名</span>
+<span class="w">    </span><span class="n">account</span><span class="p">.</span><span class="n">m_saver</span><span class="p">.</span><span class="n">set_name</span><span class="p">(</span><span class="s">&quot;Fred&quot;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+</details>
+<h2 id="2-inheritance">2 Inheritance<a class="headerlink" href="#2-inheritance" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>继承（Inheritance）</strong>：以现有类为基础复制并扩展，表示 <strong>is-a</strong> 关系，可以共享成员数据、成员函数和接口。</li>
+</ul>
+<p><img src="/oop/images/image5-3.png" style="display: block; width: 50%; margin: 0 auto;" /></p>
+<details class="example">
+<summary>DoME 多媒体娱乐数据库示例</summary>
+<p>一个媒体数据库需要同时管理 <code>CD</code> 和 <code>DVD</code>，并支持按条件检索。</p>
+<p><div style="display: flex; justify-content: center; gap: 10px; align-items: center;">
+    <img src="/oop/images/image5-4.png" style="width: 50%;" />
+    <img src="/oop/images/image5-5.png" style="width: 45%;" />
+</div></p>
+<details class="quote">
+<summary>无继承的写法</summary>
+<div class="highlight"><pre><span></span><code><span class="c1">// 前置依赖：CD/DVD类需提前定义，且包含print()方法</span>
+<span class="kd">class</span> <span class="nc">CD</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">print</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* 类实现省略 */</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="kd">class</span> <span class="nc">DVD</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">print</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* 类实现省略 */</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Database</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 私有成员：存储 CD、DVD 的列表</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">CD</span><span class="o">&gt;</span><span class="w"> </span><span class="n">cds</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">DVD</span><span class="o">&gt;</span><span class="w"> </span><span class="n">dvds</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// 构造函数：初始化列表，避免空指针</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">Database</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">cds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="w">        </span><span class="n">dvds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// 添加 CD 到列表</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">addCD</span><span class="p">(</span><span class="n">CD</span><span class="w"> </span><span class="n">theCD</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">cds</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">theCD</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// 添加 DVD 到列表</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">addDVD</span><span class="p">(</span><span class="n">DVD</span><span class="w"> </span><span class="n">theDVD</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">dvds</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">theDVD</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// 打印所有 CD 和 DVD</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">list</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 打印 CD 列表</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">CD</span><span class="w"> </span><span class="n">cd</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">cds</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">cd</span><span class="p">.</span><span class="na">print</span><span class="p">();</span>
+<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">();</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// 打印 DVD 列表</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">DVD</span><span class="w"> </span><span class="n">dvd</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">dvds</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">dvd</span><span class="p">.</span><span class="na">print</span><span class="p">();</span>
+<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">();</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</details>
+<p>如果没有继承，<code>CD</code> 和 <code>DVD</code> 会各自保存一份相似字段与相似方法，这些重复代码会提高维护成本，以后若新增媒体类型，还要继续复制粘贴相似逻辑，管理这些对象的 <code>Database</code> 类也容易出现重复接口和重复遍历代码。</p>
+<p>我们可以把共有状态与共有行为提升到父类 <code>Item</code>，让 <code>CD</code>、<code>DVD</code> 继承 <code>Item</code>，只保留各自独有部分，这样类层次更符合抽象关系：<code>CD is-a Item</code>，<code>DVD is-a Item</code>。</p>
+<p><div style="display: flex; justify-content: center; gap: 10px; align-items: center;">
+    <img src="/oop/images/image5-6.png" style="width: 50%;" />
+    <img src="/oop/images/image5-7.png" style="width: 35%;" />
+</div></p>
+<div class="highlight"><pre><span></span><code><span class="c1">// 父类 Item：CD 和 DVD 的共同抽象父类</span>
+<span class="kd">class</span> <span class="nc">Item</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 子类重写该方法，实现各自的打印逻辑</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">print</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+<span class="p">}</span>
+
+<span class="c1">// CD 类，继承 Item</span>
+<span class="kd">class</span> <span class="nc">CD</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Item</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// CD 特有属性（如标题、歌手、时长等）、构造函数、其他方法省略</span>
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">print</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 实现 CD 信息的打印逻辑</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// DVD 类，继承 Item</span>
+<span class="kd">class</span> <span class="nc">DVD</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Item</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// DVD 特有属性（如标题、导演、时长等）、构造函数、其他方法省略</span>
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">print</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 实现 DVD 信息的打印逻辑</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// 重构后的 Database 类（</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Database</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 统一存储所有媒体项（CD/DVD），替代原有的 cds、dvds 两个独立列表</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Item</span><span class="o">&gt;</span><span class="w"> </span><span class="n">items</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// 构造函数：初始化列表，避免空指针</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">Database</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">items</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="cm">/**</span>
+<span class="cm">     * 统一添加媒体项的方法，替代原有的 addCD、addDVD</span>
+<span class="cm">     * @param theItem 要添加的 Item（CD 或 DVD 实例）</span>
+<span class="cm">     */</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">addItem</span><span class="p">(</span><span class="n">Item</span><span class="w"> </span><span class="n">theItem</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">items</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">theItem</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// 打印所有存储的媒体项，利用多态自动调用 CD/DVD 各自的 print() 方法</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">list</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">for</span><span class="p">(</span><span class="n">Item</span><span class="w"> </span><span class="n">item</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">items</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">item</span><span class="p">.</span><span class="na">print</span><span class="p">();</span>
+<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">();</span><span class="w"> </span><span class="c1">// 项之间打印空行</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</details>
+<ul>
+<li><strong>继承带来的直接收益</strong>：<ul>
+<li>消除重复代码，实现公共逻辑复用</li>
+<li>修改公共行为时，只需优先调整父类</li>
+<li>新增媒体类型时，只需增加新的派生类并复用现有 <code>Database</code> 逻辑</li>
+<li>更容易构建清晰的类层次结构，提升可读性与可扩展性</li>
+</ul>
+</li>
+</ul>
+<details class="example">
+<summary>Employee &amp; Manager</summary>
+<div class="highlight"><pre><span></span><code><span class="c1">// Employee 类声明</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Employee</span><span class="w"> </span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="n">Employee</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">ssn</span><span class="p">);</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="nf">get_name</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">print</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">print</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="n">out</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">msg</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+<span class="k">protected</span><span class="o">:</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">m_name</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">m_ssn</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="c1">// Employee 构造函数实现</span>
+<span class="n">Employee</span><span class="o">::</span><span class="n">Employee</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">ssn</span><span class="p">)</span>
+<span class="w">    </span><span class="o">:</span><span class="w"> </span><span class="n">m_name</span><span class="p">(</span><span class="n">name</span><span class="p">),</span><span class="w"> </span><span class="n">m_ssn</span><span class="p">(</span><span class="n">ssn</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+
+<span class="c1">// Employee 成员函数实现</span>
+<span class="kr">inline</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">Employee</span><span class="o">::</span><span class="n">get_name</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">m_name</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">Employee</span><span class="o">::</span><span class="n">print</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">out</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">m_name</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="n">out</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">m_ssn</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">Employee</span><span class="o">::</span><span class="n">print</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="n">out</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">msg</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">out</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">msg</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="n">print</span><span class="p">(</span><span class="n">out</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Manager 类声明</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Manager</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Employee</span><span class="w"> </span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="n">Manager</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">ssn</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">title</span><span class="p">);</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="nf">get_title</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w"> </span><span class="c1">// 修正：返回值应为 const 引用</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">print</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+<span class="k">private</span><span class="o">:</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">m_title</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="c1">// Manager 构造函数实现</span>
+<span class="n">Manager</span><span class="o">::</span><span class="n">Manager</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">ssn</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">title</span><span class="p">)</span>
+<span class="w">    </span><span class="o">:</span><span class="w"> </span><span class="n">Employee</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">ssn</span><span class="p">),</span><span class="w"> </span><span class="n">m_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+
+<span class="c1">// Manager 成员函数实现</span>
+<span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">Manager</span><span class="o">::</span><span class="n">print</span><span class="p">(</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="n">out</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Employee</span><span class="o">::</span><span class="n">print</span><span class="p">(</span><span class="w"> </span><span class="n">out</span><span class="w"> </span><span class="p">);</span><span class="w"> </span><span class="c1">// 调用基类 print 方法</span>
+<span class="w">    </span><span class="n">out</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">m_title</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kr">inline</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">Manager</span><span class="o">::</span><span class="n">get_title</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">m_title</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kr">inline</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">Manager</span><span class="o">::</span><span class="n">title_name</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">string</span><span class="p">(</span><span class="w"> </span><span class="n">m_title</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">m_name</span><span class="w"> </span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// 直接访问基类 protected 成员 m_name</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="n">main</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Employee</span><span class="w"> </span><span class="n">bob</span><span class="p">(</span><span class="w"> </span><span class="s">&quot;Bob Jones&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;555-44-0000&quot;</span><span class="w"> </span><span class="p">);</span>
+<span class="w">    </span><span class="n">Manager</span><span class="w"> </span><span class="n">bill</span><span class="p">(</span><span class="w"> </span><span class="s">&quot;Bill Smith&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;666-55-1234&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s">&quot;ImportantPerson&quot;</span><span class="w"> </span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">string</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bill</span><span class="p">.</span><span class="n">get_name</span><span class="p">();</span><span class="w"> </span><span class="c1">// okay Manager inherits Employee</span>
+<span class="w">    </span><span class="n">string</span><span class="w"> </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bob</span><span class="p">.</span><span class="n">get_title</span><span class="p">();</span><span class="w"> </span><span class="c1">// Error -- bob is an Employee!</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">bill</span><span class="p">.</span><span class="n">title_name</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">&#39;\n&#39;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="n">bob</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">cout</span><span class="p">);</span>
+<span class="w">    </span><span class="n">bob</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">cout</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Employee:&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">bill</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">cout</span><span class="p">);</span>
+<span class="w">    </span><span class="n">bill</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">cout</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Employee:&quot;</span><span class="p">);</span><span class="w"> </span><span class="c1">// Error -- hidden!</span>
+<span class="p">}</span>
+</code></pre></div>
+</details>
+<p>基类总是<strong>先构造</strong>，若未显式给基类传参，会尝试调用其默认构造函数，析构顺序与构造顺序完全相反。</p>
+<div class="admonition tip">
+<p class="admonition-title">Name Hiding</p>
+<ul>
+<li>派生类重新定义某个成员函数后，基类中同名的其他重载版本也会被隐藏</li>
+<li>这就是 <code>bill.print(cout, "Employee:")</code> 报错的原因</li>
+</ul>
+</div>
+<h2 id="3-access-protection">3 Access Protection<a class="headerlink" href="#3-access-protection" title="Permanent link">&para;</a></h2>
+<div class="admonition quote">
+<p class="admonition-title">成员访问控制</p>
+<ul>
+<li><code>public</code>：所有客户端可见</li>
+<li><code>protected</code>：本类、友元、派生类可见</li>
+<li><code>private</code>：仅本类与友元可见</li>
+</ul>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">友元（friends）</p>
+<ul>
+<li>类可以显式授予外部函数/外部类访问其私有成员的权限</li>
+<li>friend 可以是全局函数、另一个类的成员函数或整个类</li>
+</ul>
+</div>
+<ul>
+<li><code>class</code> 默认访问权限是 <code>private</code>，<code>struct</code> 默认访问权限是 <code>public</code></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>继承方式</th>
+<th>基类 <code>public</code> 成员在派生类中</th>
+<th>基类 <code>protected</code> 成员在派生类中</th>
+<th>基类 <code>private</code> 成员在派生类中</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>public</code> 继承</td>
+<td><code>public</code></td>
+<td><code>protected</code></td>
+<td>不可直接访问</td>
+</tr>
+<tr>
+<td><code>protected</code> 继承</td>
+<td><code>protected</code></td>
+<td><code>protected</code></td>
+<td>不可直接访问</td>
+</tr>
+<tr>
+<td><code>private</code> 继承</td>
+<td><code>private</code></td>
+<td><code>private</code></td>
+<td>不可直接访问</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>
+<p><code>public</code> 继承应表达<strong>可替换性（substitution）</strong>，如果 <code>B is-a A</code>，那么任何能使用 <code>A</code> 的地方都应能安全地使用 <code>B</code>。</p>
+</li>
+<li>
+<p><strong>向上转型（Up-casting）</strong>是把派生类对象/引用/指针视为基类对象/引用/指针，如：把学生看作人类，把经理看作员工。</p>
+</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">示例</p>
+<div class="highlight"><pre><span></span><code><span class="n">Manager</span><span class="w"> </span><span class="n">pete</span><span class="p">(</span><span class="s">&quot;Pete&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;444-55-6666&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Bakery&quot;</span><span class="p">);</span>
+<span class="n">Employee</span><span class="o">*</span><span class="w"> </span><span class="n">ep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">pete</span><span class="p">;</span><span class="w"> </span><span class="c1">// Upcast</span>
+<span class="n">Employee</span><span class="o">&amp;</span><span class="w"> </span><span class="n">er</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pete</span><span class="p">;</span><span class="w">  </span><span class="c1">// Upcast</span>
+</code></pre></div>
+</div>
+<ul>
+<li><strong>代价</strong>：会丢失派生类特有的静态类型信息；如果函数不是虚函数，那么通过基类接口调用时只会执行基类版本。</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.top", "navigation.sidebar", "navigation.indexes"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../../javascripts/mathjax-config.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf_viewer.min.js"></script>
+      
+    
+  </body>
+</html>

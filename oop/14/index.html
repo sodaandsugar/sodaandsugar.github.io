@@ -1,0 +1,3621 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>Chapter 14 Smart Pointers - sodasugar的笔记本</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/web/pdf_viewer.min.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chapter-14-smart-pointers" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="sodasugar的笔记本" class="md-header__button md-logo" aria-label="sodasugar的笔记本" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            sodasugar的笔记本
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chapter 14 Smart Pointers
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/sodaandsugar/sodaandsugar.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    sodasugar-notebook
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  🏡首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../physics2/1/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  ⚛️ 物理
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../interpret/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  🔤外语
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../cryptography/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  专业课
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="sodasugar的笔记本" class="md-nav__button md-logo" aria-label="sodasugar的笔记本" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    sodasugar的笔记本
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/sodaandsugar/sodaandsugar.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    sodasugar-notebook
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🏡首页
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    ⚛️ 物理
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            ⚛️ 物理
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    大物乙Ⅱ
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            大物乙Ⅱ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 静电场
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 静电场中的导体和电介质
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 电流和磁场
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 物质中的磁场
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5 电磁感应
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6 麦克斯韦方程与电磁波
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 7 光的干涉
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 8 光的衍射
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 9 光的偏振
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 10 光的量子论
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 11 玻尔的原子模型
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 12 量子力学初步
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/midterm_review/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    期中小结
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/%E7%89%A9%E7%90%86%E5%AD%A6%E5%8D%95%E4%BD%8D%E6%8D%A2%E7%AE%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    物理学单位换算
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    大物实验
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            大物实验
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cpe/final/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    期末复习
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    🔤外语
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            🔤外语
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../interpret/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    英语口译
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            英语口译
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interpret/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1 Ceremonial Speech
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interpret/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2 Tourism
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interpret/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3 Culture and Education
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interpret/5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    5 International Reports
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interpret/text/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    课堂文本
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interpret/cheatsheet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    真题
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    文学品读与翻译入门
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            文学品读与翻译入门
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../frtl/1.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 English & Chinese：Major Differences
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    专业课
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            专业课
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../cryptography/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    数据安全与密码学基础
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            数据安全与密码学基础
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/resource/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    资源索引
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 概论
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 完善保密加密
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 对称密钥加密以及伪随机性
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 消息鉴别码
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5 哈希函数
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6 数论和密码学困难性假设
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/midterm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    期中考试卷
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    高级数据结构与算法分析
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            高级数据结构与算法分析
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/resource/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    资源索引
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_2" id="__nav_4_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    题目集
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            题目集
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/blank/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    程序填空题集锦
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/function/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    函数题集锦
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1 AVL Trees, Splay Trees and Amortized Analysis
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2 Red-Black Trees and B+ Trees
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3 Inverted File Index
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    4 Leftist Heaps and Skew Heaps
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    5 Binomial Queue
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    6 Backtracking
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    7 Divide and Conquer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    8 Dynamic Programming
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    9 Greedy Algorithms
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    10 P/NP Problems
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    11 Approximation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    12 Local Search
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    13 Randomized Algorithms
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    14 Parallel Algorithms
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/15/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    15 External Sorting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/cheatsheet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    期中考 cheat sheet
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/midterm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    期中考试
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    计算机系统 Ⅱ
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            计算机系统 Ⅱ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 ISA Review
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 Design of Pipelining
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 Hazard of Pipelining
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 Software-Hardware Interface
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5 Intro&Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6 Structures
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 7 Processes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 8 CPU Scheduling
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 9 Synchronization
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/pbfx/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    朋辈辅学
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    计算机系统 Ⅲ
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            计算机系统 Ⅲ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys3/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 Fundamentals of computer system
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys3/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 Instruction-Level Parallelism (ILP)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys3/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 Memory Hierarchy
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    数据库系统
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            数据库系统
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../db/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../db/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 Intro to Relational Model
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../db/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 Introduction to SQL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../db/4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 Intermediate SQL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../db/5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5 Advanced SQL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    隐私计算与安全合规
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            隐私计算与安全合规
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mpc/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 引言
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mpc/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 现代密码学与基础原语
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mpc/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 一个安全多方计算协议的例子
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mpc/4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 安全模型
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_7" id="__nav_4_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    面向对象程序设计
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_7">
+            <span class="md-nav__icon md-icon"></span>
+            面向对象程序设计
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 Using Objects
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 Class
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 Object Interaction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5 Composition and Inheritance
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-standard-smart-pointers" class="md-nav__link">
+    <span class="md-ellipsis">
+      1 Standard Smart Pointers
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-core-idea" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 Core Idea
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-reference-counting" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 Reference Counting
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-reference-count-maintenance" class="md-nav__link">
+    <span class="md-ellipsis">
+      4 Reference Count Maintenance
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-four-classes-involved" class="md-nav__link">
+    <span class="md-ellipsis">
+      5 Four Classes Involved
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-class-ucobject" class="md-nav__link">
+    <span class="md-ellipsis">
+      6 Class UCObject
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-class-ucpointer" class="md-nav__link">
+    <span class="md-ellipsis">
+      7 Class UCPointer
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-envelope-letter-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      8 Envelope / Letter Pattern
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-string-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      9 String Example
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9 String Example">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#91-stringrep-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      9.1 StringRep Implementation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#92-string-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      9.2 String Implementation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-critique" class="md-nav__link">
+    <span class="md-ellipsis">
+      10 Critique
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="chapter-14-smart-pointers">Chapter 14 Smart Pointers<a class="headerlink" href="#chapter-14-smart-pointers" title="Permanent link">&para;</a></h1>
+<h2 id="1-standard-smart-pointers">1 Standard Smart Pointers<a class="headerlink" href="#1-standard-smart-pointers" title="Permanent link">&para;</a></h2>
+<div class="admonition quote">
+<p class="admonition-title">标准库中的智能指针</p>
+<ul>
+<li><code>std::unique_ptr</code></li>
+<li><code>std::shared_ptr</code></li>
+<li><code>std::weak_ptr</code></li>
+<li><code>std::auto_ptr</code>（C++11 起已废弃）</li>
+</ul>
+</div>
+<h2 id="2-core-idea">2 Core Idea<a class="headerlink" href="#2-core-idea" title="Permanent link">&para;</a></h2>
+<details class="quote">
+<summary>本章关注点</summary>
+<ul>
+<li>模板</li>
+<li>继承</li>
+<li>引用计数（reference counting）</li>
+<li>智能指针</li>
+</ul>
+</details>
+<div class="admonition quote">
+<p class="admonition-title">目标</p>
+<ul>
+<li>介绍如何维护对象的引用计数</li>
+<li>被共享对象由 <code>UCObject</code> 保存计数</li>
+<li>智能指针 <code>UCPointer&lt;T&gt;</code> 负责在赋值、复制、析构时维护计数</li>
+</ul>
+</div>
+<h2 id="3-reference-counting">3 Reference Counting<a class="headerlink" href="#3-reference-counting" title="Permanent link">&para;</a></h2>
+<div class="admonition quote">
+<p class="admonition-title">引用计数</p>
+<ul>
+<li>共享对象内部维护一个计数器</li>
+<li>记录当前有多少个指针正在共享它</li>
+</ul>
+</div>
+<div class="admonition example">
+<p class="admonition-title">共享过程</p>
+<div class="highlight"><pre><span></span><code><span class="n">String</span><span class="w"> </span><span class="n">x</span><span class="p">(</span><span class="s">&quot;abcdef&quot;</span><span class="p">);</span>
+<span class="n">String</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w">        </span><span class="c1">// shallow copy</span>
+<span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Hello world&quot;</span><span class="p">;</span><span class="w">   </span><span class="c1">// copy on write</span>
+</code></pre></div>
+</div>
+<details class="tip">
+<summary>效果</summary>
+<ul>
+<li><code>x</code> 和 <code>y</code> 初始可共享同一份底层表示，引用计数为 2</li>
+<li>若其中一个被写入修改，则可分离成两份数据</li>
+</ul>
+</details>
+<h2 id="4-reference-count-maintenance">4 Reference Count Maintenance<a class="headerlink" href="#4-reference-count-maintenance" title="Permanent link">&para;</a></h2>
+<div class="admonition quote">
+<p class="admonition-title">基本规则</p>
+<ul>
+<li>每个可共享对象有一个计数器</li>
+<li>初始值通常是 0</li>
+<li>指针赋值时需要先对旧对象减计数，再对新对象加计数</li>
+</ul>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<div class="highlight"><pre><span></span><code><span class="n">p</span><span class="o">-&gt;</span><span class="n">decrement</span><span class="p">();</span>
+<span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">q</span><span class="p">;</span>
+<span class="n">p</span><span class="o">-&gt;</span><span class="n">increment</span><span class="p">();</span>
+</code></pre></div>
+</div>
+<h2 id="5-four-classes-involved">5 Four Classes Involved<a class="headerlink" href="#5-four-classes-involved" title="Permanent link">&para;</a></h2>
+<div class="admonition quote">
+<p class="admonition-title">四层结构</p>
+<ul>
+<li><code>UCObject</code><ul>
+<li>负责引用计数</li>
+</ul>
+</li>
+<li><code>UCPointer&lt;T&gt;</code><ul>
+<li>智能指针模板</li>
+</ul>
+</li>
+<li><code>String</code><ul>
+<li>对外暴露的接口类（Envelope）</li>
+</ul>
+</li>
+<li><code>StringRep</code><ul>
+<li>真正持有字符数据的表示类（Letter）</li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="6-class-ucobject">6 Class <code>UCObject</code><a class="headerlink" href="#6-class-ucobject" title="Permanent link">&para;</a></h2>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;assert.h&gt;</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">UCObject</span><span class="w"> </span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="n">UCObject</span><span class="p">()</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">m_refCount</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">UCObject</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">assert</span><span class="p">(</span><span class="n">m_refCount</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="n">UCObject</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">UCObject</span><span class="o">&amp;</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">m_refCount</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">incr</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">m_refCount</span><span class="o">++</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">decr</span><span class="p">();</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="nf">references</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">m_refCount</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="k">private</span><span class="o">:</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">m_refCount</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div>
+</div>
+<div class="admonition example">
+<p class="admonition-title"><code>decr()</code></p>
+<div class="highlight"><pre><span></span><code><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">UCObject::decr</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">m_refCount</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_refCount</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">delete</span><span class="w"> </span><span class="k">this</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+<details class="tip">
+<summary><code>delete this</code></summary>
+<ul>
+<li>只对<strong>堆对象</strong>安全</li>
+<li>不要对栈对象这么做</li>
+</ul>
+</details>
+<h2 id="7-class-ucpointer">7 Class <code>UCPointer</code><a class="headerlink" href="#7-class-ucpointer" title="Permanent link">&para;</a></h2>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<div class="highlight"><pre><span></span><code><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">UCPointer</span><span class="w"> </span><span class="p">{</span>
+<span class="k">private</span><span class="o">:</span>
+<span class="w">    </span><span class="n">T</span><span class="o">*</span><span class="w"> </span><span class="n">m_pObj</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">increment</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_pObj</span><span class="p">)</span><span class="w"> </span><span class="n">m_pObj</span><span class="o">-&gt;</span><span class="n">incr</span><span class="p">();</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">decrement</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_pObj</span><span class="p">)</span><span class="w"> </span><span class="n">m_pObj</span><span class="o">-&gt;</span><span class="n">decr</span><span class="p">();</span><span class="w"> </span><span class="p">}</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="n">UCPointer</span><span class="p">(</span><span class="n">T</span><span class="o">*</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">m_pObj</span><span class="p">(</span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">increment</span><span class="p">();</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="o">~</span><span class="n">UCPointer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">decrement</span><span class="p">();</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">    </span><span class="n">UCPointer</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">UCPointer</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">p</span><span class="p">);</span>
+<span class="w">    </span><span class="n">UCPointer</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">UCPointer</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&amp;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">T</span><span class="o">*</span><span class="w"> </span><span class="k">operator</span><span class="o">-&gt;</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+<span class="w">    </span><span class="n">T</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">*</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="o">*</span><span class="n">m_pObj</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div>
+</div>
+<div class="admonition example">
+<p class="admonition-title">拷贝构造</p>
+<div class="highlight"><pre><span></span><code><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
+<span class="n">UCPointer</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">UCPointer</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">UCPointer</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">p</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">m_pObj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">m_pObj</span><span class="p">;</span>
+<span class="w">    </span><span class="n">increment</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+<div class="admonition example">
+<p class="admonition-title">赋值运算</p>
+<div class="highlight"><pre><span></span><code><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
+<span class="n">UCPointer</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">UCPointer</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">UCPointer</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">p</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_pObj</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">m_pObj</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">decrement</span><span class="p">();</span>
+<span class="w">        </span><span class="n">m_pObj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">m_pObj</span><span class="p">;</span>
+<span class="w">        </span><span class="n">increment</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="o">*</span><span class="k">this</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+<h2 id="8-envelope-letter-pattern">8 Envelope / Letter Pattern<a class="headerlink" href="#8-envelope-letter-pattern" title="Permanent link">&para;</a></h2>
+<div class="admonition quote">
+<p class="admonition-title">Envelope and Letter</p>
+<ul>
+<li><code>String</code> 是外层信封，负责对外接口</li>
+<li><code>StringRep</code> 是内部信件，负责真实数据与实现细节</li>
+<li><code>StringRep</code> 继承 <code>UCObject</code>，因此天然带引用计数</li>
+<li><code>String</code> 通过 <code>UCPointer&lt;StringRep&gt;</code> 持有共享表示</li>
+</ul>
+</div>
+<h2 id="9-string-example">9 String Example<a class="headerlink" href="#9-string-example" title="Permanent link">&para;</a></h2>
+<div class="admonition example">
+<p class="admonition-title"><code>String</code></p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">String</span><span class="w"> </span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="n">String</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="p">);</span>
+<span class="w">    </span><span class="o">~</span><span class="n">String</span><span class="p">();</span>
+<span class="w">    </span><span class="n">String</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">String</span><span class="o">&amp;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">String</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">String</span><span class="o">&amp;</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="k">operator</span><span class="o">==</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">String</span><span class="o">&amp;</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="k">operator</span><span class="o">+</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">String</span><span class="o">&amp;</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="nf">length</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+<span class="w">    </span><span class="k">operator</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+<span class="k">private</span><span class="o">:</span>
+<span class="w">    </span><span class="n">UCPointer</span><span class="o">&lt;</span><span class="n">StringRep</span><span class="o">&gt;</span><span class="w"> </span><span class="n">m_rep</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div>
+</div>
+<div class="admonition example">
+<p class="admonition-title"><code>StringRep</code></p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">StringRep</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">UCObject</span><span class="w"> </span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="n">StringRep</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="p">);</span>
+<span class="w">    </span><span class="o">~</span><span class="n">StringRep</span><span class="p">();</span>
+<span class="w">    </span><span class="n">StringRep</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">StringRep</span><span class="o">&amp;</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="nf">length</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">strlen</span><span class="p">(</span><span class="n">m_pChars</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="nf">equal</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">StringRep</span><span class="o">&amp;</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+<span class="k">private</span><span class="o">:</span>
+<span class="w">    </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">m_pChars</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div>
+</div>
+<h3 id="91-stringrep-implementation">9.1 <code>StringRep</code> Implementation<a class="headerlink" href="#91-stringrep-implementation" title="Permanent link">&para;</a></h3>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<div class="highlight"><pre><span></span><code><span class="n">StringRep</span><span class="o">::</span><span class="n">StringRep</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">len</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">strlen</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">        </span><span class="n">m_pChars</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">char</span><span class="p">[</span><span class="n">len</span><span class="p">];</span>
+<span class="w">        </span><span class="n">strcpy</span><span class="p">(</span><span class="n">m_pChars</span><span class="p">,</span><span class="w"> </span><span class="n">s</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">m_pChars</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">char</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+<span class="w">        </span><span class="o">*</span><span class="n">m_pChars</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sc">&#39;\0&#39;</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">StringRep</span><span class="o">::~</span><span class="n">StringRep</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">delete</span><span class="p">[]</span><span class="w"> </span><span class="n">m_pChars</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+<div class="admonition example">
+<p class="admonition-title">深拷贝表示层</p>
+<div class="highlight"><pre><span></span><code><span class="n">StringRep</span><span class="o">::</span><span class="n">StringRep</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">StringRep</span><span class="o">&amp;</span><span class="w"> </span><span class="n">sr</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">len</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sr</span><span class="p">.</span><span class="n">length</span><span class="p">();</span>
+<span class="w">    </span><span class="n">m_pChars</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">char</span><span class="p">[</span><span class="n">len</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">];</span>
+<span class="w">    </span><span class="n">strcpy</span><span class="p">(</span><span class="n">m_pChars</span><span class="p">,</span><span class="w"> </span><span class="n">sr</span><span class="p">.</span><span class="n">m_pChars</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="n">StringRep</span><span class="o">::</span><span class="n">equal</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">StringRep</span><span class="o">&amp;</span><span class="w"> </span><span class="n">sp</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">strcmp</span><span class="p">(</span><span class="n">m_pChars</span><span class="p">,</span><span class="w"> </span><span class="n">sp</span><span class="p">.</span><span class="n">m_pChars</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+<h3 id="92-string-implementation">9.2 <code>String</code> Implementation<a class="headerlink" href="#92-string-implementation" title="Permanent link">&para;</a></h3>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<div class="highlight"><pre><span></span><code><span class="n">String</span><span class="o">::</span><span class="n">String</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">s</span><span class="p">)</span>
+<span class="w">    </span><span class="o">:</span><span class="w"> </span><span class="n">m_rep</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">StringRep</span><span class="p">(</span><span class="n">s</span><span class="p">))</span><span class="w"> </span><span class="p">{}</span>
+
+<span class="n">String</span><span class="o">::~</span><span class="n">String</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+
+<span class="n">String</span><span class="o">::</span><span class="n">String</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">String</span><span class="o">&amp;</span><span class="w"> </span><span class="n">s</span><span class="p">)</span>
+<span class="w">    </span><span class="o">:</span><span class="w"> </span><span class="n">m_rep</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="n">m_rep</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+
+<span class="n">String</span><span class="o">&amp;</span><span class="w"> </span><span class="n">String</span><span class="o">::</span><span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">String</span><span class="o">&amp;</span><span class="w"> </span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">m_rep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">m_rep</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="o">*</span><span class="k">this</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+<div class="admonition example">
+<p class="admonition-title">转发到表示层</p>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="n">String</span><span class="o">::</span><span class="k">operator</span><span class="o">==</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">String</span><span class="o">&amp;</span><span class="w"> </span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">m_rep</span><span class="o">-&gt;</span><span class="n">equal</span><span class="p">(</span><span class="o">*</span><span class="n">s</span><span class="p">.</span><span class="n">m_rep</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="n">String</span><span class="o">::</span><span class="n">length</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">m_rep</span><span class="o">-&gt;</span><span class="n">length</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+<details class="tip">
+<summary>Tip</summary>
+<ul>
+<li>外层 <code>String</code> 的拷贝构造和赋值几乎可以“交给智能指针处理”</li>
+</ul>
+</details>
+<h2 id="10-critique">10 Critique<a class="headerlink" href="#10-critique" title="Permanent link">&para;</a></h2>
+<div class="admonition quote">
+<p class="admonition-title">优点</p>
+<ul>
+<li><code>UCPointer</code> 统一维护引用计数</li>
+<li><code>UCObject</code> 隐藏计数细节</li>
+<li><code>StringRep</code> 只关心字符串数据本身</li>
+<li><code>UCObject</code> 和 <code>UCPointer</code> 可复用</li>
+</ul>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">缺点</p>
+<ul>
+<li>比裸指针慢</li>
+<li>设计有侵入性：被管理对象必须继承 <code>UCObject</code></li>
+<li>标准库中的 <code>std::shared_ptr</code> 提供了非侵入式方案</li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.top", "navigation.sidebar", "navigation.indexes"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../../javascripts/mathjax-config.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf_viewer.min.js"></script>
+      
+    
+  </body>
+</html>

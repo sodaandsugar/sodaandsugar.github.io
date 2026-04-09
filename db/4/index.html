@@ -1,0 +1,4086 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../3/">
+      
+      
+        <link rel="next" href="../5/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>Chapter 4 Intermediate SQL - sodasugar的笔记本</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/web/pdf_viewer.min.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chapter-4-intermediate-sql" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="sodasugar的笔记本" class="md-header__button md-logo" aria-label="sodasugar的笔记本" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            sodasugar的笔记本
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chapter 4 Intermediate SQL
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/sodaandsugar/sodaandsugar.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    sodasugar-notebook
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  🏡首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../physics2/1/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  ⚛️ 物理
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../interpret/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  🔤外语
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../cryptography/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  专业课
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="sodasugar的笔记本" class="md-nav__button md-logo" aria-label="sodasugar的笔记本" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    sodasugar的笔记本
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/sodaandsugar/sodaandsugar.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    sodasugar-notebook
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🏡首页
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    ⚛️ 物理
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            ⚛️ 物理
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    大物乙Ⅱ
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            大物乙Ⅱ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 静电场
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 静电场中的导体和电介质
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 电流和磁场
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 物质中的磁场
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5 电磁感应
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6 麦克斯韦方程与电磁波
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 7 光的干涉
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 8 光的衍射
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 9 光的偏振
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 10 光的量子论
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 11 玻尔的原子模型
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 12 量子力学初步
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/midterm_review/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    期中小结
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/%E7%89%A9%E7%90%86%E5%AD%A6%E5%8D%95%E4%BD%8D%E6%8D%A2%E7%AE%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    物理学单位换算
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    大物实验
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            大物实验
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cpe/final/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    期末复习
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    🔤外语
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            🔤外语
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../interpret/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    英语口译
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            英语口译
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interpret/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1 Ceremonial Speech
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interpret/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2 Tourism
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interpret/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3 Culture and Education
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interpret/5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    5 International Reports
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interpret/text/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    课堂文本
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interpret/cheatsheet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    真题
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    文学品读与翻译入门
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            文学品读与翻译入门
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../frtl/1.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 English & Chinese：Major Differences
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    专业课
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            专业课
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../cryptography/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    数据安全与密码学基础
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            数据安全与密码学基础
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/resource/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    资源索引
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 概论
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 完善保密加密
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 对称密钥加密以及伪随机性
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 消息鉴别码
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5 哈希函数
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6 数论和密码学困难性假设
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/midterm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    期中考试卷
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    高级数据结构与算法分析
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            高级数据结构与算法分析
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/resource/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    资源索引
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_2" id="__nav_4_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    题目集
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            题目集
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/blank/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    程序填空题集锦
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/function/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    函数题集锦
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1 AVL Trees, Splay Trees and Amortized Analysis
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2 Red-Black Trees and B+ Trees
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3 Inverted File Index
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    4 Leftist Heaps and Skew Heaps
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    5 Binomial Queue
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    6 Backtracking
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    7 Divide and Conquer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    8 Dynamic Programming
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    9 Greedy Algorithms
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    10 P/NP Problems
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    11 Approximation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    12 Local Search
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    13 Randomized Algorithms
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    14 Parallel Algorithms
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/15/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    15 External Sorting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/cheatsheet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    期中考 cheat sheet
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/midterm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    期中考试
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    计算机系统 Ⅱ
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            计算机系统 Ⅱ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 ISA Review
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 Design of Pipelining
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 Hazard of Pipelining
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 Software-Hardware Interface
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5 Intro&Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6 Structures
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 7 Processes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 8 CPU Scheduling
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 9 Synchronization
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/pbfx/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    朋辈辅学
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    计算机系统 Ⅲ
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            计算机系统 Ⅲ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys3/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 Fundamentals of computer system
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys3/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 Instruction-Level Parallelism (ILP)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys3/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 Memory Hierarchy
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    数据库系统
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            数据库系统
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 Intro to Relational Model
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 Introduction to SQL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 Intermediate SQL
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 Intermediate SQL
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-join-expressions" class="md-nav__link">
+    <span class="md-ellipsis">
+      1 Join Expressions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-transactions" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 Transactions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-views" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 Views
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-index" class="md-nav__link">
+    <span class="md-ellipsis">
+      4 Index
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-integrity-constraints" class="md-nav__link">
+    <span class="md-ellipsis">
+      5 Integrity Constraints
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5 Integrity Constraints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#5-1-integrity-constraints-on-a-single-relation" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 1 Integrity Constraints on a Single Relation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-2-referential-integrity" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 2 Referential Integrity
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-3-integrity-constraint-violation-during-transactions" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 3 Integrity Constraint Violation During Transactions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-4-complex-check-clauses" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 4 Complex Check Clauses
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-more-on-sql-data-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      6 More on SQL Data Types
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6 More on SQL Data Types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#6-1-date-and-time-related-types-in-sql" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. 1 Date and Time Related Types in SQL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-2-user-defined-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. 2 User-Defined Types
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-3-domains" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. 3 Domains
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-4-large-object-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. 4 Large-Object Types
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-authorization" class="md-nav__link">
+    <span class="md-ellipsis">
+      7 Authorization
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7 Authorization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#7-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. 1 权限分类
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. 2 权限授予
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. 3 权限撤销
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-4-roles" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. 4 角色（Roles）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. 5 其他授权特性
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5 Advanced SQL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    隐私计算与安全合规
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            隐私计算与安全合规
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mpc/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 引言
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mpc/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 现代密码学与基础原语
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mpc/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 一个安全多方计算协议的例子
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mpc/4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 安全模型
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_7" id="__nav_4_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    面向对象程序设计
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_7">
+            <span class="md-nav__icon md-icon"></span>
+            面向对象程序设计
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 Using Objects
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 Class
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 Object Interaction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5 Composition and Inheritance
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-join-expressions" class="md-nav__link">
+    <span class="md-ellipsis">
+      1 Join Expressions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-transactions" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 Transactions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-views" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 Views
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-index" class="md-nav__link">
+    <span class="md-ellipsis">
+      4 Index
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-integrity-constraints" class="md-nav__link">
+    <span class="md-ellipsis">
+      5 Integrity Constraints
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5 Integrity Constraints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#5-1-integrity-constraints-on-a-single-relation" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 1 Integrity Constraints on a Single Relation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-2-referential-integrity" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 2 Referential Integrity
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-3-integrity-constraint-violation-during-transactions" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 3 Integrity Constraint Violation During Transactions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-4-complex-check-clauses" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 4 Complex Check Clauses
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-more-on-sql-data-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      6 More on SQL Data Types
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6 More on SQL Data Types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#6-1-date-and-time-related-types-in-sql" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. 1 Date and Time Related Types in SQL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-2-user-defined-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. 2 User-Defined Types
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-3-domains" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. 3 Domains
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-4-large-object-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. 4 Large-Object Types
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-authorization" class="md-nav__link">
+    <span class="md-ellipsis">
+      7 Authorization
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7 Authorization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#7-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. 1 权限分类
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. 2 权限授予
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. 3 权限撤销
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-4-roles" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. 4 角色（Roles）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. 5 其他授权特性
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="chapter-4-intermediate-sql">Chapter 4 Intermediate SQL<a class="headerlink" href="#chapter-4-intermediate-sql" title="Permanent link">&para;</a></h1>
+<h2 id="1-join-expressions">1 Join Expressions<a class="headerlink" href="#1-join-expressions" title="Permanent link">&para;</a></h2>
+<p>连接操作是将两个关系（表）处理后返回新关系，通常作为 <code>from</code> 子句的子查询使用。</p>
+<div class="admonition quote">
+<p class="admonition-title">基本概念</p>
+<ul>
+<li>连接类型（Join type）：定义两个关系中<strong>不匹配元组</strong>的处理方式。</li>
+<li>连接条件（Join condition）：定义两个关系的元组匹配规则，以及结果关系中包含的属性。</li>
+<li>自然连接（Natural join）：会自动<strong>消除重复属性</strong>，是基础但存在使用风险。</li>
+</ul>
+<p><img src="/db/images/image4-1.png" style="display: block; width: 60%; margin: 0 auto;" /></p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">示例</p>
+<p><div style="display: flex; justify-content: center; gap: 10px; align-items: center; width: 100%;">
+    <figure style="margin: 0; text-align: center;">
+        <img src="/db/images/image4-2.png" style="display: block; width: 60%; margin: 0 auto;" />
+        <figcaption style="margin-top: 8px; font-size: 14px; color: #333;">Relation course</figcaption>
+    </figure>
+    <figure style="margin: 0; text-align: center;">
+        <img src="/db/images/image4-3.png" style="display: block; width: 60%; margin: 0 auto;" />
+        <figcaption style="margin-top: 8px; font-size: 14px; color: #333;">Relation prereq</figcaption>
+    </figure>
+</div></p>
+<div class="admonition tip">
+<p class="admonition-title">注意</p>
+<ul>
+<li>CS-315 存在于 course 表，但无对应先修课信息（prereq 表无记录）</li>
+<li>CS-347 存在于 prereq 表，但无对应课程信息（course 表无记录）</li>
+</ul>
+</div>
+<ul>
+<li><strong>内连接（inner join）</strong>：仅返回两边表都满足连接条件的匹配元组，<code>on</code> 子句不会自动去重同名列</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">course</span>
+<span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">prereq</span>
+<span class="k">ON</span><span class="w"> </span><span class="n">course</span><span class="p">.</span><span class="n">course_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">prereq</span><span class="p">.</span><span class="n">course_id</span><span class="p">;</span>
+</code></pre></div>
+<p><img src="/db/images/image4-6.png" style="display: block; width: 65%; margin: 0 auto;" /></p>
+<ul>
+<li><strong>左外连接（left outer join）</strong>：保留左表所有元组，右表中不匹配的元组对应列补为 <code>null</code></li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">course</span>
+<span class="k">LEFT</span><span class="w"> </span><span class="k">OUTER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">prereq</span>
+<span class="k">ON</span><span class="w"> </span><span class="n">course</span><span class="p">.</span><span class="n">course_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">prereq</span><span class="p">.</span><span class="n">course_id</span><span class="p">;</span>
+</code></pre></div>
+<p><img src="/db/images/image4-7.png" style="display: block; width: 65%; margin: 0 auto;" /></p>
+<ul>
+<li><strong>右外连接（natural right outer join）</strong>：保留右表所有元组，左表中不匹配的元组对应列补为 <code>null</code>，自动匹配同名属性并去重</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">course</span>
+<span class="k">NATURAL</span><span class="w"> </span><span class="k">RIGHT</span><span class="w"> </span><span class="k">OUTER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">prereq</span><span class="p">;</span>
+</code></pre></div>
+<p><img src="/db/images/image4-4.png" style="display: block; width: 60%; margin: 0 auto;" /></p>
+<ul>
+<li><strong>全外连接（natural full outer join）</strong>：保留左右两张表的所有元组，匹配的部分合并，不匹配的部分补 <code>null</code></li>
+</ul>
+<div class="highlight"><span class="filename">写法 1</span><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">course</span>
+<span class="k">NATURAL</span><span class="w"> </span><span class="k">FULL</span><span class="w"> </span><span class="k">OUTER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">prereq</span><span class="p">;</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">写法 2：USING (course_id) 显式指定连接列，比 NATURAL 更安全，避免隐式匹配其他同名属性的风险</span><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">course</span>
+<span class="k">FULL</span><span class="w"> </span><span class="k">OUTER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">prereq</span>
+<span class="k">USING</span><span class="w"> </span><span class="p">(</span><span class="n">course_id</span><span class="p">);</span>
+</code></pre></div>
+<p><img src="/db/images/image4-5.png" style="display: block; width: 60%; margin: 0 auto;" /></p>
+</div>
+<h2 id="2-transactions">2 Transactions<a class="headerlink" href="#2-transactions" title="Permanent link">&para;</a></h2>
+<p>事务是数据库中不可分割的工作单元，由一系列查询/更新语句组成，是保证数据一致性的核心机制。</p>
+<ol>
+<li><strong>核心特性</strong><ul>
+<li><strong>原子性（Atomic）</strong>：事务要么<strong>完全执行</strong>，要么<strong>回滚</strong>。</li>
+<li><strong>隔离性（Isolation）</strong>：事务与并发执行的其他事务相互隔离。</li>
+</ul>
+</li>
+<li><strong>事务的开始与结束</strong><ul>
+<li>开始：<strong>隐式开始</strong>，无需显式语句</li>
+<li>结束：<code>commit work</code>（事务的更新操作永久化到数据库）或 <code>rollback work</code>（撤销事务中所有SQL语句的更新操作）</li>
+</ul>
+</li>
+<li>多数数据库默认<strong>每条 SQL 语句自动提交</strong>，可通过 API 关闭会话的自动提交， SQL:1999 支持 <code>begin atomic … end</code> 显式定义事务块，但多数数据库未实现。</li>
+</ol>
+<h2 id="3-views">3 Views<a class="headerlink" href="#3-views" title="Permanent link">&para;</a></h2>
+<p>视图是数据库的<strong>虚拟关系</strong>，不实际存储数据，仅保存查询表达式，核心作用是<strong>隐藏敏感数据</strong>，为不同用户提供定制化的数据访问视角。</p>
+<p><code>create view 视图名 as &lt;合法SQL查询表达式&gt;</code> 仅保存查询表达式，<strong>不生成新的物理关系</strong>，定义后，视图名可直接作为关系名用于后续查询。</p>
+<details class="question">
+<summary>创建不包含薪资信息的教师视图并查找生物系的所有教师</summary>
+<div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">view</span><span class="w"> </span><span class="n">faculty</span><span class="w"> </span><span class="k">as</span>
+<span class="k">select</span><span class="w"> </span><span class="n">ID</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">dept_name</span>
+<span class="k">from</span><span class="w"> </span><span class="n">instructor</span>
+
+<span class="k">select</span><span class="w"> </span><span class="n">name</span>
+<span class="k">from</span><span class="w"> </span><span class="n">faculty</span>
+<span class="k">where</span><span class="w"> </span><span class="n">dept_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Biology&#39;</span>
+</code></pre></div>
+</details>
+<details class="question">
+<summary>创建各系薪资总额视图并查询薪资总额高于平均值的系</summary>
+<div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">view</span><span class="w"> </span><span class="n">departments_total_salary</span><span class="p">(</span><span class="n">dept_name</span><span class="p">,</span><span class="w"> </span><span class="n">total_salary</span><span class="p">)</span><span class="w"> </span><span class="k">as</span>
+<span class="w">    </span><span class="k">select</span><span class="w"> </span><span class="n">dept_name</span><span class="p">,</span><span class="w"> </span><span class="k">sum</span><span class="p">(</span><span class="n">salary</span><span class="p">)</span>
+<span class="w">    </span><span class="k">from</span><span class="w"> </span><span class="n">instructor</span>
+<span class="w">    </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">dept_name</span><span class="p">;</span>
+
+<span class="k">select</span><span class="w"> </span><span class="n">dept_name</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">departments_total_salary</span>
+<span class="k">where</span><span class="w"> </span><span class="n">total_salary</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="k">avg</span><span class="p">(</span><span class="n">total_salary</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">departments_total_salary</span><span class="p">)</span>
+</code></pre></div>
+</details>
+<ul>
+<li>视图可<strong>嵌套定义</strong>，即一个视图的查询表达式中引用另一个视图。</li>
+</ul>
+<details class="question">
+<summary>基于 2009 年秋季物理系的课程视图创建 2009 年秋季物理系在 Watson 楼的课程视图</summary>
+<div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">view</span><span class="w"> </span><span class="n">physics_fall_2009</span><span class="w"> </span><span class="k">as</span>
+<span class="w">    </span><span class="k">select</span><span class="w"> </span><span class="n">course</span><span class="p">.</span><span class="n">course_id</span><span class="p">,</span><span class="w"> </span><span class="n">sec_id</span><span class="p">,</span><span class="w"> </span><span class="n">building</span><span class="p">,</span><span class="w"> </span><span class="n">room_number</span>
+<span class="w">    </span><span class="k">from</span><span class="w"> </span><span class="n">course</span><span class="p">,</span><span class="w"> </span><span class="n">section</span>
+<span class="w">    </span><span class="k">where</span><span class="w"> </span><span class="n">course</span><span class="p">.</span><span class="n">course_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">section</span><span class="p">.</span><span class="n">course_id</span>
+<span class="w">        </span><span class="k">and</span><span class="w"> </span><span class="n">dept_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Physics&#39;</span>
+<span class="w">        </span><span class="k">and</span><span class="w"> </span><span class="n">semester</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Fall&#39;</span>
+<span class="w">        </span><span class="k">and</span><span class="w"> </span><span class="k">year</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;2009&#39;</span><span class="p">;</span>
+
+<span class="k">create</span><span class="w"> </span><span class="k">view</span><span class="w"> </span><span class="n">physics_fall_2009_watson</span><span class="w"> </span><span class="k">as</span>
+<span class="w">    </span><span class="k">select</span><span class="w"> </span><span class="n">course_id</span><span class="p">,</span><span class="w"> </span><span class="n">room_number</span>
+<span class="w">    </span><span class="k">from</span><span class="w"> </span><span class="n">physics_fall_2009</span>
+<span class="w">    </span><span class="k">where</span><span class="w"> </span><span class="n">building</span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Watson&#39;</span><span class="p">;</span>
+</code></pre></div>
+</details>
+<ul>
+<li><strong>视图展开（View Expansion）</strong>：将视图引用<strong>替换为其定义的查询表达式</strong>，重复替换直到无视图引用为止，其中视图定义必须是<strong>非递归</strong>的，否则替换会无限循环。</li>
+</ul>
+<details class="example">
+<summary>示例</summary>
+<div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">view</span><span class="w"> </span><span class="n">physics_fall_2009_watson</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="k">select</span><span class="w"> </span><span class="n">course_id</span><span class="p">,</span><span class="w"> </span><span class="n">room_number</span>
+<span class="w">    </span><span class="k">from</span><span class="w"> </span><span class="p">(</span>
+<span class="w">        </span><span class="k">select</span><span class="w"> </span><span class="n">course</span><span class="p">.</span><span class="n">course_id</span><span class="p">,</span><span class="w"> </span><span class="n">building</span><span class="p">,</span><span class="w"> </span><span class="n">room_number</span>
+<span class="w">        </span><span class="k">from</span><span class="w"> </span><span class="n">course</span><span class="p">,</span><span class="w"> </span><span class="n">section</span>
+<span class="w">        </span><span class="k">where</span><span class="w"> </span><span class="n">course</span><span class="p">.</span><span class="n">course_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">section</span><span class="p">.</span><span class="n">course_id</span>
+<span class="w">            </span><span class="k">and</span><span class="w"> </span><span class="n">course</span><span class="p">.</span><span class="n">dept_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Physics&#39;</span>
+<span class="w">            </span><span class="k">and</span><span class="w"> </span><span class="n">section</span><span class="p">.</span><span class="n">semester</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Fall&#39;</span>
+<span class="w">            </span><span class="k">and</span><span class="w"> </span><span class="n">section</span><span class="p">.</span><span class="k">year</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;2009&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="k">where</span><span class="w"> </span><span class="n">building</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Watson&#39;</span><span class="p">);</span>
+</code></pre></div>
+</details>
+<div class="admonition quote">
+<p class="admonition-title">递归视图（Recursive view）</p>
+<ul>
+<li>一个视图可以被用于定义另一个视图的表达式中，如果视图关系 <span class="arithmatex">\(v_2\)</span> 被用于定义视图关系 <span class="arithmatex">\(v_1\)</span> 的表达式中，则称 <span class="arithmatex">\(v_1\)</span> <strong>直接依赖（depend directly on）</strong>于 <span class="arithmatex">\(v_2\)</span>。</li>
+<li>如果视图关系 <span class="arithmatex">\(v_1\)</span> 直接依赖于 <span class="arithmatex">\(v_2\)</span>，或者存在一条从 <span class="arithmatex">\(v_1\)</span> 到 <span class="arithmatex">\(v_2\)</span> 的<strong>依赖路径（path of dependencies）</strong>，则称 <span class="arithmatex">\(v_1\)</span> <strong>依赖（depend on）</strong>于 <span class="arithmatex">\(v_2\)</span>。</li>
+<li>如果视图关系 <span class="arithmatex">\(v\)</span> 依赖于自身，则称其为<strong>递归视图</strong>。</li>
+</ul>
+</div>
+<ul>
+<li><strong>视图更新（Update of a View）</strong>：视图的更新最终会映射到底层物理关系，仅简单视图支持更新，复杂视图易出现歧义或意外结果。</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">简单视图更新：仅基于单表、无聚合/表达式/分组的视图，插入时未指定的列会设为<code>null</code></p>
+<div class="highlight"><pre><span></span><code><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">faculty</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;30765&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Green&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Music&#39;</span><span class="p">);</span>
+</code></pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">更新的歧义问题：多表连接的视图无法唯一映射到底层表，多数 SQL 实现禁止此类更新</p>
+<div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">view</span><span class="w"> </span><span class="n">instructor_info</span><span class="w"> </span><span class="k">as</span>
+<span class="w">    </span><span class="k">select</span><span class="w"> </span><span class="n">ID</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">building</span>
+<span class="w">    </span><span class="k">from</span><span class="w"> </span><span class="n">instructor</span><span class="p">,</span><span class="w"> </span><span class="n">department</span>
+<span class="w">    </span><span class="k">where</span><span class="w"> </span><span class="n">instructor</span><span class="p">.</span><span class="n">dept_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">department</span><span class="p">.</span><span class="n">dept_name</span><span class="p">;</span>
+
+<span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">instructor_info</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;69987&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;White&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Taylor&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p>引发的问题：如果 Taylor 楼存在多个院系，这条插入应该归属到哪个院系？如果 Taylor 楼没有任何院系，这条插入该如何处理？</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">更新的意外结果：如按条件定义的视图，插入不符合条件的元组会成功存入底层表</p>
+<div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">view</span><span class="w"> </span><span class="n">history_instructors</span><span class="w"> </span><span class="k">as</span>
+<span class="k">select</span><span class="w"> </span><span class="o">*</span>
+<span class="k">from</span><span class="w"> </span><span class="n">instructor</span>
+<span class="k">where</span><span class="w"> </span><span class="n">dept_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;History&#39;</span><span class="p">;</span>
+</code></pre></div>
+<p>为了避免将生物系的教师插入到历史系视图中，我们可以在创建视图时使用 <code>with check option</code> 子句，强制插入/更新的元组满足视图的查询条件。</p>
+</div>
+<ul>
+<li><strong>物化视图（Materialized Views）</strong>：创建物理表存储视图查询的结果，而非仅保存表达式。<ul>
+<li><strong>问题</strong>：底层关系更新后，物化视图的结果会<strong>过期</strong>。</li>
+<li><strong>解决</strong>：需<strong>维护物化视图</strong>，即底层关系更新时同步更新视图数据。</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-index">4 Index<a class="headerlink" href="#4-index" title="Permanent link">&para;</a></h2>
+<p>索引是为<strong>加速数据查询</strong>设计的特殊数据结构，通过索引属性快速定位记录，避免全表扫描。</p>
+<div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">student</span>
+<span class="p">(</span><span class="n">ID</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span>
+<span class="n">name</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">,</span>
+<span class="n">dept_name</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span>
+<span class="n">tot_cred</span><span class="w"> </span><span class="nb">numeric</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="k">primary</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="p">(</span><span class="n">ID</span><span class="p">));</span>
+
+<span class="k">create</span><span class="w"> </span><span class="k">index</span><span class="w"> </span><span class="n">studentName_index</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">student</span><span class="p">(</span><span class="n">Name</span><span class="p">);</span>
+
+<span class="c1">-- 可通过索引直接找到目标记录，无需遍历 student 表的所有数据，大幅提升查询效率</span>
+<span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">student</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">Name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Mike&#39;</span><span class="p">;</span>
+</code></pre></div>
+<h2 id="5-integrity-constraints">5 Integrity Constraints<a class="headerlink" href="#5-integrity-constraints" title="Permanent link">&para;</a></h2>
+<p>完整性约束用于<strong>防止数据库意外损坏</strong>，保证授权的数据库修改不会导致数据不一致，是数据库数据质量的保障。</p>
+<h3 id="5-1-integrity-constraints-on-a-single-relation">5. 1 Integrity Constraints on a Single Relation<a class="headerlink" href="#5-1-integrity-constraints-on-a-single-relation" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>约束类型</th>
+<th>核心特点</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>not null</code></td>
+<td>强制属性值<strong>非空</strong></td>
+<td><code>name varchar(20) not null</code></td>
+</tr>
+<tr>
+<td><code>primary key</code></td>
+<td>主键，<strong>非空且唯一</strong>，一个表仅一个</td>
+<td><code>primary key (course_id, sec_id, semester, year)</code></td>
+</tr>
+<tr>
+<td><code>unique</code></td>
+<td>候选键，<strong>唯一但可空</strong>，一个表可多个</td>
+<td><code>unique (ID)</code></td>
+</tr>
+<tr>
+<td><code>check(P)</code></td>
+<td>强制元组满足谓词 <span class="arithmatex">\(P\)</span></td>
+<td><code>check (semester in ('Fall', 'Winter', 'Spring', 'Summer'))</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="5-2-referential-integrity">5. 2 Referential Integrity<a class="headerlink" href="#5-2-referential-integrity" title="Permanent link">&para;</a></h3>
+<p>保证一个关系中的<strong>外键属性值</strong>，必须出现在另一个关系的<strong>主键属性</strong>中（外键所在表为从表，主键所在表为主表），外键值可设为 <code>null</code>。</p>
+<div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">course</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="p">...</span>
+<span class="w">    </span><span class="n">dept_name</span><span class="w">  </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span>
+<span class="w">    </span><span class="c1">-- 定义外键：院系名称，参照 department 表</span>
+<span class="w">    </span><span class="k">foreign</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="p">(</span><span class="n">dept_name</span><span class="p">)</span><span class="w"> </span><span class="k">references</span><span class="w"> </span><span class="n">department</span>
+<span class="w">        </span><span class="c1">-- 级联删除：若被参照的院系记录被删除，则同步删除所有关联的课程记录</span>
+<span class="w">        </span><span class="k">on</span><span class="w"> </span><span class="k">delete</span><span class="w"> </span><span class="k">cascade</span><span class="p">,</span>
+<span class="w">        </span><span class="c1">-- 级联更新：若被参照的院系记录被更新，则同步更新所有关联的课程记录</span>
+<span class="w">        </span><span class="k">on</span><span class="w"> </span><span class="k">update</span><span class="w"> </span><span class="k">cascade</span><span class="p">,</span>
+<span class="w">    </span><span class="p">...</span>
+<span class="p">);</span>
+
+<span class="c1">-- set null：将从表的外键值设为 null</span>
+<span class="c1">-- set default：将从表的外键值设为默认值</span>
+</code></pre></div>
+<h3 id="5-3-integrity-constraint-violation-during-transactions">5. 3 Integrity Constraint Violation During Transactions<a class="headerlink" href="#5-3-integrity-constraint-violation-during-transactions" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">person</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">ID</span><span class="w">      </span><span class="nb">char</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span>
+<span class="w">    </span><span class="n">name</span><span class="w">    </span><span class="nb">char</span><span class="p">(</span><span class="mi">40</span><span class="p">),</span>
+<span class="w">    </span><span class="n">mother</span><span class="w">  </span><span class="nb">char</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span>
+<span class="w">    </span><span class="n">father</span><span class="w">  </span><span class="nb">char</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span>
+<span class="w">    </span><span class="k">primary</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="n">ID</span><span class="p">,</span>
+<span class="w">    </span><span class="k">foreign</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="n">father</span><span class="w"> </span><span class="k">references</span><span class="w"> </span><span class="n">person</span><span class="p">,</span>
+<span class="w">    </span><span class="k">foreign</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="n">mother</span><span class="w"> </span><span class="k">references</span><span class="w"> </span><span class="n">person</span>
+<span class="p">);</span>
+</code></pre></div>
+<p>person 表的 <code>father/mother</code> 是外键，插入新元组时需<strong>先插入父母元组</strong>，或<strong>先将父母设为 <code>null</code></strong>（若属性未定义 <code>not null</code>）。</p>
+<h3 id="5-4-complex-check-clauses">5. 4 Complex Check Clauses<a class="headerlink" href="#5-4-complex-check-clauses" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong><code>check</code> 子句</strong>：<strong>多数数据库不支持子查询</strong>（如 <code>check (time_slot_id in (select time_slot_id from time_slot))</code>）</li>
+<li><strong>断言（Assertion）</strong>：<code>create assertion &lt;断言名&gt; check &lt;谓词&gt;</code>，可定义复杂跨表约束，<strong>目前所有数据库均未支持</strong></li>
+<li>替代方案：使用<strong>触发器（Triggers）</strong> 实现复杂约束</li>
+</ul>
+<h2 id="6-more-on-sql-data-types">6 More on SQL Data Types<a class="headerlink" href="#6-more-on-sql-data-types" title="Permanent link">&para;</a></h2>
+<h3 id="6-1-date-and-time-related-types-in-sql">6. 1 Date and Time Related Types in SQL<a class="headerlink" href="#6-1-date-and-time-related-types-in-sql" title="Permanent link">&para;</a></h3>
+<p>支持日期、时间的存储和运算，<strong>相减返回时间间隔，间隔可与日期/时间相加</strong>。</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>含义</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>date</code></td>
+<td>日期（4 位年份+月+日）</td>
+<td><code>date '2005-7-27'</code></td>
+</tr>
+<tr>
+<td><code>time</code></td>
+<td>时间（时+分+秒，支持小数秒）</td>
+<td><code>time '09:00:30.75'</code></td>
+</tr>
+<tr>
+<td><code>timestamp</code></td>
+<td>时间戳（date+time）</td>
+<td><code>timestamp '2005-7-27 09:00:30.75'</code></td>
+</tr>
+<tr>
+<td><code>interval</code></td>
+<td>时间间隔</td>
+<td><code>interval '4 days 3 hours 2 minutes 1 second'</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="6-2-user-defined-types">6. 2 User-Defined Types<a class="headerlink" href="#6-2-user-defined-types" title="Permanent link">&para;</a></h3>
+<p>通过 <code>create type</code> 自定义专属类型，基于基础 SQL 类型封装。</p>
+<div class="highlight"><pre><span></span><code><span class="c1">-- 定义美元类型</span>
+<span class="k">create</span><span class="w"> </span><span class="k">type</span><span class="w"> </span><span class="n">Dollars</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nb">numeric</span><span class="w"> </span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">final</span><span class="p">;</span>
+
+<span class="c1">-- 使用自定义类型</span>
+<span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">department</span><span class="p">(</span>
+<span class="w">    </span><span class="n">dept_name</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span>
+<span class="w">    </span><span class="n">building</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">15</span><span class="p">),</span>
+<span class="w">    </span><span class="n">budget</span><span class="w"> </span><span class="n">Dollars</span>
+<span class="p">);</span>
+</code></pre></div>
+<h3 id="6-3-domains">6. 3 Domains<a class="headerlink" href="#6-3-domains" title="Permanent link">&para;</a></h3>
+<p>SQL-92 提出，与自定义类型类似，<strong>可直接为域添加约束</strong>（<code>not null</code>/<code>check</code>），是属性的通用约束模板。</p>
+<div class="highlight"><pre><span></span><code><span class="c1">-- 定义非空的人名域</span>
+<span class="k">create</span><span class="w"> </span><span class="k">domain</span><span class="w"> </span><span class="n">person_name</span><span class="w"> </span><span class="nb">char</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">;</span>
+
+<span class="c1">-- 定义学历域，加取值约束</span>
+<span class="k">create</span><span class="w"> </span><span class="k">domain</span><span class="w"> </span><span class="n">degree_level</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="k">constraint</span><span class="w"> </span><span class="n">degree_level_constraint</span>
+<span class="k">check</span><span class="w"> </span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;Bachelors&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Masters&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Doctorate&#39;</span><span class="p">));</span>
+</code></pre></div>
+<h3 id="6-4-large-object-types">6. 4 Large-Object Types<a class="headerlink" href="#6-4-large-object-types" title="Permanent link">&para;</a></h3>
+<p>用于存储<strong>超大数据</strong>（图片、视频、CAD文件等），查询时<strong>仅返回数据指针</strong>，而非实际大对象内容。</p>
+<ul>
+<li><code>blob</code>：二进制大对象（Binary Large Object），存储无解释的二进制数据。</li>
+<li><code>clob</code>：字符大对象（Character Large Object），存储大量字符数据。</li>
+</ul>
+<h2 id="7-authorization">7 Authorization<a class="headerlink" href="#7-authorization" title="Permanent link">&para;</a></h2>
+<p>数据库为不同用户分配<strong>不同操作权限</strong>，保证数据的访问安全，核心通过 <code>grant</code>（授予）和 <code>revoke</code>（撤销）语句实现。</p>
+<h3 id="7-1">7. 1 权限分类<a class="headerlink" href="#7-1" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>权限类别</th>
+<th>具体权限</th>
+<th>核心作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>数据操作</td>
+<td><code>read</code>（读）/<code>insert</code>（插）/<code>update</code>（改）/<code>delete</code>（删）/<code>all privileges</code>（所有可用权限）</td>
+<td>操作数据库中的数据</td>
+</tr>
+<tr>
+<td>模式修改</td>
+<td><code>Index</code>（索引）/<code>Resources</code>（建表）/<code>Alteration</code>（改列）/<code>Drop</code>（删表）</td>
+<td>修改数据库的逻辑结构</td>
+</tr>
+</tbody>
+</table>
+<h3 id="7-2">7. 2 权限授予<a class="headerlink" href="#7-2" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">grant</span><span class="w"> </span><span class="o">&lt;</span><span class="err">权限列表</span><span class="o">&gt;</span>
+<span class="k">on</span><span class="w"> </span><span class="o">&lt;</span><span class="err">表名</span><span class="o">/</span><span class="err">视图名</span><span class="o">&gt;</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="o">&lt;</span><span class="err">用户列表</span><span class="o">/</span><span class="err">角色</span><span class="o">/</span><span class="k">public</span><span class="o">&gt;</span><span class="p">;</span>
+</code></pre></div>
+<ul>
+<li><code>用户列表</code>：可指定单个用户、<code>public</code>（所有有效用户）、<strong>角色（Role）</strong></li>
+<li>授予者前提：必须已持有该权限，或为<strong>数据库管理员（DBA）</strong>；</li>
+<li>视图授权：授予视图的权限<strong>不隐含</strong>其底层表的权限。</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1">-- 授予 U1/U2/U3 查询 instructor 表的权限</span>
+<span class="k">grant</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">instructor</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">U1</span><span class="p">,</span><span class="w"> </span><span class="n">U2</span><span class="p">,</span><span class="w"> </span><span class="n">U3</span><span class="p">;</span>
+
+<span class="c1">-- 授予 geo_staff 查询 geo_instructor 视图的权限</span>
+<span class="k">grant</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">geo_instructor</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">geo_staff</span><span class="p">;</span>
+</code></pre></div>
+<h3 id="7-3">7. 3 权限撤销<a class="headerlink" href="#7-3" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">revoke</span><span class="w"> </span><span class="o">&lt;</span><span class="err">权限列表</span><span class="o">/</span><span class="k">all</span><span class="o">&gt;</span>
+<span class="k">on</span><span class="w"> </span><span class="o">&lt;</span><span class="err">表名</span><span class="o">/</span><span class="err">视图名</span><span class="o">&gt;</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="o">&lt;</span><span class="err">用户列表</span><span class="o">/</span><span class="err">角色</span><span class="o">/</span><span class="k">public</span><span class="o">&gt;</span><span class="p">;</span>
+</code></pre></div>
+<ul>
+<li>如果 &lt;被撤销用户列表&gt; 中包含 public，<strong>除了被显式单独授予该权限的用户外</strong>，其他所有用户都将失去该权限。</li>
+<li><strong>权限依赖</strong>：所有基于该权限的派生权限会被一并撤销。</li>
+<li><strong>重复授予</strong>：若同一权限由不同授予者多次授予，撤销其中一次后，用户<strong>仍保留该权限</strong>。</li>
+</ul>
+<h3 id="7-4-roles">7. 4 角色（Roles）<a class="headerlink" href="#7-4-roles" title="Permanent link">&para;</a></h3>
+<p>为<strong>批量管理用户权限</strong>设计，将一组权限绑定到角色，再将角色分配给用户/其他角色，实现权限的层级化管理。</p>
+<div class="highlight"><pre><span></span><code><span class="c1">-- 创建角色</span>
+<span class="k">create</span><span class="w"> </span><span class="k">role</span><span class="w"> </span><span class="n">instructor</span><span class="p">;</span>
+<span class="k">create</span><span class="w"> </span><span class="k">role</span><span class="w"> </span><span class="n">teaching_assistant</span><span class="p">;</span>
+
+<span class="c1">-- 为角色分配权限</span>
+<span class="k">grant</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">takes</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">instructor</span><span class="p">;</span>
+
+<span class="c1">-- 给用户 Amit 分配讲师角色</span>
+<span class="k">grant</span><span class="w"> </span><span class="n">instructor</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">Amit</span><span class="p">;</span>
+<span class="c1">-- 讲师继承助教的所有权限</span>
+<span class="k">grant</span><span class="w"> </span><span class="n">teaching_assistant</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">instructor</span><span class="p">;</span>
+</code></pre></div>
+<p>支持<strong>角色链（Chain of roles）</strong>：通过角色嵌套实现权限的层级传递，高层角色继承所有低层角色的权限。</p>
+<div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">role</span><span class="w"> </span><span class="n">dean</span><span class="p">;</span>
+<span class="k">grant</span><span class="w"> </span><span class="n">instructor</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">dean</span><span class="p">;</span>
+<span class="k">grant</span><span class="w"> </span><span class="n">dean</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">Satoshi</span><span class="p">;</span>
+</code></pre></div>
+<h3 id="7-5">7. 5 其他授权特性<a class="headerlink" href="#7-5" title="Permanent link">&para;</a></h3>
+<ul>
+<li>对视图授权 <span class="arithmatex">\(\neq\)</span> 对底层基表授权，视图创建者必须对基表有足够权限</li>
+</ul>
+<div class="highlight"><span class="filename">Authorization on Views</span><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">view</span><span class="w"> </span><span class="n">geo_instructor</span><span class="w"> </span><span class="k">as</span>
+<span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">instructor</span>
+<span class="k">where</span><span class="w"> </span><span class="n">dept_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Geology&#39;</span><span class="p">;</span>
+
+<span class="k">grant</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">geo_instructor</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">geo_staff</span><span class="p">;</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">references 权限：允许用户在自己的表中，引用其他表的字段作为外键</span><pre><span></span><code><span class="k">grant</span><span class="w"> </span><span class="n">reference</span><span class="w"> </span><span class="p">(</span><span class="n">dept_name</span><span class="p">)</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">department</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">Mariano</span><span class="p">;</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">权限传递：允许被授权者将获得的权限再次转授给其他用户</span><pre><span></span><code><span class="k">grant</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">department</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">Amit</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="k">grant</span><span class="w"> </span><span class="k">option</span><span class="p">;</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">级联撤销：适用需要彻底清理权限链的场景</span><pre><span></span><code><span class="k">revoke</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">department</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">Amit</span><span class="p">,</span><span class="w"> </span><span class="n">Satoshi</span><span class="w"> </span><span class="k">cascade</span><span class="p">;</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">限制撤销：仅在没有衍生权限时才执行撤销</span><pre><span></span><code><span class="k">revoke</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">department</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">Amit</span><span class="p">,</span><span class="w"> </span><span class="n">Satoshi</span><span class="w"> </span><span class="k">restrict</span><span class="p">;</span>
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.top", "navigation.sidebar", "navigation.indexes"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../../javascripts/mathjax-config.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf_viewer.min.js"></script>
+      
+    
+  </body>
+</html>

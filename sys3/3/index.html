@@ -1,0 +1,5276 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../2/">
+      
+      
+        <link rel="next" href="../../db/1/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>Chapter 3 Memory Hierarchy - sodasugar的笔记本</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/web/pdf_viewer.min.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chapter-3-memory-hierarchy" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="sodasugar的笔记本" class="md-header__button md-logo" aria-label="sodasugar的笔记本" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            sodasugar的笔记本
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chapter 3 Memory Hierarchy
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/sodaandsugar/sodaandsugar.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    sodasugar-notebook
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  🏡首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../physics2/1/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  ⚛️ 物理
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../interpret/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  🔤外语
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../cryptography/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  专业课
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="sodasugar的笔记本" class="md-nav__button md-logo" aria-label="sodasugar的笔记本" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    sodasugar的笔记本
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/sodaandsugar/sodaandsugar.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    sodasugar-notebook
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🏡首页
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    ⚛️ 物理
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            ⚛️ 物理
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    大物乙Ⅱ
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            大物乙Ⅱ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 静电场
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 静电场中的导体和电介质
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 电流和磁场
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 物质中的磁场
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5 电磁感应
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6 麦克斯韦方程与电磁波
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 7 光的干涉
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 8 光的衍射
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 9 光的偏振
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 10 光的量子论
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 11 玻尔的原子模型
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 12 量子力学初步
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/midterm_review/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    期中小结
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/%E7%89%A9%E7%90%86%E5%AD%A6%E5%8D%95%E4%BD%8D%E6%8D%A2%E7%AE%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    物理学单位换算
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    大物实验
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            大物实验
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cpe/final/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    期末复习
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    🔤外语
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            🔤外语
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../interpret/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    英语口译
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            英语口译
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interpret/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1 Ceremonial Speech
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interpret/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2 Tourism
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interpret/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3 Culture and Education
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interpret/5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    5 International Reports
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interpret/text/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    课堂文本
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interpret/cheatsheet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    真题
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    文学品读与翻译入门
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            文学品读与翻译入门
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../frtl/1.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 English & Chinese：Major Differences
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    专业课
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            专业课
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../cryptography/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    数据安全与密码学基础
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            数据安全与密码学基础
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/resource/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    资源索引
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 概论
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 完善保密加密
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 对称密钥加密以及伪随机性
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 消息鉴别码
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5 哈希函数
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6 数论和密码学困难性假设
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/midterm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    期中考试卷
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    高级数据结构与算法分析
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            高级数据结构与算法分析
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/resource/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    资源索引
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_2" id="__nav_4_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    题目集
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            题目集
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/blank/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    程序填空题集锦
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/function/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    函数题集锦
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1 AVL Trees, Splay Trees and Amortized Analysis
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2 Red-Black Trees and B+ Trees
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3 Inverted File Index
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    4 Leftist Heaps and Skew Heaps
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    5 Binomial Queue
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    6 Backtracking
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    7 Divide and Conquer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    8 Dynamic Programming
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    9 Greedy Algorithms
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    10 P/NP Problems
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    11 Approximation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    12 Local Search
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    13 Randomized Algorithms
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    14 Parallel Algorithms
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/15/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    15 External Sorting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/cheatsheet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    期中考 cheat sheet
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/midterm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    期中考试
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    计算机系统 Ⅱ
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            计算机系统 Ⅱ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 ISA Review
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 Design of Pipelining
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 Hazard of Pipelining
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 Software-Hardware Interface
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5 Intro&Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6 Structures
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 7 Processes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 8 CPU Scheduling
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 9 Synchronization
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/pbfx/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    朋辈辅学
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    计算机系统 Ⅲ
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            计算机系统 Ⅲ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 Fundamentals of computer system
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 Instruction-Level Parallelism (ILP)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 Memory Hierarchy
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 Memory Hierarchy
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      1 Introduction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-technology-trend-and-memory-hierarchy" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 Technology Trend and Memory Hierarchy
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-four-questions-for-cache-designers" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 Four Questions for Cache Designers
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3 Four Questions for Cache Designers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#3-1-block-placement" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 1 Block Placement
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-2-block-identification" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 2 Block Identification
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-3-access-data-in-a-direct-mapped-cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 3 Access data in a direct mapped cache
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-4-block-replacement" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 4 Block Replacement
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-5-hardware-implementation-of-lru" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 5 Hardware Implementation of LRU
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-6-write-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 6 Write Strategy
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-cpu-vulnerabilities-and-cache-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      4 CPU Vulnerabilities and Cache Security
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4 CPU Vulnerabilities and Cache Security">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#4-1-cpu" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. 1 CPU 缓存缺陷分析
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-2-meltdown" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. 2 Meltdown
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-3-spectre" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. 3 Spectre
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. 4 其他新场景下的攻击
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-5-cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. 5 Cache 安全增强
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-memory-system-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      5 Memory System Performance
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5 Memory System Performance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#5-1-introduction-to-cache-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 1 Introduction to Cache Performance
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-2-basic-optimization-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 2 Basic Optimization Methods
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. 2 Basic Optimization Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#5-2-1-larger-block-size-to-reduce-miss-rate" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 2. 1 Larger Block Size to Reduce Miss Rate
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-2-2-larger-caches-to-reduce-miss-rate" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 2. 2 Larger Caches to Reduce Miss Rate
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-2-3-higher-associativity-to-reduce-miss-rate" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 2. 3 Higher Associativity to Reduce Miss Rate
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-2-4-multilevel-caches-to-reduce-miss-penalty" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 2. 4 Multilevel Caches to Reduce Miss Penalty
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-2-5-giving-priority-to-read-misses-over-writes" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 2. 5 Giving Priority to Read Misses over Writes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-2-6-avoiding-address-translation-during-indexing-of-the-cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 2. 6 Avoiding Address Translation During Indexing of the Cache
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-3-advanced-optimization-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 3 Advanced Optimization Methods
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. 3 Advanced Optimization Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#5-3-1-pipelined-l1-caches-with-virtual-indexing-and-set-associativity" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 3. 1 Pipelined L1 Caches With Virtual Indexing and Set Associativity
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-3-2-multiple-banks-and-ports-to-increase-the-bandwidth-of-l1-d-caches" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 3. 2 Multiple Banks and Ports to Increase the Bandwidth of L1 D-Caches
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-3-3-reducing-the-miss-rate-with-better-replacement-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 3. 3 Reducing the Miss Rate With Better Replacement Policies
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-3-4-multibanked-l2-and-l3-caches" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 3. 4 Multibanked L2 and L3 Caches
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-3-5-nonblocking-caches" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 3. 5 Nonblocking Caches
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-3-6-critical-word-first-and-early-restart" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 3. 6 Critical Word First and Early Restart
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-3-7-compiler-optimizations-to-reduce-miss-rate" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 3. 7 Compiler Optimizations to Reduce Miss Rate
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-3-8-hardware-prefetching-compiler-controlled-prefetching" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 3. 8 Hardware Prefetching 与 Compiler-Controlled Prefetching
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-3-9-multiple-memory-buses-and-memory-modules-to-increase-bandwidth" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 3. 9 Multiple Memory Buses and Memory Modules to Increase Bandwidth
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    数据库系统
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            数据库系统
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../db/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../db/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 Intro to Relational Model
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../db/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 Introduction to SQL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../db/4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 Intermediate SQL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../db/5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5 Advanced SQL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    隐私计算与安全合规
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            隐私计算与安全合规
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mpc/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 引言
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mpc/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 现代密码学与基础原语
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mpc/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 一个安全多方计算协议的例子
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mpc/4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 安全模型
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_7" id="__nav_4_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    面向对象程序设计
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_7">
+            <span class="md-nav__icon md-icon"></span>
+            面向对象程序设计
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 Using Objects
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 Class
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 Object Interaction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5 Composition and Inheritance
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      1 Introduction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-technology-trend-and-memory-hierarchy" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 Technology Trend and Memory Hierarchy
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-four-questions-for-cache-designers" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 Four Questions for Cache Designers
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3 Four Questions for Cache Designers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#3-1-block-placement" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 1 Block Placement
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-2-block-identification" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 2 Block Identification
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-3-access-data-in-a-direct-mapped-cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 3 Access data in a direct mapped cache
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-4-block-replacement" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 4 Block Replacement
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-5-hardware-implementation-of-lru" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 5 Hardware Implementation of LRU
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-6-write-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 6 Write Strategy
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-cpu-vulnerabilities-and-cache-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      4 CPU Vulnerabilities and Cache Security
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4 CPU Vulnerabilities and Cache Security">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#4-1-cpu" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. 1 CPU 缓存缺陷分析
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-2-meltdown" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. 2 Meltdown
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-3-spectre" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. 3 Spectre
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. 4 其他新场景下的攻击
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-5-cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. 5 Cache 安全增强
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-memory-system-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      5 Memory System Performance
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5 Memory System Performance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#5-1-introduction-to-cache-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 1 Introduction to Cache Performance
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-2-basic-optimization-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 2 Basic Optimization Methods
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. 2 Basic Optimization Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#5-2-1-larger-block-size-to-reduce-miss-rate" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 2. 1 Larger Block Size to Reduce Miss Rate
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-2-2-larger-caches-to-reduce-miss-rate" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 2. 2 Larger Caches to Reduce Miss Rate
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-2-3-higher-associativity-to-reduce-miss-rate" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 2. 3 Higher Associativity to Reduce Miss Rate
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-2-4-multilevel-caches-to-reduce-miss-penalty" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 2. 4 Multilevel Caches to Reduce Miss Penalty
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-2-5-giving-priority-to-read-misses-over-writes" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 2. 5 Giving Priority to Read Misses over Writes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-2-6-avoiding-address-translation-during-indexing-of-the-cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 2. 6 Avoiding Address Translation During Indexing of the Cache
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-3-advanced-optimization-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 3 Advanced Optimization Methods
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. 3 Advanced Optimization Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#5-3-1-pipelined-l1-caches-with-virtual-indexing-and-set-associativity" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 3. 1 Pipelined L1 Caches With Virtual Indexing and Set Associativity
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-3-2-multiple-banks-and-ports-to-increase-the-bandwidth-of-l1-d-caches" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 3. 2 Multiple Banks and Ports to Increase the Bandwidth of L1 D-Caches
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-3-3-reducing-the-miss-rate-with-better-replacement-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 3. 3 Reducing the Miss Rate With Better Replacement Policies
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-3-4-multibanked-l2-and-l3-caches" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 3. 4 Multibanked L2 and L3 Caches
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-3-5-nonblocking-caches" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 3. 5 Nonblocking Caches
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-3-6-critical-word-first-and-early-restart" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 3. 6 Critical Word First and Early Restart
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-3-7-compiler-optimizations-to-reduce-miss-rate" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 3. 7 Compiler Optimizations to Reduce Miss Rate
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-3-8-hardware-prefetching-compiler-controlled-prefetching" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 3. 8 Hardware Prefetching 与 Compiler-Controlled Prefetching
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-3-9-multiple-memory-buses-and-memory-modules-to-increase-bandwidth" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 3. 9 Multiple Memory Buses and Memory Modules to Increase Bandwidth
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="chapter-3-memory-hierarchy">Chapter 3 Memory Hierarchy<a class="headerlink" href="#chapter-3-memory-hierarchy" title="Permanent link">&para;</a></h1>
+<h2 id="1-introduction">1 Introduction<a class="headerlink" href="#1-introduction" title="Permanent link">&para;</a></h2>
+<details class="quote">
+<summary>存储技术与存储层次</summary>
+<ul>
+<li><strong>Mechanical memory</strong><ul>
+<li>Acoustic wave / torque wave delay line memory</li>
+<li>Magnetic Drum Memory</li>
+<li>Magnetic core memory</li>
+</ul>
+</li>
+<li><strong>Electronic memory</strong><ul>
+<li><code>SRAM</code></li>
+<li><code>DRAM</code><ul>
+<li><code>SDRAM</code></li>
+</ul>
+</li>
+<li><code>Flash</code></li>
+<li><code>ROM</code><ul>
+<li><code>PROM</code></li>
+<li><code>EPROM</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Optical memory</strong></li>
+</ul>
+<p>在计算机系统视角下，存储层次从近到远通常包括：</p>
+<ul>
+<li><code>Register</code></li>
+<li><code>Cache</code></li>
+<li><code>Memory</code></li>
+<li><code>Storage</code></li>
+</ul>
+</details>
+<div class="admonition tip">
+<p class="admonition-title">局部性原理（Principle of Locality）</p>
+<p><strong>Temporal locality（时间局部性）</strong>：若某个数据项刚被访问，那么它很快还会被再次访问。</p>
+<p><strong>Spatial locality（空间局部性）</strong>：若某个数据项被访问，那么地址邻近的数据项也很可能很快被访问。</p>
+</div>
+<details class="quote">
+<summary>从寄存器到主存再到外存</summary>
+<p>CPU 内部首先有 <strong>Register</strong>，用于最快速的数据处理与临时保存。</p>
+<p><img src="/sys3/images/image3-1.png" style="display: block; width: 15%; margin: 0 auto;" /></p>
+<p>仅有寄存器不够，还需要更大的 <strong>Memory</strong> 提供临时存储。</p>
+<p><img src="/sys3/images/image3-2.png" style="display: block; width: 55%; margin: 0 auto;" /></p>
+<p>主存之外还需要更大但更慢的 <strong>Storage</strong>（如 Flash / Disk）保存长期数据。</p>
+<p><img src="/sys3/images/image3-3.png" style="display: block; width: 80%; margin: 0 auto;" /></p>
+<p>为了弥补 CPU 与主存之间的速度差距，在二者之间插入更快的 <strong>Cache</strong>。</p>
+<p><img src="/sys3/images/image3-4.png" style="display: block; width: 80%; margin: 0 auto;" /></p>
+<details class="info">
+<summary>Memory hierarchy for a personal mobile device</summary>
+<p><img src="/sys3/images/image3-5.png" style="display: block; width: 80%; margin: 0 auto;" /></p>
+<p>越靠近 CPU，<strong>越小越快</strong>；越远离 CPU，<strong>越大越慢</strong>。</p>
+</details>
+<details class="info">
+<summary>Memory hierarchy for a laptop or a desktop</summary>
+<p><img src="/sys3/images/image3-6.png" style="display: block; width: 80%; margin: 0 auto;" /></p>
+</details>
+<details class="info">
+<summary>Memory hierarchy for server</summary>
+<p>对于服务器，还会引入更大规模的内存与磁盘存储：</p>
+<p><img src="/sys3/images/image3-7.png" style="display: block; width: 80%; margin: 0 auto;" /></p>
+</details>
+</details>
+<p><strong>Cache</strong> 是<strong>位于处理器和更低层存储之间的一层小而快的缓冲区</strong>，用来<strong>缓存最近或高频访问的数据 / 指令</strong>，通过重复利用常见项目来降低平均访问时间。</p>
+<p>当处理器访问某个数据项时：</p>
+<ul>
+<li><strong>Cache hit</strong>：在 Cache 中找到了该数据</li>
+<li><strong>Cache miss</strong>：在 Cache 中没有找到该数据</li>
+</ul>
+<p><strong>块（block / line）</strong>是一个<strong>固定大小</strong>的数据集合，包含处理器当前请求的那个字（requested word），当发生 miss 时，会把这个字所在的整个块从主存取回并放入 Cache。</p>
+<p>Cache 和主存之间并不是按单个字交换数据，而是按块交换数据。</p>
+<p><img src="/sys3/images/image3-8.png" style="display: block; width: 50%; margin: 0 auto;" /></p>
+<h2 id="2-technology-trend-and-memory-hierarchy">2 Technology Trend and Memory Hierarchy<a class="headerlink" href="#2-technology-trend-and-memory-hierarchy" title="Permanent link">&para;</a></h2>
+<details class="warning">
+<summary>处理器和内存的速度鸿沟</summary>
+<p>处理器速度增长远快于主存速度增长，因此出现明显的 <strong>processor-memory performance gap</strong>。</p>
+<p><img src="/sys3/images/image3-9.png" style="display: block; width: 60%; margin: 0 auto;" /></p>
+<p>这也是引入多级 Cache 的根本原因之一：</p>
+<ul>
+<li>不能只靠更大的主存解决问题</li>
+<li>必须依赖层次结构和局部性，把常用数据尽量放在更靠近处理器的位置</li>
+</ul>
+</details>
+<p>利用局部性原理，存储层次试图同时实现两件事：</p>
+<ul>
+<li><strong>从最便宜的技术中，向用户呈现尽可能大的可用容量</strong></li>
+<li><strong>从最快的技术中，向用户提供尽可能快的访问速度</strong></li>
+</ul>
+<p><img src="/sys3/images/image3-10.png" style="display: block; width: 50%; margin: 0 auto;" /></p>
+<div class="admonition tip">
+<p class="admonition-title">Cache Locality</p>
+<ul>
+<li><strong>Temporal locality</strong>：刚访问的字很快可能还会访问，因此要把最近访问的数据留在离 CPU 更近的位置。</li>
+<li><strong>Spatial locality</strong>：与当前访问地址相邻的数据很快也可能会访问，因此要把连续的一组字（一个 block）一起搬近处理器。</li>
+</ul>
+</div>
+<p>Cache miss 所需时间取决于两部分：</p>
+<ul>
+<li><strong>Latency</strong>：取回这个块的第一个字所需时间</li>
+<li><strong>Bandwidth</strong>：继续传回该块剩余数据所需时间</li>
+</ul>
+<p>也就是说，miss penalty 不只是启动访问的代价，还包含传完整个块的代价。</p>
+<div class="admonition info">
+<p class="admonition-title">Causes of Cache misses</p>
+<ul>
+<li><strong>Compulsory miss</strong>：第一次访问某个块，之前不可能已经在 Cache 中</li>
+<li><strong>Capacity miss</strong>：Cache 容量不够，某块被替换掉，后续又再次访问</li>
+<li><strong>Conflict miss</strong>：程序频繁访问多个不同地址，但它们映射到 Cache 中同一位置 / 同一组，导致冲突替换</li>
+</ul>
+</div>
+<details class="quote">
+<summary>不同计算机类别对存储层次的关注点</summary>
+<ul>
+<li>
+<p><strong>桌面计算机（Desktop computers）</strong>：</p>
+<ul>
+<li>通常主要服务于<strong>单个用户</strong>，往以<strong>一个前台应用</strong>为主</li>
+<li>更关注 memory hierarchy 的<strong>平均访问延迟（average latency）</strong></li>
+</ul>
+</li>
+<li>
+<p><strong>服务器（Server computers）</strong>：</p>
+<ul>
+<li>同时面对大量用户，并发运行很多应用</li>
+<li>更关注<strong>内存带宽（memory bandwidth）</strong></li>
+</ul>
+</li>
+<li>
+<p><strong>嵌入式系统（Embedded computers）</strong>：</p>
+<ul>
+<li>常见于<strong>实时应用（real-time applications）</strong>，更关注<strong>最坏情况性能</strong>而不只是平均性能</li>
+<li>更关注<strong>功耗和电池寿命</strong></li>
+<li>常运行单一应用，操作系统较简单，存储层次中的“保护”作用往往被削弱</li>
+<li>主存通常很小，很多场景甚至<strong>没有磁盘存储</strong></li>
+</ul>
+</li>
+</ul>
+</details>
+<details class="quote">
+<summary>36 terms of Cache</summary>
+<p><img src="/sys3/images/image3-11.png" style="display: block; width: 70%; margin: 0 auto;" /></p>
+</details>
+<details class="example">
+<summary>在计算机体系结构里，几乎一切都可以被看成 cache</summary>
+<p><img src="/sys3/images/image3-12.png" style="display: block; width: 50%; margin: 0 auto;" /></p>
+<ul>
+<li><code>Registers</code> 是变量的 cache，由软件管理</li>
+<li><code>L1 cache</code> 是 <code>L2 cache</code> 的 cache</li>
+<li><code>L2 cache</code> 是主存的 cache</li>
+<li><code>Memory</code> 是磁盘的 cache（虚拟存储的角度）</li>
+<li><code>TLB</code> 是页表的 cache</li>
+<li>分支预测结构也可被理解为某种预测信息缓存</li>
+</ul>
+</details>
+<p>多级 Cache 让最常访问的数据停留在最上层，使得容量、成本、延迟在不同层之间平衡。</p>
+<p><img src="/sys3/images/image3-13.png" style="display: block; width: 70%; margin: 0 auto;" /></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Unified Cache</th>
+<th>Split I&amp;D Cache</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>核心设计</strong></td>
+<td>指令与数据共用同一套缓存</td>
+<td>指令缓存（I-cache）与数据缓存（D-cache）相互分离</td>
+</tr>
+<tr>
+<td><strong>硬件需求</strong></td>
+<td>所需硬件较少，资源复用率高</td>
+<td>需要额外硬件资源（两套独立缓存），硬件成本更高</td>
+</tr>
+<tr>
+<td><strong>性能表现</strong></td>
+<td>性能较低，指令流与数据流会争用缓存资源</td>
+<td>性能更高，可并行支持取指与数据访问，避免资源冲突</td>
+</tr>
+<tr>
+<td><strong>特殊设计</strong></td>
+<td>无特殊只读设计，缓存读写逻辑统一</td>
+<td>I-cache 为只读，简化了缓存一致性与写控制逻辑</td>
+</tr>
+<tr>
+<td><strong>示意图</strong></td>
+<td><img src="/sys3/images/image3-14.png" style="display: block; width: 50%; margin: 0 auto;" /></td>
+<td><img src="/sys3/images/image3-15.png" style="display: block; width: 70%; margin: 0 auto;" /></td>
+</tr>
+</tbody>
+</table>
+<details class="example">
+<summary>Intel Pentium cache organization</summary>
+<p><img src="/sys3/images/image3-16.png" style="display: block; width: 80%; margin: 0 auto;" /></p>
+</details>
+<p>以 <code>lw t0, 0(t1)</code> 为例，若 <code>t1 = 1022</code> 且 <code>Memory[1022] = 99</code>，则：</p>
+<div class="admonition example">
+<p class="admonition-title">Memory Access without Cache</p>
+<ol>
+<li>Processor 向 Memory 发出地址 <code>1022</code></li>
+<li>Memory 读取该字</li>
+<li>Memory 把 <code>99</code> 返回给 Processor</li>
+<li>Processor 将 <code>99</code> 写入寄存器 <code>t0</code></li>
+</ol>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Memory Access with Cache</p>
+<ol>
+<li>Processor 先把地址发给 Cache</li>
+<li>Cache 检查是否含有该地址的副本</li>
+<li>若命中：直接把数据返回给处理器</li>
+<li>若未命中：<ul>
+<li>Cache 再把地址发往主存</li>
+<li>主存返回数据给 Cache</li>
+<li>Cache 更新 / 替换对应块</li>
+<li>Cache 再把数据返回给处理器</li>
+</ul>
+</li>
+</ol>
+</div>
+<p>读内存时会出现三种情况：</p>
+<ul>
+<li><strong>Cache hit</strong>：该块有效且地址匹配，直接读</li>
+<li><strong>Cache miss</strong>：对应位置没有数据，需要从内存取回</li>
+<li><strong>Cache miss with block replacement</strong>：对应位置有数据但不是想要的数据，需要丢弃旧块，取回新块（<strong>Cache 始终是 lower level memory 的副本</strong>）。</li>
+</ul>
+<h2 id="3-four-questions-for-cache-designers">3 Four Questions for Cache Designers<a class="headerlink" href="#3-four-questions-for-cache-designers" title="Permanent link">&para;</a></h2>
+<details class="quote">
+<summary>四个核心设计问题</summary>
+<div class="admonition question">
+<p class="admonition-title">Where can a block be placed?</p>
+<p>Direct mapped / Set associative / Fully associative</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">How is a block found if it is in the cache?</p>
+<p>Tag / Block / Valid bit</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Which block should be replaced on a miss?</p>
+<p>Random / LRU / FIFO</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">What happens on a write?</p>
+<p>Write back / Write through （常配 Write buffer）</p>
+</div>
+</details>
+<h3 id="3-1-block-placement">3. 1 Block Placement<a class="headerlink" href="#3-1-block-placement" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>直接映射（direct mapped）</strong>：每个主存块<strong>只能映射到 Cache 中唯一一个位置</strong>，结构简单、命中判断快，但容易发生冲突 miss</li>
+</ul>
+<p><img src="/sys3/images/image3-17.png" style="display: block; width: 80%; margin: 0 auto;" /></p>
+<p><img src="/sys3/images/image3-18.png" style="display: block; width: 60%; margin: 0 auto;" /></p>
+<ul>
+<li><strong>全相联（fully associative）</strong>：一个块可以被放进 Cache 的<strong>任意位置</strong>，最灵活，冲突 miss 最少，但查找硬件代价最高</li>
+</ul>
+<p><img src="/sys3/images/image3-19.png" style="display: block; width: 80%; margin: 0 auto;" /></p>
+<ul>
+<li><strong>组相联（set associative）</strong>：一个块先确定属于哪一个 <code>set</code>，再放入该组中的任意一个位置，若每组有 <code>n</code> 个块，则称为 <code>n-way set associative</code></li>
+</ul>
+<p><img src="/sys3/images/image3-20.png" style="display: block; width: 80%; margin: 0 auto;" /></p>
+<details class="info">
+<summary>几个特殊关系</summary>
+<ul>
+<li><code>Direct mapped</code> = <code>1-way set associative</code></li>
+<li><code>Fully associative</code> = 对一个有 <code>m</code> 个块的 Cache 来说，相当于 <code>m-way set associative</code></li>
+<li><code>Fully associative</code> 也可看作：整个 Cache 只有 <strong>1 个 set</strong></li>
+</ul>
+</details>
+<details class="question">
+<summary>Why Index With the Middle Bits?</summary>
+<p><img src="/sys3/images/image3-21.png" style="display: block; width: 60%; margin: 0 auto;" /></p>
+<p>如果使用高位作为 index，连续的内存块可能映射到同一组，这样会恶化顺序访问时的冲突情况。</p>
+<p>所以实践中通常使用<strong>低位</strong>做块内偏移，<strong>中间位</strong>做 index，<strong>高位</strong>做 tag。</p>
+</details>
+<p>相联度越高，Cache 空间利用率越高、块冲突概率越低，miss rate 越低，但也会导致比较器更多、命中路径更复杂、硬件成本和访问时间上升。</p>
+<p>大部分 Cache 在命中率和实现复杂度之间折中，采用不高于 4 路组相联（<span class="arithmatex">\(n &lt;= 4\)</span>）。</p>
+<table>
+<thead>
+<tr>
+<th>结构</th>
+<th style="text-align: center;">每组块数 / 相联度</th>
+<th style="text-align: center;">组数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Full-associative</strong></td>
+<td style="text-align: center;"><span class="arithmatex">\(M\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(1\)</span></td>
+</tr>
+<tr>
+<td><strong>Direct mapped</strong></td>
+<td style="text-align: center;"><span class="arithmatex">\(1\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(M\)</span></td>
+</tr>
+<tr>
+<td><strong>Set-associative</strong></td>
+<td style="text-align: center;"><span class="arithmatex">\(1 &lt; n &lt; M\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(1 &lt; G &lt; M\)</span></td>
+</tr>
+</tbody>
+</table>
+<h3 id="3-2-block-identification">3. 2 Block Identification<a class="headerlink" href="#3-2-block-identification" title="Permanent link">&para;</a></h3>
+<p>为了判断某个块是否在 Cache 中，需要：</p>
+<ul>
+<li><strong>Tag</strong>：记录该 Cache 块当前对应的是哪一个主存块</li>
+<li><strong>Valid bit</strong>：该条目当前是否有效</li>
+</ul>
+<p>判断命中时，先根据地址找到候选位置 / 候选组，若 valid = 1 且 tag 匹配，则 hit，否则 miss。</p>
+<p><img src="/sys3/images/image3-22.png" style="display: block; width: 60%; margin: 0 auto;" /></p>
+<ul>
+<li><strong>Index field</strong>：对组相联 Cache 选择哪一个 <code>set</code>，对直接映射 Cache：选择哪一个 <code>block</code>，位数为 <span class="arithmatex">\(\log_2(\text{#sets})\)</span> 或 <span class="arithmatex">\(\log_2(\text{#blocks})\)</span></li>
+<li><strong>Byte Offset field</strong>：选择块内的具体字节，位数为 <span class="arithmatex">\(\log_2(\text{block size in bytes})\)</span></li>
+<li><strong>Tag field</strong>：用于在选中的组 / 块中做地址匹配，位数为 <span class="arithmatex">\(\text{Tag size} = \text{Address size} - \text{Index size} - \text{Byte offset size}\)</span></li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Line Matching and Word Selection</p>
+<ul>
+<li><strong>Direct-mapped cache</strong>：只需比较唯一候选行的 tag</li>
+</ul>
+<p><img src="/sys3/images/image3-23.png" style="display: block; width: 70%; margin: 0 auto;" /></p>
+<p><img src="/sys3/images/image3-24.png" style="display: block; width: 70%; margin: 0 auto;" /></p>
+<ul>
+<li><strong>Set-associative cache</strong>：先用 index 选组，再在组内并行比较多个 tag</li>
+</ul>
+<p><img src="/sys3/images/image3-25.png" style="display: block; width: 70%; margin: 0 auto;" /></p>
+<p><img src="/sys3/images/image3-26.png" style="display: block; width: 70%; margin: 0 auto;" /></p>
+<ul>
+<li><strong>Fully associative cache</strong>：整张 Cache 都是候选，需要做全表匹配</li>
+</ul>
+<p><img src="/sys3/images/image3-27.png" style="display: block; width: 70%; margin: 0 auto;" /></p>
+<p><img src="/sys3/images/image3-28.png" style="display: block; width: 70%; margin: 0 auto;" /></p>
+<p>命中后，再通过 offset 选出块中的具体字 / 字节。</p>
+</div>
+<details class="quote">
+<summary>Using a Finite-State Machine to Control a Simple Cache</summary>
+<p><img src="/sys3/images/image3-29.png" style="display: block; width: 70%; margin: 0 auto;" /></p>
+</details>
+<h3 id="3-3-access-data-in-a-direct-mapped-cache">3. 3 Access data in a direct mapped cache<a class="headerlink" href="#3-3-access-data-in-a-direct-mapped-cache" title="Permanent link">&para;</a></h3>
+<div class="admonition example">
+<p class="admonition-title">示例</p>
+<p><img src="/sys3/images/image3-30.png" style="display: block; width: 80%; margin: 0 auto;" /></p>
+<p>先做地址划分，因为 <span class="arithmatex">\(16 \text{KB} = 2^{14}\ \text{bytes}\)</span>，每块 <span class="arithmatex">\(4\ \text{words} = 16\ \text{bytes} = 2^4\ \text{bytes}\)</span> ，所以 Cache 块数 <span class="arithmatex">\(2^{14} / 2^4 = 2^{10} = 1024\)</span>，因此对于 <span class="arithmatex">\(32\)</span> 位地址：</p>
+<ul>
+<li><strong>Byte offset</strong>：<code>4 bits</code></li>
+<li><strong>Index</strong>：<code>10 bits</code></li>
+<li><strong>Tag</strong>：<code>32 - 10 - 4 = 18 bits</code></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>访问地址</th>
+<th style="text-align: right;">Block address</th>
+<th style="text-align: right;">Index</th>
+<th style="text-align: right;">Tag</th>
+<th style="text-align: right;">Offset</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0x00000014</code></td>
+<td style="text-align: right;"><code>1</code></td>
+<td style="text-align: right;"><code>1</code></td>
+<td style="text-align: right;"><code>0</code></td>
+<td style="text-align: right;"><code>4</code></td>
+<td>初始无有效数据，<code>miss</code>，装入 block 1，返回 <code>b</code></td>
+</tr>
+<tr>
+<td><code>0x0000001C</code></td>
+<td style="text-align: right;"><code>1</code></td>
+<td style="text-align: right;"><code>1</code></td>
+<td style="text-align: right;"><code>0</code></td>
+<td style="text-align: right;"><code>12</code></td>
+<td>同一块，valid 且 tag 匹配，<code>hit</code>，返回 <code>d</code></td>
+</tr>
+<tr>
+<td><code>0x00000034</code></td>
+<td style="text-align: right;"><code>3</code></td>
+<td style="text-align: right;"><code>3</code></td>
+<td style="text-align: right;"><code>0</code></td>
+<td style="text-align: right;"><code>4</code></td>
+<td>block 3 为空，<code>miss</code>，装入后返回 <code>f</code></td>
+</tr>
+<tr>
+<td><code>0x00008014</code></td>
+<td style="text-align: right;"><code>2049</code></td>
+<td style="text-align: right;"><code>1</code></td>
+<td style="text-align: right;"><code>2</code></td>
+<td style="text-align: right;"><code>4</code></td>
+<td>访问到 index 1，但原 tag 为 0，不匹配，<code>miss + replacement</code>，替换后返回 <code>j</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<details class="note">
+<summary>注意</summary>
+<ul>
+<li>同一个 <code>index</code> 上一次只能放一个块</li>
+<li>地址不同但 <code>index</code> 相同的块会发生冲突</li>
+<li>命中判断必须同时看 <code>valid bit</code>、<code>tag</code>、<code>offset</code></li>
+<li>直接映射实现简单，但冲突替换最明显</li>
+</ul>
+</details>
+<div class="admonition tip">
+<p class="admonition-title">总结</p>
+<p>地址长度为 <span class="arithmatex">\(64-\text{bit}\)</span>，Cache 为 <span class="arithmatex">\(\text{direct-mapped}\)</span>，Cache 含 <span class="arithmatex">\(2^n\)</span> 个块，因此 index 需要 <span class="arithmatex">\(n\)</span> 位，每块大小为 <span class="arithmatex">\(2^m \text{words}\)</span></p>
+<p>由于 <span class="arithmatex">\(1\ \text{word} = 4\ \text{bytes} = 2^2\ \text{bytes}\)</span>，所以块大小 <span class="arithmatex">\(= 2^{(m+2)}\ \text{bytes}\)</span>，块内偏移需要 <span class="arithmatex">\(m + 2\)</span> 位，其中 <span class="arithmatex">\(m\)</span> 位用于 word-in-block，<span class="arithmatex">\(2\)</span> 位用于 byte-in-word，因此 tag 位数 <span class="arithmatex">\(= 64 - (n + m + 2)\)</span>。</p>
+<p>每个 Cache 块需要存：</p>
+<ul>
+<li>数据位：<span class="arithmatex">\(2^m × 32\)</span></li>
+<li>tag 位：<span class="arithmatex">\(64 - n - m - 2\)</span></li>
+<li>valid 位：<span class="arithmatex">\(1\)</span></li>
+</ul>
+<p>所以完整 Cache 总位数为：</p>
+<div class="arithmatex">\[
+\text{cache size}
+= 2^n × (\text{block size} + \text{tag size} + \text{valid size})
+= 2^n × (2^m × 32 + 63 - n - m)
+\]</div>
+<p>注意区分：</p>
+<ul>
+<li><strong>actual size</strong>：真正的数据容量</li>
+<li><strong>complete cache size</strong>：包含 tag、valid 等元数据后的总硬件容量</li>
+</ul>
+</div>
+<details class="question">
+<summary>How many total bits are required for a direct-mapped cache with 16 KiB of data and four-word blocks, assuming a 64-bit address?</summary>
+<ul>
+<li><span class="arithmatex">\(16\ \text{KiB} = 4096\ \text{words} = 2^{12}\ \text{words}\)</span></li>
+<li>每块 <span class="arithmatex">\(4\ \text{words} = 2^2\ \text{words}\)</span>，所以 <span class="arithmatex">\(m = 2\)</span></li>
+<li>Cache 块数 <span class="arithmatex">\(= 2^{12} / 2^2 = 2^{10}\)</span>，所以 <span class="arithmatex">\(n = 10\)</span></li>
+</ul>
+<p>因此：</p>
+<ul>
+<li><strong>data bits per block</strong>：<span class="arithmatex">\(4 × 32 = 128\)</span></li>
+<li><strong>tag bits per block</strong>：<span class="arithmatex">\(64 - (10 + 2 + 2) = 50\)</span></li>
+<li><strong>valid bits per block</strong>：<span class="arithmatex">\(1\)</span></li>
+</ul>
+<p>完整 Cache 总位数：</p>
+<div class="arithmatex">\[
+2^{10} × (128 + 50 + 1) = 179\ \text{Kib} = 22.375\ \text{KiB}
+\]</div>
+<p>可以看到，硬件实际占用会<strong>大于纯数据容量</strong>，因为还需要 tag 和 valid 等附加位。</p>
+</details>
+<details class="question">
+<summary>Consider a cache with 64 blocks and a block size of 16 bytes. To what block number does byte address 1200 map?</summary>
+<p>若 Cache 有 <code>64 blocks</code>，块大小为 <code>16 bytes</code>，问：<code>byte address = 1200</code> 映射到哪个 Cache block？</p>
+<ul>
+<li><strong>Block address</strong>：<span class="arithmatex">\(1200 / 16 = 75\)</span></li>
+<li><strong>Cache block number</strong>：<span class="arithmatex">\(75 \bmod 64 = 11\)</span></li>
+</ul>
+<p>所以该地址映射到 <strong>Cache block 11</strong>，且这一块覆盖的字节地址范围是 <code>1200 ~ 1215</code></p>
+</details>
+<h3 id="3-4-block-replacement">3. 4 Block Replacement<a class="headerlink" href="#3-4-block-replacement" title="Permanent link">&para;</a></h3>
+<p>对于 <strong>direct-mapped cache</strong>，发生 miss 时其实<strong>没有选择空间</strong>，因为该主存块只能放到唯一位置，所以只能替换那一个块。</p>
+<details class="quote">
+<summary>hit 与 miss 时处理器会发生什么</summary>
+<ul>
+<li><strong>cache hit</strong>：处理器像什么都没发生一样，直接继续执行</li>
+<li><strong>cache miss</strong>：通常需要让处理器停顿（stall），冻结当前可见状态，等待 lower level memory 把数据取回</li>
+</ul>
+</details>
+<details class="info">
+<summary>Instruction cache miss 的基本处理流程</summary>
+<ol>
+<li>将原始 <code>PC</code> 送往主存</li>
+<li>发起读请求，并等待主存完成访问</li>
+<li>将返回的数据写入 Cache，同时更新对应条目的 <code>tag</code> 并将 <code>valid bit</code> 置 <code>1</code></li>
+<li>重新开始这条取指，这次应当会在 Cache 中命中</li>
+</ol>
+</details>
+<p>而在 <strong>set-associative / fully associative cache</strong> 中，一个块进入 Cache 时往往有多个候选位置，这时才需要明确的<strong>替换策略（replacement policy）</strong>。</p>
+<p><img src="/sys3/images/image3-31.png" style="display: block; width: 60%; margin: 0 auto;" /></p>
+<ul>
+<li><strong>Random</strong>：随机选择一个候选块替换，实现最简单，只需随机数发生器，但可能恰好替换掉马上要用的数据</li>
+<li><strong>LRU（Least Recently Used）</strong>：替换最近最久未使用的块，利用时间局部性假设，通常比随机策略更合理，但需要额外硬件记录访问先后</li>
+<li><strong>FIFO（First In, First Out）</strong>：替换最早进入该组的块，实现简单，但不一定与局部性最匹配</li>
+</ul>
+<details class="example">
+<summary>命中率与替换算法直接相关</summary>
+<p>设 Cache 容量为 <span class="arithmatex">\(3\)</span> blocks，访问序列为：<span class="arithmatex">\(2, 3, 2, 1, 5, 2, 4, 5, 3, 4\)</span>，则：</p>
+<ul>
+<li><strong>FIFO</strong>：只看进入先后，不关心最近是否访问过，命中次数为 <span class="arithmatex">\(3\)</span></li>
+</ul>
+<p><img src="/sys3/images/image3-32.png" style="display: block; width: 80%; margin: 0 auto;" /></p>
+<ul>
+<li><strong>LRU</strong>：更符合时间局部性，命中次数为 <span class="arithmatex">\(4\)</span></li>
+</ul>
+<p><img src="/sys3/images/image3-33.png" style="display: block; width: 80%; margin: 0 auto;" /></p>
+<ul>
+<li><strong>OPT</strong>：理论最优策略，实际通常只用于分析比较，命中次数为 <span class="arithmatex">\(5\)</span></li>
+</ul>
+<p><img src="/sys3/images/image3-33.png" style="display: block; width: 80%; margin: 0 auto;" /></p>
+</details>
+<div class="admonition warning">
+<p class="admonition-title">命中率不只由替换算法决定</p>
+<p>还和<strong>访问序列本身</strong>、<strong>Cache 容量</strong>、<strong>块大小</strong>和<strong>相联度</strong>等因素强相关。同一个算法，在不同工作负载下效果可能差很多。</p>
+</div>
+<details class="example">
+<summary>Thrashing</summary>
+<p>当程序循环访问的工作集略大于 Cache 能容纳的块数时，可能出现<strong>刚装入就被替换</strong>的情况，即 <strong>thrashing（抖动）</strong>。</p>
+<p>例如顺序循环访问：</p>
+<ul>
+<li><code>1, 2, 3, 4, 1, 2, 3, 4</code></li>
+</ul>
+<p>若 Cache 只能容纳 <code>3</code> 个块，则很容易出现<strong>每次访问都 miss</strong> 的现象；若 Cache 能容纳 <code>4</code> 个块，则装满之后后续访问就可以连续命中。</p>
+</details>
+<details class="quote">
+<summary>Stack replacement algorithm</summary>
+<p>记 <span class="arithmatex">\(B_t(n)\)</span> 为时刻 <span class="arithmatex">\(t\)</span>、容量为 <span class="arithmatex">\(n\)</span> 的 Cache 中所包含的块集合，若某替换算法满足：</p>
+<div class="arithmatex">\[
+B_t(n) \subseteq B_t(n+1)
+\]</div>
+<p>则称其为 <strong>stack replacement algorithm</strong>，直观含义是：<strong>更大的 Cache 至少应保留小 Cache 里已有的内容</strong>。</p>
+</details>
+<div class="admonition tip">
+<p class="admonition-title">LRU 是 stack replacement algorithm</p>
+<p>对 LRU 而言，块按照最近使用顺序排成一条栈，栈顶为最近访问，栈底为最久未访问。</p>
+<p>当 Cache 容量从 <span class="arithmatex">\(n\)</span> 增加到 <span class="arithmatex">\(n+1\)</span> 时，只是把这条顺序列表向下多保留一个元素，不会把原先前 <span class="arithmatex">\(n\)</span> 个块打乱。</p>
+<p><img src="/sys3/images/image3-35.png" style="display: block; width: 70%; margin: 0 auto;" /></p>
+<p>所以在 <strong>LRU</strong> 下，Cache 变大时命中率<strong>不会下降</strong>。</p>
+</div>
+<details class="warning">
+<summary>Belady 异常</summary>
+<p><strong>FIFO 不是 stack replacement algorithm</strong>，因此可能出现 <strong>Belady anomaly</strong>，即：Cache 变大了，命中率反而下降。</p>
+<p><img src="/sys3/images/image3-36.png" style="display: block; width: 80%; margin: 0 auto;" /></p>
+</details>
+<h3 id="3-5-hardware-implementation-of-lru">3. 5 Hardware Implementation of LRU<a class="headerlink" href="#3-5-hardware-implementation-of-lru" title="Permanent link">&para;</a></h3>
+<p><strong>Comparison Pair Method（比较对方法）</strong>是一种<strong>精确实现 LRU</strong> 的方法，其核心思想是：对每一对 Cache block 记录“谁比谁更新近”，再由这些两两比较结果组合出“谁最久未使用”。</p>
+<div class="admonition example">
+<p class="admonition-title">3 个块时的比较对表示</p>
+<p>若有三个块 <span class="arithmatex">\(A\)</span>、<span class="arithmatex">\(B\)</span>、<span class="arithmatex">\(C\)</span>，只需记录 <span class="arithmatex">\(T_AB\)</span>、<span class="arithmatex">\(T_AC\)</span>、<span class="arithmatex">\(T_BC\)</span> 三组比较关系，其中：</p>
+<p><span class="arithmatex">\(T_{AB} = 1\)</span> 表示 <span class="arithmatex">\(A\)</span> 比 <span class="arithmatex">\(B\)</span> 更新近，<span class="arithmatex">\(T_{AB} = 0\)</span> 表示 <span class="arithmatex">\(B\)</span> 比 <span class="arithmatex">\(A\)</span> 更新近，其余两个触发器同理。</p>
+<p>根据上述定义，可写出三个块分别成为 LRU 的条件：</p>
+<div class="arithmatex">\[
+A_{LRU} = \overline{T_{AB}} \cdot \overline{T_{AC}}，B_{LRU} = T_{AB} \cdot \overline{T_{BC}}，C_{LRU} = T_{AC} \cdot T_{BC}
+\]</div>
+<p>例如，若 <span class="arithmatex">\(T_{AB} = T_{AC} = T_{BC} = 1\)</span>，则说明 <span class="arithmatex">\(A\)</span> 比 <span class="arithmatex">\(B\)</span> 新、<span class="arithmatex">\(A\)</span> 比 <span class="arithmatex">\(C\)</span> 新、<span class="arithmatex">\(B\)</span> 比 <span class="arithmatex">\(C\)</span> 新，因此最久未访问的是 <span class="arithmatex">\(C\)</span>。</p>
+<ul>
+<li><strong>每次访问后更新状态</strong>：<ul>
+<li>访问 <span class="arithmatex">\(A\)</span> 后：<span class="arithmatex">\(T_{AB} = 1\)</span>、<span class="arithmatex">\(T_{AC} = 1\)</span></li>
+<li>访问 <span class="arithmatex">\(B\)</span> 后：<span class="arithmatex">\(T_{AB} = 0\)</span>、<span class="arithmatex">\(T_{BC} = 1\)</span></li>
+<li>访问 <span class="arithmatex">\(C\)</span> 后：<span class="arithmatex">\(T_{AC} = 0\)</span>、<span class="arithmatex">\(T_{BC} = 0\)</span></li>
+</ul>
+</li>
+</ul>
+</div>
+<p>若某组内有 <span class="arithmatex">\(p\)</span> 个块，则需要的比较对触发器数量为：<span class="arithmatex">\(\binom{p}{2} = \frac{p(p-1)}{2}\)</span>，其中：</p>
+<ul>
+<li>需要 <span class="arithmatex">\(p\)</span> 个 AND 门来分别生成每个块的可替换信号</li>
+<li>每个 AND 门需要接收 <span class="arithmatex">\(p-1\)</span> 个输入</li>
+</ul>
+<p>因此精确 LRU 的硬件复杂度大约按 <strong><span class="arithmatex">\(O(p^2)\)</span></strong> 增长，所以现实系统里，当相联度较高时，常常不会使用完全精确的 LRU，而会采用近似 LRU 或其他更便宜的策略。</p>
+<h3 id="3-6-write-strategy">3. 6 Write Strategy<a class="headerlink" href="#3-6-write-strategy" title="Permanent link">&para;</a></h3>
+<p>写策略要回答的问题是：<strong>当处理器执行写操作时，Cache 和更低层存储分别如何更新</strong>。</p>
+<div class="admonition tip">
+<p class="admonition-title">Write Hit：要写的块已经在 Cache 中</p>
+<ul>
+<li>
+<p><strong>Write-through</strong>：写命中时，同时更新 <strong>Cache</strong> 和 <strong>Main Memory</strong></p>
+<ul>
+<li><strong>优点</strong>：主存始终保持最新数据，一致性简单，控制位通常只需要 <strong>valid bit</strong></li>
+<li><strong>缺点</strong>：每次写都要访问主存，带宽压力更大</li>
+<li><strong>常见场景</strong>：<strong>实时系统</strong>，更强调数据正确性和可见性</li>
+</ul>
+</li>
+<li>
+<p><strong>Write-back</strong>：写命中时，只更新 <strong>Cache</strong>，被修改的块会被标记为 <strong>dirty</strong>，只有当该块被替换出去时才把结果写回主存</p>
+<ul>
+<li><strong>优点</strong>：明显减少主存写流量，性能通常更好</li>
+<li><strong>缺点</strong>：实现更复杂，掉电前若还未来得及写回，主存中的数据可能不是最新</li>
+<li><strong>常见场景</strong>：<strong>通用处理器</strong>，更强调整体性能</li>
+</ul>
+</li>
+</ul>
+</div>
+<details class="quote">
+<summary>Dirty Bit</summary>
+<p><strong>Dirty bit（脏位）</strong> 用于记录某条 Cache line 是否“<strong>已经被修改，但还没有写回主存</strong>”。</p>
+<ul>
+<li><code>dirty = 0</code>：Cache 中的数据与主存一致</li>
+<li><code>dirty = 1</code>：Cache 中的数据比主存更新</li>
+</ul>
+<p>在 <strong>write-back</strong> 中，替换一个块之前必须先检查 dirty bit：</p>
+<ul>
+<li>若 <code>dirty = 1</code>：先写回主存，再替换</li>
+<li>若 <code>dirty = 0</code>：可以直接替换</li>
+</ul>
+</details>
+<div class="admonition tip">
+<p class="admonition-title">Write miss：要写的块当前不在 Cache 中</p>
+<ul>
+<li>
+<p><strong>Write allocate</strong>：写未命中时，先把对应块从主存调入 Cache，再在 Cache 中完成写操作</p>
+<ul>
+<li>利用时间局部性和空间局部性</li>
+<li>若之后还会继续读写该块，通常更划算</li>
+</ul>
+</li>
+<li>
+<p><strong>No-write allocate / Write around</strong>：写未命中时，直接把数据写到主存，不把该块装入 Cache</p>
+<ul>
+<li>避免一次性写入污染 Cache</li>
+<li>若该地址很少再被访问，这种方式更合适</li>
+</ul>
+</li>
+</ul>
+</div>
+<ul>
+<li><strong>Write-back + Write-allocate</strong>：miss 时把块装入 Cache，后续在 Cache 内反复修改，最终替换时再统一写回，是最常见的高性能组合。</li>
+<li><strong>Write-through + No-write-allocate</strong>：miss 时不装块，直接写主存，后续若又读同一地址往往还会再次 miss，是实现简单的一组组合。</li>
+</ul>
+<details class="warning">
+<summary>Write stall 与 Write buffer</summary>
+<p>对 <strong>write-through</strong> 来说，若每次写都要等主存完成，就会产生 <strong>write stall</strong>，为了减少这种停顿，处理器常加入 <strong>write buffer</strong>：</p>
+<ul>
+<li>CPU 先把待写数据放进 write buffer</li>
+<li>主存写入在后台继续完成</li>
+<li>CPU 不必每次都停下来等待</li>
+</ul>
+<p>但 write buffer 不是万能的，若短时间内写请求过于密集或突发写入量超过 buffer 容量，仍可能重新发生停顿。</p>
+</details>
+<details class="question">
+<summary>Which strategy updates both the cache and main memory on a write hit?</summary>
+<p>Write-Through.</p>
+</details>
+<details class="question">
+<summary>What happens if a cache block modified under the Write-Back policy is lost due to power failure before being evicted?</summary>
+<p>Data is lost, since the update existed only in the cache.</p>
+</details>
+<details class="example">
+<summary>Write allocate 与 No-write allocate 的命中差异</summary>
+<p>设一个<strong>空的、全相联、write-back Cache</strong>，执行以下访存：</p>
+<ol>
+<li><code>write Mem[100]</code></li>
+<li><code>write Mem[100]</code></li>
+<li><code>read Mem[200]</code></li>
+<li><code>write Mem[200]</code></li>
+<li><code>write Mem[100]</code></li>
+</ol>
+<p>则：</p>
+<table>
+<thead>
+<tr>
+<th>访问序列</th>
+<th>No-write allocate</th>
+<th>Write allocate</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>write Mem[100]</code></td>
+<td>miss</td>
+<td>miss</td>
+</tr>
+<tr>
+<td><code>write Mem[100]</code></td>
+<td>miss</td>
+<td>hit</td>
+</tr>
+<tr>
+<td><code>read Mem[200]</code></td>
+<td>miss</td>
+<td>miss</td>
+</tr>
+<tr>
+<td><code>write Mem[200]</code></td>
+<td>hit</td>
+<td>hit</td>
+</tr>
+<tr>
+<td><code>write Mem[100]</code></td>
+<td>miss</td>
+<td>hit</td>
+</tr>
+</tbody>
+</table>
+<p>这说明：若一个写入地址后面还会继续被访问，<strong>write allocate</strong> 往往更有优势。</p>
+</details>
+<h2 id="4-cpu-vulnerabilities-and-cache-security">4 CPU Vulnerabilities and Cache Security<a class="headerlink" href="#4-cpu-vulnerabilities-and-cache-security" title="Permanent link">&para;</a></h2>
+<details class="quote">
+<summary>背景</summary>
+<p><strong>缓存（Cache）</strong> 是 CPU 与主存之间数据交互的桥梁，本身可能暂存敏感数据、密钥、内核数据，一旦被攻击，这些信息就可能泄露。</p>
+<p>此外，Cache 往往存在共享，攻击者有机会利用共享缓存突破安全隔离边界。</p>
+<p><img src="/sys3/images/image3-37.png" style="display: block; width: 80%; margin: 0 auto;" /></p>
+</details>
+<h3 id="4-1-cpu">4. 1 CPU 缓存缺陷分析<a class="headerlink" href="#4-1-cpu" title="Permanent link">&para;</a></h3>
+<p>对于具备<strong>预测执行</strong>能力的处理器，某些指令访问的数据可能在合法性检查前，就已经从主存加载到 <strong>CPU Cache</strong> 中，具体来说：</p>
+<ul>
+<li>某条后续指令所需的数据加载，不一定依赖前一条指令是否最终合法提交</li>
+<li><strong>从内存到缓存的加载过程</strong>，可能并不会验证访问的内存是否合法有效</li>
+<li>即使前面的访问最终触发异常，后续访问带来的 <strong>Cache 状态改变</strong> 可能已经留下</li>
+</ul>
+<p><img src="/sys3/images/image3-38.png" style="display: block; width: 60%; margin: 0 auto;" /></p>
+<p>因而会出现：</p>
+<ul>
+<li>指令在<strong>架构状态</strong>上没有真正执行成功</li>
+<li>但在<strong>微架构状态</strong>上已经把敏感数据相关痕迹留在了 Cache 中</li>
+</ul>
+<p><img src="/sys3/images/image3-39.png" style="display: block; width: 60%; margin: 0 auto;" /></p>
+<p>对普通用户来说，CPU Cache 过程本身是不可直接访问的；只有当数据真正进入寄存器时，用户才具备可见访问权限。</p>
+<p>但如果攻击者能通过<strong>侧信道方法</strong>间接得知 Cache 中的数据状态，那么这种先进入 Cache、后检查权限的逻辑就会变成安全缺陷。</p>
+<details class="tip">
+<summary>缓存侧信道攻击（Cache Side-Channel Attack）</summary>
+<p>多核系统为了性能通常会共享部分 Cache，缓存侧信道攻击利用 <strong>cache hit</strong> 与 <strong>cache miss</strong> 的响应时间差，去推测受害者的访存行为或泄露机密信息。</p>
+<p><img src="/sys3/images/image3-40.png" style="display: block; width: 60%; margin: 0 auto;" /></p>
+</details>
+<h3 id="4-2-meltdown">4. 2 Meltdown<a class="headerlink" href="#4-2-meltdown" title="Permanent link">&para;</a></h3>
+<p><strong>Meltdown</strong> 利用现代 CPU 的 <strong>out-of-order execution（乱序执行）</strong>，打破原本由硬件保证的内存隔离，使普通用户进程能够间接读取内核内存。</p>
+<details class="info">
+<summary>Meltdown 原理</summary>
+<ul>
+<li>在支持乱序执行的 CPU 上，后面的指令可能在前面指令安全检查完成之前就被提前执行</li>
+<li>指令执行顺序可以乱，但 <strong>retirement（退休 / 提交）</strong> 仍必须按序进行</li>
+<li>CPU 的安全检查是在 retirement 时才进行</li>
+<li>因此，在某条指令完成权限检查前，后续依赖这条指令结果的操作可能已经对 Cache 产生影响</li>
+</ul>
+</details>
+<div class="admonition example">
+<p class="admonition-title">Meltdown 攻击过程</p>
+<ol>
+<li><strong>获取并解码指令</strong>，存入执行缓冲区 / Reservation Stations</li>
+<li><strong>乱序执行指令</strong>，结果暂存于结果序列</li>
+<li>在 <strong>retirement</strong> 阶段重新排列结果并执行安全检查，再决定是否提交到寄存器</li>
+</ol>
+<p><img src="/sys3/images/image3-41.png" style="display: block; width: 50%; margin: 0 auto;" /></p>
+<p>对应的漏洞利用流程可进一步概括为 4 步：</p>
+<ol>
+<li>指令获取与解码</li>
+<li>乱序执行期间，把秘密值编码到某个数组页是否进入 Cache 上</li>
+<li>权限检查发现违例后，丢弃本次执行结果并恢复 CPU 架构状态，但<strong>不会恢复 Cache 状态</strong></li>
+<li>攻击者遍历探测如 <code>rbx[al * 4096]</code> 一类地址，谁访问更快，就说明哪一页此前被带入了 Cache，从而推出秘密值</li>
+</ol>
+</div>
+<details class="quote">
+<summary>Meltdown 的缓解措施</summary>
+<ul>
+<li><strong>KAISER</strong>：一种内核修改，无需内核映射到用户空间。</li>
+<li><strong>限制</strong>：某些 <code>x86</code> 设计仍要求在用户空间中保留少量高权限映射，因而仍可能残留攻击面。</li>
+</ul>
+</details>
+<h3 id="4-3-spectre">4. 3 Spectre<a class="headerlink" href="#4-3-spectre" title="Permanent link">&para;</a></h3>
+<p><strong>Spectre</strong> 利用 <strong>speculative execution（推测执行）</strong> 与 <strong>BPU（Branch Prediction Unit）</strong> 的预测机制，破坏不同应用程序之间的隔离。</p>
+<details class="info">
+<summary>Spectre 原理</summary>
+<ul>
+<li>分支指令往往需要等待较长时间，CPU 会在结果真正出来前，先根据 <strong>BPU</strong> 的历史记录做预测</li>
+<li>预测执行发现错误后，架构状态会被丢弃并重置</li>
+<li>但和乱序执行类似，<strong>预测执行对 Cache 的影响会被保留</strong></li>
+</ul>
+</details>
+<div class="admonition example">
+<p class="admonition-title">Spectre 攻击过程</p>
+<ol>
+<li>训练 CPU 的 <strong>BPU</strong>，让其在运行漏洞利用代码时做出特定预测</li>
+<li>让预测执行把目标地址相关内容带入 <strong>CPU Cache</strong></li>
+<li>通过缓存侧信道判断哪个数组元素被访问过，从而推测秘密数据</li>
+</ol>
+</div>
+<details class="quote">
+<summary>Spectre 的缓解措施</summary>
+<ul>
+<li><strong>序列化指令</strong>：限制预测执行，但无法在所有 CPU 或系统配置中工作。</li>
+<li><strong>插入推测执行阻止指令</strong>：在条件分支及其目标之后插入屏障，但会严重降低性能。</li>
+<li><strong>微代码修复现有处理器</strong>：修补程序可能会阻止推测执行或阻止推测内存读取，但这会极大地破坏性能。</li>
+</ul>
+</details>
+<details class="info">
+<summary>Meltdown 与 Spectre 对比</summary>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>Meltdown</th>
+<th>Spectre</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>核心依赖</td>
+<td>乱序执行</td>
+<td>分支预测驱动的推测执行</td>
+</tr>
+<tr>
+<td>破坏的隔离</td>
+<td>用户空间与内核空间</td>
+<td>不同应用 / 不同安全域之间</td>
+</tr>
+<tr>
+<td>典型平台特征</td>
+<td>Intel 上尤为典型</td>
+<td>AMD / ARM / Intel 等更广泛存在</td>
+</tr>
+<tr>
+<td>攻击难度</td>
+<td>相对更直接</td>
+<td>对分支预测利用更复杂，分析与攻击成本更高</td>
+</tr>
+<tr>
+<td>缓解特点</td>
+<td><code>KPTI / KAISER</code> 很关键</td>
+<td>不能只靠 <code>KAISER</code>，需编译器、屏障、微码等多层手段</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>被广泛用于缓解 <strong>Meltdown</strong> 的 <strong>KAISER</strong> 补丁，<strong>并不能防止 Spectre 攻击</strong>。</li>
+</ul>
+</details>
+<h3 id="4-4">4. 4 其他新场景下的攻击<a class="headerlink" href="#4-4" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><strong>基于硬件特性的攻击</strong>：不再只利用 Cache 的共性，还会利用查找逻辑、替换策略、预取技术、瞬态执行等硬件细节。这类攻击更依赖对微架构的深入理解，也更难被检测。</p>
+</li>
+<li>
+<p><strong>安全机制场景下的攻击</strong>：即使引入了可信执行环境（TEE）等机制，也可能因不同安全域共享 Cache 而继续暴露攻击面，根本原因仍在于缓存层面没有做到真正隔离。</p>
+</li>
+<li>
+<p><strong>性能驱动下的攻击</strong>：现实环境中常有运行窗口短、系统噪声大、预取干扰强等限制，因此攻击者还会关注攻击的<strong>速度、精度和泄露信息量</strong>。</p>
+</li>
+</ul>
+<details class="quote">
+<summary>攻击分布情况</summary>
+<p><img src="/sys3/images/image3-42.png" style="display: block; width: 60%; margin: 0 auto;" /></p>
+<ul>
+<li>一些攻击利用的是 Cache 的共有性质，因此具有较强通用性</li>
+<li>一些新型攻击依赖具体实现，影响范围较小，但危害依然显著</li>
+<li>目前主流商用处理器都<strong>无法完全抵御</strong>缓存侧信道攻击</li>
+<li><strong>Intel</strong> 处理器因性能优化而忽略较多安全考虑，暴露面更广</li>
+</ul>
+</details>
+<h3 id="4-5-cache">4. 5 Cache 安全增强<a class="headerlink" href="#4-5-cache" title="Permanent link">&para;</a></h3>
+<div class="admonition info">
+<p class="admonition-title">商用处理器 Cache 安全增强方案</p>
+<p><img src="/sys3/images/image3-43.png" style="display: block; width: 60%; margin: 0 auto;" /></p>
+<p>目前商用处理器主要针对<strong>已经披露的 Meltdown 与 Spectre</strong> 提供防御，而对其他类型的缓存侧信道攻击仍缺少充分通用的防御手段。</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">基于软件的防御机制</p>
+<ul>
+<li><strong>漏洞检测方法</strong>：通过静态或动态程序分析，找出程序中可能存在缓存侧信道漏洞的部分</li>
+<li><strong>用户级防御措施</strong>：如保持特定运算时间恒定、清除缓存等</li>
+<li><strong>系统级防御措施</strong>：从操作系统或虚拟机管理程序角度改进内存管理、锁定缓存行等，避免恶意探查</li>
+</ul>
+<p>优点：实现灵活、易于快速部署。</p>
+<p>缺点：一定程度依赖底层微架构实现，往往需要硬件额外支持才能降低开销。</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">基于硬件的防御机制</p>
+<ul>
+<li><strong>缓存分组（cache partitioning）</strong>：<ul>
+<li>将 Cache 划分为不同区域分配给不同进程，真正实现隔离</li>
+<li>优点：从原理上完全避免侧信道攻击</li>
+<li>缺点：受硬件限制，且可能明显影响性能</li>
+</ul>
+</li>
+</ul>
+<p><img src="/sys3/images/image3-44.png" style="display: block; width: 50%; margin: 0 auto;" /></p>
+<ul>
+<li><strong>缓存随机化（cache randomization）</strong>：<ul>
+<li>消除特定地址到 Cache 的固定映射，可通过<strong>基于表的映射方案</strong>或<strong>基于计算的映射方案</strong>实现</li>
+<li>优点：性能开销较小，效果已有较充分验证</li>
+<li>缺点：不能彻底消除攻击，但能显著缓解</li>
+</ul>
+</li>
+</ul>
+<p><img src="/sys3/images/image3-45.png" style="display: block; width: 60%; margin: 0 auto;" /></p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">其他防御思路</p>
+<ul>
+<li>
+<p><strong>针对目录结构的防御方法</strong>：</p>
+<ul>
+<li>从源头出发：增加目录项数量，减少冲突</li>
+<li>从结果出发：检测跨核心缓存行替换，并将被替换缓存行重新加载到 <code>L2</code></li>
+</ul>
+</li>
+<li>
+<p><strong>完善软件硬件协作关系</strong>：</p>
+<ul>
+<li>重新思考软硬件协作方式，定义新的指令集体系结构</li>
+<li>例如通过 <strong>数据遗忘（Data Oblivious）</strong> 编程消除机密信息与执行时延差异的关联</li>
+<li>通过优化基本块执行，减少分支预测带来的攻击机会</li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="5-memory-system-performance">5 Memory System Performance<a class="headerlink" href="#5-memory-system-performance" title="Permanent link">&para;</a></h2>
+<h3 id="5-1-introduction-to-cache-performance">5. 1 Introduction to Cache Performance<a class="headerlink" href="#5-1-introduction-to-cache-performance" title="Permanent link">&para;</a></h3>
+<div class="arithmatex">\[
+\text{Memory stall cycles} = \text{IC} \times \frac{\text{MemAccess}}{\text{Inst}} \times \text{Miss Rate} \times \text{Miss Penalty}
+\]</div>
+<div class="arithmatex">\[
+\begin{split}
+\text{CPU Execution Time} 
+&amp;= (\text{CPU clock cycles} + \text{Memory stall cycles}) \times \text{Clock cycle time} \\
+&amp;= \text{IC} \times \left(\text{CPI}_{\text{execution}} + \frac{\text{MemAccess}}{\text{Inst}} \times \text{MissRate} \times \text{MissPenalty}\right) \times \text{CycleTime} \\
+&amp;= \text{IC} \times \left(\text{CPI}_{\text{execution}} + \frac{\text{MemMisses}}{\text{Inst}} \times \text{MissPenalty}\right) \times \text{CycleTime}
+\end{split}
+\]</div>
+<ul>
+<li>注：<span class="arithmatex">\(\text{CPI}_{\text{execution}}\)</span> 中包含 <strong>ALU 指令</strong>和<strong>正常命中的访存指令</strong>本身的执行代价，真正额外拖慢系统的是 <strong>memory stall cycles</strong>。</li>
+</ul>
+<div class="arithmatex">\[
+\begin{split}
+\text{Average Memory Access Time} 
+&amp;= \frac{\text{Whole accesses time}}{\text{All memory accesses in program}} \\
+&amp;= \frac{\text{Accesses time on hitting} + \text{Accesses time on miss}}{\text{All memory accesses in program}} \\
+&amp;= \text{Hit time} + (\text{Miss Rate} \times \text{Miss Penalty}) \\
+&amp;= \left(\text{HitTime}_{\text{Inst}} + \text{MissRate}_{\text{Inst}} \times \text{MissPenalty}_{\text{Inst}}\right) \times \text{Inst}\% \\
+&amp;\quad + \left(\text{HitTime}_{\text{Data}} + \text{MissRate}_{\text{Data}} \times \text{MissPenalty}_{\text{Data}}\right) \times \text{Data}\%
+\end{split}
+\]</div>
+<div class="arithmatex">\[
+\text{CPUtime} = IC \times \left( \frac{AluOps}{Inst} \times CPI_{AluOps} + \frac{MemAccess}{Inst} \times AMAT \right) \times CycleTime
+\]</div>
+<h3 id="5-2-basic-optimization-methods">5. 2 Basic Optimization Methods<a class="headerlink" href="#5-2-basic-optimization-methods" title="Permanent link">&para;</a></h3>
+<h4 id="5-2-1-larger-block-size-to-reduce-miss-rate">5. 2. 1 Larger Block Size to Reduce Miss Rate<a class="headerlink" href="#5-2-1-larger-block-size-to-reduce-miss-rate" title="Permanent link">&para;</a></h4>
+<p>利用<strong>空间局部性</strong>，一次加载更多连续数据，从而减少首次访问带来的 <strong>compulsory miss</strong>。</p>
+<ul>
+<li><strong>优点</strong>：对空间局部性强的程序能显著降低 miss rate。</li>
+<li><strong>缺点</strong>：会增大 <strong>miss penalty</strong>，更大的块也可能增加映射冲突。</li>
+<li><strong>适用场景</strong>：数组遍历、矩阵运算、其他顺序访问明显的程序</li>
+</ul>
+<div style="display: flex; justify-content: center; gap: 10px; align-items: center;">
+    <img src="/sys3/images/image3-46.png" style="width: 45%;" />
+    <img src="/sys3/images/image3-47.png" style="width: 45%;" />
+</div>
+
+<h4 id="5-2-2-larger-caches-to-reduce-miss-rate">5. 2. 2 Larger Caches to Reduce Miss Rate<a class="headerlink" href="#5-2-2-larger-caches-to-reduce-miss-rate" title="Permanent link">&para;</a></h4>
+<p>提供更大的容量容纳数据，从而减少 <strong>capacity miss</strong> 和部分 <strong>conflict miss</strong>。</p>
+<ul>
+<li><strong>优点</strong>：优化效果通常直观明显。</li>
+<li><strong>缺点</strong>：命中时间可能变长，硬件成本和功耗增加。</li>
+<li><strong>适用场景</strong>：处理大型数据集的应用，如数据库查询、科学计算等。</li>
+</ul>
+<p><img src="/sys3/images/image3-48.png" style="display: block; width: 50%; margin: 0 auto;" /></p>
+<h4 id="5-2-3-higher-associativity-to-reduce-miss-rate">5. 2. 3 Higher Associativity to Reduce Miss Rate<a class="headerlink" href="#5-2-3-higher-associativity-to-reduce-miss-rate" title="Permanent link">&para;</a></h4>
+<p>允许主存块映射到一个组中的多个位置，而不是固定唯一位置，从而减少冲突失效。</p>
+<ul>
+<li><strong>优点</strong>：显著降低 <strong>conflict miss</strong>.</li>
+<li><strong>缺点</strong>：需要并行比较多个 tag，硬件复杂度上升，<strong>hit time</strong> 往往也会略微增加。</li>
+<li><strong>适用场景</strong>：数据访问模式易引发冲突失效的程序，例如数值计算、矩阵运算等科学计算类应用。</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">2:1 Cache Rule</p>
+<p><strong>大小为 <span class="arithmatex">\(N\)</span> 的 direct-mapped cache 的 miss rate</strong> <span class="arithmatex">\(\approx\)</span> <strong>大小为 <span class="arithmatex">\(\frac{N}{2}\)</span> 的 2-way set associative cache 的 miss rate</strong></p>
+</div>
+<details class="warning">
+<summary>miss rate 不是唯一指标</summary>
+<p>提高相联度确实能有效减少 conflict miss，从而降低 miss rate，但也可能增加命中时间。</p>
+<p>因此 miss rate 更低，不代表 AMAT 一定更小，4-way 到 8-way 往往是性能与复杂度之间较好的折中，过高相联度常常收益有限，但成本明显增加，真实系统通常采用 2-way 到 8-way。</p>
+</details>
+<details class="quote">
+<summary>Pseudo-Associativity</summary>
+<ul>
+<li><strong>目标</strong>：兼顾 <strong>direct-mapped 的快 hit time</strong> 与 <strong>2-way SA 的低冲突 miss</strong></li>
+<li><strong>方法</strong>：第一次 miss 后，再去检查 Cache 的另一半，若找到则称为 <strong>pseudo-hit（慢命中）</strong></li>
+<li><strong>缺点</strong>：hit 可能需要 <span class="arithmatex">\(1\)</span> 个或 <span class="arithmatex">\(2\)</span> 个周期，不利于紧耦合 CPU 流水线</li>
+<li>更适合不直接卡在处理器关键路径上的 Cache（如某些 <code>L2</code>）</li>
+</ul>
+</details>
+<h4 id="5-2-4-multilevel-caches-to-reduce-miss-penalty">5. 2. 4 Multilevel Caches to Reduce Miss Penalty<a class="headerlink" href="#5-2-4-multilevel-caches-to-reduce-miss-penalty" title="Permanent link">&para;</a></h4>
+<p>在 CPU 与主存之间加入 L1 / L2 / L3 多级 Cache，当 L1 miss 时，先检查更快的 L2 / L3，尽量避免直接访问慢得多的主存。</p>
+<ul>
+<li><strong>优点</strong>：显著降低 miss penalty，已成为现代处理器标准配置。</li>
+<li><strong>缺点</strong>：增加硬件复杂度与制造成本。</li>
+</ul>
+<p><img src="/sys3/images/image3-49.png" style="display: block; width: 60%; margin: 0 auto;" /></p>
+<h4 id="5-2-5-giving-priority-to-read-misses-over-writes">5. 2. 5 Giving Priority to Read Misses over Writes<a class="headerlink" href="#5-2-5-giving-priority-to-read-misses-over-writes" title="Permanent link">&para;</a></h4>
+<p><strong>读 miss 的处理优先于写操作</strong>，从而减少 CPU 等待读数据的时间。</p>
+<details class="quote">
+<summary>Read Miss Strategies</summary>
+<ul>
+<li><strong>Read Through</strong>：直接从主存把内容送给 CPU，不经过 Cache，<strong>不常用</strong></li>
+<li><strong>Read Allocate</strong>：先把数据从主存读入 Cache，再由 Cache 提供给 CPU</li>
+</ul>
+</details>
+<div class="admonition warning">
+<p class="admonition-title">RAW conflict</p>
+<p>假设 direct-mapped cache 中 <code>512</code> 和 <code>1024</code> 映射到同一块，有一个 <code>4-word write buffer</code> 且 <strong>read miss 不会检查 write buffer</strong>，则可能出现：主存中尚未完成写入，随后读 miss 又从主存读取旧值，导致 <strong>RAW conflict</strong>。</p>
+<ul>
+<li><strong>最简单方法</strong>：read miss 等到 write buffer 清空后再继续，但会明显降低 CPU 性能。</li>
+<li><strong>更好的方法</strong>：read miss 先检查 write buffer，若发生冲突则直接从 write buffer 取数据，否则继续访问主存。</li>
+</ul>
+</div>
+<details class="example">
+<summary>Performance Analysis</summary>
+<ul>
+<li><strong>基础时间参数</strong><ul>
+<li>CPU 读取/写入 Cache 的时间：<span class="arithmatex">\(1\)</span> 个周期</li>
+<li>CPU 读取/写入 Main Memory 时间：<span class="arithmatex">\(100\)</span> 个周期</li>
+<li>Cache 写回/读取 Main Memory 的时间：<span class="arithmatex">\(50\)</span> 个周期</li>
+<li>CPU 读取/写入 Write Buffer 的时间：<span class="arithmatex">\(3\)</span> 个周期</li>
+<li>Cache 写入 Write Buffer 的时间：<span class="arithmatex">\(5\)</span> 个周期</li>
+<li>Write Buffer 写入 Main Memory 的时间：<span class="arithmatex">\(30\)</span> 个周期</li>
+</ul>
+</li>
+<li><strong>访问参数</strong><ul>
+<li>读操作占比：<span class="arithmatex">\(70\%\)</span></li>
+<li>写操作占比：<span class="arithmatex">\(30\%\)</span></li>
+<li>发生 <strong>RAW（Read After Write）</strong> 冲突的概率：<span class="arithmatex">\(15\%\)</span>（冲突时数据仍在 Write Buffer 的概率与缓冲区大小相关）</li>
+<li>Write Buffer Hit 率：<span class="arithmatex">\(70\%\)</span></li>
+<li>Read Miss 率：<span class="arithmatex">\(15\%\)</span></li>
+<li>Write Miss 率：<span class="arithmatex">\(10\%\)</span></li>
+<li>假设 Write Buffer 始终有空位</li>
+</ul>
+</li>
+</ul>
+<details class="success">
+<summary>解答</summary>
+<p><span class="arithmatex">\(85\%\)</span> 的 read miss 无冲突，无需等待写操作，执行流程为：Cache 从主存读取数据 → CPU 读取 Cache，惩罚时间为：</p>
+<div class="arithmatex">\[
+\text{Penalty}(\text{no conflict}) = 50 + 1 = 51 \, \text{cycles}
+\]</div>
+<hr />
+<p><span class="arithmatex">\(15\%\)</span> 的 read 操作存在 RAW 冲突：</p>
+<ul>
+<li><strong>无优化场景</strong>：需等待引发冲突的写操作写入主存 → 从主存读取数据到 Cache → CPU 读取 Cache，惩罚时间为：</li>
+</ul>
+<div class="arithmatex">\[
+\text{Penalty}(\text{conflict without opt}) = 50 + 50 + 1 = 101 \, \text{cycles}
+\]</div>
+<ul>
+<li><strong>有优化场景（读优先 + Write Buffer）</strong>：Write Buffer 异步写回主存时，待写回数据仍保留在缓冲区中，可直接从 Write Buffer 获取最新数据，无需等待写回主存，惩罚时间为：</li>
+</ul>
+<div class="arithmatex">\[
+\text{Penalty}(\text{conflict with opt}) = 3 \, \text{cycles}
+\]</div>
+<p>故 read miss penalty 为：</p>
+<div class="arithmatex">\[\text{Penalty}(\text{without opt}) = 51 \times 85\% + 101 \times 15\% = 58.5 \, \text{cycles}\]</div>
+<div class="arithmatex">\[\text{Penalty}(\text{with opt}) = 51 \times 85\% + 3 \times 15\% = 43.8 \, \text{cycles}\]</div>
+<hr />
+<p>计算写操作 Penalty：</p>
+<ul>
+<li>
+<p><strong>Write Around 策略</strong>：</p>
+<ul>
+<li><strong>无优化场景</strong>：直接写入主存，惩罚时间为：</li>
+</ul>
+<div class="arithmatex">\[
+\text{Penalty(without opt)} = 100\ \text{cycles}
+\]</div>
+<ul>
+<li><strong>有优化场景（Write Buffer）</strong>：CPU 仅需写入 Write Buffer，写回主存异步处理，惩罚时间为：</li>
+</ul>
+<div class="arithmatex">\[
+\text{Penalty(with opt)} = 3\ \text{cycles}
+\]</div>
+</li>
+<li>
+<p><strong>Write Allocate 策略</strong>：</p>
+<ul>
+<li><strong>无优化场景</strong>：从主存加载数据到 Cache → 写入 Cache → 替换时写回主存，惩罚时间为：</li>
+</ul>
+<div class="arithmatex">\[
+\text{Penalty(without opt)} = 50 + 1 + 50 = 101\ \text{cycles}
+\]</div>
+<ul>
+<li><strong>有优化场景（Write Buffer）</strong>：替换时写入 Write Buffer，写回主存异步处理，惩罚时间为：</li>
+</ul>
+<div class="arithmatex">\[
+\text{Penalty(with opt)} = 50 + 1 + 5 = 56\ \text{cycles}
+\]</div>
+</li>
+</ul>
+<hr />
+<p>计算整体Penalty（读写操作加权）：</p>
+<ul>
+<li>
+<p>Write Around 策略：</p>
+<ul>
+<li><strong>无优化总 Penalty</strong>：</li>
+</ul>
+<div class="arithmatex">\[
+\text{Penalty(without opt)} = 100 \times 30\% + 58.5 \times 70\% = 70.95\ \text{cycles}
+\]</div>
+<ul>
+<li><strong>有优化总 Penalty</strong>：</li>
+</ul>
+<div class="arithmatex">\[
+\text{Penalty(with opt)} = 3 \times 30\% + 43.8 \times 70\% = 31.56\ \text{cycles}
+\]</div>
+<ul>
+<li><strong>优化倍率</strong>：</li>
+</ul>
+<div class="arithmatex">\[
+opt\_rate = \frac{\frac{1}{31.56}}{\frac{1}{70.95}} = \frac{70.95}{31.56} = 2.25
+\]</div>
+</li>
+<li>
+<p><strong>Write Allocate 策略</strong>：</p>
+<ul>
+<li><strong>无优化总 Penalty</strong>：</li>
+</ul>
+<div class="arithmatex">\[
+\text{Penalty(without opt)} = 101 \times 30\% + 58.5 \times 70\% = 71.25\ \text{cycles}
+\]</div>
+<ul>
+<li><strong>有优化总 Penalty</strong>：</li>
+</ul>
+<div class="arithmatex">\[
+\text{Penalty(with opt)} = 56 \times 30\% + 43.8 \times 70\% = 47.46\ \text{cycles}
+\]</div>
+<ul>
+<li><strong>优化倍率</strong>：</li>
+</ul>
+<div class="arithmatex">\[
+opt\_rate = \frac{\frac{1}{47.46}}{\frac{1}{71.25}} = \frac{71.25}{47.46} = 1.50
+\]</div>
+</li>
+</ul>
+<hr />
+<p>计算总程序性能影响（含 Cache 命中场景）：</p>
+<div class="arithmatex">\[
+\text{Total Time} = \text{Read Miss Penalty} \times \text{Read Miss Rate} + \text{Write Miss Penalty} \times \text{Write Miss Rate} + \text{Hit Time} \times \text{Hit Rate}
+\]</div>
+<p>其中：Cache 命中率 = <span class="arithmatex">\(1 - 15\% - 10\% = 75\%\)</span>，命中时间为 <span class="arithmatex">\(1\)</span> 周期。</p>
+<ul>
+<li>
+<p><strong>Write Around 策略</strong>：</p>
+<ul>
+<li><strong>无优化总时间</strong>：</li>
+</ul>
+<div class="arithmatex">\[
+Total(\text{without opt}) = 58.5 \times 15\% + 70.95 \times 10\% + 1 \times 75\% = 16.62\ \text{cycles}
+\]</div>
+<ul>
+<li><strong>有优化总时间</strong>：</li>
+</ul>
+<div class="arithmatex">\[
+Total(\text{with opt}) = 43.8 \times 15\% + 31.56 \times 10\% + 1 \times 75\% = 10.48\ \text{cycles}
+\]</div>
+<ul>
+<li><strong>优化倍率</strong>：</li>
+</ul>
+<div class="arithmatex">\[
+opt\_rate = \frac{\frac{1}{10.48}}{\frac{1}{16.62}} = \frac{16.62}{10.48} = 1.59
+\]</div>
+</li>
+<li>
+<p><strong>Write Allocate 策略</strong>：</p>
+<ul>
+<li><strong>无优化总时间</strong>：</li>
+</ul>
+<div class="arithmatex">\[
+Total(\text{without opt}) = 58.5 \times 15\% + 71.25 \times 10\% + 1 \times 75\% = 16.65\ \text{cycles}
+\]</div>
+<ul>
+<li><strong>有优化总时间</strong>：</li>
+</ul>
+<div class="arithmatex">\[
+Total(\text{with opt}) = 43.8 \times 15\% + 47.46 \times 10\% + 1 \times 75\% = 12.07\ \text{cycles}
+\]</div>
+<ul>
+<li><strong>优化倍率</strong>：</li>
+</ul>
+<div class="arithmatex">\[
+opt\_rate = \frac{\frac{1}{12.07}}{\frac{1}{16.65}} = \frac{16.65}{12.07} = 1.38
+\]</div>
+</li>
+</ul>
+</details>
+</details>
+<h4 id="5-2-6-avoiding-address-translation-during-indexing-of-the-cache">5. 2. 6 Avoiding Address Translation During Indexing of the Cache<a class="headerlink" href="#5-2-6-avoiding-address-translation-during-indexing-of-the-cache" title="Permanent link">&para;</a></h4>
+<p>使用<strong>虚地址</strong>进行 Cache 索引，而不是在关键路径上先做地址翻译后再索引。</p>
+<ul>
+<li><strong>优点</strong>：避开 TLB 查找带来的关键路径延迟，减小 hit time，有助于支持更高 CPU 时钟频率。</li>
+<li><strong>缺点</strong>：可能出现 <strong>cache aliasing</strong>，即多个虚地址映射到同一物理地址，因而需要额外硬件来处理别名问题。</li>
+<li><strong>适用场景</strong>：高性能处理器设计。</li>
+</ul>
+<p><img src="/sys3/images/image3-50.png" style="display: block; width: 50%; margin: 0 auto;" /></p>
+<h3 id="5-3-advanced-optimization-methods">5. 3 Advanced Optimization Methods<a class="headerlink" href="#5-3-advanced-optimization-methods" title="Permanent link">&para;</a></h3>
+<h4 id="5-3-1-pipelined-l1-caches-with-virtual-indexing-and-set-associativity">5. 3. 1 Pipelined L1 Caches With Virtual Indexing and Set Associativity<a class="headerlink" href="#5-3-1-pipelined-l1-caches-with-virtual-indexing-and-set-associativity" title="Permanent link">&para;</a></h4>
+<p>将 Cache 的访问过程拆成多个流水级，让 CPU 每个周期都能发起新的访问请求，从而提升带宽。</p>
+<ul>
+<li><strong>优点</strong>：增加 Cache 带宽，支持更高频率。</li>
+<li><strong>缺点</strong>：单次命中延迟增加，Cache 访问不再是零额外阶段。</li>
+<li><strong>适用场景</strong>：适用于高频率、高带宽需求的现代高性能处理器架构。</li>
+</ul>
+<p><img src="/sys3/images/image3-51.png" style="display: block; width: 60%; margin: 0 auto;" /></p>
+<details class="question">
+<summary>例题</summary>
+<p>判断 32 KiB 四路组相联 L1 缓存的内存访问速度是否快于 32 KiB 两路组相联 L1 缓存。假设访问 L2 的缺失开销（失效开销）为更快的 L1 缓存访问时间的 15 倍，忽略 L2 之外的缓存缺失，哪一种缓存的平均内存访问时间（AMAT）更短？</p>
+<p><img src="/sys3/images/image3-52.png" style="display: block; width: 60%; margin: 0 auto;" /></p>
+<details class="success">
+<summary>解答</summary>
+<p>设两路组相联缓存的访问时间为 1（基准单位时间），则对于二路缓存：</p>
+<p><span class="arithmatex">\(\text{Average memory access time}_{2 way} = \text{Hit time} + \text{Miss rate} \times \text{Miss penalty} = 1 + 0.038 × 15 = 1.38\)</span></p>
+<p>对于四路缓存，其访问时间为两路的 <span class="arithmatex">\(1.4\)</span> 倍，对应的缺失开销耗时为 <span class="arithmatex">\(15 ÷ 1.4 \approx 10.1\)</span>，为简化计算取 <span class="arithmatex">\(10\)</span>，则：</p>
+<p><span class="arithmatex">\(\text{Average memory access time}_{4 way} = \text{Hit time} + \text{Miss rate} \times \text{Miss penalty} = 1.4 + 0.037 × 10 = 1.77\)</span></p>
+</details>
+</details>
+<h4 id="5-3-2-multiple-banks-and-ports-to-increase-the-bandwidth-of-l1-d-caches">5. 3. 2 Multiple Banks and Ports to Increase the Bandwidth of L1 D-Caches<a class="headerlink" href="#5-3-2-multiple-banks-and-ports-to-increase-the-bandwidth-of-l1-d-caches" title="Permanent link">&para;</a></h4>
+<p>将 Cache 划分为多个独立 <strong>bank</strong>，并提供多个端口，以支持更高并发度的数据访问。</p>
+<ul>
+<li><strong>优点</strong>：显著提高带宽，特别适合多核处理器和乱序执行处理器。</li>
+<li><strong>缺点</strong>：Bank 冲突控制更复杂，硬件设计和验证成本更高。</li>
+<li><strong>适用场景</strong>：高性能多核处理器架构、图形处理单元（GPU）及其他需要极高内存带宽的应用。</li>
+</ul>
+<p><img src="/sys3/images/image3-53.png" style="display: block; width: 40%; margin: 0 auto;" /></p>
+<h4 id="5-3-3-reducing-the-miss-rate-with-better-replacement-policies">5. 3. 3 Reducing the Miss Rate With Better Replacement Policies<a class="headerlink" href="#5-3-3-reducing-the-miss-rate-with-better-replacement-policies" title="Permanent link">&para;</a></h4>
+<p>用 LRU（最近最少使用）或 LFU（最不经常使用）等智能算法预测未来访问模式，优先替换无用数据，优于简单的 FIFO 策略。</p>
+<ul>
+<li><strong>优点</strong>：显著降低缓存失效率。</li>
+<li><strong>缺点</strong>：增加硬件复杂度与实现开销。</li>
+<li><strong>适用场景</strong> ：缓存容量受限，且数据访问模式具有较强局部性与可预测性的场景。</li>
+</ul>
+<p><img src="/sys3/images/image3-54.png" style="display: block; width: 50%; margin: 0 auto;" /></p>
+<h4 id="5-3-4-multibanked-l2-and-l3-caches">5. 3. 4 Multibanked L2 and L3 Caches<a class="headerlink" href="#5-3-4-multibanked-l2-and-l3-caches" title="Permanent link">&para;</a></h4>
+<p>把大容量 L2 / L3 拆分为多个独立 bank，只激活当前访问到的 bank。</p>
+<ul>
+<li><strong>优点</strong>：降低功耗、降低访问延迟、提高总体带宽。</li>
+<li><strong>缺点</strong>：多 Bank 的管理逻辑增加了硬件设计的复杂度。</li>
+<li><strong>适用场景</strong>：现代高性能多核处理器的 L2/L3 缓存设计。</li>
+</ul>
+<p><img src="/sys3/images/image3-55.png" style="display: block; width: 50%; margin: 0 auto;" /></p>
+<h4 id="5-3-5-nonblocking-caches">5. 3. 5 Nonblocking Caches<a class="headerlink" href="#5-3-5-nonblocking-caches" title="Permanent link">&para;</a></h4>
+<p>当 Cache miss 时，允许 CPU 继续执行后续可以执行的操作，而不是整个停住等待。</p>
+<ul>
+<li><strong>优点</strong>：让计算与 miss 处理重叠，提高吞吐量。</li>
+<li><strong>缺点</strong>：Cache 控制器与 CPU 硬件复杂度大幅上升。</li>
+<li><strong>适用场景</strong>：追求极致性能、支持乱序执行的高端处理器架构。</li>
+</ul>
+<h4 id="5-3-6-critical-word-first-and-early-restart">5. 3. 6 Critical Word First and Early Restart<a class="headerlink" href="#5-3-6-critical-word-first-and-early-restart" title="Permanent link">&para;</a></h4>
+<p>发生 miss 时，不必等整个 block 全部返回后再恢复执行，而是优先返回 CPU 当前最需要的那个字，CPU 一旦拿到关键字就立刻恢复执行。</p>
+<ul>
+<li><strong>优点</strong>：显著降低<strong>有效</strong> miss penalty。</li>
+<li><strong>缺点</strong>：内存控制器需要更复杂的调度逻辑。</li>
+<li><strong>适用场景</strong>：对访存延迟极其敏感，且经常访问大块数据中随机位置的程序。</li>
+</ul>
+<h4 id="5-3-7-compiler-optimizations-to-reduce-miss-rate">5. 3. 7 Compiler Optimizations to Reduce Miss Rate<a class="headerlink" href="#5-3-7-compiler-optimizations-to-reduce-miss-rate" title="Permanent link">&para;</a></h4>
+<p>通过编译器或程序重写改善时间局部性与空间局部性，直接降低 miss rate。</p>
+<div class="admonition tip">
+<p class="admonition-title">Instruction Miss 优化</p>
+<ul>
+<li>
+<p><strong>Reorder procedures in memory</strong>：</p>
+<ul>
+<li>将连续调用的函数相邻放置，尽量落在同一 Cache line / 相邻 block</li>
+<li>对存在分支的程序，把 <strong>Hot Path</strong> 连续布局，减少跳转带来的替换</li>
+<li>若不能放在同一 block，也应尽量让高频函数分散到不同 Cache set，避免互相驱逐</li>
+</ul>
+</li>
+<li>
+<p><strong>Profiling to look at conflicts</strong>：</p>
+<ul>
+<li>收集程序执行轨迹与 miss 事件</li>
+<li>识别高频交替访问且映射到同一组的地址对</li>
+<li>再通过函数重排、内联、冷热代码分离、地址对齐等方式优化</li>
+</ul>
+</li>
+</ul>
+<p><img src="/sys3/images/image3-56.png" style="display: block; width: 80%; margin: 0 auto;" /></p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Data Miss 优化</p>
+<ul>
+<li><strong>Merging arrays</strong>：将经常一起访问的多个数组合并布局，减少交替访问不同数组造成的 miss。</li>
+<li><strong>Loop Interchange</strong>：通过交换循环嵌套顺序，使访问顺序匹配内存存储顺序，例如对<strong>行主序</strong>二维数组，应尽量按行连续访问。</li>
+<li><strong>Loop Fusion</strong>：将循环结构相同且彼此独立、又共享部分数据的循环合并，减少重复访存。</li>
+<li><strong>Loop Distribution</strong>：将互相冲突的访问拆成不同循环，让每个循环都能采用更适合局部性的访问顺序。</li>
+<li><strong>Blocking</strong>：将迭代空间切成较小块，提高块内数据复用</li>
+</ul>
+</div>
+<h4 id="5-3-8-hardware-prefetching-compiler-controlled-prefetching">5. 3. 8 Hardware Prefetching 与 Compiler-Controlled Prefetching<a class="headerlink" href="#5-3-8-hardware-prefetching-compiler-controlled-prefetching" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>硬件预取（Hardware Prefetching）</strong>：由硬件自动识别访问模式（如顺序访问），在 CPU 真正需要数据前，先把未来可能要访问的数据带入 Cache。</li>
+<li><strong>编译器控制预取（Compiler-Controlled Prefetching）</strong>：编译器静态分析代码后，显式插入预取指令，指示 CPU 提前加载特定数据。</li>
+<li><strong>优点</strong>：可能降低 miss rate，也可能降低 miss penalty。</li>
+<li><strong>缺点</strong>：预测错误会浪费总线带宽与功耗。</li>
+<li><strong>适用场景</strong>：访问模式高度可预测的程序，例如数组遍历、矩阵运算等顺序 / 固定步长访问。</li>
+</ul>
+<h4 id="5-3-9-multiple-memory-buses-and-memory-modules-to-increase-bandwidth">5. 3. 9 Multiple Memory Buses and Memory Modules to Increase Bandwidth<a class="headerlink" href="#5-3-9-multiple-memory-buses-and-memory-modules-to-increase-bandwidth" title="Permanent link">&para;</a></h4>
+<p>增加内存总线数量，让 CPU 能通过多条总线并行访问不同内存模块。</p>
+<ul>
+<li><strong>优点</strong>：显著提高内存带宽，缓解 CPU 与内存之间的数据传输瓶颈。</li>
+<li><strong>缺点</strong>：主板布线与设计复杂度更高，硬件成本增加。</li>
+<li><strong>适用场景</strong>：对内存带宽有极高需求的服务器、工作站及高性能计算（HPC）系统。</li>
+</ul>
+<details class="tip">
+<summary>总结</summary>
+<p>Cache 优化的核心目标是<strong>降低 AMAT</strong>，但所有方法都需要在以下维度之间权衡：</p>
+<ul>
+<li>miss rate</li>
+<li>miss penalty</li>
+<li>hit time</li>
+<li>带宽</li>
+<li>硬件复杂度</li>
+<li>功耗</li>
+</ul>
+<p>现代高性能处理器几乎从不依赖单一技术，而是把多种方法组合起来使用。</p>
+</details>
+<div class="admonition example">
+<p class="admonition-title">性能计算示例</p>
+<p>设：</p>
+<ul>
+<li>忽略 memory stalls 时，所有指令基本都需要 <span class="arithmatex">\(1.0\)</span> 个时钟周期</li>
+<li>cache miss penalty 为 <span class="arithmatex">\(200\)</span> 个时钟周期</li>
+<li>average miss rate 为 <span class="arithmatex">\(2\%\)</span></li>
+<li>每条指令平均有 <span class="arithmatex">\(1.5\)</span> 次 memory references</li>
+<li>每 <span class="arithmatex">\(1000\)</span> 条指令平均有 <span class="arithmatex">\(30\)</span> 次 cache misses</li>
+</ul>
+<p>则：</p>
+<ul>
+<li>由 misses / instruction 计算：</li>
+</ul>
+<div class="arithmatex">\[
+CPUtime
+= IC \times \left[1.0 + \left(\frac{30}{1000} \times 200\right)\right] \times clock\ cycle
+= IC \times 7.0 \times clock\ cycle
+\]</div>
+<ul>
+<li>由 miss rate 计算：</li>
+</ul>
+<div class="arithmatex">\[
+Memory\ stall\ cycles / Inst
+= 1.5 \times 0.02 \times 200 = 6
+\]</div>
+<p>因此：</p>
+<div class="arithmatex">\[
+CPI = 1.0 + 6 = 7.0
+\]</div>
+<p>课件同时给出对比：若<strong>没有 Cache</strong>，则</p>
+<div class="arithmatex">\[
+CPI = 1.0 + 200 \times 1.5 = 301
+\]</div>
+<p>可见即使 miss penalty 很大，只要 Cache 能保持较低 miss rate，整体性能仍会得到极大改善。</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.top", "navigation.sidebar", "navigation.indexes"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../../javascripts/mathjax-config.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf_viewer.min.js"></script>
+      
+    
+  </body>
+</html>
