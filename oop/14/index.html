@@ -897,8 +897,6 @@
       
         
       
-        
-      
     
     
     
@@ -1129,82 +1127,6 @@
   
   <span class="md-ellipsis">
     真题
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-      
-        
-      
-    
-    
-    
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
-        
-          
-          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    文学品读与翻译入门
-    
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_2">
-            <span class="md-nav__icon md-icon"></span>
-            文学品读与翻译入门
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../frtl/1.md" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Chapter 1 English & Chinese：Major Differences
     
   </span>
   
@@ -2471,6 +2393,8 @@
       
         
       
+        
+      
     
     
     
@@ -2574,6 +2498,29 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys3/4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 Main Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -2590,6 +2537,8 @@
   
     
     
+      
+        
       
         
       
@@ -2740,6 +2689,29 @@
   
   <span class="md-ellipsis">
     Chapter 5 Advanced SQL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../db/6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6 Entity-Relationship Model
     
   </span>
   
@@ -2928,6 +2900,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -3072,6 +3048,130 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6 Polymorphism
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_7_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_7_7" id="__nav_4_7_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    朋辈辅学
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_7_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_7_7">
+            <span class="md-nav__icon md-icon"></span>
+            朋辈辅学
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pbfx/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lec 1 C++ 概述和 OOP 基础
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pbfx/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lec 2 构造、析构、拷贝
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -3262,6 +3362,14 @@
 <li><code>std::auto_ptr</code>（C++11 起已废弃）</li>
 </ul>
 </div>
+<details class="tip">
+<summary>常见分工</summary>
+<ul>
+<li><code>unique_ptr</code>：独占所有权，默认首选</li>
+<li><code>shared_ptr</code>：共享所有权，内部维护引用计数</li>
+<li><code>weak_ptr</code>：不拥有对象，只用于观察 <code>shared_ptr</code> 管理的对象</li>
+</ul>
+</details>
 <h2 id="2-core-idea">2 Core Idea<a class="headerlink" href="#2-core-idea" title="Permanent link">&para;</a></h2>
 <details class="quote">
 <summary>本章关注点</summary>
@@ -3525,6 +3633,7 @@
 <summary>Tip</summary>
 <ul>
 <li>外层 <code>String</code> 的拷贝构造和赋值几乎可以“交给智能指针处理”</li>
+<li>这样对外接口仍保持值语义，但底层表示可以共享</li>
 </ul>
 </details>
 <h2 id="10-critique">10 Critique<a class="headerlink" href="#10-critique" title="Permanent link">&para;</a></h2>

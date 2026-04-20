@@ -1,0 +1,4753 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>Chapter 7 Relational Database Design - sodasugar的笔记本</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/web/pdf_viewer.min.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chapter-7-relational-database-design" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="sodasugar的笔记本" class="md-header__button md-logo" aria-label="sodasugar的笔记本" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            sodasugar的笔记本
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chapter 7 Relational Database Design
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/sodaandsugar/sodaandsugar.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    sodasugar-notebook
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  🏡首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../physics2/1/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  ⚛️ 物理
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../interpret/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  🔤外语
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../cryptography/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  专业课
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="sodasugar的笔记本" class="md-nav__button md-logo" aria-label="sodasugar的笔记本" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    sodasugar的笔记本
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/sodaandsugar/sodaandsugar.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    sodasugar-notebook
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🏡首页
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    ⚛️ 物理
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            ⚛️ 物理
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    大物乙Ⅱ
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            大物乙Ⅱ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 静电场
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 静电场中的导体和电介质
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 电流和磁场
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 物质中的磁场
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5 电磁感应
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6 麦克斯韦方程与电磁波
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 7 光的干涉
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 8 光的衍射
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 9 光的偏振
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 10 光的量子论
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 11 玻尔的原子模型
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 12 量子力学初步
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/midterm_review/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    期中小结
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/%E7%89%A9%E7%90%86%E5%AD%A6%E5%8D%95%E4%BD%8D%E6%8D%A2%E7%AE%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    物理学单位换算
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    大物实验
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            大物实验
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cpe/final/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    期末复习
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    🔤外语
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            🔤外语
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../interpret/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    英语口译
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            英语口译
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interpret/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1 Ceremonial Speech
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interpret/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2 Tourism
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interpret/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3 Culture and Education
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interpret/5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    5 International Reports
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interpret/text/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    课堂文本
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interpret/cheatsheet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    真题
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    专业课
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            专业课
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../cryptography/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    数据安全与密码学基础
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            数据安全与密码学基础
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/resource/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    资源索引
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 概论
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 完善保密加密
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 对称密钥加密以及伪随机性
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 消息鉴别码
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5 哈希函数
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6 数论和密码学困难性假设
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/midterm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    期中考试卷
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    高级数据结构与算法分析
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            高级数据结构与算法分析
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/resource/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    资源索引
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_2" id="__nav_4_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    题目集
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            题目集
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/blank/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    程序填空题集锦
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/function/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    函数题集锦
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1 AVL Trees, Splay Trees and Amortized Analysis
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2 Red-Black Trees and B+ Trees
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3 Inverted File Index
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    4 Leftist Heaps and Skew Heaps
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    5 Binomial Queue
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    6 Backtracking
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    7 Divide and Conquer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    8 Dynamic Programming
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    9 Greedy Algorithms
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    10 P/NP Problems
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    11 Approximation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    12 Local Search
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    13 Randomized Algorithms
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    14 Parallel Algorithms
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/15/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    15 External Sorting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/cheatsheet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    期中考 cheat sheet
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/midterm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    期中考试
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    计算机系统 Ⅱ
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            计算机系统 Ⅱ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 ISA Review
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 Design of Pipelining
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 Hazard of Pipelining
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 Software-Hardware Interface
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5 Intro&Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6 Structures
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 7 Processes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 8 CPU Scheduling
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 9 Synchronization
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/pbfx/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    朋辈辅学
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    计算机系统 Ⅲ
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            计算机系统 Ⅲ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys3/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 Fundamentals of computer system
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys3/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 Instruction-Level Parallelism (ILP)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys3/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 Memory Hierarchy
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys3/4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 Main Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    数据库系统
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            数据库系统
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 Intro to Relational Model
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 Introduction to SQL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 Intermediate SQL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5 Advanced SQL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6 Entity-Relationship Model
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    隐私计算与安全合规
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            隐私计算与安全合规
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mpc/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 引言
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mpc/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 现代密码学与基础原语
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mpc/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 一个安全多方计算协议的例子
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mpc/4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 安全模型
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_7" id="__nav_4_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    面向对象程序设计
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_7">
+            <span class="md-nav__icon md-icon"></span>
+            面向对象程序设计
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 Using Objects
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 Class
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 Object Interaction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5 Composition and Inheritance
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6 Polymorphism
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_7_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_7_7" id="__nav_4_7_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    朋辈辅学
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_7_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_7_7">
+            <span class="md-nav__icon md-icon"></span>
+            朋辈辅学
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/pbfx/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lec 1 C++ 概述和 OOP 基础
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/pbfx/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lec 2 构造、析构、拷贝
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-functional-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      1 Functional Dependencies
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1 Functional Dependencies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-1-functional-dependency" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 1 Functional Dependency 的定义
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-2-fd" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 2 用 FD 定义键
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-3-trivial-non-trivial-fd" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 3 Trivial / Non-trivial FD
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-4-fd" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 4 非平凡 FD 的分类视角
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-5-functional-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 5 Functional Dependencies 的用途
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-first-normal-form" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 First Normal Form
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2 First Normal Form">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2-1-atomic-domain" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 1 Atomic Domain
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-2-first-normal-form" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 2 First Normal Form 的定义
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-3-atomicity" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 3 Atomicity 是“如何使用”的属性
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-normalization-goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 Normalization Goals
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-bcnf" class="md-nav__link">
+    <span class="md-ellipsis">
+      4 BCNF
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4 BCNF">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#4-1-bcnf" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. 1 BCNF 的定义
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-2-bcnf" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. 2 BCNF 违反示例
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-3-bcnf" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. 3 BCNF 分解
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-lossless-join-lossy-join" class="md-nav__link">
+    <span class="md-ellipsis">
+      5 Lossless Join 与 Lossy Join
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5 Lossless Join 与 Lossy Join">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#5-1-lossless-join" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 1 Lossless Join
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-2-lossy-join" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 2 Lossy Join
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-dependency-preservation" class="md-nav__link">
+    <span class="md-ellipsis">
+      6 Dependency Preservation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6 Dependency Preservation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#6-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. 1 定义
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. 2 为什么重要
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-3-bcnf" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. 3 BCNF 与依赖保持的取舍
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-third-normal-form" class="md-nav__link">
+    <span class="md-ellipsis">
+      7 Third Normal Form
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7 Third Normal Form">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#7-1-3nf" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. 1 3NF 的定义
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-2-3nf" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. 2 3NF 的动机
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-3-3nf" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. 3 3NF 中的冗余
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-4-bcnf-3nf" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. 4 BCNF 与 3NF 对比
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-bcnf" class="md-nav__link">
+    <span class="md-ellipsis">
+      8 BCNF 还不够
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-functional-dependency-theory" class="md-nav__link">
+    <span class="md-ellipsis">
+      9 Functional Dependency Theory
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9 Functional Dependency Theory">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#9-1-closure-of-f" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. 1 Closure of F
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-2-armstrongs-axioms" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. 2 Armstrong’s Axioms
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-3-additional-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. 3 Additional Rules
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-4-attribute-closure" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. 4 Attribute Closure
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-5-attribute-closure" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. 5 Attribute Closure 的用途
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-6-candidate-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. 6 找 Candidate Key 的经验规则
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-canonical-cover" class="md-nav__link">
+    <span class="md-ellipsis">
+      10 Canonical Cover
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10 Canonical Cover">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#10-1-canonical-cover" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. 1 Canonical Cover 的含义
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-2-extraneous-attribute" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. 2 Extraneous Attribute
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. 3 规范覆盖的计算思路
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-testing-and-decomposition-algorithms" class="md-nav__link">
+    <span class="md-ellipsis">
+      11 Testing and Decomposition Algorithms
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11 Testing and Decomposition Algorithms">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      11. 1 检测依赖保持
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#11-2-bcnf" class="md-nav__link">
+    <span class="md-ellipsis">
+      11. 2 检测 BCNF
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#11-3-bcnf-decomposition-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      11. 3 BCNF Decomposition Algorithm
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#11-4-3nf-decomposition-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      11. 4 3NF Decomposition Algorithm
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-multivalued-dependencies-and-4nf" class="md-nav__link">
+    <span class="md-ellipsis">
+      12 Multivalued Dependencies and 4NF
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12 Multivalued Dependencies and 4NF">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#12-1-mvd" class="md-nav__link">
+    <span class="md-ellipsis">
+      12. 1 为什么需要 MVD
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-2-mvd" class="md-nav__link">
+    <span class="md-ellipsis">
+      12. 2 MVD 的定义
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-3-mvd" class="md-nav__link">
+    <span class="md-ellipsis">
+      12. 3 MVD 的例子
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-4-fourth-normal-form" class="md-nav__link">
+    <span class="md-ellipsis">
+      12. 4 Fourth Normal Form
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-5-4nf" class="md-nav__link">
+    <span class="md-ellipsis">
+      12. 5 4NF 分解
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-further-normal-forms" class="md-nav__link">
+    <span class="md-ellipsis">
+      13 Further Normal Forms
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-overall-database-design-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      14 Overall Database Design Process
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="14 Overall Database Design Process">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#14-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      14. 1 规范化在设计流程中的位置
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-2-er-model-normalization" class="md-nav__link">
+    <span class="md-ellipsis">
+      14. 2 ER Model 与 Normalization 的关系
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-3-denormalization-for-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      14. 3 Denormalization for Performance
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      14. 4 规范化抓不到的坏设计
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-5-temporal-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      14. 5 Temporal Data
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-practice-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      15 Practice Example
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-supplement-3nf-decomposition-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      16 Supplement: 3NF Decomposition Algorithm 正确性要点
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="16 Supplement: 3NF Decomposition Algorithm 正确性要点">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#16-1-3nf" class="md-nav__link">
+    <span class="md-ellipsis">
+      16. 1 为什么 3NF 的第三条件必不可少
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#17-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      17 Summary
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="chapter-7-relational-database-design">Chapter 7 Relational Database Design<a class="headerlink" href="#chapter-7-relational-database-design" title="Permanent link">&para;</a></h1>
+<div class="admonition quote">
+<p class="admonition-title">Chapter Outline</p>
+<ul>
+<li><strong>Functional Dependency Concepts</strong></li>
+<li><strong>Normal Forms</strong></li>
+<li><strong>Atomic Domains and First Normal Form</strong></li>
+<li><strong>BCNF and Third Normal Form</strong></li>
+<li><strong>Functional Dependency Theory and Algorithms</strong></li>
+<li><strong>Decomposition and Testing Using Functional Dependencies</strong></li>
+<li><strong>More Normal Forms</strong></li>
+<li><strong>Database-Design Process</strong></li>
+</ul>
+</div>
+<h2 id="1-functional-dependencies">1 Functional Dependencies<a class="headerlink" href="#1-functional-dependencies" title="Permanent link">&para;</a></h2>
+<h3 id="1-1-functional-dependency">1. 1 Functional Dependency 的定义<a class="headerlink" href="#1-1-functional-dependency" title="Permanent link">&para;</a></h3>
+<p>函数依赖（Functional Dependency, FD）是加在<strong>关系模式</strong>上的约束，用来描述：</p>
+<ul>
+<li>一组属性的取值</li>
+<li>能否<strong>唯一确定</strong></li>
+<li>另一组属性的取值</li>
+</ul>
+<p>记作：</p>
+<div class="arithmatex">\[
+\alpha \to \beta
+\]</div>
+<p>其含义是：在关系模式 <span class="arithmatex">\(R\)</span> 的任意合法实例中，只要两个元组在 <span class="arithmatex">\(\alpha\)</span> 上取值相同，它们在 <span class="arithmatex">\(\beta\)</span> 上也必须相同。</p>
+<div class="arithmatex">\[
+t_1[\alpha] = t_2[\alpha] \Rightarrow t_1[\beta] = t_2[\beta]
+\]</div>
+<div class="admonition tip">
+<p class="admonition-title">理解方式</p>
+<ul>
+<li>FD 是对<strong>所有合法关系实例</strong>都必须成立的约束</li>
+<li>它不是“某张具体表目前碰巧成立”的现象</li>
+<li>它是“业务语义决定的确定关系”</li>
+</ul>
+</div>
+<details class="example">
+<summary>示例：<code>inst_dept(ID, name, salary, dept_name, building, budget)</code></summary>
+<p><img src="/db/images/image7-1.jpg" style="display: block; width: 82%; margin: 0 auto;" /></p>
+<p>我们通常期望：</p>
+<ul>
+<li><code>dept_name → building, budget</code></li>
+<li><code>ID → name, salary, dept_name, building, budget</code></li>
+</ul>
+<p>但不会期望：</p>
+<ul>
+<li><code>dept_name → salary</code></li>
+</ul>
+</details>
+<h3 id="1-2-fd">1. 2 用 FD 定义键<a class="headerlink" href="#1-2-fd" title="Permanent link">&para;</a></h3>
+<p>函数依赖是“键”概念的推广。</p>
+<ul>
+<li><strong>Superkey（超键）</strong>：若 <code>K → R</code>，则 <code>K</code> 是关系模式 <code>R</code> 的超键</li>
+<li><strong>Candidate Key（候选键）</strong>：若 <code>K → R</code>，且任意真子集 <code>α ⊂ K</code> 都不满足 <code>α → R</code>，则 <code>K</code> 是候选键</li>
+</ul>
+<p>也就是说：</p>
+<ul>
+<li>超键要求“能唯一确定整行”</li>
+<li>候选键还要求“最小”</li>
+</ul>
+<h3 id="1-3-trivial-non-trivial-fd">1. 3 Trivial / Non-trivial FD<a class="headerlink" href="#1-3-trivial-non-trivial-fd" title="Permanent link">&para;</a></h3>
+<div class="admonition quote">
+<p class="admonition-title">平凡函数依赖</p>
+<p>若 <code>β ⊆ α</code>，则 <code>α → β</code> 一定成立，称为<strong>平凡函数依赖（trivial FD）</strong>。</p>
+</div>
+<p>例如：</p>
+<ul>
+<li><code>ID, name → ID</code></li>
+<li><code>name → name</code></li>
+</ul>
+<p>因此在判断范式时，我们重点关注的是<strong>非平凡 FD</strong>。</p>
+<h3 id="1-4-fd">1. 4 非平凡 FD 的分类视角<a class="headerlink" href="#1-4-fd" title="Permanent link">&para;</a></h3>
+<p>课件特别强调：对非平凡 FD <code>α → β</code>，判断好坏时要看两件事：</p>
+<ol>
+<li><code>α</code> 是否是<strong>超键</strong></li>
+<li><code>β</code> 中是否包含<strong>候选键中的属性（prime attribute）</strong></li>
+</ol>
+<p>这正好对应：</p>
+<ul>
+<li><strong>BCNF</strong>：要求非平凡 FD 的左边必须是超键</li>
+<li><strong>3NF</strong>：允许一部分左边不是超键的 FD 存在，但右边必须是主属性</li>
+</ul>
+<h3 id="1-5-functional-dependencies">1. 5 Functional Dependencies 的用途<a class="headerlink" href="#1-5-functional-dependencies" title="Permanent link">&para;</a></h3>
+<p>我们使用 FD 来：</p>
+<ul>
+<li>指定合法关系必须满足的约束</li>
+<li>测试某个关系实例是否合法</li>
+<li>判断关系模式是否处于“好形式”</li>
+<li>在需要时进行<strong>分解（decompose）</strong></li>
+<li>在少数场景下进行<strong>合并（combine）</strong></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">注意</p>
+<p>某个具体关系实例可能“碰巧”满足一个 FD，但并不代表这个 FD 是该模式上的真实业务约束。</p>
+<p>例如：某张 <code>instructor</code> 表当前可能刚好满足 <code>name → ID</code>，但这通常不是合法设计中应成立的依赖。</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">不只是分解，有时也要合并</p>
+<p>例如：</p>
+<ul>
+<li><code>dept_building(dept_name, building)</code></li>
+<li><code>dept_budget(dept_name, budget)</code></li>
+</ul>
+<p>若二者都由同一个决定因素 <code>dept_name</code> 控制，可以合并成：</p>
+<ul>
+<li><code>department(dept_name, building, budget)</code></li>
+</ul>
+<p>且不会引入重复。</p>
+</div>
+<h2 id="2-first-normal-form">2 First Normal Form<a class="headerlink" href="#2-first-normal-form" title="Permanent link">&para;</a></h2>
+<h3 id="2-1-atomic-domain">2. 1 Atomic Domain<a class="headerlink" href="#2-1-atomic-domain" title="Permanent link">&para;</a></h3>
+<p>如果一个属性域中的值被当作<strong>不可再分的原子单位（atomic）</strong>使用，则称该域是原子的。</p>
+<p>非原子域的典型例子包括：</p>
+<ul>
+<li>属性值是一个集合</li>
+<li>复合属性直接塞进一个字段</li>
+<li>编码后可以再拆出业务含义的值</li>
+</ul>
+<h3 id="2-2-first-normal-form">2. 2 First Normal Form 的定义<a class="headerlink" href="#2-2-first-normal-form" title="Permanent link">&para;</a></h3>
+<div class="admonition quote">
+<p class="admonition-title">1NF</p>
+<p>若关系模式中所有属性的域都是<strong>原子的</strong>，则该关系模式属于<strong>第一范式（First Normal Form, 1NF）</strong>。</p>
+</div>
+<p>1NF 的意义是：</p>
+<ul>
+<li>让关系模型中的每个单元格只放一个原子值</li>
+<li>避免非原子值带来的存储复杂性和重复存储</li>
+</ul>
+<h3 id="2-3-atomicity">2. 3 Atomicity 是“如何使用”的属性<a class="headerlink" href="#2-3-atomicity" title="Permanent link">&para;</a></h3>
+<p>原子性不完全取决于数据长什么样，而取决于<strong>系统如何解释和使用它</strong>。</p>
+<div class="admonition example">
+<p class="admonition-title">学号不是天然原子</p>
+<p>假设学号是字符串：</p>
+<ul>
+<li><code>CS0012</code></li>
+<li><code>EE1127</code></li>
+</ul>
+<p>如果应用程序会从前两个字符中解析出院系，那么这个学号域就不再是真正原子的。</p>
+<p>这样做的问题：</p>
+<ul>
+<li>把业务语义编码进字符串</li>
+<li>逻辑隐藏在应用程序中</li>
+<li>增加系统耦合和维护成本</li>
+</ul>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">结论</p>
+<p>1NF 是关系模式最基本的要求，但远远不够。要进一步判断关系设计是否“好”，还必须引入更高范式。</p>
+</div>
+<h2 id="3-normalization-goals">3 Normalization Goals<a class="headerlink" href="#3-normalization-goals" title="Permanent link">&para;</a></h2>
+<p>规范化（Normalization）的目标是：</p>
+<ol>
+<li>判断一个关系模式是否处于“好形式”</li>
+<li>若不是，则把它分解为若干更好的关系模式</li>
+<li>希望分解后同时满足：<ul>
+<li>每个子关系都处于较高范式</li>
+<li><strong>lossless join（无损连接）</strong></li>
+<li>尽量 <strong>dependency preserving（保持依赖）</strong></li>
+</ul>
+</li>
+</ol>
+<p>理论基础主要包括：</p>
+<ul>
+<li><strong>functional dependencies</strong></li>
+<li><strong>multivalued dependencies</strong></li>
+</ul>
+<h2 id="4-bcnf">4 BCNF<a class="headerlink" href="#4-bcnf" title="Permanent link">&para;</a></h2>
+<h3 id="4-1-bcnf">4. 1 BCNF 的定义<a class="headerlink" href="#4-1-bcnf" title="Permanent link">&para;</a></h3>
+<div class="admonition quote">
+<p class="admonition-title">Boyce-Codd Normal Form</p>
+<p>关系模式 <code>R</code> 相对于 FD 集 <code>F</code> 属于 <strong>BCNF</strong>，当且仅当对 <code>F+</code> 中任意形如 <code>α → β</code> 的函数依赖，只要它是非平凡的，就必须满足：</p>
+<ul>
+<li><code>α</code> 是 <code>R</code> 的超键</li>
+</ul>
+</div>
+<p>也就是说，BCNF 的核心要求是：</p>
+<ul>
+<li><strong>所有非平凡 FD 的左边都必须足够强，强到能唯一标识整行</strong></li>
+</ul>
+<h3 id="4-2-bcnf">4. 2 BCNF 违反示例<a class="headerlink" href="#4-2-bcnf" title="Permanent link">&para;</a></h3>
+<div class="admonition example">
+<p class="admonition-title">典型违反</p>
+<p>对关系：</p>
+<ul>
+<li><code>inst_dept(ID, name, salary, dept_name, building, budget)</code></li>
+</ul>
+<p>若有：</p>
+<ul>
+<li><code>dept_name → building, budget</code></li>
+</ul>
+<p>由于 <code>dept_name</code> 不是超键，因此该关系<strong>不在 BCNF 中</strong>。</p>
+</div>
+<h3 id="4-3-bcnf">4. 3 BCNF 分解<a class="headerlink" href="#4-3-bcnf" title="Permanent link">&para;</a></h3>
+<p>若存在非平凡 FD <code>α → β</code> 违反 BCNF，则可把关系 <code>R</code> 分解为：</p>
+<ul>
+<li><code>R1 = α ∪ β</code></li>
+<li><code>R2 = R - (β - α)</code></li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">对 <code>inst_dept</code> 的分解</p>
+<p>令：</p>
+<ul>
+<li><code>α = dept_name</code></li>
+<li><code>β = {building, budget}</code></li>
+</ul>
+<p>则可分解为：</p>
+<ul>
+<li><code>department(dept_name, building, budget)</code></li>
+<li><code>instructor(ID, name, salary, dept_name)</code></li>
+</ul>
+</div>
+<p>这样就把“院系决定楼和预算”的依赖放到了单独的关系中。</p>
+<h2 id="5-lossless-join-lossy-join">5 Lossless Join 与 Lossy Join<a class="headerlink" href="#5-lossless-join-lossy-join" title="Permanent link">&para;</a></h2>
+<h3 id="5-1-lossless-join">5. 1 Lossless Join<a class="headerlink" href="#5-1-lossless-join" title="Permanent link">&para;</a></h3>
+<p>对分解 <code>R → R1, R2</code>，若对 <code>R</code> 的所有合法实例 <code>r</code> 都有：</p>
+<div class="arithmatex">\[
+r = \pi_{R_1}(r) \bowtie \pi_{R_2}(r)
+\]</div>
+<p>则称该分解是<strong>无损连接分解（lossless-join decomposition）</strong>。</p>
+<p>对于二元分解，一个常用充分条件是：</p>
+<ul>
+<li><code>R1 ∩ R2 → R1</code></li>
+<li>或 <code>R1 ∩ R2 → R2</code></li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">直观理解</p>
+<p>交集属性如果能唯一决定其中一个子关系，就不会在连接时拼出伪元组。</p>
+</div>
+<h3 id="5-2-lossy-join">5. 2 Lossy Join<a class="headerlink" href="#5-2-lossy-join" title="Permanent link">&para;</a></h3>
+<p>若分解后再自然连接，可能产生原关系中并不存在的元组，则是<strong>有损分解（lossy decomposition）</strong>。</p>
+<div class="admonition example">
+<p class="admonition-title">错误分解会产生伪元组</p>
+<p><img src="/db/images/image7-2.jpg" style="display: block; width: 70%; margin: 0 auto;" /></p>
+<p>图中把 <code>employee(ID, name, street, city, salary)</code> 错误地分成：</p>
+<ul>
+<li><code>employee_1(ID, name)</code></li>
+<li><code>employee_2(name, street, city, salary)</code></li>
+</ul>
+<p>由于 <code>name</code> 不是键，连接后会把同名的 <code>Kim</code> 错误交叉组合，产生虚假的结果。</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">经验法则</p>
+<p>不是“分得越细越好”。如果原关系中所有非平凡 FD 的左边本来都是超键，就不应该再机械分解。</p>
+</div>
+<h2 id="6-dependency-preservation">6 Dependency Preservation<a class="headerlink" href="#6-dependency-preservation" title="Permanent link">&para;</a></h2>
+<h3 id="6-1">6. 1 定义<a class="headerlink" href="#6-1" title="Permanent link">&para;</a></h3>
+<p>若一个分解只需要在<strong>各个子关系内部</strong>检查依赖，就能保证原来所有 FD 都成立，则该分解是<strong>保持依赖的（dependency preserving）</strong>。</p>
+<p>形式化地，设 <code>Fi</code> 是 <code>F+</code> 在 <code>Ri</code> 上的投影，则若：</p>
+<div class="arithmatex">\[
+(F_1 \cup F_2 \cup \cdots \cup F_n)^+ = F^+
+\]</div>
+<p>则分解保持依赖。</p>
+<h3 id="6-2">6. 2 为什么重要<a class="headerlink" href="#6-2" title="Permanent link">&para;</a></h3>
+<div class="admonition tip">
+<p class="admonition-title">工程意义</p>
+<p>若分解不保持依赖，那么插入/更新时，为了验证某个 FD 是否被违反，可能必须先把多个表做连接，代价很高。</p>
+</div>
+<h3 id="6-3-bcnf">6. 3 BCNF 与依赖保持的取舍<a class="headerlink" href="#6-3-bcnf" title="Permanent link">&para;</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">核心结论</p>
+<ul>
+<li>BCNF 强于 3NF</li>
+<li>但<strong>并不总能同时做到 BCNF、无损连接、依赖保持</strong></li>
+</ul>
+</div>
+<p>这是引入 3NF 的根本原因。</p>
+<h2 id="7-third-normal-form">7 Third Normal Form<a class="headerlink" href="#7-third-normal-form" title="Permanent link">&para;</a></h2>
+<h3 id="7-1-3nf">7. 1 3NF 的定义<a class="headerlink" href="#7-1-3nf" title="Permanent link">&para;</a></h3>
+<div class="admonition quote">
+<p class="admonition-title">Third Normal Form</p>
+<p>关系模式 <code>R</code> 相对于 <code>F</code> 属于 <strong>3NF</strong>，当且仅当对 <code>F+</code> 中任意 <code>α → β</code>，至少满足以下之一：</p>
+<ul>
+<li><code>α → β</code> 是平凡的</li>
+<li><code>α</code> 是超键</li>
+<li><code>β - α</code> 中的每个属性都属于某个候选键</li>
+</ul>
+</div>
+<p>第三条允许了一定程度的冗余，因此 3NF 是对 BCNF 的<strong>最小放松</strong>。</p>
+<h3 id="7-2-3nf">7. 2 3NF 的动机<a class="headerlink" href="#7-2-3nf" title="Permanent link">&para;</a></h3>
+<p>若直接追求 BCNF 会丢失依赖保持性，而某些业务约束又必须高效检查，此时就采用 3NF。</p>
+<div class="admonition example">
+<p class="admonition-title">3NF 是一种折中</p>
+<p>设：</p>
+<ul>
+<li><code>advisor(s_id, i_id, dept_name)</code></li>
+</ul>
+<p>业务约束是：</p>
+<ul>
+<li>一个学生在某个院系中至多有一个导师</li>
+</ul>
+<p>重要 FD：</p>
+<ul>
+<li><code>s_id, i_id → dept_name</code></li>
+<li><code>i_id → dept_name</code></li>
+<li><code>s_id, dept_name → i_id</code></li>
+</ul>
+<p>若拆成：</p>
+<ul>
+<li><code>advisor(s_id, i_id)</code></li>
+<li><code>instructor(i_id, dept_name)</code></li>
+</ul>
+<p>虽减少了重复，但检查“同一院系至多一个导师”就必须连接两表。</p>
+<p>因此 3NF 允许保留适度冗余，以换取<strong>依赖保持</strong>。</p>
+</div>
+<h3 id="7-3-3nf">7. 3 3NF 中的冗余<a class="headerlink" href="#7-3-3nf" title="Permanent link">&para;</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">3NF 不是完美无冗余</p>
+<p>某些 3NF 关系仍可能存在：</p>
+<ul>
+<li>信息重复</li>
+<li><code>null</code> 值</li>
+<li>更新异常</li>
+</ul>
+</div>
+<p>因此：</p>
+<ul>
+<li><strong>BCNF 更干净</strong></li>
+<li><strong>3NF 更务实</strong></li>
+</ul>
+<h3 id="7-4-bcnf-3nf">7. 4 BCNF 与 3NF 对比<a class="headerlink" href="#7-4-bcnf-3nf" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>BCNF</th>
+<th>3NF</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>严格程度</td>
+<td>更强</td>
+<td>更弱</td>
+</tr>
+<tr>
+<td>冗余控制</td>
+<td>更好</td>
+<td>允许少量冗余</td>
+</tr>
+<tr>
+<td>无损分解</td>
+<td>总能做到</td>
+<td>总能做到</td>
+</tr>
+<tr>
+<td>依赖保持</td>
+<td>可能做不到</td>
+<td>总能做到</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">设计目标</p>
+<p>理想目标是同时满足：</p>
+<ul>
+<li><strong>BCNF</strong></li>
+<li><strong>Lossless Join</strong></li>
+<li><strong>Dependency Preservation</strong></li>
+</ul>
+<p>如果三者不能兼得，通常在：</p>
+<ul>
+<li>放弃部分依赖保持</li>
+<li>或接受 3NF 带来的少量冗余</li>
+</ul>
+</div>
+<p>之间做权衡。</p>
+<h2 id="8-bcnf">8 BCNF 还不够<a class="headerlink" href="#8-bcnf" title="Permanent link">&para;</a></h2>
+<p>有些关系虽然满足 BCNF，但仍然存在严重冗余。</p>
+<div class="admonition example">
+<p class="admonition-title">BCNF 仍会有插入异常</p>
+<p>设：</p>
+<ul>
+<li><code>inst_info(ID, child_name, phone)</code></li>
+</ul>
+<p>一个教师可能有多个孩子，也可能有多个电话号码。</p>
+<p>该关系没有非平凡 FD，因此形式上属于 BCNF；但若增加一个新电话号码，就要把它与该教师的每个孩子组合出多条元组。</p>
+<p>更合理的做法是拆成：</p>
+<ul>
+<li><code>inst_child(ID, child_name)</code></li>
+<li><code>inst_phone(ID, phone_number)</code></li>
+</ul>
+</div>
+<p>这说明仅靠 FD 和 BCNF 还不够，需要引入 <strong>MVD / 4NF</strong>。</p>
+<h2 id="9-functional-dependency-theory">9 Functional Dependency Theory<a class="headerlink" href="#9-functional-dependency-theory" title="Permanent link">&para;</a></h2>
+<h3 id="9-1-closure-of-f">9. 1 Closure of F<a class="headerlink" href="#9-1-closure-of-f" title="Permanent link">&para;</a></h3>
+<p>给定一组 FD <code>F</code>，由它逻辑推出的全部 FD 构成 <code>F+</code>，称为 <code>F</code> 的<strong>闭包</strong>。</p>
+<p>例如：</p>
+<ul>
+<li>若 <code>A → B</code></li>
+<li>且 <code>B → C</code></li>
+</ul>
+<p>则可推出：</p>
+<ul>
+<li><code>A → C</code></li>
+</ul>
+<h3 id="9-2-armstrongs-axioms">9. 2 Armstrong’s Axioms<a class="headerlink" href="#9-2-armstrongs-axioms" title="Permanent link">&para;</a></h3>
+<div class="admonition quote">
+<p class="admonition-title">Armstrong 公理</p>
+<ul>
+<li><strong>Reflexivity（自反律）</strong>：若 <code>β ⊆ α</code>，则 <code>α → β</code></li>
+<li><strong>Augmentation（增广律）</strong>：若 <code>α → β</code>，则 <code>γα → γβ</code></li>
+<li><strong>Transitivity（传递律）</strong>：若 <code>α → β</code> 且 <code>β → γ</code>，则 <code>α → γ</code></li>
+</ul>
+</div>
+<p>这三条规则既：</p>
+<ul>
+<li><strong>sound</strong>：不会推出错误依赖</li>
+<li><strong>complete</strong>：能推出所有逻辑可推出的依赖</li>
+</ul>
+<h3 id="9-3-additional-rules">9. 3 Additional Rules<a class="headerlink" href="#9-3-additional-rules" title="Permanent link">&para;</a></h3>
+<p>以下规则都可由 Armstrong 公理推出：</p>
+<ul>
+<li><strong>Union（合并）</strong>：若 <code>α → β</code> 且 <code>α → γ</code>，则 <code>α → βγ</code></li>
+<li><strong>Decomposition（分解）</strong>：若 <code>α → βγ</code>，则 <code>α → β</code> 且 <code>α → γ</code></li>
+<li><strong>Pseudotransitivity（伪传递）</strong>：若 <code>α → β</code> 且 <code>γβ → δ</code>，则 <code>αγ → δ</code></li>
+</ul>
+<h3 id="9-4-attribute-closure">9. 4 Attribute Closure<a class="headerlink" href="#9-4-attribute-closure" title="Permanent link">&para;</a></h3>
+<p>给定属性集 <code>α</code>，在 FD 集 <code>F</code> 下可由 <code>α</code> 推出的全部属性集合记为 <code>α+</code>。</p>
+<p>算法思想很简单：</p>
+<ol>
+<li>初始令 <code>result = α</code></li>
+<li>只要存在 <code>β → γ</code> 且 <code>β ⊆ result</code></li>
+<li>就把 <code>γ</code> 加入 <code>result</code></li>
+<li>直到不再变化</li>
+</ol>
+<h3 id="9-5-attribute-closure">9. 5 Attribute Closure 的用途<a class="headerlink" href="#9-5-attribute-closure" title="Permanent link">&para;</a></h3>
+<p><code>α+</code> 非常重要，常见用途有三类：</p>
+<ol>
+<li><strong>测试超键</strong>
+   若 <code>α+</code> 包含 <code>R</code> 的全部属性，则 <code>α</code> 是超键</li>
+<li><strong>测试某个 FD 是否在 <code>F+</code> 中</strong>
+   若 <code>β ⊆ α+</code>，则 <code>α → β</code> 成立</li>
+<li><strong>辅助找候选键</strong></li>
+</ol>
+<h3 id="9-6-candidate-key">9. 6 找 Candidate Key 的经验规则<a class="headerlink" href="#9-6-candidate-key" title="Permanent link">&para;</a></h3>
+<div class="admonition tip">
+<p class="admonition-title">经验判断</p>
+<ul>
+<li>若某属性只出现在<strong>非平凡 FD 的左边</strong>，它通常应出现在某个候选键中</li>
+<li>若某属性只出现在<strong>非平凡 FD 的右边</strong>，它通常不应出现在候选键中</li>
+<li>若某属性完全不出现在任何非平凡 FD 中，它必须出现在候选键中</li>
+</ul>
+</div>
+<details class="example">
+<summary>例子</summary>
+<ul>
+<li><code>R=(A,B,C,D,E), F={AB→C, B→D, AD→E}</code> 的候选键是 <code>AB</code></li>
+<li><code>R=(A,B,C,D,E), F={AC→BD, B→A}</code> 的候选键是 <code>ACE</code> 和 <code>BCE</code></li>
+</ul>
+</details>
+<h2 id="10-canonical-cover">10 Canonical Cover<a class="headerlink" href="#10-canonical-cover" title="Permanent link">&para;</a></h2>
+<h3 id="10-1-canonical-cover">10. 1 Canonical Cover 的含义<a class="headerlink" href="#10-1-canonical-cover" title="Permanent link">&para;</a></h3>
+<p>一个 FD 集的<strong>规范覆盖（canonical cover）</strong>，是与原 FD 集等价、但去掉了一切冗余依赖和冗余属性的“最简形式”。</p>
+<p>要求：</p>
+<ul>
+<li>与原 FD 集逻辑等价</li>
+<li>不含多余依赖</li>
+<li>不含多余属性</li>
+<li>每个左部唯一</li>
+</ul>
+<h3 id="10-2-extraneous-attribute">10. 2 Extraneous Attribute<a class="headerlink" href="#10-2-extraneous-attribute" title="Permanent link">&para;</a></h3>
+<div class="admonition quote">
+<p class="admonition-title">冗余属性</p>
+<p>对依赖 <code>α → β</code>：</p>
+<ul>
+<li>若左边某属性 <code>A ∈ α</code> 去掉后仍能推出 <code>β</code>，则 <code>A</code> 在左边是<strong>多余的</strong></li>
+<li>若右边某属性 <code>A ∈ β</code> 去掉后，原依赖仍可由其余依赖推出，则 <code>A</code> 在右边是<strong>多余的</strong></li>
+</ul>
+</div>
+<h3 id="10-3">10. 3 规范覆盖的计算思路<a class="headerlink" href="#10-3" title="Permanent link">&para;</a></h3>
+<ol>
+<li>用 <strong>union</strong> 把左部相同的依赖合并</li>
+<li>不断检查左边和右边是否有多余属性</li>
+<li>删除冗余部分</li>
+<li>重复直到不再变化</li>
+</ol>
+<details class="example">
+<summary>示例</summary>
+<p>对：</p>
+<ul>
+<li><code>F = {A → BC, B → C, A → B, AB → C}</code></li>
+</ul>
+<p>可化简为：</p>
+<ul>
+<li><code>A → B</code></li>
+<li><code>B → C</code></li>
+</ul>
+</details>
+<div class="admonition tip">
+<p class="admonition-title">注意</p>
+<p>规范覆盖<strong>不一定唯一</strong>，不同化简路径可能得到不同但等价的结果。</p>
+</div>
+<h2 id="11-testing-and-decomposition-algorithms">11 Testing and Decomposition Algorithms<a class="headerlink" href="#11-testing-and-decomposition-algorithms" title="Permanent link">&para;</a></h2>
+<h3 id="11-1">11. 1 检测依赖保持<a class="headerlink" href="#11-1" title="Permanent link">&para;</a></h3>
+<p>若要检验分解是否保持某个 FD <code>α → β</code>，可使用一个多关系闭包过程：</p>
+<ol>
+<li><code>result := α</code></li>
+<li>对每个子关系 <code>Ri</code>，取 <code>(result ∩ Ri)+ ∩ Ri</code></li>
+<li>把所得属性并回 <code>result</code></li>
+<li>重复直到不再变化</li>
+<li>若最终 <code>result</code> 包含 <code>β</code>，则该 FD 被保持</li>
+</ol>
+<p>这个方法是多项式时间，比直接算完整闭包更实用。</p>
+<h3 id="11-2-bcnf">11. 2 检测 BCNF<a class="headerlink" href="#11-2-bcnf" title="Permanent link">&para;</a></h3>
+<p>判断某个非平凡 FD <code>α → β</code> 是否违反 BCNF，只需：</p>
+<ol>
+<li>计算 <code>α+</code></li>
+<li>看 <code>α+</code> 是否覆盖关系的全部属性</li>
+</ol>
+<p>若不能覆盖全部属性，则 <code>α</code> 不是超键，该 FD 违反 BCNF。</p>
+<div class="admonition warning">
+<p class="admonition-title">检查子关系时不能只盯着原始 F</p>
+<p>原关系分解后，某个子关系中可能会出现原始 <code>F</code> 里<strong>没直接写出来</strong>、但属于 <code>F+</code> 的新依赖。</p>
+<p>例如：</p>
+<ul>
+<li><code>R=(A,B,C,D,E), F={A→B, BC→D}</code></li>
+</ul>
+<p>分出 <code>R2=(A,C,D,E)</code> 后，<code>AC→D</code> 属于 <code>F+</code>，可能继续导致 <code>R2</code> 违反 BCNF。</p>
+</div>
+<h3 id="11-3-bcnf-decomposition-algorithm">11. 3 BCNF Decomposition Algorithm<a class="headerlink" href="#11-3-bcnf-decomposition-algorithm" title="Permanent link">&para;</a></h3>
+<p>算法思想：</p>
+<ol>
+<li>从 <code>R</code> 开始</li>
+<li>若某个子关系 <code>Ri</code> 不满足 BCNF</li>
+<li>取一个违反 BCNF 的非平凡依赖 <code>α → β</code></li>
+<li>用：</li>
+<li><code>Ri - β</code></li>
+<li><code>α ∪ β</code>
+   替换 <code>Ri</code></li>
+<li>直到所有子关系都在 BCNF 中</li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">性质</p>
+<p>该算法保证：</p>
+<ul>
+<li>每个结果关系都在 BCNF 中</li>
+<li>分解是 <strong>lossless-join</strong></li>
+</ul>
+<p>但<strong>不保证 dependency preserving</strong>。</p>
+</div>
+<h3 id="11-4-3nf-decomposition-algorithm">11. 4 3NF Decomposition Algorithm<a class="headerlink" href="#11-4-3nf-decomposition-algorithm" title="Permanent link">&para;</a></h3>
+<p>3NF 分解以<strong>规范覆盖 <code>Fc</code></strong> 为基础：</p>
+<ol>
+<li>对 <code>Fc</code> 中每个 FD <code>α → β</code>，创建一个关系模式 <code>α ∪ β</code></li>
+<li>若这些关系中没有任何一个包含原关系的候选键，则再补一个“候选键关系”</li>
+<li>删除那些完全包含于其他关系中的冗余关系</li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">性质</p>
+<p>该算法保证结果：</p>
+<ul>
+<li>每个子关系都在 <strong>3NF</strong></li>
+<li><strong>lossless-join</strong></li>
+<li><strong>dependency preserving</strong></li>
+</ul>
+</div>
+<details class="example">
+<summary>3NF 分解示例</summary>
+<p>设：</p>
+<ul>
+<li><code>cust_banker_branch(customer_id, employee_id, branch_name, type)</code></li>
+</ul>
+<p>FD 为：</p>
+<ul>
+<li><code>customer_id, employee_id → branch_name, type</code></li>
+<li><code>employee_id → branch_name</code></li>
+<li><code>customer_id, branch_name → employee_id</code></li>
+</ul>
+<p>先求规范覆盖，可化为：</p>
+<ul>
+<li><code>customer_id, employee_id → type</code></li>
+<li><code>employee_id → branch_name</code></li>
+<li><code>customer_id, branch_name → employee_id</code></li>
+</ul>
+<p>最终得到 3NF 分解：</p>
+<ul>
+<li><code>(customer_id, employee_id, type)</code></li>
+<li><code>(customer_id, branch_name, employee_id)</code></li>
+</ul>
+</details>
+<h2 id="12-multivalued-dependencies-and-4nf">12 Multivalued Dependencies and 4NF<a class="headerlink" href="#12-multivalued-dependencies-and-4nf" title="Permanent link">&para;</a></h2>
+<h3 id="12-1-mvd">12. 1 为什么需要 MVD<a class="headerlink" href="#12-1-mvd" title="Permanent link">&para;</a></h3>
+<p>有时一个实体对两组属性分别形成“独立的多值集合”，这不是 FD 能表达的，而是<strong>多值依赖（MVD）</strong>。</p>
+<p>例如：</p>
+<ul>
+<li>一个教师有多个孩子</li>
+<li>一个教师又有多个电话号码</li>
+</ul>
+<p>这两个集合彼此独立，于是会在组合表中产生笛卡尔积式重复。</p>
+<h3 id="12-2-mvd">12. 2 MVD 的定义<a class="headerlink" href="#12-2-mvd" title="Permanent link">&para;</a></h3>
+<p>记作：</p>
+<div class="arithmatex">\[
+\alpha \twoheadrightarrow \beta
+\]</div>
+<p>表示在给定 <code>α</code> 后，<code>β</code> 的取值集合与剩余属性的取值集合是<strong>相互独立组合</strong>的。</p>
+<details class="example">
+<summary>表格化理解</summary>
+<p><img src="/db/images/image7-3.jpg" style="display: block; width: 75%; margin: 0 auto;" /></p>
+<p>若 <code>α ⇉ β</code> 成立，那么在同一个 <code>α</code> 取值下：</p>
+<ul>
+<li>已有 <code>(β_1, \gamma_1)</code></li>
+<li>也有 <code>(β_2, \gamma_2)</code></li>
+</ul>
+<p>就必须能补出：</p>
+<ul>
+<li><code>(β_1, \gamma_2)</code></li>
+<li><code>(β_2, \gamma_1)</code></li>
+</ul>
+</details>
+<h3 id="12-3-mvd">12. 3 MVD 的例子<a class="headerlink" href="#12-3-mvd" title="Permanent link">&para;</a></h3>
+<p>对：</p>
+<ul>
+<li><code>inst_info(ID, child_name, phone_number)</code></li>
+</ul>
+<p>成立的依赖是：</p>
+<ul>
+<li><code>ID ⇉ child_name</code></li>
+<li><code>ID ⇉ phone_number</code></li>
+</ul>
+<p>其含义是：给定同一个 <code>ID</code>，孩子集合和电话号码集合相互独立。</p>
+<div class="admonition tip">
+<p class="admonition-title">FD 是 MVD 的特例</p>
+<p>若 <code>α → β</code> 成立，则必有 <code>α ⇉ β</code>。</p>
+</div>
+<h3 id="12-4-fourth-normal-form">12. 4 Fourth Normal Form<a class="headerlink" href="#12-4-fourth-normal-form" title="Permanent link">&para;</a></h3>
+<div class="admonition quote">
+<p class="admonition-title">4NF</p>
+<p>关系模式 <code>R</code> 相对于依赖集 <code>D</code> 属于 <strong>4NF</strong>，当且仅当对 <code>D+</code> 中任意 <code>α ⇉ β</code>，至少满足：</p>
+<ul>
+<li><code>α ⇉ β</code> 是平凡的</li>
+<li>或 <code>α</code> 是超键</li>
+</ul>
+</div>
+<p>因此：</p>
+<ul>
+<li><strong>4NF 是针对 MVD 的 BCNF</strong></li>
+<li>若一个关系在 4NF 中，则它一定也在 BCNF 中</li>
+</ul>
+<h3 id="12-5-4nf">12. 5 4NF 分解<a class="headerlink" href="#12-5-4nf" title="Permanent link">&para;</a></h3>
+<p>若 <code>α ⇉ β</code> 非平凡且 <code>α</code> 不是超键，则像 BCNF 一样分解：</p>
+<ul>
+<li><code>R1 = α ∪ β</code></li>
+<li><code>R2 = R - (β - α)</code></li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">4NF 分解性质</p>
+<p>4NF 分解算法保证：</p>
+<ul>
+<li>结果关系都在 4NF</li>
+<li>分解是 <strong>lossless-join</strong></li>
+</ul>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Restriction of MVD</p>
+<p>当把依赖集 <code>D</code> 限制到某个子关系 <code>Ri</code> 上时，得到的 <code>Di</code> 包括：</p>
+<ul>
+<li><code>D+</code> 中所有只涉及 <code>Ri</code> 属性的 FD</li>
+<li>以及所有形如 <code>α ⇉ (β ∩ Ri)</code> 的 MVD，其中 <code>α ⊆ Ri</code> 且 <code>α ⇉ β ∈ D+</code></li>
+</ul>
+<p>4NF 检查与 4NF 分解算法都依赖这种“投影到子关系”的思想。</p>
+</div>
+<h2 id="13-further-normal-forms">13 Further Normal Forms<a class="headerlink" href="#13-further-normal-forms" title="Permanent link">&para;</a></h2>
+<p>在 4NF 之上还有更高范式，例如：</p>
+<ul>
+<li><strong>PJNF / 5NF（Project-Join Normal Form）</strong></li>
+<li><strong>Domain-Key Normal Form</strong></li>
+</ul>
+<p>但这些更一般的约束：</p>
+<ul>
+<li>难以推理</li>
+<li>缺乏方便的完备推理规则</li>
+<li>实际数据库设计中较少直接使用</li>
+</ul>
+<h2 id="14-overall-database-design-process">14 Overall Database Design Process<a class="headerlink" href="#14-overall-database-design-process" title="Permanent link">&para;</a></h2>
+<h3 id="14-1">14. 1 规范化在设计流程中的位置<a class="headerlink" href="#14-1" title="Permanent link">&para;</a></h3>
+<p>一个关系模式 <code>R</code> 可能来自：</p>
+<ul>
+<li>E-R 图转换得到的一组表</li>
+<li>一个包含所有属性的“universal relation”式粗糙设计</li>
+<li>某种经验性、临时性的设计</li>
+</ul>
+<p>规范化的作用就是：</p>
+<ul>
+<li>检验这些关系是否合理</li>
+<li>并在必要时将其拆成更好的小关系</li>
+</ul>
+<h3 id="14-2-er-model-normalization">14. 2 ER Model 与 Normalization 的关系<a class="headerlink" href="#14-2-er-model-normalization" title="Permanent link">&para;</a></h3>
+<p>若 E-R 图设计得非常好，通常转换出的表已经基本不需要再规范化。</p>
+<p>但现实中仍可能出现：</p>
+<ul>
+<li>实体内部的非键属性决定其他非键属性<br />
+  例如：<code>department_name → building</code></li>
+<li>关系集中的非键依赖</li>
+</ul>
+<p>这些都说明原 E-R 设计还不够好。</p>
+<h3 id="14-3-denormalization-for-performance">14. 3 Denormalization for Performance<a class="headerlink" href="#14-3-denormalization-for-performance" title="Permanent link">&para;</a></h3>
+<p>有时为了性能，会故意采用<strong>反规范化（denormalization）</strong>设计。</p>
+<p>例如为了快速显示课程及其先修课信息，可以：</p>
+<ul>
+<li>建一个冗余表</li>
+<li>或建立物化视图</li>
+</ul>
+<p>优点：</p>
+<ul>
+<li>查询更快</li>
+</ul>
+<p>代价：</p>
+<ul>
+<li>占用更多空间</li>
+<li>更新更复杂</li>
+<li>维护成本更高</li>
+<li>容易写出额外同步逻辑错误</li>
+</ul>
+<h3 id="14-4">14. 4 规范化抓不到的坏设计<a class="headerlink" href="#14-4" title="Permanent link">&para;</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">满足范式不代表设计就优秀</p>
+<p>例如：</p>
+<ul>
+<li>把 <code>earnings_2004</code>, <code>earnings_2005</code>, <code>earnings_2006</code> 分成多个表</li>
+<li>或直接做成交叉表列名</li>
+</ul>
+<p>它们可能形式上满足 BCNF，但：</p>
+<ul>
+<li>跨年份查询困难</li>
+<li>每年都要新增表或新增列</li>
+<li>结构缺乏扩展性</li>
+</ul>
+</div>
+<h3 id="14-5-temporal-data">14. 5 Temporal Data<a class="headerlink" href="#14-5-temporal-data" title="Permanent link">&para;</a></h3>
+<p>时间数据建模是规范化之外的另一类复杂问题。</p>
+<p>典型做法是给关系增加：</p>
+<ul>
+<li><code>start</code></li>
+<li><code>end</code></li>
+</ul>
+<p>来表示有效时间区间。</p>
+<div class="admonition tip">
+<p class="admonition-title">时间维度带来的变化</p>
+<ul>
+<li>普通 FD 可能在整体关系上不再成立<br />
+  例如地址随时间变化，<code>ID → street, city</code> 不再全局成立</li>
+<li>但它可能在每个<strong>snapshot（时间切片）</strong>上成立</li>
+<li>还要额外保证同一对象的时间区间不能重叠</li>
+<li>外键引用也可能需要引用“历史版本”</li>
+</ul>
+</div>
+<h2 id="15-practice-example">15 Practice Example<a class="headerlink" href="#15-practice-example" title="Permanent link">&para;</a></h2>
+<details class="question">
+<summary>综合练习</summary>
+<p>设关系模式：</p>
+<ul>
+<li><code>R = (A, B, C, D, E)</code></li>
+</ul>
+<p>函数依赖集合为：</p>
+<ul>
+<li><code>F = {AB → C, B → D, AD → E}</code></li>
+</ul>
+<p>请完成：</p>
+<ol>
+<li>找出所有候选键</li>
+<li>判断 <code>R</code> 属于 BCNF、3NF，还是都不属于</li>
+<li>若不在 BCNF 中，将其分解为 BCNF 关系，并判断该分解是否保持依赖</li>
+</ol>
+<p>这道题综合考察：</p>
+<ul>
+<li>属性闭包</li>
+<li>候选键判断</li>
+<li>BCNF 违规检测</li>
+<li>BCNF 分解</li>
+<li>dependency preservation</li>
+</ul>
+</details>
+<h2 id="16-supplement-3nf-decomposition-algorithm">16 Supplement: 3NF Decomposition Algorithm 正确性要点<a class="headerlink" href="#16-supplement-3nf-decomposition-algorithm" title="Permanent link">&para;</a></h2>
+<p>课件最后给出了 3NF 分解算法的证明，复习时抓住结论即可。</p>
+<div class="admonition quote">
+<p class="admonition-title">证明要点</p>
+<ul>
+<li><strong>依赖保持</strong>：因为规范覆盖 <code>Fc</code> 中的每个 FD 都会对应至少一个生成出来的关系</li>
+<li><strong>无损连接</strong>：算法确保分解后的某个关系中含有原模式的候选键</li>
+<li><strong>每个子关系都满足 3NF</strong>：<ul>
+<li>若某个非平凡 FD 的右边属性来自 <code>β</code>，则其左边必须是超键</li>
+<li>若右边属性来自 <code>α</code>，则它本身就是候选键中的属性，因此满足 3NF 的第三条件</li>
+</ul>
+</li>
+</ul>
+</div>
+<h3 id="16-1-3nf">16. 1 为什么 3NF 的第三条件必不可少<a class="headerlink" href="#16-1-3nf" title="Permanent link">&para;</a></h3>
+<div class="admonition tip">
+<p class="admonition-title">最后的关键理解</p>
+<p>在证明的第二种情况中，右边属性可能来自生成依赖的左边候选键，这时未必能证明新的决定因素是超键。</p>
+<p>这正说明：</p>
+<ul>
+<li>3NF 定义中“右边属性属于某个候选键”这一条不是多余的</li>
+<li>它恰好保证了 3NF 分解算法的正确性</li>
+</ul>
+</div>
+<h2 id="17-summary">17 Summary<a class="headerlink" href="#17-summary" title="Permanent link">&para;</a></h2>
+<div class="admonition quote">
+<p class="admonition-title">本章主线</p>
+<ul>
+<li>用 <strong>FD</strong> 描述关系模式上的确定性约束</li>
+<li>用 <strong>1NF / BCNF / 3NF / 4NF</strong> 判断设计是否规范</li>
+<li>用 <strong>lossless join</strong> 和 <strong>dependency preservation</strong> 衡量分解质量</li>
+<li>用 <strong>闭包、规范覆盖、属性闭包、分解算法</strong> 支撑实际判断与计算</li>
+</ul>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">考试/复习最该掌握的点</p>
+<ul>
+<li>会判断一个 FD 是否成立、是否平凡、左边是否为超键</li>
+<li>会计算 <strong><code>α+</code></strong>，并用它判断超键与 FD 推导</li>
+<li>会写出 <strong>BCNF</strong> 与 <strong>3NF</strong> 的定义，并说明二者差异</li>
+<li>会判断分解是否 <strong>lossless</strong>、是否 <strong>dependency preserving</strong></li>
+<li>会说明 <strong>canonical cover</strong>、<strong>extraneous attribute</strong> 的作用</li>
+<li>会解释为什么 BCNF 还不够，以及 <strong>MVD / 4NF</strong> 出现的原因</li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.top", "navigation.sidebar", "navigation.indexes"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../../javascripts/mathjax-config.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf_viewer.min.js"></script>
+      
+    
+  </body>
+</html>
