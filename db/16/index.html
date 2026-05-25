@@ -9,6 +9,10 @@
       
       
       
+        <link rel="prev" href="../15/">
+      
+      
+        <link rel="next" href="../../mpc/1/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -260,6 +264,8 @@
   
   
   
+    
+  
   
     
     
@@ -267,10 +273,12 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
+      <li class="md-tabs__item md-tabs__item--active">
         <a href="../../cryptography/" class="md-tabs__link">
           
   
@@ -1156,8 +1164,10 @@
       
   
   
+    
   
   
+  
     
     
       
@@ -1179,17 +1189,20 @@
     
     
       
+        
+        
+      
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
         
           
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
             
   
   
@@ -1202,7 +1215,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             专业课
@@ -2558,8 +2571,10 @@
                 
   
   
+    
   
   
+  
     
     
       
@@ -2583,6 +2598,8 @@
       
         
       
+        
+      
     
     
     
@@ -2590,11 +2607,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5" checked>
         
           
           <label class="md-nav__link" for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
@@ -2610,7 +2627,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4_5">
             <span class="md-nav__icon md-icon"></span>
             数据库系统
@@ -2842,6 +2859,626 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Chapter 16 Query Optimization
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 16 Query Optimization
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      1 Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-statistical-information-for-cost-estimation" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 Statistical Information for Cost Estimation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2 Statistical Information for Cost Estimation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2-1-basic-catalog-statistics" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 1 Basic Catalog Statistics
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-2-histograms" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 2 Histograms
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-3-selection-size-estimation" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 3 Selection Size Estimation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-4-complex-selection-size-estimation" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 4 Complex Selection Size Estimation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-5-join-size-estimation" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 5 Join Size Estimation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-6-size-estimation-for-other-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 6 Size Estimation for Other Operations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-7-estimation-of-distinct-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 7 Estimation of Distinct Values
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-8-campus-card-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 8 Campus Card Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-transformation-of-relational-expressions" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 Transformation of Relational Expressions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3 Transformation of Relational Expressions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#3-1-basic-equivalence-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 1 Basic Equivalence Rules
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-2-join-equivalence-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 2 Join Equivalence Rules
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-3-pushing-selections-and-projections" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 3 Pushing Selections and Projections
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-4-set-operation-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 4 Set Operation Rules
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-5-aggregation-and-outer-join-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 5 Aggregation and Outer Join Rules
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-transformation-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      4 Transformation Examples
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4 Transformation Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#4-1-pushing-selections" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. 1 Pushing Selections
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-2-multiple-transformations" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. 2 Multiple Transformations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-3-pushing-projections" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. 3 Pushing Projections
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-4-join-ordering" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. 4 Join Ordering
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-cost-based-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      5 Cost-Based Optimization
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5 Cost-Based Optimization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#5-1-enumeration-of-equivalent-expressions" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 1 Enumeration of Equivalent Expressions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-2-transformation-based-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 2 Transformation-Based Optimization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-3-cost-estimation-in-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 3 Cost Estimation in Optimization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-4-dynamic-programming-for-join-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 4 Dynamic Programming for Join Order
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-5-left-deep-join-trees" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 5 Left-Deep Join Trees
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-6-interesting-sort-orders" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 6 Interesting Sort Orders
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-7-cost-based-optimization-with-equivalence-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 7 Cost-Based Optimization with Equivalence Rules
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-heuristic-optimization-and-optimizer-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      6 Heuristic Optimization and Optimizer Structure
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6 Heuristic Optimization and Optimizer Structure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#6-1-optimizer-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. 1 Optimizer Structure
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-2-optimization-budget-and-plan-caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. 2 Optimization Budget and Plan Caching
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-optimizing-nested-subqueries" class="md-nav__link">
+    <span class="md-ellipsis">
+      7 Optimizing Nested Subqueries
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7 Optimizing Nested Subqueries">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#7-1-correlated-evaluation" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. 1 Correlated Evaluation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-2-decorrelation-and-semijoin" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. 2 Decorrelation and Semijoin
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-3-general-decorrelation" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. 3 General Decorrelation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-materialized-views" class="md-nav__link">
+    <span class="md-ellipsis">
+      8 Materialized Views
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8 Materialized Views">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#8-1-basic-concepts" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. 1 Basic Concepts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-2-materialized-view-maintenance" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. 2 Materialized View Maintenance
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-3-differentials" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. 3 Differentials
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-incremental-view-maintenance" class="md-nav__link">
+    <span class="md-ellipsis">
+      9 Incremental View Maintenance
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9 Incremental View Maintenance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#9-1-join-operation" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. 1 Join Operation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-2-selection-and-projection" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. 2 Selection and Projection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-3-aggregation-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. 3 Aggregation Operations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-4-other-operations-and-full-expressions" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. 4 Other Operations and Full Expressions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-query-optimization-and-materialized-views" class="md-nav__link">
+    <span class="md-ellipsis">
+      10 Query Optimization and Materialized Views
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10 Query Optimization and Materialized Views">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#10-1-materialized-view-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. 1 Materialized View Selection
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-additional-optimization-techniques" class="md-nav__link">
+    <span class="md-ellipsis">
+      11 Additional Optimization Techniques
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11 Additional Optimization Techniques">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-1-top-k-queries" class="md-nav__link">
+    <span class="md-ellipsis">
+      11. 1 Top-K Queries
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#11-2-optimization-of-updates-and-halloween-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      11. 2 Optimization of Updates and Halloween Problem
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#11-3-join-minimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      11. 3 Join Minimization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#11-4-multiquery-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      11. 4 Multiquery Optimization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#11-5-parametric-query-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      11. 5 Parametric Query Optimization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#11-6-plan-stability-across-optimizer-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      11. 6 Plan Stability Across Optimizer Changes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#11-7-adaptive-query-processing" class="md-nav__link">
+    <span class="md-ellipsis">
+      11. 7 Adaptive Query Processing
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
