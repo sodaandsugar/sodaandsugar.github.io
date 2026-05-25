@@ -2949,63 +2949,45 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-2-histograms" class="md-nav__link">
+  <a href="#2-2-selection-size-estimation" class="md-nav__link">
     <span class="md-ellipsis">
-      2. 2 Histograms
+      2. 2 Selection Size Estimation
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-3-selection-size-estimation" class="md-nav__link">
+  <a href="#2-3-complex-selection-size-estimation" class="md-nav__link">
     <span class="md-ellipsis">
-      2. 3 Selection Size Estimation
+      2. 3 Complex Selection Size Estimation
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-4-complex-selection-size-estimation" class="md-nav__link">
+  <a href="#2-4-join-size-estimation" class="md-nav__link">
     <span class="md-ellipsis">
-      2. 4 Complex Selection Size Estimation
+      2. 4 Join Size Estimation
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-5-join-size-estimation" class="md-nav__link">
+  <a href="#2-5-size-estimation-for-other-operations" class="md-nav__link">
     <span class="md-ellipsis">
-      2. 5 Join Size Estimation
+      2. 5 Size Estimation for Other Operations
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-6-size-estimation-for-other-operations" class="md-nav__link">
+  <a href="#2-6-estimation-of-distinct-values" class="md-nav__link">
     <span class="md-ellipsis">
-      2. 6 Size Estimation for Other Operations
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-7-estimation-of-distinct-values" class="md-nav__link">
-    <span class="md-ellipsis">
-      2. 7 Estimation of Distinct Values
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-8-campus-card-example" class="md-nav__link">
-    <span class="md-ellipsis">
-      2. 8 Campus Card Example
+      2. 6 Estimation of Distinct Values
     </span>
   </a>
   
@@ -4384,63 +4366,45 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-2-histograms" class="md-nav__link">
+  <a href="#2-2-selection-size-estimation" class="md-nav__link">
     <span class="md-ellipsis">
-      2. 2 Histograms
+      2. 2 Selection Size Estimation
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-3-selection-size-estimation" class="md-nav__link">
+  <a href="#2-3-complex-selection-size-estimation" class="md-nav__link">
     <span class="md-ellipsis">
-      2. 3 Selection Size Estimation
+      2. 3 Complex Selection Size Estimation
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-4-complex-selection-size-estimation" class="md-nav__link">
+  <a href="#2-4-join-size-estimation" class="md-nav__link">
     <span class="md-ellipsis">
-      2. 4 Complex Selection Size Estimation
+      2. 4 Join Size Estimation
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-5-join-size-estimation" class="md-nav__link">
+  <a href="#2-5-size-estimation-for-other-operations" class="md-nav__link">
     <span class="md-ellipsis">
-      2. 5 Join Size Estimation
+      2. 5 Size Estimation for Other Operations
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-6-size-estimation-for-other-operations" class="md-nav__link">
+  <a href="#2-6-estimation-of-distinct-values" class="md-nav__link">
     <span class="md-ellipsis">
-      2. 6 Size Estimation for Other Operations
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-7-estimation-of-distinct-values" class="md-nav__link">
-    <span class="md-ellipsis">
-      2. 7 Estimation of Distinct Values
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-8-campus-card-example" class="md-nav__link">
-    <span class="md-ellipsis">
-      2. 8 Campus Card Example
+      2. 6 Estimation of Distinct Values
     </span>
   </a>
   
@@ -4997,7 +4961,8 @@
 <div class="arithmatex">\[
 b_r = \left\lceil \frac{n_r}{f_r} \right\rceil
 \]</div>
-<h3 id="2-2-histograms">2. 2 Histograms<a class="headerlink" href="#2-2-histograms" title="Permanent link">&para;</a></h3>
+<div class="admonition info">
+<p class="admonition-title">Histograms</p>
 <p>直方图（histogram）用于更精细地估计属性值分布，尤其适合处理非均匀分布。</p>
 <ul>
 <li><strong>等宽直方图（Equi-width histogram）</strong>：将属性值范围划分为宽度相同的区间。</li>
@@ -5005,7 +4970,8 @@ b_r = \left\lceil \frac{n_r}{f_r} \right\rceil
 <li>很多数据库还会额外保存最常见的 <span class="arithmatex">\(n\)</span> 个取值及其出现次数，直方图只针对剩余取值构建。</li>
 </ul>
 <p>统计信息通常基于随机样本计算，可能过期。部分数据库需要手动执行 <code>ANALYZE</code> 更新统计信息，部分数据库会在元组数量变化达到一定比例后自动重新计算。</p>
-<h3 id="2-3-selection-size-estimation">2. 3 Selection Size Estimation<a class="headerlink" href="#2-3-selection-size-estimation" title="Permanent link">&para;</a></h3>
+</div>
+<h3 id="2-2-selection-size-estimation">2. 2 Selection Size Estimation<a class="headerlink" href="#2-2-selection-size-estimation" title="Permanent link">&para;</a></h3>
 <p>对于等值选择：</p>
 <div class="arithmatex">\[
 |\sigma_{A=v}(r)| \approx \frac{n_r}{V(A,r)}
@@ -5027,7 +4993,7 @@ n_r, &amp; v &gt; \max(A,r)
 <div class="arithmatex">\[
 c = \frac{n_r}{2}
 \]</div>
-<h3 id="2-4-complex-selection-size-estimation">2. 4 Complex Selection Size Estimation<a class="headerlink" href="#2-4-complex-selection-size-estimation" title="Permanent link">&para;</a></h3>
+<h3 id="2-3-complex-selection-size-estimation">2. 3 Complex Selection Size Estimation<a class="headerlink" href="#2-3-complex-selection-size-estimation" title="Permanent link">&para;</a></h3>
 <p>条件 <span class="arithmatex">\(\theta_i\)</span> 的<strong>选择率（selectivity）</strong>是关系 <span class="arithmatex">\(r\)</span> 中元组满足该条件的概率。若满足 <span class="arithmatex">\(\theta_i\)</span> 的元组数为 <span class="arithmatex">\(s_i\)</span>，则选择率为：</p>
 <div class="arithmatex">\[
 \frac{s_i}{n_r}
@@ -5055,7 +5021,7 @@ n_r \cdot \left(1 - \prod_{i=1}^{n}\left(1-\frac{s_i}{n_r}\right)\right)
 <div class="arithmatex">\[
 |\sigma_{\lnot \theta}(r)| = n_r - |\sigma_{\theta}(r)|
 \]</div>
-<h3 id="2-5-join-size-estimation">2. 5 Join Size Estimation<a class="headerlink" href="#2-5-join-size-estimation" title="Permanent link">&para;</a></h3>
+<h3 id="2-4-join-size-estimation">2. 4 Join Size Estimation<a class="headerlink" href="#2-4-join-size-estimation" title="Permanent link">&para;</a></h3>
 <div class="admonition quote">
 <p class="admonition-title">Running example: <code>student ⋈ takes</code></p>
 <ul>
@@ -5103,7 +5069,7 @@ n_{takes}=10000
 \]</div>
 <p>取较小值 <span class="arithmatex">\(10000\)</span>，与使用外键信息得到的结果一致。</p>
 </div>
-<h3 id="2-6-size-estimation-for-other-operations">2. 6 Size Estimation for Other Operations<a class="headerlink" href="#2-6-size-estimation-for-other-operations" title="Permanent link">&para;</a></h3>
+<h3 id="2-5-size-estimation-for-other-operations">2. 5 Size Estimation for Other Operations<a class="headerlink" href="#2-5-size-estimation-for-other-operations" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -5147,7 +5113,7 @@ n_{takes}=10000
 </tbody>
 </table>
 <p>并、交、差的粗略估计可能不准确，但能提供上界。</p>
-<h3 id="2-7-estimation-of-distinct-values">2. 7 Estimation of Distinct Values<a class="headerlink" href="#2-7-estimation-of-distinct-values" title="Permanent link">&para;</a></h3>
+<h3 id="2-6-estimation-of-distinct-values">2. 6 Estimation of Distinct Values<a class="headerlink" href="#2-6-estimation-of-distinct-values" title="Permanent link">&para;</a></h3>
 <p>对选择 <span class="arithmatex">\(\sigma_\theta(r)\)</span>：</p>
 <ul>
 <li>若 <span class="arithmatex">\(\theta\)</span> 强制 <span class="arithmatex">\(A\)</span> 取某个指定值，如 <span class="arithmatex">\(A=3\)</span>，则 <span class="arithmatex">\(V(A,\sigma_\theta(r))=1\)</span>。</li>
@@ -5185,7 +5151,8 @@ V(A_1-A_2,r) \cdot V(A_2,s),
 <li><code>min(A)</code> 与 <code>max(A)</code>：可估计为 <span class="arithmatex">\(\min(V(A,r),V(G,r))\)</span>，其中 <span class="arithmatex">\(G\)</span> 是分组属性。</li>
 <li>其他聚合值：通常假设各组聚合结果互不相同，估计为 <span class="arithmatex">\(V(G,r)\)</span>。</li>
 </ul>
-<h3 id="2-8-campus-card-example">2. 8 Campus Card Example<a class="headerlink" href="#2-8-campus-card-example" title="Permanent link">&para;</a></h3>
+<div class="admonition example">
+<p class="admonition-title">Campus Card Example</p>
 <p>给定关系模式：</p>
 <div class="highlight"><pre><span></span><code><span class="n">card</span><span class="p">(</span><span class="n">cno</span><span class="w"> </span><span class="nb">char</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="nb">char</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span><span class="w"> </span><span class="n">depart</span><span class="w"> </span><span class="nb">char</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span><span class="w"> </span><span class="n">balance</span><span class="w"> </span><span class="nb">integer</span><span class="p">)</span>
 <span class="n">pos</span><span class="p">(</span><span class="n">pno</span><span class="w"> </span><span class="nb">char</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span><span class="w"> </span><span class="n">campus</span><span class="w"> </span><span class="nb">char</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span><span class="w"> </span><span class="k">location</span><span class="w"> </span><span class="nb">char</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
@@ -5202,23 +5169,26 @@ V(A_1-A_2,r) \cdot V(A_2,s),
 <li><code>card</code> 与 <code>detail</code> 均按 <code>cno</code> 顺序存放</li>
 <li><code>detail(cno)</code> 上有 B+ 树索引</li>
 </ul>
-<div class="admonition example">
+<div class="admonition question">
 <p class="admonition-title">估计 self join 结果大小</p>
 <p>查询：</p>
 <div class="highlight"><pre><span></span><code><span class="k">select</span><span class="w"> </span><span class="n">d1</span><span class="p">.</span><span class="n">cno</span><span class="p">,</span><span class="w"> </span><span class="n">d2</span><span class="p">.</span><span class="n">cno</span>
 <span class="k">from</span><span class="w"> </span><span class="n">detail</span><span class="w"> </span><span class="n">d1</span><span class="p">,</span><span class="w"> </span><span class="n">detail</span><span class="w"> </span><span class="n">d2</span>
 <span class="k">where</span><span class="w"> </span><span class="n">d1</span><span class="p">.</span><span class="n">pno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d2</span><span class="p">.</span><span class="n">pno</span>
-<span class="w">  </span><span class="k">and</span><span class="w"> </span><span class="n">d1</span><span class="p">.</span><span class="n">cdate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d2</span><span class="p">.</span><span class="n">cdate</span>
-<span class="w">  </span><span class="k">and</span><span class="w"> </span><span class="n">d1</span><span class="p">.</span><span class="n">cdate</span><span class="w"> </span><span class="k">between</span><span class="w"> </span><span class="s1">&#39;2017-05-01&#39;</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="s1">&#39;2017-07-31&#39;</span><span class="p">;</span>
+<span class="k">and</span><span class="w"> </span><span class="n">d1</span><span class="p">.</span><span class="n">cdate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d2</span><span class="p">.</span><span class="n">cdate</span>
+<span class="k">and</span><span class="w"> </span><span class="n">d1</span><span class="p">.</span><span class="n">cdate</span><span class="w"> </span><span class="k">between</span><span class="w"> </span><span class="s1">&#39;2017-05-01&#39;</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="s1">&#39;2017-07-31&#39;</span><span class="p">;</span>
 </code></pre></div>
+<details class="success">
+<summary>答案</summary>
 <p><span class="arithmatex">\(V((pno,cdate),detail)=100 \times 365\)</span>。日期范围约占全年 <span class="arithmatex">\(1/4\)</span>，所以估计结果大小为：</p>
 <div class="arithmatex">\[
 \frac{10000000 \times 10000000}{100 \times 365} \times \frac{1}{4}
 \approx 684.93\text{M}
 \]</div>
+</details>
 </div>
-<div class="admonition example">
-<p class="admonition-title">估计 <code>card</code> 与 <code>detail</code> 的块数</p>
+<details class="question">
+<summary>估计 <code>card</code> 与 <code>detail</code> 的块数</summary>
 <p><code>card</code> 每块可容纳：</p>
 <div class="arithmatex">\[
 \left\lfloor \frac{4096}{25} \right\rfloor = 163
@@ -5235,17 +5205,17 @@ b_{card}=\left\lceil \frac{10000}{163} \right\rceil=62
 <div class="arithmatex">\[
 b_{detail}=\left\lceil \frac{10000000}{141} \right\rceil=70922
 \]</div>
-</div>
-<div class="admonition example">
-<p class="admonition-title">估计 <code>detail(cno)</code> B+ 树高度</p>
+</details>
+<details class="question">
+<summary>估计 <code>detail(cno)</code> B+ 树高度</summary>
 <p>B+ 树扇出：</p>
 <div class="arithmatex">\[
 n=\frac{4096-4}{5+4}+1=455
 \]</div>
 <p>对 <span class="arithmatex">\(10000000\)</span> 条记录，高度估计为 <span class="arithmatex">\(2\)</span>。</p>
-</div>
-<div class="admonition example">
-<p class="admonition-title">估计 <code>\sigma_{name='张三'}(card) \bowtie detail</code> 的代价</p>
+</details>
+<details class="question">
+<summary>估计 <span class="arithmatex">\(\sigma_{name='张三'}(card) \bowtie detail\)</span> 的代价</summary>
 <p>先用文件扫描完成选择，再使用 indexed nested-loop join。</p>
 <p>选择 <code>card</code> 的成本：</p>
 <div class="arithmatex">\[
@@ -5267,6 +5237,7 @@ n=\frac{4096-4}{5+4}+1=455
 <div class="arithmatex">\[
 (1t_S+62t_T)+(6t_S+20t_T)=7t_S+82t_T
 \]</div>
+</details>
 </div>
 <h2 id="3-transformation-of-relational-expressions">3 Transformation of Relational Expressions<a class="headerlink" href="#3-transformation-of-relational-expressions" title="Permanent link">&para;</a></h2>
 <p>两个关系代数表达式如果在每一个合法数据库实例上都产生相同的元组集合，则称为等价。元组顺序无关紧要，且不要求在违反完整性约束的数据库上仍然等价。</p>
@@ -6097,11 +6068,6 @@ v \bowtie t
 <li>另一些系统监控执行行为，若发现实际行数与估计差异很大，可停止执行、重新优化并重启。</li>
 </ul>
 <p>重新优化必须避免过于频繁，否则重启开销会抵消收益。</p>
-<details class="quote">
-<summary>PPT 末尾内容</summary>
-<p>PPT 末尾标注练习为 Exercises 16.5、16.6、16.16。</p>
-<p>最后几页还附有 Figure 13.01、13.02、13.03、13.04、13.06、13.08，这些图属于前面存储与文件结构章节的附图，没有引入本章查询优化的新概念。</p>
-</details>
 
 
 
