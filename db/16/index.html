@@ -4989,7 +4989,7 @@
 </tr>
 <tr>
 <td><span class="arithmatex">\(V(A,r)\)</span></td>
-<td>关系 <span class="arithmatex">\(r\)</span> 中属性 <span class="arithmatex">\(A\)</span> 的不同取值个数，也就是 $</td>
+<td>关系 <span class="arithmatex">\(r\)</span> 中属性 <span class="arithmatex">\(A\)</span> 的不同取值个数，也就是 <span class="arithmatex">\(\lvert \Pi_A(r) \rvert\)</span></td>
 </tr>
 </tbody>
 </table>
@@ -5126,23 +5126,23 @@ n_{takes}=10000
 </tr>
 <tr>
 <td>不同关系的并 <span class="arithmatex">\(r \cup s\)</span></td>
-<td>$</td>
+<td><span class="arithmatex">\(\lvert r \rvert + \lvert s \rvert\)</span></td>
 </tr>
 <tr>
 <td>不同关系的交 <span class="arithmatex">\(r \cap s\)</span></td>
-<td>$\min(</td>
+<td><span class="arithmatex">\(\min(\lvert r \rvert , \lvert s \rvert)\)</span></td>
 </tr>
 <tr>
 <td>差 <span class="arithmatex">\(r-s\)</span></td>
-<td>$</td>
+<td>$\lvert r \rvert $</td>
 </tr>
 <tr>
 <td>左外连接 <span class="arithmatex">\(r ⟕ s\)</span></td>
-<td>$</td>
+<td><span class="arithmatex">\(\lvert r \bowtie s \rvert + \lvert r \rvert\)</span></td>
 </tr>
 <tr>
 <td>全外连接 <span class="arithmatex">\(r ⟗ s\)</span></td>
-<td>$</td>
+<td><span class="arithmatex">\(\lvert r \bowtie s \rvert +\lvert r \rvert + \lvert s \rvert\)</span></td>
 </tr>
 </tbody>
 </table>
