@@ -9,6 +9,10 @@
       
       
       
+        <link rel="prev" href="../8/">
+      
+      
+        <link rel="next" href="../../oop/pbfx/1/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -60,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#chapter-9-gmw-cut-and-choose" class="md-skip">
+        <a href="#chapter-9-gmw" class="md-skip">
           Skip to content
         </a>
       
@@ -260,6 +264,8 @@
   
   
   
+    
+  
   
     
     
@@ -267,10 +273,12 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
+      <li class="md-tabs__item md-tabs__item--active">
         <a href="../../cryptography/" class="md-tabs__link">
           
   
@@ -1156,8 +1164,10 @@
       
   
   
+    
   
   
+  
     
     
       
@@ -1179,17 +1189,20 @@
     
     
       
+        
+        
+      
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
         
           
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
             
   
   
@@ -1202,7 +1215,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             专业课
@@ -2884,8 +2897,10 @@
                 
   
   
+    
   
   
+  
     
     
       
@@ -2905,6 +2920,8 @@
       
         
       
+        
+      
     
     
     
@@ -2912,11 +2929,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" checked>
         
           
           <label class="md-nav__link" for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
@@ -2932,7 +2949,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4_6">
             <span class="md-nav__icon md-icon"></span>
             隐私计算与安全合规
@@ -3123,6 +3140,251 @@
 
               
             
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Chapter 9 恶意安全性：GMW 编译器与切分选择（Cut-and-Choose）
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 9 恶意安全性：GMW 编译器与切分选择（Cut-and-Choose）
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1 零知识证明
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-sigma" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 Sigma 协议
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-gmw" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 GMW 编译器
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-cut-and-choose" class="md-nav__link">
+    <span class="md-ellipsis">
+      4 切分选择（Cut-and-Choose）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4 切分选择（Cut-and-Choose）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#4-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. 1 概述
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-2-input-consistency" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. 2 输入一致性（Input Consistency）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-3-selective-abort-failure" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. 3 选择性中止（Selective Abort / Failure）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-4-output-authenticity" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. 4 输出真实性（Output Authenticity）
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-lp11" class="md-nav__link">
+    <span class="md-ellipsis">
+      5 LP11 协议
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5 LP11 协议">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#5-1-ccot" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 1 CCOT 理想功能
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-2-pvw-ddh-ot" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 2 PVW 型 DDH OT 构造
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-3-ccot" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 3 CCOT 协议与批处理
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 4 输入一致性零知识证明
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-5-lp11" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 5 LP11 协议
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-lp11" class="md-nav__link">
+    <span class="md-ellipsis">
+      6 LP11 的安全性证明
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6 LP11 的安全性证明">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#6-1-1p_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. 1 情况 1：\(P_1\) 被攻陷
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-2-2p_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. 2 情况 2：\(P_2\) 被攻陷
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-3-uc" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. 3 从独立安全到 UC 安全
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -3139,6 +3401,10 @@
   
     
     
+      
+        
+      
+        
       
         
       
@@ -3702,6 +3968,52 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 14 Smart Pointers
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/15/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 15 Miscellaneous Points
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -3746,7 +4058,7 @@
         <li class="md-nav__item">
   <a href="#1" class="md-nav__link">
     <span class="md-ellipsis">
-      1 从半诚实到恶意安全
+      1 零知识证明
     </span>
   </a>
   
@@ -3755,51 +4067,9 @@
         <li class="md-nav__item">
   <a href="#2-sigma" class="md-nav__link">
     <span class="md-ellipsis">
-      2 零知识证明与 Sigma 协议
+      2 Sigma 协议
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="2 零知识证明与 Sigma 协议">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#21" class="md-nav__link">
-    <span class="md-ellipsis">
-      2.1 零知识证明
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#22-sigma" class="md-nav__link">
-    <span class="md-ellipsis">
-      2.2 Sigma 协议
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#23-sigma" class="md-nav__link">
-    <span class="md-ellipsis">
-      2.3 一个典型的 Sigma 例子
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#24" class="md-nav__link">
-    <span class="md-ellipsis">
-      2.4 三个安全性质怎么证明？
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -3810,82 +4080,49 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="3 GMW 编译器">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#31" class="md-nav__link">
-    <span class="md-ellipsis">
-      3.1 核心思想
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#32" class="md-nav__link">
-    <span class="md-ellipsis">
-      3.2 编译三步
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#33" class="md-nav__link">
-    <span class="md-ellipsis">
-      3.3 效果与代价
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
   <a href="#4-cut-and-choose" class="md-nav__link">
     <span class="md-ellipsis">
-      4 Cut-and-Choose 的直观思想
+      4 切分选择（Cut-and-Choose）
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="4 Cut-and-Choose 的直观思想">
+    <nav class="md-nav" aria-label="4 切分选择（Cut-and-Choose）">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#41" class="md-nav__link">
+  <a href="#4-1" class="md-nav__link">
     <span class="md-ellipsis">
-      4.1 动机
+      4. 1 概述
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#42" class="md-nav__link">
+  <a href="#4-2-input-consistency" class="md-nav__link">
     <span class="md-ellipsis">
-      4.2 基本方案
+      4. 2 输入一致性（Input Consistency）
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#43" class="md-nav__link">
+  <a href="#4-3-selective-abort-failure" class="md-nav__link">
     <span class="md-ellipsis">
-      4.3 欺骗成功概率
+      4. 3 选择性中止（Selective Abort / Failure）
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#44" class="md-nav__link">
+  <a href="#4-4-output-authenticity" class="md-nav__link">
     <span class="md-ellipsis">
-      4.4 为什么不能“发现输出不一致就直接中止”？
+      4. 4 输出真实性（Output Authenticity）
     </span>
   </a>
   
@@ -3897,37 +4134,55 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-cut-and-choose" class="md-nav__link">
+  <a href="#5-lp11" class="md-nav__link">
     <span class="md-ellipsis">
-      5 Cut-and-Choose 中的三个关键细节
+      5 LP11 协议
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="5 Cut-and-Choose 中的三个关键细节">
+    <nav class="md-nav" aria-label="5 LP11 协议">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#51-input-consistency" class="md-nav__link">
+  <a href="#5-1-ccot" class="md-nav__link">
     <span class="md-ellipsis">
-      5.1 输入一致性（Input Consistency）
+      5. 1 CCOT 理想功能
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#52-selective-abort-failure" class="md-nav__link">
+  <a href="#5-2-pvw-ddh-ot" class="md-nav__link">
     <span class="md-ellipsis">
-      5.2 选择性中止（Selective Abort / Failure）
+      5. 2 PVW 型 DDH OT 构造
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#53-output-authenticity" class="md-nav__link">
+  <a href="#5-3-ccot" class="md-nav__link">
     <span class="md-ellipsis">
-      5.3 输出真实性（Output Authenticity）
+      5. 3 CCOT 协议与批处理
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 4 输入一致性零知识证明
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-5-lp11" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 5 LP11 协议
     </span>
   </a>
   
@@ -3939,46 +4194,37 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#6-cut-and-choose-ot" class="md-nav__link">
+  <a href="#6-lp11" class="md-nav__link">
     <span class="md-ellipsis">
-      6 Cut-and-Choose OT 与输入一致性工具
+      6 LP11 的安全性证明
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="6 Cut-and-Choose OT 与输入一致性工具">
+    <nav class="md-nav" aria-label="6 LP11 的安全性证明">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#61-ccot" class="md-nav__link">
+  <a href="#6-1-1p_1" class="md-nav__link">
     <span class="md-ellipsis">
-      6.1 CCOT 理想功能
+      6. 1 情况 1：\(P_1\) 被攻陷
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#62-pvw-ddh-ot" class="md-nav__link">
+  <a href="#6-2-2p_2" class="md-nav__link">
     <span class="md-ellipsis">
-      6.2 PVW 型 DDH OT 构造
+      6. 2 情况 2：\(P_2\) 被攻陷
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#63-ccot" class="md-nav__link">
+  <a href="#6-3-uc" class="md-nav__link">
     <span class="md-ellipsis">
-      6.3 CCOT 协议与批处理
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#64" class="md-nav__link">
-    <span class="md-ellipsis">
-      6.4 输入一致性零知识证明
+      6. 3 从独立安全到 UC 安全
     </span>
   </a>
   
@@ -3986,90 +4232,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#7-lp11" class="md-nav__link">
-    <span class="md-ellipsis">
-      7 LP11 协议
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="7 LP11 协议">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#71" class="md-nav__link">
-    <span class="md-ellipsis">
-      7.1 公共输入与私有输入
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#72" class="md-nav__link">
-    <span class="md-ellipsis">
-      7.2 协议步骤
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#8-lp11" class="md-nav__link">
-    <span class="md-ellipsis">
-      8 LP11 的安全性证明
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="8 LP11 的安全性证明">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#81-1p_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      8.1 情况 1：\(P_1\) 被攻陷
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#82-2p_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      8.2 情况 2：\(P_2\) 被攻陷
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#9-uc" class="md-nav__link">
-    <span class="md-ellipsis">
-      9 从独立安全到 UC 安全
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#10" class="md-nav__link">
-    <span class="md-ellipsis">
-      10 本章小结
-    </span>
-  </a>
   
 </li>
       
@@ -4092,17 +4254,16 @@
   
 
 
-<h1 id="chapter-9-gmw-cut-and-choose">Chapter 9 恶意安全性：GMW 编译器与切分选择（Cut-and-Choose）<a class="headerlink" href="#chapter-9-gmw-cut-and-choose" title="Permanent link">&para;</a></h1>
-<h2 id="1">1 从半诚实到恶意安全<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
-<details class="info">
-<summary>恶意敌手模型</summary>
+<h1 id="chapter-9-gmw">Chapter 9 恶意安全性：GMW 编译器与切分选择<a class="headerlink" href="#chapter-9-gmw" title="Permanent link">&para;</a></h1>
+<details class="quote">
+<summary>半诚实 V.S. 恶意</summary>
 <ul>
-<li><strong>半诚实</strong>：按协议执行，但记录所有信息</li>
-<li><strong>恶意</strong>：可以任意偏离协议，包括错误消息、替换输入、选择性中止</li>
+<li><strong>半诚实（Semi-Honest）</strong>：按协议执行，但记录所有信息</li>
+<li><strong>恶意（Malicious）</strong>：可以任意偏离协议，包括错误消息、替换输入、选择性中止</li>
 </ul>
 </details>
 <div class="admonition info">
-<p class="admonition-title">本章的几条技术路线</p>
+<p class="admonition-title">本章核心技术路线</p>
 <ol>
 <li><strong>GMW 编译器</strong>：把任意半诚实协议编译成恶意安全协议，通用但效率较低</li>
 <li><strong>Cut-and-Choose</strong>：专门强化姚氏混淆电路</li>
@@ -4110,71 +4271,92 @@
 <li><strong>BDOZ / SPDZ</strong>：基于 MAC 与预处理的高效通用 MPC，适合现代高性能实现</li>
 </ol>
 </div>
-<p>本章重点讨论前两条。</p>
-<details class="tip">
-<summary>几条路线的直观区别</summary>
-<ul>
-<li><strong>GMW 编译器</strong>：最通用，思想最干净，但几乎“每条消息都要证明”</li>
-<li><strong>Cut-and-Choose</strong>：针对 GC 做专项优化，用统计抽检换效率</li>
-<li><strong>恶意 BGW</strong>：在诚实多数下可追求信息论安全</li>
-<li><strong>SPDZ 类协议</strong>：把大量重活放进离线预处理，用 MAC 保证在线阶段恶意安全</li>
-</ul>
-</details>
-<h2 id="2-sigma">2 零知识证明与 Sigma 协议<a class="headerlink" href="#2-sigma" title="Permanent link">&para;</a></h2>
-<h3 id="21">2.1 零知识证明<a class="headerlink" href="#21" title="Permanent link">&para;</a></h3>
-<p>设关系</p>
-<div class="arithmatex">\[
-R \subseteq \{0,1\}^{\ast}\times \{0,1\}^{\ast},
-\]</div>
-<p>其中：</p>
-<ul>
-<li><strong>陈述（Statement）</strong>：<span class="arithmatex">\(x\)</span></li>
-<li><strong>见证（Witness）</strong>：<span class="arithmatex">\(w\)</span></li>
-<li><strong>语言</strong>：<span class="arithmatex">\(L_R=\{x\mid \exists w,\ (x,w)\in R\}\)</span></li>
-</ul>
+<h2 id="1">1 零知识证明<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
 <div class="admonition info">
-<p class="admonition-title">零知识证明的三项要求</p>
+<p class="admonition-title">NP 关系与陈述</p>
 <ul>
-<li><strong>完备性（Completeness）</strong>：若 <span class="arithmatex">\((x,w)\in R\)</span> 且双方诚实，则验证者接受</li>
-<li><strong>可靠性 / 声明正确性（Soundness）</strong>：若证明被接受，则陈述必须为真</li>
-<li><strong>零知识性（Zero-Knowledge）</strong>：验证者除了“陈述为真”外得不到额外信息</li>
+<li>关系 <span class="arithmatex">\(\mathcal{R} \subseteq \{0,1\}^* \times \{0,1\}^*\)</span>，语言 <span class="arithmatex">\(L_{\mathcal{R}} = \{x \mid \exists w,\ (x, w) \in \mathcal{R}\}\)</span></li>
+<li><strong>陈述（statement）</strong> 为 <span class="arithmatex">\(x\)</span>，<strong>见证（witness）</strong> 为 <span class="arithmatex">\(w\)</span></li>
 </ul>
 </div>
-<h3 id="22-sigma">2.2 Sigma 协议<a class="headerlink" href="#22-sigma" title="Permanent link">&para;</a></h3>
-<div class="admonition info">
-<p class="admonition-title">3 步公共币证明系统</p>
+<ul>
+<li>两方协议 <span class="arithmatex">\((P, V)\)</span>：证明者 <span class="arithmatex">\(P(x, w)\)</span> 与验证者 <span class="arithmatex">\(V(x)\)</span> 交互</li>
+<li>目标：<span class="arithmatex">\(P\)</span> 证明 <span class="arithmatex">\(x \in L_{\mathcal{R}}\)</span>，要求<ul>
+<li><strong>完备性（Completeness）</strong>：若 <span class="arithmatex">\((x,w)\in R\)</span> 且双方诚实，则验证者接受</li>
+<li><strong>可靠性 / 声明正确性（Soundness）</strong>：若证明被接受，则陈述必须为真</li>
+<li><strong>零知识性（Zero-Knowledge）</strong>：验证者除了陈述为真外得不到额外信息</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-sigma">2 Sigma 协议<a class="headerlink" href="#2-sigma" title="Permanent link">&para;</a></h2>
 <p>对关系 <span class="arithmatex">\(R\)</span> 的 Sigma 协议由三部分组成：</p>
 <ul>
 <li><span class="arithmatex">\(a \leftarrow C(x,w;r)\)</span>：证明者发送初始消息</li>
 <li><span class="arithmatex">\(z \leftarrow Z(x,w,r,e)\)</span>：验证者给出挑战 <span class="arithmatex">\(e\)</span> 后，证明者回复</li>
 <li><span class="arithmatex">\(V(x,a,e,z)\in\{0,1\}\)</span>：验证者检查</li>
 </ul>
-</div>
 <p>Sigma 协议要求满足：</p>
 <ul>
-<li><strong>完备性</strong></li>
-<li><strong>2-特殊可靠性（2-special soundness）</strong></li>
-<li><strong>诚实验证者零知识性（HVZK）</strong></li>
-</ul>
-<h3 id="23-sigma">2.3 一个典型的 Sigma 例子<a class="headerlink" href="#23-sigma" title="Permanent link">&para;</a></h3>
-<p>课件中的关系是：</p>
+<li>
+<p><strong>完备性</strong>：对于所有 <span class="arithmatex">\((x, w) \in \mathcal{R}\)</span>，<span class="arithmatex">\(e \in \{0, 1\}^\lambda\)</span>，有</p>
 <div class="arithmatex">\[
-R = \left\{((g,ck,pk,c,c_1,c_2),m,s,t)\ \middle|\ c=g^mck^s \land c_1=g^t \land c_2=g^mpk^t \right\}.
+\Pr\left[
+a \leftarrow C(x, w; r);\ z \leftarrow Z(x, w, r, e):\ \mathcal{V}(x, a, e, z) = 1
+\right] = 1
 \]</div>
-<p>证明者步骤：</p>
+</li>
+<li>
+<p><strong>2-特殊可靠性（2-special soundness）</strong>：存在确定性多项式时间提取器 <span class="arithmatex">\(\mathcal{X}\)</span>，使得对任意 PPT 的敌手 <span class="arithmatex">\(\mathcal{A}\)</span> 都有</p>
+<div class="arithmatex">\[
+\Pr\left[
+\begin{aligned}
+&amp;(x, a) \leftarrow \mathcal{A}(1^\lambda);\ e, e' \xleftarrow{\$} \{0, 1\}^\lambda; \\
+&amp;z, z' \leftarrow \mathcal{A}(e, e');\ w \leftarrow \mathcal{X}(x, a, \{e, z\}, \{e', z'\})
+\end{aligned}
+:\ 
+\begin{aligned}
+&amp;e \neq e' \land \mathcal{V}(x, a, e, z) = 1 \land \\
+&amp;\mathcal{V}(x, a, e', z') = 1 \land (x, w) \notin \mathcal{R}
+\end{aligned}
+\right] = 0
+\]</div>
+</li>
+<li>
+<p><strong>诚实验证者零知识性（HVZK）</strong>：存在 PPT 的算法 <span class="arithmatex">\(\mathcal{S}\)</span>，使得对任意 PPT 的敌手 <span class="arithmatex">\(\mathcal{A}\)</span> 都有</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\Pr\left[
+(x, e) \leftarrow \mathcal{A}(1^\lambda);\ a \leftarrow C(x, w; r);\ z \leftarrow Z(x, w, r, e):\ \mathcal{A}(a, z) = 1
+\right] \\
+\approx
+\Pr\left[
+(x, e) \leftarrow \mathcal{A}(1^\lambda);\ (a, z) \leftarrow \mathcal{S}(x, e):\ \mathcal{A}(a, z) = 1
+\right]
+\end{aligned}
+\]</div>
+<p>其中 <span class="arithmatex">\(r\)</span> 是均匀随机选取的，<span class="arithmatex">\(\mathcal{A}\)</span> 输出的值必须满足 <span class="arithmatex">\((x, w) \in \mathcal{R}\)</span> 和 <span class="arithmatex">\(e \in \{0, 1\}^\lambda\)</span></p>
+</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">示例</p>
+<p><img src="/mpc/images/image9-1.png" style="display: block; width: 80%; margin: 0 auto;" /></p>
+<details class="info">
+<summary>步骤说明</summary>
 <ol>
 <li>随机取 <span class="arithmatex">\(m',s',t'\)</span></li>
-<li>发送</li>
-</ol>
+<li>
+<p>发送</p>
 <div class="arithmatex">\[
 a_1 = g^{m'}ck^{s'},\quad
 a_2 = g^{t'},\quad
 a_3 = g^{m'}pk^{t'}
 \]</div>
-<ol>
-<li>接收挑战 <span class="arithmatex">\(e\)</span></li>
-<li>回复</li>
-</ol>
+</li>
+<li>
+<p>接收挑战 <span class="arithmatex">\(e\)</span></p>
+</li>
+<li>
+<p>回复</p>
 <div class="arithmatex">\[
 z_1 = m' + em,\quad
 z_2 = s' + es,\quad
@@ -4186,174 +4368,138 @@ g^{z_1}ck^{z_2}=a_1c^e,\qquad
 g^{z_3}=a_2c_1^e,\qquad
 g^{z_1}pk^{z_3}=a_3c_2^e.
 \]</div>
-<h3 id="24">2.4 三个安全性质怎么证明？<a class="headerlink" href="#24" title="Permanent link">&para;</a></h3>
-<div class="admonition tip">
-<p class="admonition-title">完备性</p>
-<p>直接把 <span class="arithmatex">\(z_1,z_2,z_3\)</span> 代回验证等式即可成立。</p>
+</li>
+</ol>
+</details>
 </div>
-<div class="admonition tip">
-<p class="admonition-title">2-特殊可靠性</p>
-<p>若同一个初始消息 <span class="arithmatex">\(a\)</span> 对两个不同挑战 <span class="arithmatex">\(e\ne e'\)</span> 都能通过，则可提取：</p>
+<details class="question">
+<summary>完备性证明</summary>
 <div class="arithmatex">\[
-m=(z_1-z_1')(e-e')^{-1},\quad
-s=(z_2-z_2')(e-e')^{-1},\quad
-t=(z_3-z_3')(e-e')^{-1}.
+\begin{align*}
+a_1 c^e &amp;= g^{m'} ck^{s'} \cdot \left(g^m ck^s\right)^e = g^{m' + em} ck^{s' + es} = g^{z_1} ck^{z_2}\\
+a_2 c_1^e &amp;= g^{t'} \cdot \left(g^t\right)^e = g^{t' + et} = g^{z_3}\\
+a_3 c_2^e &amp;= g^{m'} pk^{t'} \cdot \left(g^m pk^t\right)^e = g^{m' + em} pk^{t' + et} = g^{z_1} pk^{z_3}
+\end{align*}
 \]</div>
-<p>从而恢复合法见证。</p>
-</div>
-<div class="admonition tip">
-<p class="admonition-title">诚实验证者零知识</p>
+</details>
+<details class="question">
+<summary>2-特殊可靠性证明</summary>
+<p>如果对于初始消息 <span class="arithmatex">\(a_1, a_2, a_3\)</span>，有 <span class="arithmatex">\((e, z_1, z_2, z_3)\)</span> 和 <span class="arithmatex">\((e', z_1', z_2', z_3')\)</span> 都能通过验证，根据验证等式，有：</p>
+<div class="arithmatex">\[
+\begin{aligned}
+g^{z_1} ck^{z_2} &amp;= a_1 \cdot c^e, &amp; g^{z_3} &amp;= a_2 \cdot c_1^e, &amp; g^{z_1} pk^{z_3} &amp;= a_3 \cdot c_2^e, \\
+g^{z_1'} ck^{z_2'} &amp;= a_1 \cdot c^{e'}, &amp; g^{z_3'} &amp;= a_2 \cdot c_1^{e'}, &amp; g^{z_1'} pk^{z_3'} &amp;= a_3 \cdot c_2^{e'}.
+\end{aligned}
+\]</div>
+<p>因此：</p>
+<div class="arithmatex">\[
+\begin{aligned}
+c &amp;= g^{(z_1 - z_1')(e - e')^{-1}} ck^{(z_2 - z_2')(e - e')^{-1}}, \\
+c_1 &amp;= g^{(z_3 - z_3')(e - e')^{-1}}, \\
+c_2 &amp;= g^{(z_1 - z_1')(e - e')^{-1}} pk^{(z_3 - z_3')(e - e')^{-1}}.
+\end{aligned}
+\]</div>
+<p>可以提取见证：</p>
+<div class="arithmatex">\[
+m = (z_1 - z_1')(e - e')^{-1},\ s = (z_2 - z_2')(e - e')^{-1},\ t = (z_3 - z_3')(e - e')^{-1}
+\]</div>
+<p>满足：</p>
+<div class="arithmatex">\[
+c = g^m ck^s \land c_1 = g^t \land c_2 = g^m pk^t.
+\]</div>
+</details>
+<details class="question">
+<summary>诚实验证者零知识性证明</summary>
 <p>模拟器可先随机取 <span class="arithmatex">\(z_1,z_2,z_3\)</span>，再反推出</p>
 <div class="arithmatex">\[
 a_1=\frac{g^{z_1}ck^{z_2}}{c^e},\quad
 a_2=\frac{g^{z_3}}{c_1^e},\quad
 a_3=\frac{g^{z_1}pk^{z_3}}{c_2^e},
 \]</div>
-<p>得到与真实会话同分布的 transcript。</p>
-</div>
-<h2 id="3-gmw">3 GMW 编译器<a class="headerlink" href="#3-gmw" title="Permanent link">&para;</a></h2>
-<h3 id="31">3.1 核心思想<a class="headerlink" href="#31" title="Permanent link">&para;</a></h3>
-<div class="admonition info">
-<p class="admonition-title">目标</p>
-<p>把任意半诚实安全协议编译成恶意安全协议，办法是：</p>
-<p><strong>强制每个参与方在每一步都证明“自己确实像半诚实方那样在做”。</strong></p>
-</div>
-<h3 id="32">3.2 编译三步<a class="headerlink" href="#32" title="Permanent link">&para;</a></h3>
-<div class="admonition info">
-<p class="admonition-title">GMW 编译器</p>
-<ol>
-<li>
-<ul>
-<li>每个参与方对输入 <span class="arithmatex">\(x_i\)</span> 与随机数 <span class="arithmatex">\(\rho_i\)</span> 做承诺</li>
-</ul>
-<p><strong>输入承诺（Input Commitment）</strong></p>
-<div class="arithmatex">\[
-c_i = Com(x_i,\rho_i)
-\]</div>
-</li>
-<li>
-<p><strong>抛硬币（Coin Tossing）</strong></p>
-<ul>
-<li>每个参与方 <span class="arithmatex">\(P_i\)</span> 承诺随机数 <span class="arithmatex">\(r_{i,i}\)</span></li>
-<li>其他参与方各自承诺 <span class="arithmatex">\(r_{i,j}\)</span></li>
-<li>打开后令</li>
-</ul>
-<div class="arithmatex">\[
-r_i = \bigoplus_{j=1}^{n} r_{i,j}
-\]</div>
-<p>只要有一方诚实，<span class="arithmatex">\(r_i\)</span> 就仍然均匀随机</p>
-</li>
-<li>
-<p><strong>逐步零知识证明（ZK for Every Message）</strong></p>
-<ul>
-<li>当 <span class="arithmatex">\(P_i\)</span> 发送任意协议消息 <span class="arithmatex">\(m\)</span> 时，同时证明：
-  “<span class="arithmatex">\(m\)</span> 确实是由已承诺输入 <span class="arithmatex">\(x_i\)</span>、随机带 <span class="arithmatex">\(r_i\)</span> 以及历史消息，按照原半诚实协议诚实计算得到的。”</li>
-</ul>
-</li>
-</ol>
-</div>
-<details class="info">
-<summary>核心工具</summary>
-<p>课件中的标准做法是使用 <strong>Sigma 协议</strong> 作为底层零知识工具，再通过承诺、抛硬币和逐步证明把“半诚实执行”强制成“恶意安全执行”。</p>
+<p>得到与真实会话同分布的 transcript</p>
 </details>
-<h3 id="33">3.3 效果与代价<a class="headerlink" href="#33" title="Permanent link">&para;</a></h3>
-<ul>
-<li><strong>效果</strong>：敌手若想偏离协议，就必须同时伪造对应 ZK 证明</li>
-<li><strong>代价</strong>：<ul>
-<li>每一步都要附带证明</li>
-<li>通信和计算都会明显上升</li>
-<li>因而它是“<strong>通用但不够高效</strong>”的编译器</li>
-</ul>
-</li>
-</ul>
-<h2 id="4-cut-and-choose">4 Cut-and-Choose 的直观思想<a class="headerlink" href="#4-cut-and-choose" title="Permanent link">&para;</a></h2>
-<h3 id="41">4.1 动机<a class="headerlink" href="#41" title="Permanent link">&para;</a></h3>
-<p>姚氏混淆电路在半诚实模型下安全，但在恶意模型中，若电路生成方 <span class="arithmatex">\(P_1\)</span> 发送错误电路 <span class="arithmatex">\(C'\)</span>，可能：</p>
-<ul>
-<li>直接泄露 <span class="arithmatex">\(P_2\)</span> 输入</li>
-<li>让结果被偏置</li>
-<li>让计算只在某些输入上出错，从而形成侧信道</li>
-</ul>
-<h3 id="42">4.2 基本方案<a class="headerlink" href="#42" title="Permanent link">&para;</a></h3>
+<h2 id="3-gmw">3 GMW 编译器<a class="headerlink" href="#3-gmw" title="Permanent link">&para;</a></h2>
+<p>把任意半诚实安全协议编译成恶意安全协议，<strong>强制每个参与方在每一步都证明自己确实像半诚实方那样在做</strong>。</p>
+<ol>
+<li><strong>输入承诺（Input Commitment）</strong>：每个参与方对输入 <span class="arithmatex">\(x_i\)</span> 与随机数 <span class="arithmatex">\(\rho_i\)</span> 做承诺 <span class="arithmatex">\(c_i = Com(x_i,\rho_i)\)</span></li>
+<li><strong>抛硬币（Coin Tossing）</strong>：每个参与方 <span class="arithmatex">\(P_i\)</span> 承诺随机数 <span class="arithmatex">\(r_{i,i}\)</span>，其他参与方各自承诺 <span class="arithmatex">\(r_{i,j}\)</span>， 打开后令 <span class="arithmatex">\(r_i = \bigoplus_{j=1}^{n} r_{i,j}\)</span>，只要有一方诚实，<span class="arithmatex">\(r_i\)</span> 就仍然均匀随机</li>
+<li><strong>逐步零知识证明（ZK for Every Message）</strong>：当 <span class="arithmatex">\(P_i\)</span> 发送任意协议消息 <span class="arithmatex">\(m\)</span> 时，同时证明 <span class="arithmatex">\(m\)</span> 确实是由已承诺输入 <span class="arithmatex">\(x_i\)</span>、随机带 <span class="arithmatex">\(r_i\)</span> 以及历史消息，按照原半诚实协议诚实计算得到的</li>
+</ol>
+<h2 id="4-cut-and-choose">4 切分选择（Cut-and-Choose）<a class="headerlink" href="#4-cut-and-choose" title="Permanent link">&para;</a></h2>
+<h3 id="4-1">4. 1 概述<a class="headerlink" href="#4-1" title="Permanent link">&para;</a></h3>
+<details class="quote">
+<summary>引入</summary>
+<p>姚氏混淆电路在半诚实模型下安全，但在恶意模型中，若电路生成方 <span class="arithmatex">\(P_1\)</span> 发送错误电路 <span class="arithmatex">\(C'\)</span>，可能直接泄露 <span class="arithmatex">\(P_2\)</span> 输入。</p>
+</details>
+<p><span class="arithmatex">\(P_1\)</span> 生成 <span class="arithmatex">\(s\)</span> 个混淆电路副本，<span class="arithmatex">\(P_2\)</span> 随机选择其中 <span class="arithmatex">\(s/2\)</span> 个作为<strong>检查电路</strong>，要求打开并验证这些电路，剩下 <span class="arithmatex">\(s/2\)</span> 个作为<strong>计算电路</strong>，对计算电路求值，并对结果做<strong>多数投票</strong>。</p>
+<p><img src="/mpc/images/image9-2.png" style="display: block; width: 30%; margin: 0 auto;" /></p>
 <div class="admonition info">
-<p class="admonition-title">Cut-and-Choose</p>
-<ul>
-<li><span class="arithmatex">\(P_1\)</span> 生成 <span class="arithmatex">\(s\)</span> 个混淆电路副本</li>
-<li><span class="arithmatex">\(P_2\)</span> 随机选择其中 <span class="arithmatex">\(s/2\)</span> 个作为<strong>检查电路</strong></li>
-<li>要求打开并验证这些电路</li>
-<li>剩下 <span class="arithmatex">\(s/2\)</span> 个作为<strong>计算电路</strong></li>
-<li>对计算电路求值，并对结果做<strong>多数投票</strong></li>
-</ul>
-</div>
-<h3 id="43">4.3 欺骗成功概率<a class="headerlink" href="#43" title="Permanent link">&para;</a></h3>
-<p>记：</p>
+<p class="admonition-title">欺骗成功概率</p>
 <ul>
 <li><code>badTotal</code>：坏电路总数</li>
 <li><code>noAbort</code>：所有检查电路都正确</li>
 <li><code>badMaj</code>：计算电路中坏电路至少占一半</li>
 </ul>
-<p>课件给出的组合界是：</p>
 <div class="arithmatex">\[
-\Pr[\text{noAbort}\land \text{badMaj}]
-\le
-\binom{3s/4+1}{s/2+1}\Big/\binom{s}{s/2}
-&lt;
-2^{-(s/4-1)}.
+\Pr[\text{noAbort} \land \text{badMaj}] = \sum_{i=s/4}^{s/2} \Pr[\text{noAbort} \land \text{badTotal} = i].
 \]</div>
-<p>例如取 <span class="arithmatex">\(s=164\)</span>，该概率小于 <span class="arithmatex">\(2^{-40}\)</span>。</p>
-<h3 id="44">4.4 为什么不能“发现输出不一致就直接中止”？<a class="headerlink" href="#44" title="Permanent link">&para;</a></h3>
-<div class="admonition warning">
-<p class="admonition-title">直接中止会泄露输入</p>
-<p>若 <span class="arithmatex">\(P_1\)</span> 只在某个特殊输入位上让一个电路输出错误，那么：</p>
-<ul>
-<li>若 <span class="arithmatex">\(P_2\)</span> 看到输出不一致就立即中止</li>
-<li><span class="arithmatex">\(P_1\)</span> 便能通过“是否中止”学到该输入位</li>
-</ul>
+<p>当 <span class="arithmatex">\(\text{badTotal} = i\)</span> 时，<span class="arithmatex">\(\text{noAbort}\)</span> 发生需从 <span class="arithmatex">\(s-i\)</span> 个正确电路中选出 <span class="arithmatex">\(\frac{s}{2}\)</span> 个：</p>
+<div class="arithmatex">\[
+\Pr[\text{noAbort} \mid \text{badTotal} = i] = \frac{\binom{s-i}{s/2}}{\binom{s}{s/2}}.
+\]</div>
+<p>因此</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\Pr[\text{noAbort} \land \text{badMaj}] &amp;\le \sum_{i=s/4}^{s/2} \frac{\binom{s-i}{s/2}}{\binom{s}{s/2}} = \frac{1}{\binom{s}{s/2}} \sum_{i=s/4}^{s/2} \binom{s-i}{s/2}.
+\end{aligned}
+\]</div>
+<p>令 <span class="arithmatex">\(j = s-i\)</span>，并使用恒等式 <span class="arithmatex">\(\sum_{k=0}^{n} \binom{k}{m} = \binom{n+1}{m+1}\)</span>，得</p>
+<div class="arithmatex">\[
+\Pr[\text{noAbort} \land \text{badMaj}] = \frac{\binom{\frac{3s}{4}+1}{\frac{s}{2}+1}}{\binom{s}{s/2}} = \frac{(\frac{3s}{4}+1)!}{(\frac{s}{2}+1)!(\frac{s}{4})!} \cdot \frac{(\frac{s}{2})!(\frac{s}{2})!}{s!} = \frac{(\frac{s}{2})(\frac{s}{2}-1)\cdots(\frac{s}{4}+1)}{s(s-1)\cdots(\frac{3s}{4}+2)} \cdot \frac{1}{\frac{s}{2}+1}
+\]</div>
+<p>令 <span class="arithmatex">\(t = s/4\)</span>，则</p>
+<div class="arithmatex">\[
+\frac{2t}{4t} \cdot \frac{2t-1}{4t-1} \cdots \frac{t+2}{3t+2} \cdot \frac{t+1}{2t+1}
+= \left( \prod_{i=2}^{t} \frac{t+i}{3t+i} \right) \cdot \frac{t+1}{2t+1}.
+\]</div>
+<p>因 <span class="arithmatex">\(\frac{t+i}{3t+i} &lt; \frac{1}{2}\)</span>（对所有 <span class="arithmatex">\(i &lt; t\)</span>），故
+$$
+\Pr[\text{noAbort} \land \text{badMaj}] &lt; \frac{1}{2^{t-1}} = \frac{1}{2^{s/4-1}}.
+$$</p>
+<p>例如取 <span class="arithmatex">\(s=164\)</span>，则该概率 <span class="arithmatex">\(&lt; 2^{-40}\)</span></p>
 </div>
-<p>因此正确做法是：<strong>继续对所有计算电路求值，并取多数输出</strong>。</p>
-<h2 id="5-cut-and-choose">5 Cut-and-Choose 中的三个关键细节<a class="headerlink" href="#5-cut-and-choose" title="Permanent link">&para;</a></h2>
-<h3 id="51-input-consistency">5.1 输入一致性（Input Consistency）<a class="headerlink" href="#51-input-consistency" title="Permanent link">&para;</a></h3>
-<details class="warning">
-<summary>问题</summary>
-<p>若 <span class="arithmatex">\(P_1\)</span> 在不同计算电路里使用不同输入，就能跨电路“编程”泄露 <span class="arithmatex">\(P_2\)</span> 的隐私。</p>
-</details>
+<div class="admonition warning">
+<p class="admonition-title">为什么不能发现输出不一致就直接中止？</p>
+<p>若 <span class="arithmatex">\(P_1\)</span> 只在某个特殊输入位上让一个电路输出错误，那么若 <span class="arithmatex">\(P_2\)</span> 看到输出不一致就立即中止，<span class="arithmatex">\(P_1\)</span> 便能通过是否中止学到该输入位。</p>
+<p>因此正确做法是<strong>继续对所有计算电路求值，并取多数输出</strong>。</p>
+</div>
+<h3 id="4-2-input-consistency">4. 2 输入一致性（Input Consistency）<a class="headerlink" href="#4-2-input-consistency" title="Permanent link">&para;</a></h3>
+<p>若 <span class="arithmatex">\(P_1\)</span> 在不同计算电路里使用不同输入，就能跨电路编程泄露 <span class="arithmatex">\(P_2\)</span> 的隐私。</p>
 <div class="admonition example">
-<p class="admonition-title">内积泄露</p>
+<p class="admonition-title">示例：内积泄露</p>
 <p>对功能</p>
 <div class="arithmatex">\[
 f(x,y)=\langle x,y\rangle=\sum_i x_i y_i,
 \]</div>
 <p>若 <span class="arithmatex">\(P_1\)</span> 在第 <span class="arithmatex">\(i\)</span> 个电路里只令第 <span class="arithmatex">\(i\)</span> 位为 <span class="arithmatex">\(1\)</span>，其他位为 <span class="arithmatex">\(0\)</span>，那么不同电路输出就携带了关于 <span class="arithmatex">\(y_i\)</span> 的信息。</p>
 </div>
-<div class="admonition info">
-<p class="admonition-title">标准做法</p>
 <ul>
 <li>对每条输入导线，把所有电路里的 0/1 输入密钥分别承诺成两个集合</li>
 <li>在检查电路上打开相应承诺并验证</li>
 <li>在计算电路上做零知识证明，证明“发送的所有密钥都来自同一个集合”</li>
 </ul>
-</div>
-<h3 id="52-selective-abort-failure">5.2 选择性中止（Selective Abort / Failure）<a class="headerlink" href="#52-selective-abort-failure" title="Permanent link">&para;</a></h3>
-<div class="admonition example">
-<p class="admonition-title">攻击方式</p>
-<p>若在 OT 中，<span class="arithmatex">\(P_1\)</span> 本应发送 <span class="arithmatex">\((k_i^0, k_i^1)\)</span>，却恶意发送 <span class="arithmatex">\((k_i^0,0)\)</span>，则：</p>
-<ul>
-<li>当 <span class="arithmatex">\(P_2\)</span> 输入位为 <span class="arithmatex">\(0\)</span> 时正常</li>
-<li>当输入位为 <span class="arithmatex">\(1\)</span> 时协议中止</li>
-</ul>
-<p>于是 <span class="arithmatex">\(P_1\)</span> 能从“是否中止”恢复 <span class="arithmatex">\(P_2\)</span> 的输入位。</p>
-</div>
+<h3 id="4-3-selective-abort-failure">4. 3 选择性中止（Selective Abort / Failure）<a class="headerlink" href="#4-3-selective-abort-failure" title="Permanent link">&para;</a></h3>
+<p>若在 OT 中，<span class="arithmatex">\(P_1\)</span> 本应发送 <span class="arithmatex">\((k_i^0, k_i^1)\)</span>，却恶意发送 <span class="arithmatex">\((k_i^0,0)\)</span>，则当 <span class="arithmatex">\(P_2\)</span> 输入位为 <span class="arithmatex">\(0\)</span> 时正常，当输入位为 <span class="arithmatex">\(1\)</span> 时协议中止，于是 <span class="arithmatex">\(P_1\)</span> 能从“是否中止”恢复 <span class="arithmatex">\(P_2\)</span> 的输入位。</p>
 <div class="admonition info">
 <p class="admonition-title">防御</p>
 <ul>
-<li>使用 <strong>committing OT</strong></li>
-<li>或 <strong>cut-and-choose OT / CCOT</strong></li>
+<li><strong>committing OT</strong>：OT 同时绑定 <span class="arithmatex">\(P_1\)</span> 的输入，抽检电路时一并打开并验证。</li>
+<li><strong>cut-and-choose OT / CCOT</strong>：抽检索引直接暴露两条 OT 输入，迫使 <span class="arithmatex">\(P_1\)</span> 在大多数 OT 中诚实。</li>
 </ul>
-<p>核心目标都是：让发送方在抽检时必须为其 OT 输入负责。</p>
+<p>核心目标都是让发送方在抽检时必须为其 OT 输入负责。</p>
 </div>
-<h3 id="53-output-authenticity">5.3 输出真实性（Output Authenticity）<a class="headerlink" href="#53-output-authenticity" title="Permanent link">&para;</a></h3>
-<p>公平性一般无法完全实现，但可以要求：<br />
-若某方先拿到输出并转发给另一方，那么接收方能验证该输出的真实性。</p>
+<h3 id="4-4-output-authenticity">4. 4 输出真实性（Output Authenticity）<a class="headerlink" href="#4-4-output-authenticity" title="Permanent link">&para;</a></h3>
+<p>公平性一般无法完全实现，但可以要求若某方先拿到输出并转发给另一方，那么接收方能验证该输出的真实性。</p>
 <div class="admonition info">
 <p class="admonition-title">基于 MAC 的构造</p>
 <p>取域 <span class="arithmatex">\(\mathbb{F}\)</span>，随机选</p>
@@ -4373,23 +4519,35 @@ p,a,b \xleftarrow{}_{\$}\mathbb{F}
 <div class="arithmatex">\[
 f_1(x,y)=\alpha-p.
 \]</div>
-<p>其中：</p>
-<ul>
-<li><span class="arithmatex">\(p\)</span> 起到一次一密作用</li>
-<li>伪造 MAC 的成功概率约为 <span class="arithmatex">\(1/|\mathbb{F}|\)</span></li>
-</ul>
+<p>其中 <span class="arithmatex">\(p\)</span> 起到一次一密作用，伪造 MAC 的成功概率约为 <span class="arithmatex">\(1/|\mathbb{F}|\)</span>。</p>
 </div>
-<h2 id="6-cut-and-choose-ot">6 Cut-and-Choose OT 与输入一致性工具<a class="headerlink" href="#6-cut-and-choose-ot" title="Permanent link">&para;</a></h2>
-<h3 id="61-ccot">6.1 CCOT 理想功能<a class="headerlink" href="#61-ccot" title="Permanent link">&para;</a></h3>
+<h2 id="5-lp11">5 LP11 协议<a class="headerlink" href="#5-lp11" title="Permanent link">&para;</a></h2>
+<p><img src="/mpc/images/image9-3.png" style="display: block; width: 70%; margin: 0 auto;" /></p>
+<details class="quote">
+<summary>引入</summary>
+<p>Lindell 和 Pinkas 在 2011 年提出的切分选择协议进行了以下改进：</p>
+<ol>
+<li>
+<p><strong>以 CCOT 代替 committing OT</strong>：</p>
+<ul>
+<li>接收方输入选择比特 <span class="arithmatex">\(\sigma_1, \dots, \sigma_s\)</span> 与集合 <span class="arithmatex">\(\mathcal{J} \subset [s], |\mathcal{J}| = s/2\)</span>；对 <span class="arithmatex">\(i \in [s]\)</span> 得到 <span class="arithmatex">\(x_i^{\sigma_i}\)</span>，对 <span class="arithmatex">\(j \in \mathcal{J}\)</span> 得到 <span class="arithmatex">\((x_j^0, x_j^1)\)</span>。</li>
+<li><span class="arithmatex">\(\mathcal{J}\)</span> 即要打开的电路索引，CCOT 将 OT 与切分选择检查合并，有效抵御选择性中止攻击。</li>
+</ul>
+</li>
+<li>
+<p><strong>高效输入一致性证明</strong>：</p>
+<ul>
+<li>设输入长度为 <span class="arithmatex">\(\ell\)</span>，选取 <span class="arithmatex">\(\{g^{a_i^0}, g^{a_i^1}\}_{i=1}^\ell\)</span> 与 <span class="arithmatex">\(\{g^{r_j}\}_{j=1}^s\)</span>，设置第 <span class="arithmatex">\(j\)</span> 个电路第 <span class="arithmatex">\(i\)</span> 位密钥为 <span class="arithmatex">\(g^{a_i^0 r_j}, g^{a_i^1 r_j}\)</span>。</li>
+<li>在 DDH 假设下，已知 <span class="arithmatex">\(\{g^{a_i^0}, g^{a_i^1}, g^{r_j}\}\)</span> 与实际输入对应密钥时，其余密钥仍伪随机，从而使一致性 ZK 证明更高效。</li>
+</ul>
+</li>
+</ol>
+</details>
+<h3 id="5-1-ccot">5. 1 CCOT 理想功能<a class="headerlink" href="#5-1-ccot" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">切分选择 OT 理想功能 <span class="arithmatex">\(F_{CCOT}\)</span></p>
 <ul>
-<li><strong>发送方输入</strong>：<span class="arithmatex">\(s\)</span> 对消息</li>
-</ul>
-<div class="arithmatex">\[
-\bar{x}=\{(x_i^0,x_i^1)\}_{i=1}^{s}
-\]</div>
-<ul>
+<li><strong>发送方输入</strong>：<span class="arithmatex">\(s\)</span> 对消息 <span class="arithmatex">\(\bar{x}=\{(x_i^0,x_i^1)\}_{i=1}^{s}\)</span></li>
 <li><strong>接收方输入</strong>：选择比特 <span class="arithmatex">\(\sigma_1,\dots,\sigma_s\in\{0,1\}\)</span>，以及集合 <span class="arithmatex">\(J\subseteq[s]\)</span></li>
 <li>若 <span class="arithmatex">\(|J|\ne s/2\)</span>，双方输出 <span class="arithmatex">\(\bot\)</span></li>
 <li>若 <span class="arithmatex">\(|J|=s/2\)</span>：<ul>
@@ -4399,70 +4557,100 @@ f_1(x,y)=\alpha-p.
 </li>
 </ul>
 </div>
-<div class="admonition info">
-<p class="admonition-title">单一选择与批处理版本</p>
 <ul>
 <li><strong>单一选择 CCOT <span class="arithmatex">\(F_{CCOT}^{S}\)</span></strong>：接收方只有一个选择位 <span class="arithmatex">\(\sigma\)</span>，对所有 <span class="arithmatex">\(j\notin J\)</span> 都获得 <span class="arithmatex">\(x_j^\sigma\)</span></li>
 <li><strong>批处理单一选择 CCOT <span class="arithmatex">\(F_{CCOT}^{S,B}\)</span></strong>：发送方输入 <span class="arithmatex">\(\ell\)</span> 个长度为 <span class="arithmatex">\(s\)</span> 的消息对向量，接收方输入 <span class="arithmatex">\(\ell\)</span> 个选择位 <span class="arithmatex">\(\sigma_1,\dots,\sigma_\ell\)</span> 和同一个检查集合 <span class="arithmatex">\(J\)</span></li>
 </ul>
-<p>LP11 用批处理单一选择 CCOT：对 <span class="arithmatex">\(P_2\)</span> 的每个输入位运行一次“单一选择”，但共享同一个检查集合 <span class="arithmatex">\(J\)</span>。</p>
-</div>
-<h3 id="62-pvw-ddh-ot">6.2 PVW 型 DDH OT 构造<a class="headerlink" href="#62-pvw-ddh-ot" title="Permanent link">&para;</a></h3>
-<p>课件用 PVW 协议作为 CCOT 的底层 OT 组件。设群生成元为 <span class="arithmatex">\(g_0\)</span>，发送方输入 <span class="arithmatex">\((x_0,x_1)\)</span>，接收方选择 <span class="arithmatex">\(\sigma\)</span>。</p>
-<div class="admonition info">
-<p class="admonition-title">协议骨架</p>
+<h3 id="5-2-pvw-ddh-ot">5. 2 PVW 型 DDH OT 构造<a class="headerlink" href="#5-2-pvw-ddh-ot" title="Permanent link">&para;</a></h3>
+<p><img src="/mpc/images/image9-4.png" style="display: block; width: 80%; margin: 0 auto;" /></p>
+<details class="info">
+<summary>协议步骤说明</summary>
 <ol>
-<li>接收方取 <span class="arithmatex">\(y,\alpha_0\xleftarrow{}_{\$}\mathbb{Z}_q\)</span>，令 <span class="arithmatex">\(\alpha_1=\alpha_0+1\)</span>，</li>
-</ol>
+<li>
+<p>接收方取 <span class="arithmatex">\(y,\alpha_0\xleftarrow{}_{\$}\mathbb{Z}_q\)</span>，令 <span class="arithmatex">\(\alpha_1=\alpha_0+1\)</span>，</p>
 <div class="arithmatex">\[
 g_1=g_0^y,\qquad h_0=g_0^{\alpha_0},\qquad h_1=g_1^{\alpha_1}
 \]</div>
 <p>并向发送方发送 <span class="arithmatex">\((g_1,h_0,h_1)\)</span>，再用 ZK 证明相关元组满足“非 DH”约束，保证自己不能同时解两条消息。</p>
-<ol>
-<li>接收方取 <span class="arithmatex">\(r\xleftarrow{}_{\$}\mathbb{Z}_q\)</span>，发送</li>
-</ol>
+</li>
+<li>
+<p>接收方取 <span class="arithmatex">\(r\xleftarrow{}_{\$}\mathbb{Z}_q\)</span>，发送</p>
 <div class="arithmatex">\[
-\tilde{g}=(g_\sigma)^r,\qquad \tilde{h}=(h_\sigma)^r.
+\tilde{g}=(g_\sigma)^r,\qquad \tilde{h}=(h_\sigma)^r
 \]</div>
-<ol>
-<li>发送方定义随机化函数</li>
-</ol>
+</li>
+<li>
+<p>发送方定义随机化函数</p>
 <div class="arithmatex">\[
 RAND(w,x,y,z)=(u,v)=(w^s y^t,\ x^s z^t)
 \]</div>
 <p>其中 <span class="arithmatex">\(s,t\xleftarrow{}_{\$}\mathbb{Z}_q\)</span>，并计算</p>
 <div class="arithmatex">\[
-(u_b,v_b)=RAND(g_b,\tilde{g},h_b,\tilde{h}),\qquad w_b=v_b\cdot x_b.
+(u_b,v_b)=RAND(g_b,\tilde{g},h_b,\tilde{h}),\qquad w_b=v_b\cdot x_b
 \]</div>
-<ol>
-<li>接收方恢复</li>
-</ol>
+</li>
+<li>
+<p>接收方恢复</p>
 <div class="arithmatex">\[
-x_\sigma=\frac{w_\sigma}{(u_\sigma)^r}.
+x_\sigma=\frac{w_\sigma}{(u_\sigma)^r}
 \]</div>
+</li>
+</ol>
+</details>
+<ul>
+<li><strong>正确性</strong>：<span class="arithmatex">\(\frac{w_\sigma}{(u_\sigma)^r}=\frac{v_\sigma \cdot x_\sigma}{(u_\sigma)^r}=\frac{g^s \cdot h^t \cdot x_\sigma}{\left( (g_\sigma)^s \cdot (h_\sigma)^t \right)^r}=\frac{g^s \cdot h^t \cdot x_\sigma}{g^s \cdot h^t}=x_\sigma\)</span></li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title">DH 元组的零知识证明协议</p>
+<p><img src="/mpc/images/image9-5.png" style="display: block; width: 80%; margin: 0 auto;" /></p>
 </div>
-<details class="tip">
-<summary>安全直觉</summary>
+<div class="admonition tip">
+<p class="admonition-title">安全直觉</p>
 <ul>
 <li>若 <span class="arithmatex">\((g_0,g_1,h_0,h_1)\)</span> 不是 DH 元组，<span class="arithmatex">\(RAND\)</span> 使至少一侧密文看起来均匀随机，接收方只能解一条消息</li>
-<li>若接收方能构造成 DH 元组并知道 <span class="arithmatex">\(y=\log_{g_0}g_1\)</span>，则可能解出两条消息，因此需要 ZK 证明排除这类作弊</li>
-<li>模拟器在发送方被攻陷时可把元组设成可提取形式，在接收方被攻陷时可通过 ZK 提取其选择位</li>
+<li>若接收方能构造成 DH 元组并知道 <span class="arithmatex">\(y=\log_{g_0}g_1\)</span>，则可能解出两条消息，因此需要 ZK 证明排除这类作弊<ul>
+<li>对 <span class="arithmatex">\(\sigma = 0\)</span>，接收方已得 <span class="arithmatex">\(x_0\)</span>，并可计算 <span class="arithmatex">\(x_1 = \frac{w_1}{(u_1)^{ry^{-1}}} = \frac{g^s h^t x_1}{\left((g_1)^s (h_1)^t\right)^{ry^{-1}}} = \frac{g^s h^t x_1}{\left((g_0)^s (h_0)^t\right)^r} = x_1\)</span></li>
+<li>同理 <span class="arithmatex">\(\sigma = 1\)</span> 时，可由 <span class="arithmatex">\(w_0 / (u_0)^{ry}\)</span> 得到 <span class="arithmatex">\(x_0\)</span></li>
 </ul>
-</details>
-<h3 id="63-ccot">6.3 CCOT 协议与批处理<a class="headerlink" href="#63-ccot" title="Permanent link">&para;</a></h3>
+</li>
+<li>模拟器在发送方被攻陷时可把元组设成可提取形式，在接收方被攻陷时可通过 ZK 提取其选择位<ul>
+<li>发送方 <span class="arithmatex">\(P_s\)</span> 被攻陷：模拟器 <span class="arithmatex">\(S\)</span> 令 <span class="arithmatex">\(\alpha_1 = \alpha_0\)</span>（使元组为 DH），并伪造零知识证明，从而提取 <span class="arithmatex">\(P_s\)</span> 的两个输入</li>
+<li>接收方 <span class="arithmatex">\(P_r\)</span> 被攻陷：模拟器 <span class="arithmatex">\(S\)</span> 通过零知识证明提取见证 <span class="arithmatex">\(\alpha_0\)</span>，计算 <span class="arithmatex">\(\alpha_1 = \alpha_0 + 1\)</span>。比较 <span class="arithmatex">\(h = g^{\alpha_0}\)</span> 或 <span class="arithmatex">\(h = g^{\alpha_1}\)</span>，即可恢复选择比特 <span class="arithmatex">\(\sigma\)</span></li>
+</ul>
+</li>
+</ul>
+</div>
 <div class="admonition info">
-<p class="admonition-title">CCOT 协议思路</p>
+<p class="admonition-title">子集是 DH 元组的零知识证明协议</p>
+<p><img src="/mpc/images/image9-6.png" style="display: block; width: 80%; margin: 0 auto;" /></p>
+</div>
+<h3 id="5-3-ccot">5. 3 CCOT 协议与批处理<a class="headerlink" href="#5-3-ccot" title="Permanent link">&para;</a></h3>
+<p><img src="/mpc/images/image9-7.png" style="display: block; width: 80%; margin: 0 auto;" /></p>
+<details class="info">
+<summary>CCOT 协议思路</summary>
 <ul>
 <li><strong>准备阶段</strong>：接收方为每个 <span class="arithmatex">\(j\in[s]\)</span> 构造 <span class="arithmatex">\((h_{j,0},h_{j,1})\)</span>；对 <span class="arithmatex">\(j\in J\)</span> 构造可打开两侧的结构，对 <span class="arithmatex">\(j\notin J\)</span> 构造只能打开一侧的结构</li>
 <li><strong>集合证明</strong>：接收方零知识证明“恰有 <span class="arithmatex">\(s/2\)</span> 个位置对应检查集合”，防止事后改变 <span class="arithmatex">\(J\)</span></li>
 <li><strong>传输阶段</strong>：对每个 <span class="arithmatex">\(j\)</span> 并行运行 PVW 型传输；<span class="arithmatex">\(j\in J\)</span> 可恢复两条消息，<span class="arithmatex">\(j\notin J\)</span> 只能恢复所选消息</li>
 </ul>
-</div>
-<p>批处理单一选择版本只运行一次准备阶段；对每个输入位 <span class="arithmatex">\(i\in[\ell]\)</span> 并行运行传输阶段，使所有输入位共享同一个检查集合 <span class="arithmatex">\(J\)</span>，从而和 Cut-and-Choose 电路划分保持一致。</p>
-<h3 id="64">6.4 输入一致性零知识证明<a class="headerlink" href="#64" title="Permanent link">&para;</a></h3>
-<p>LP11 还需要证明 <span class="arithmatex">\(P_1\)</span> 在所有计算电路中使用同一个输入位。课件把它归约为如下 OR 型 DH 证明。</p>
+</details>
+<p>批处理单一选择版本只运行一次准备阶段，对每个输入位 <span class="arithmatex">\(i\in[\ell]\)</span> 并行运行传输阶段，使所有输入位共享同一个检查集合 <span class="arithmatex">\(J\)</span>，从而和 Cut-and-Choose 电路划分保持一致。</p>
 <div class="admonition info">
-<p class="admonition-title">证明目标</p>
+<p class="admonition-title">批处理单一选择切分选择 OT 理想功能 <span class="arithmatex">\(\mathcal{F}_{\text{CCOT}}^{S,B}\)</span></p>
+<ul>
+<li><strong>输入</strong>：<ul>
+<li>发送方 <span class="arithmatex">\(P_s\)</span> 的输入是 <span class="arithmatex">\(\ell\)</span> 个长度为 <span class="arithmatex">\(s\)</span> 的向量 <span class="arithmatex">\(\vec{x}_i\)</span>, <span class="arithmatex">\(i \in [\ell]\)</span>（每个向量由 <span class="arithmatex">\(s\)</span> 对消息构成）。</li>
+<li>接收方 <span class="arithmatex">\(P_r\)</span> 的输入是 <span class="arithmatex">\(\ell\)</span> 个选择比特 <span class="arithmatex">\(\sigma_1, \dots, \sigma_\ell \in \{0, 1\}\)</span> 和大小为 <span class="arithmatex">\(s/2\)</span> 的集合 <span class="arithmatex">\(\mathcal{J} \subseteq [s]\)</span>。</li>
+</ul>
+</li>
+<li><strong>输出</strong>：如果 <span class="arithmatex">\(\mathcal{J}\)</span> 的大小不是 <span class="arithmatex">\(s/2\)</span>，<span class="arithmatex">\(P_s\)</span> 和 <span class="arithmatex">\(P_r\)</span> 的输出为 <span class="arithmatex">\(\perp\)</span>。否则：<ul>
+<li>对于 <span class="arithmatex">\(i \in [\ell]\)</span> 和 <span class="arithmatex">\(j \in \mathcal{J}\)</span>，接收方 <span class="arithmatex">\(P_r\)</span> 获得 <span class="arithmatex">\(\vec{x}_i\)</span> 的第 <span class="arithmatex">\(j\)</span> 对消息。</li>
+<li>对于 <span class="arithmatex">\(i \in [\ell]\)</span> 和 <span class="arithmatex">\(j \notin \mathcal{J}\)</span>，接收方 <span class="arithmatex">\(P_r\)</span> 获得 <span class="arithmatex">\(\vec{x}_i\)</span> 的第 <span class="arithmatex">\(j\)</span> 对消息的第 <span class="arithmatex">\(\sigma_i\)</span> 个值（<span class="arithmatex">\(\sigma_i \in \{0, 1\}\)</span>，这里的第 <span class="arithmatex">\(\sigma_i\)</span> 个值从 0 开始计数）。</li>
+</ul>
+</li>
+</ul>
+</div>
+<h3 id="5-4">5. 4 输入一致性零知识证明<a class="headerlink" href="#5-4" title="Permanent link">&para;</a></h3>
 <p>给定陈述</p>
 <div class="arithmatex">\[
 (G,g_0,g_1,g',u_1,v_1,\dots,u_s,v_s,h_1,\dots,h_s),
@@ -4476,9 +4664,8 @@ g'=(g_0)^r\ \land\ \forall j,\ h_j=(u_j)^r,
 g'=(g_1)^r\ \land\ \forall j,\ h_j=(v_j)^r.
 \]</div>
 <p>第一种对应输入位为 <span class="arithmatex">\(0\)</span>，第二种对应输入位为 <span class="arithmatex">\(1\)</span>；因此通过证明就能保证所有计算电路使用同一个输入比特。</p>
-</div>
-<details class="info">
-<summary>压缩证明技巧</summary>
+<div class="admonition tip">
+<p class="admonition-title">压缩证明技巧</p>
 <p>验证者随机取 <span class="arithmatex">\(\gamma_1,\dots,\gamma_s\)</span>，双方本地计算</p>
 <div class="arithmatex">\[
 \tilde{u}=\prod_{j=1}^{s}u_j^{\gamma_j},\qquad
@@ -4486,257 +4673,202 @@ g'=(g_1)^r\ \land\ \forall j,\ h_j=(v_j)^r.
 \tilde{h}=\prod_{j=1}^{s}h_j^{\gamma_j}.
 \]</div>
 <p>然后证明 <span class="arithmatex">\((g_0,g',\tilde{u},\tilde{h})\)</span> 或 <span class="arithmatex">\((g_1,g',\tilde{v},\tilde{h})\)</span> 是 DH 元组。随机线性组合把 <span class="arithmatex">\(s\)</span> 个等式压缩成一个等式，降低证明成本。</p>
-</details>
-<h2 id="7-lp11">7 LP11 协议<a class="headerlink" href="#7-lp11" title="Permanent link">&para;</a></h2>
-<p>课件给出的 LP11 是一个基于 DDH、Cut-and-Choose、CCOT 和 ZK 的两方恶意安全 GC 协议。</p>
-<h3 id="71">7.1 公共输入与私有输入<a class="headerlink" href="#71" title="Permanent link">&para;</a></h3>
-<ul>
-<li><strong>公共输入</strong>：<ul>
-<li>统计安全参数 <span class="arithmatex">\(s\)</span></li>
-<li>函数 <span class="arithmatex">\(f\)</span> 对应的布尔电路 <span class="arithmatex">\(C\)</span></li>
-<li>群参数 <span class="arithmatex">\((G,q,g)\)</span>，其中 <span class="arithmatex">\(G\)</span> 是阶为 <span class="arithmatex">\(q\)</span>、以 <span class="arithmatex">\(g\)</span> 为生成元的循环群</li>
-</ul>
-</li>
-<li><strong>私有输入</strong>：<ul>
-<li><span class="arithmatex">\(P_1\)</span> 输入 <span class="arithmatex">\(x\in\{0,1\}^{\ell}\)</span></li>
-<li><span class="arithmatex">\(P_2\)</span> 输入 <span class="arithmatex">\(y\in\{0,1\}^{\ell}\)</span></li>
-</ul>
-</li>
-</ul>
-<h3 id="72">7.2 协议步骤<a class="headerlink" href="#72" title="Permanent link">&para;</a></h3>
-<div class="admonition info">
-<p class="admonition-title">Step 1. 构造 <span class="arithmatex">\(s\)</span> 个混淆电路</p>
-<ul>
-<li><span class="arithmatex">\(P_1\)</span> 随机选</li>
-</ul>
-<div class="arithmatex">\[
-a_i^0,a_i^1 \xleftarrow{}_{\$}\mathbb{Z}_q,\qquad
-r_1,\dots,r_s \xleftarrow{}_{\$}\mathbb{Z}_q
-\]</div>
-<ul>
-<li>对第 <span class="arithmatex">\(j\)</span> 个电路中第 <span class="arithmatex">\(i\)</span> 条输入导线，令</li>
-</ul>
-<div class="arithmatex">\[
-k_{i,j}^0 = H(g^{a_i^0 r_j}),\qquad
-k_{i,j}^1 = H(g^{a_i^1 r_j})
-\]</div>
-<ul>
-<li>用这些密钥构造 <span class="arithmatex">\(GC_1,\dots,GC_s\)</span></li>
-</ul>
 </div>
-<div class="admonition info">
-<p class="admonition-title">Step 2. 批处理单一选择 CCOT</p>
+<h3 id="5-5-lp11">5. 5 LP11 协议<a class="headerlink" href="#5-5-lp11" title="Permanent link">&para;</a></h3>
 <ul>
-<li><span class="arithmatex">\(P_2\)</span> 选一个随机集合 <span class="arithmatex">\(J\subseteq [s]\)</span>，满足 <span class="arithmatex">\(|J|=s/2\)</span></li>
-<li>对 <span class="arithmatex">\(j\in J\)</span> 的检查电路，它获得自己输入导线的<strong>两把</strong>密钥</li>
-<li>对 <span class="arithmatex">\(j\notin J\)</span> 的计算电路，它只获得与真实输入 <span class="arithmatex">\(y\)</span> 对应的一把密钥</li>
+<li><strong>公共输入</strong>：统计安全参数 <span class="arithmatex">\(s\)</span>、函数 <span class="arithmatex">\(f\)</span> 对应的布尔电路 <span class="arithmatex">\(C\)</span>、群参数 <span class="arithmatex">\((G,q,g)\)</span>，其中 <span class="arithmatex">\(G\)</span> 是阶为 <span class="arithmatex">\(q\)</span>、以 <span class="arithmatex">\(g\)</span> 为生成元的循环群</li>
+<li><strong>私有输入</strong>：<span class="arithmatex">\(P_1\)</span> 输入 <span class="arithmatex">\(x\in\{0,1\}^{\ell}\)</span>，<span class="arithmatex">\(P_2\)</span> 输入 <span class="arithmatex">\(y\in\{0,1\}^{\ell}\)</span></li>
 </ul>
-</div>
-<div class="admonition info">
-<p class="admonition-title">Step 3. 发送电路与承诺</p>
-<p><span class="arithmatex">\(P_1\)</span> 发送：</p>
-<ul>
-<li><span class="arithmatex">\(s\)</span> 个混淆电路</li>
-<li>随机数提取器 <span class="arithmatex">\(H\)</span></li>
-<li>输入密钥相关承诺</li>
-</ul>
-<div class="arithmatex">\[
-\{(i,0,g^{a_i^0}),(i,1,g^{a_i^1})\}_{i=1}^{\ell},
-\qquad
-\{(j,g^{r_j})\}_{j=1}^{s}
-\]</div>
-</div>
-<div class="admonition info">
-<p class="admonition-title">Step 4. 发送切分选择挑战</p>
-<p><span class="arithmatex">\(P_2\)</span> 发送：</p>
-<ul>
-<li>检查集合 <span class="arithmatex">\(J\)</span></li>
-<li>检查电路中自己对应输入位的两把密钥</li>
-</ul>
-<p>然后把：</p>
-<ul>
-<li><span class="arithmatex">\(j\in J\)</span> 的电路作为<strong>检查电路</strong></li>
-<li><span class="arithmatex">\(j\notin J\)</span> 的电路作为<strong>计算电路</strong></li>
-</ul>
-</div>
-<div class="admonition info">
-<p class="admonition-title">Step 5. 打开检查电路随机性</p>
-<p>对每个 <span class="arithmatex">\(j\in J\)</span>，<span class="arithmatex">\(P_1\)</span> 发送 <span class="arithmatex">\(r_j\)</span>。<br />
-<span class="arithmatex">\(P_2\)</span> 检查它与承诺中的 <span class="arithmatex">\(g^{r_j}\)</span> 是否一致。</p>
-</div>
-<div class="admonition info">
-<p class="admonition-title">Step 6. 验证检查电路正确性</p>
-<p>对每个 <span class="arithmatex">\(j\in J\)</span>：</p>
-<ul>
-<li>用 <span class="arithmatex">\(g^{a_i^0}, g^{a_i^1}, r_j\)</span> 重新计算 <span class="arithmatex">\(P_1\)</span> 的输入密钥</li>
-<li>用 CCOT 得到的密钥填充 <span class="arithmatex">\(P_2\)</span> 输入导线</li>
-<li>完整解密门表并检查电路是否正确</li>
-</ul>
-<p>若任一电路错误，则输出 <span class="arithmatex">\(\bot\)</span>。</p>
-</div>
-<div class="admonition info">
-<p class="admonition-title">Step 7. 发送计算电路输入密钥并证明一致性</p>
-<p>对每个 <span class="arithmatex">\(j\notin J\)</span>、每个输入位 <span class="arithmatex">\(i\)</span>：</p>
-<ul>
-<li><span class="arithmatex">\(P_1\)</span> 发送</li>
-</ul>
-<div class="arithmatex">\[
-k'_{i,j}=g^{a_i^{x_i}r_j}
-\]</div>
-<ul>
-<li><span class="arithmatex">\(P_2\)</span> 设</li>
-</ul>
-<div class="arithmatex">\[
-k_{i,j}=H(k'_{i,j})
-\]</div>
-<ul>
-<li>同时 <span class="arithmatex">\(P_1\)</span> 并行做 ZK 证明：存在同一个 <span class="arithmatex">\(\sigma_i\in\{0,1\}\)</span>，使得对所有 <span class="arithmatex">\(j\notin J\)</span> 都有</li>
-</ul>
-<div class="arithmatex">\[
-k'_{i,j}=g^{a_i^{\sigma_i}r_j}
-\]</div>
-<p>这一步保证<strong>输入一致性</strong></p>
-</div>
-<div class="admonition info">
-<p class="admonition-title">Step 8. 计算并多数投票</p>
-<ul>
-<li><span class="arithmatex">\(P_2\)</span> 在所有计算电路上求值</li>
-<li>若某个电路计算失败，记其输出为 <span class="arithmatex">\(\bot\)</span></li>
-<li>最终取多数输出作为协议输出</li>
-</ul>
-</div>
-<h2 id="8-lp11">8 LP11 的安全性证明<a class="headerlink" href="#8-lp11" title="Permanent link">&para;</a></h2>
-<h3 id="81-1p_1">8.1 情况 1：<span class="arithmatex">\(P_1\)</span> 被攻陷<a class="headerlink" href="#81-1p_1" title="Permanent link">&para;</a></h3>
-<p>模拟器需要解决三件事：</p>
+<p><img src="/mpc/images/image9-8.png" style="display: block; width: 70%; margin: 0 auto;" /></p>
+<details class="info">
+<summary>协议步骤说明</summary>
 <ol>
+<li>
+<p><strong>构造 <span class="arithmatex">\(s\)</span> 个混淆电路</strong>：</p>
+<ul>
+<li><span class="arithmatex">\(P_1\)</span> 选择随机值 <span class="arithmatex">\(a_1^0, a_1^1, \dots, a_\ell^0, a_\ell^1 \xleftarrow{\$} \mathbb{Z}_q\)</span> 和 <span class="arithmatex">\(r_1, \dots, r_s \xleftarrow{\$} \mathbb{Z}_q\)</span></li>
+<li>
+<p>设 <span class="arithmatex">\(w_1, \dots, w_\ell\)</span> 是 <span class="arithmatex">\(P_1\)</span> 在电路 <span class="arithmatex">\(C\)</span> 中的输入导线，用 <span class="arithmatex">\(w_{i,j}\)</span> 表示第 <span class="arithmatex">\(j\)</span> 个混淆电路中的导线 <span class="arithmatex">\(w_i\)</span>，用 <span class="arithmatex">\(k_{i,j}^b\)</span> 表示导线 <span class="arithmatex">\(w_{i,j}\)</span> 对应于比特 <span class="arithmatex">\(b\)</span> 的密钥，<span class="arithmatex">\(P_1\)</span> 将这些输入导线的密钥设置为</p>
+<div class="arithmatex">\[
+k_{i,j}^0 = H(g^{a_i^0 \cdot r_j}),\ k_{i,j}^1 = H(g^{a_i^1 \cdot r_j})
+\]</div>
+<p>其中，<span class="arithmatex">\(H\)</span> 是一个随机数提取器。</p>
+</li>
+<li>
+<p><span class="arithmatex">\(P_1\)</span> 用这些密钥构造 <span class="arithmatex">\(s\)</span> 个混淆电路 <span class="arithmatex">\(GC_1, \dots, GC_s\)</span></p>
+</li>
+<li>
+<p>用这些密钥构造 <span class="arithmatex">\(GC_1,\dots,GC_s\)</span></p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>茫然传输</strong>：<span class="arithmatex">\(P_1\)</span> 和 <span class="arithmatex">\(P_2\)</span> 以参数 <span class="arithmatex">\(\ell\)</span> 和 <span class="arithmatex">\(s\)</span> 执行批处理单一选择切分选择 OT</p>
+<ul>
+<li><span class="arithmatex">\(P_1\)</span> 定义向量 <span class="arithmatex">\(\vec{z}_1, \dots, \vec{z}_\ell\)</span>，其中 <span class="arithmatex">\(\vec{z}_i\)</span> 包含了 <span class="arithmatex">\(P_2\)</span> 的输入比特 <span class="arithmatex">\(y_i\)</span> 在 <span class="arithmatex">\(GC_1, \dots, GC_s\)</span> 中的 <span class="arithmatex">\(s\)</span> 对密钥</li>
+<li><span class="arithmatex">\(P_2\)</span> 的输入是大小为 <span class="arithmatex">\(s/2\)</span> 的随机集合 <span class="arithmatex">\(\mathcal{J} \subset [s]\)</span> 和 <span class="arithmatex">\(\sigma_1, \dots, \sigma_\ell \in \{0,1\}\)</span>，其中 <span class="arithmatex">\(\sigma_i = y_i,\ i \in [\ell]\)</span>。</li>
+<li>对于 <span class="arithmatex">\(GC_j,\ j \in \mathcal{J}\)</span>，<span class="arithmatex">\(P_2\)</span> 获得他的输入导线的两个密钥；对于其他电路，<span class="arithmatex">\(P_2\)</span> 获得他的输入对应的密钥。</li>
+</ul>
+</li>
+<li>
+<p><strong>发送电路和承诺</strong>：<span class="arithmatex">\(P_1\)</span> 向 <span class="arithmatex">\(P_2\)</span> 发送 <span class="arithmatex">\(s\)</span> 个混淆电路，随机数提取器 <span class="arithmatex">\(H\)</span> 的定义，以及 <span class="arithmatex">\(P_1\)</span> 的输入导线密钥的承诺 <span class="arithmatex">\(\{(i,0,g^{a_i^0}),(i,1,g^{a_i^1})\}_{i=1}^\ell\)</span>，<span class="arithmatex">\(\{(j,g^{r_j})\}_{j=1}^s\)</span>。</p>
+</li>
+<li>
+<p><strong>发送切分选择挑战</strong>：<span class="arithmatex">\(P_2\)</span> 向 <span class="arithmatex">\(P_1\)</span> 发送集合 <span class="arithmatex">\(\mathcal{J}\)</span> 以及电路 <span class="arithmatex">\(\{GC_j\}_{j\in\mathcal{J}}\)</span> 中 <span class="arithmatex">\(P_2\)</span> 的第一个输入比特 <span class="arithmatex">\(y_1\)</span> 对应的两个密钥，如果密钥不正确，<span class="arithmatex">\(P_1\)</span> 输出 <span class="arithmatex">\(\perp\)</span> 并终止协议。</p>
+<ul>
+<li><span class="arithmatex">\(\{GC_j\}_{j\in\mathcal{J}}\)</span> 称为检查电路，<span class="arithmatex">\(\{GC_j\}_{j\notin\mathcal{J}}\)</span> 称为计算电路。</li>
+</ul>
+</li>
+<li>
+<p><strong>打开检查电路随机性</strong>：对于每个检查电路 <span class="arithmatex">\(GC_j\)</span>，<span class="arithmatex">\(P_1\)</span> 向 <span class="arithmatex">\(P_2\)</span> 发送 <span class="arithmatex">\(r_j\)</span>，<span class="arithmatex">\(P_2\)</span> 检查该值与第 3 步中的 <span class="arithmatex">\((j,g^{r_j})\)</span> 是否一致，如果不一致，<span class="arithmatex">\(P_2\)</span> 输出 <span class="arithmatex">\(\perp\)</span> 并终止协议。</p>
+</li>
+<li>
+<p><strong>验证检查电路正确性</strong>：</p>
+<ul>
+<li>对于 <span class="arithmatex">\(j\in\mathcal{J}\)</span>，<span class="arithmatex">\(P_2\)</span> 使用第 3 步得到的 <span class="arithmatex">\(g^{a_i^0},g^{a_i^1}\)</span> 和第 5 步得到的 <span class="arithmatex">\(r_j\)</span> 计算 <span class="arithmatex">\(GC_j\)</span> 中 <span class="arithmatex">\(P_1\)</span> 的输入导线密钥 <span class="arithmatex">\(k_{i,j}^0 = H(g^{a_i^0\cdot r_j}),k_{i,j}^1 = H(g^{a_i^1\cdot r_j})\)</span></li>
+<li><span class="arithmatex">\(P_2\)</span> 将自己的输入导线密钥设置为切分选择 OT 中获得的值</li>
+<li>已知所有的输入导线密钥，<span class="arithmatex">\(P_2\)</span> 解密所有的混淆表来检查混淆电路的正确性</li>
+<li>如果存在不正确的混淆电路，<span class="arithmatex">\(P_2\)</span> 输出 <span class="arithmatex">\(\perp\)</span> 并终止协议</li>
+</ul>
+</li>
+<li>
+<p><strong>发送计算电路输入密钥并证明一致性</strong>：</p>
+<ul>
+<li>对于 <span class="arithmatex">\(j \notin \mathcal{J},\ i \in [\ell]\)</span>，<span class="arithmatex">\(P_1\)</span> 发送 <span class="arithmatex">\(k_{i,j}' = g^{a_i^{x_i} \cdot r_j}\)</span> 给 <span class="arithmatex">\(P_2\)</span>，<span class="arithmatex">\(P_2\)</span> 设置 <span class="arithmatex">\(k_{i,j} = H(k_{i,j}')\)</span></li>
+<li><span class="arithmatex">\(P_1\)</span> 证明输入密钥的一致性：对于 <span class="arithmatex">\(i \in [\ell]\)</span>，<span class="arithmatex">\(P_1\)</span> 并行地证明存在 <span class="arithmatex">\(\sigma_i \in \{0,1\}\)</span> 使得 <span class="arithmatex">\(k_{i,j}' = g^{a_i^{\sigma_i} \cdot r_j}\)</span> 对 <span class="arithmatex">\(j \notin \mathcal{J}\)</span> 都成立，如果证明不通过，<span class="arithmatex">\(P_2\)</span> 输出 <span class="arithmatex">\(\perp\)</span> 并终止协议</li>
+</ul>
+</li>
+<li>
+<p><strong>计算并多数投票</strong>：</p>
+<ul>
+<li><span class="arithmatex">\(P_2\)</span> 用第 7 步获得的 <span class="arithmatex">\(P_1\)</span> 的输入密钥和第 2 步获得的 <span class="arithmatex">\(P_2\)</span> 的输入密钥计算所有的计算电路 <span class="arithmatex">\(\{GC_j\}_{j \notin \mathcal{J}}\)</span></li>
+<li>如果某个电路的计算失败了，<span class="arithmatex">\(P_2\)</span> 将其输入记为 <span class="arithmatex">\(\perp\)</span></li>
+<li>最后，<span class="arithmatex">\(P_2\)</span> 取大多数电路的输出作为协议的输出</li>
+</ul>
+</li>
+</ol>
+</details>
+<h2 id="6-lp11">6 LP11 的安全性证明<a class="headerlink" href="#6-lp11" title="Permanent link">&para;</a></h2>
+<div class="admonition quote">
+<p class="admonition-title">证明目标</p>
+<p>在 <span class="arithmatex">\(\mathcal{F}_{\text{CCOT}}^{S,B}\)</span>-混合模型下，构造模拟器 <span class="arithmatex">\(\mathcal{S}\)</span>，使得</p>
+<div class="arithmatex">\[
+\left\{ \text{IDEAL}_{f,\mathcal{S}}(x,y,n,s) \right\}_{x,y\in\{0,1\}^\ell;\ n,s\in\mathbb{N}} \stackrel{\text{comp}}{\approx} \left\{ \text{REAL}_{\Pi,\mathcal{A}}(x,y,n,s) \right\}_{x,y\in\{0,1\}^\ell;\ n,s\in\mathbb{N}}.
+\]</div>
+<ul>
 <li><strong>检查电路都正确但计算电路多数错误</strong> 的概率必须可忽略</li>
 <li>必须从第 7 步 ZK 中<strong>提取一致输入</strong> <span class="arithmatex">\(x\)</span></li>
 <li>模拟出的挑战集合 <span class="arithmatex">\(J\)</span>、检查消息、承诺验证过程都要与真实分布一致</li>
-</ol>
-<div class="admonition tip">
+</ul>
+</div>
+<h3 id="6-1-1p_1">6. 1 情况 1：<span class="arithmatex">\(P_1\)</span> 被攻陷<a class="headerlink" href="#6-1-1p_1" title="Permanent link">&para;</a></h3>
+<div class="admonition info">
 <p class="admonition-title">模拟器的主要步骤</p>
-<ul>
-<li>记录敌手在 CCOT 中的输入</li>
-<li>记录其发来的 <span class="arithmatex">\(GC_1,\dots,GC_s\)</span> 与承诺</li>
-<li>随机选择检查集合 <span class="arithmatex">\(J\)</span></li>
-<li>检查 <span class="arithmatex">\(g^{r_j}\)</span> 承诺与打开值是否一致</li>
-<li>验证检查电路正确性</li>
-<li>从输入一致性 ZK 中提取见证 <span class="arithmatex">\(a_i\)</span></li>
-<li>由</li>
-</ul>
+<ol>
+<li><span class="arithmatex">\(S\)</span> 内部运行敌手 <span class="arithmatex">\(\mathcal{A}\)</span>（控制 <span class="arithmatex">\(P_1\)</span>），记录其在 CCOT 中输入 <span class="arithmatex">\(\{(z_0^{i,j}, z_1^{i,j})\}_{i\in[\ell],j\in[s]}\)</span></li>
+<li>记录 <span class="arithmatex">\(P_1\)</span> 发送的 <span class="arithmatex">\(GC_1, \dots, GC_s\)</span> 及承诺 <span class="arithmatex">\(\{(i,0,u_i^0),(i,1,u_i^1)\}_{i=1}^\ell, \{(j,h_j)\}_{j=1}^s\)</span></li>
+<li><span class="arithmatex">\(S\)</span> 均匀随机选取 <span class="arithmatex">\(|\mathcal{J}| = s/2\)</span>，并模拟 <span class="arithmatex">\(P_2\)</span> 发送 <span class="arithmatex">\(\mathcal{J}\)</span> 与 <span class="arithmatex">\(\{(z_0^{1,j}, z_1^{1,j})\}_{j\in\mathcal{J}}\)</span>（协议第 4 步）</li>
+<li>记录 <span class="arithmatex">\(\{r_j\}_{j\in\mathcal{J}}\)</span>，检查 <span class="arithmatex">\(h_j \stackrel{?}{=} g^{r_j}\)</span>，若失败，向理想功能发送 <span class="arithmatex">\(\perp\)</span> 并终止</li>
+<li>按协议检查 <span class="arithmatex">\(\{GC_j\}_{j\in\mathcal{J}}\)</span> 正确性，若失败则发送 <span class="arithmatex">\(\perp\)</span> 并终止</li>
+<li>记录第 7(a) 步消息 <span class="arithmatex">\(\{k_{i,j}'\}_{i\in[\ell],j\notin\mathcal{J}}\)</span></li>
+<li>
+<p>从第 7(b) 步 ZK 证明提取见证 <span class="arithmatex">\(a_i\)</span>，满足</p>
 <div class="arithmatex">\[
-u_i^0=g^{a_i}\ \text{或}\ u_i^1=g^{a_i}
+k_{i,j}' = (h_j)^{a_i}\ (j\notin\mathcal{J}),\quad u_i^0 = g^{a_i}\ \lor\ u_i^1 = g^{a_i}.
 \]</div>
-<p>恢复出 <span class="arithmatex">\(x_i\in\{0,1\}\)</span></p>
+<p>若任一 <span class="arithmatex">\(i\)</span> 提取失败，则发送 <span class="arithmatex">\(\perp\)</span> 并终止</p>
+</li>
+<li>
+<p>对每个 <span class="arithmatex">\(i\in[\ell]\)</span>，若 <span class="arithmatex">\(u_i^0 = g^{a_i}\)</span> 置 <span class="arithmatex">\(x_i=0\)</span>，若 <span class="arithmatex">\(u_i^1 = g^{a_i}\)</span> 置 <span class="arithmatex">\(x_i=1\)</span>，输出提取到的 <span class="arithmatex">\(x=x_1\cdots x_\ell\)</span> 给可信方，并输出 <span class="arithmatex">\(\mathcal{A}\)</span> 的输出</p>
+</li>
+</ol>
 </div>
-<div class="admonition info">
+<div class="admonition tip">
 <p class="admonition-title">坏电路概率界</p>
-<p>令：</p>
+<p>对每个电路 <span class="arithmatex">\(GC_j\)</span>：</p>
 <ul>
-<li><code>noAbort</code>：检查电路全正确</li>
-<li><code>badMaj</code>：计算电路中坏电路至少一半</li>
+<li><span class="arithmatex">\(P_1\)</span> 输入导线密钥：<span class="arithmatex">\((g^{a_1^0 r_j}, g^{a_1^1 r_j}), \dots, (g^{a_\ell^0 r_j}, g^{a_\ell^1 r_j})\)</span></li>
+<li><span class="arithmatex">\(P_2\)</span> 输入导线密钥：来自 CCOT 输入 <span class="arithmatex">\((z_0^{i,j}, z_1^{i,j})\)</span></li>
 </ul>
-<p>则有</p>
+<p>若这两部分密钥不能将 <span class="arithmatex">\(GC_j\)</span> 打开为正确布尔电路 <span class="arithmatex">\(C\)</span>，则称 <span class="arithmatex">\(GC_j\)</span> 为<strong>坏电路</strong>，则有：</p>
 <div class="arithmatex">\[
-\Pr[\text{noAbort}\land \text{badMaj}] &lt; 2^{-(s/4-1)}.
+\Pr[\text{noAbort} \land \text{badMaj}] \le \sum_{i=s/4}^{s/2} \frac{\binom{s-i}{s/2}}{\binom{s}{s/2}} = \frac{\binom{\frac{3s}{4}+1}{\frac{s}{2}+1}}{\binom{s}{s/2}} &lt; 2^{-(s/4-1)}
 \]</div>
 </div>
-<div class="admonition info">
-<p class="admonition-title">最终区分优势</p>
-<p>条件于好事件时：</p>
+<p>条件于好事件（<span class="arithmatex">\(\lnot(\text{noAbort} \land \text{badMaj})\)</span>）时：</p>
 <ul>
 <li>ZK 提取失败概率为 <span class="arithmatex">\(\text{negl}(n)\)</span></li>
 <li>提取到的输入 <span class="arithmatex">\(x\)</span> 与真实输入一致</li>
 <li>多数计算电路输出为 <span class="arithmatex">\(f(x,y)\)</span></li>
+<li><span class="arithmatex">\(S\)</span> 对 <span class="arithmatex">\(\mathcal{J}\)</span> 与挑战消息的模拟分布与真实相同</li>
 </ul>
-<p>因而总优势满足</p>
+<p>总优势满足：</p>
 <div class="arithmatex">\[
-Adv \le 2^{-(s/4-1)} + negl(n).
+\text{Adv}_\mathcal{D} \le \Pr[\text{noAbort} \land \text{badMaj}] + \text{negl}(n) \le 2^{-(s/4-1)} + \text{negl}(n) = \text{negl}(n,s).
 \]</div>
-</div>
-<h3 id="82-2p_2">8.2 情况 2：<span class="arithmatex">\(P_2\)</span> 被攻陷<a class="headerlink" href="#82-2p_2" title="Permanent link">&para;</a></h3>
-<div class="admonition tip">
-<p class="admonition-title">模拟器思路</p>
-<ul>
-<li>从被攻陷的 <span class="arithmatex">\(P_2\)</span> 那里拿到：<ul>
-<li>检查集合 <span class="arithmatex">\(J\)</span></li>
-<li>选择位 <span class="arithmatex">\(\sigma_1,\dots,\sigma_\ell\)</span></li>
-</ul>
+<p>因而 <span class="arithmatex">\(P_1\)</span> 被攻陷的情况下，REAL 与 IDEAL 计算不可区分。</p>
+<h3 id="6-2-2p_2">6. 2 情况 2：<span class="arithmatex">\(P_2\)</span> 被攻陷<a class="headerlink" href="#6-2-2p_2" title="Permanent link">&para;</a></h3>
+<div class="admonition info">
+<p class="admonition-title">模拟器的主要步骤</p>
+<ol>
+<li><span class="arithmatex">\(S\)</span> 内部运行 <span class="arithmatex">\(A\)</span>（控制 <span class="arithmatex">\(P_2\)</span>），记录其向 <span class="arithmatex">\(\mathcal{F}_{\text{CCOT}}^{S,B}\)</span> 的输入 <span class="arithmatex">\(\mathcal{J}\)</span> 与 <span class="arithmatex">\(\sigma_1,\dots,\sigma_\ell\)</span>。若 <span class="arithmatex">\(|\mathcal{J}| \neq s/2\)</span>，则发送 <span class="arithmatex">\(\perp\)</span> 并终止。</li>
+<li>
+<p>随机选 <span class="arithmatex">\(a_i^0, a_i^1 \xleftarrow{\$} \mathbb{Z}_q\ (i\in[\ell])\)</span>，<span class="arithmatex">\(r_j \xleftarrow{\$} \mathbb{Z}_q\ (j\in[s])\)</span>，并构造密钥矩阵：</p>
+<div class="arithmatex">\[
+(x_{i,j}^0, x_{i,j}^1) = \left(H(g^{a_i^0 r_j}), H(g^{a_i^1 r_j})\right)
+\]</div>
+<p>对应 <span class="arithmatex">\(P_1\)</span> 输入导线，<span class="arithmatex">\(P_2\)</span> 输入导线密钥随机生成。</p>
 </li>
-<li>用这些值喂给理想 CCOT</li>
-<li>对 <span class="arithmatex">\(j\in J\)</span>，诚实构造真实检查电路</li>
-<li>对 <span class="arithmatex">\(j\notin J\)</span>，构造<strong>输出恒等于真实结果 <span class="arithmatex">\(z=f(x,y)\)</span> 的假电路</strong></li>
-<li>模拟发送承诺与输入一致性 ZK</li>
-</ul>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">失败事件 fail</p>
-<p><code>fail</code> 只会发生在：</p>
-<ul>
-<li><span class="arithmatex">\(P_2\)</span> 提交了 <span class="arithmatex">\(J'\ne J\)</span></li>
-<li>但仍然猜中了某个检查电路中自己本不该知道的两把正确密钥</li>
-</ul>
-<p>因此</p>
+<li>
+<p>将该矩阵作为发送方输入喂给理想 CCOT，令 <span class="arithmatex">\(A\)</span> 获得一致输出，<span class="arithmatex">\(j\in\mathcal{J}\)</span> 得到两把密钥，<span class="arithmatex">\(j\notin\mathcal{J}\)</span> 得到 <span class="arithmatex">\(\{x_{i,j}^{\sigma_i}\}_{i\in[\ell]}\)</span></p>
+</li>
+<li><span class="arithmatex">\(S\)</span> 发送 <span class="arithmatex">\(y=\sigma_1\cdots\sigma_\ell\)</span> 给可信方，得到功能输出 <span class="arithmatex">\(z=f(x,y)\)</span></li>
+<li>对 <span class="arithmatex">\(j \in \mathcal{J}\)</span>，诚实地构造检查电路 <span class="arithmatex">\(GC_j\)</span></li>
+<li>对 <span class="arithmatex">\(j \notin \mathcal{J}\)</span>，构造假电路 <span class="arithmatex">\(\widetilde{GC}_j\)</span>，其输出恒为 <span class="arithmatex">\(z\)</span>，输入导线密钥沿用前述矩阵</li>
+<li>模拟发送电路与承诺 <span class="arithmatex">\(\{(i,0,g^{a_i^0}),(i,1,g^{a_i^1})\}_{i=1}^\ell,\ \{(j,g^{r_j})\}_{j=1}^s\)</span></li>
+<li>
+<p>记录 <span class="arithmatex">\(A\)</span> 发来的 <span class="arithmatex">\(\mathcal{J}'\)</span> 与密钥，检查：</p>
 <div class="arithmatex">\[
-\Pr[\text{fail}] \le s\cdot 2^{-n} = negl(n).
+\mathcal{J}' \neq \mathcal{J} \land \text{两把密钥都正确} \Rightarrow \text{fail},
 \]</div>
+<p>密钥不正确则发送 <span class="arithmatex">\(\perp\)</span> 并终止；否则继续.</p>
+</li>
+<li>
+<p>发送 <span class="arithmatex">\(\{r_j\}_{j\in\mathcal{J}}\)</span>；对 <span class="arithmatex">\(j\notin\mathcal{J}\)</span> 发送 <span class="arithmatex">\(k_{i,j}' = g^{a_i^0 r_j}\)</span>，并诚实地执行输入一致性 ZK（取 <span class="arithmatex">\(x=0^\ell\)</span>）</p>
+</li>
+</ol>
 </div>
-<div class="admonition info">
-<p class="admonition-title">混合论证</p>
-<p>定义混合实验 <span class="arithmatex">\(H_0,\dots,H_{s/2}\)</span>：</p>
-<ul>
-<li><span class="arithmatex">\(H_t\)</span> 中前 <span class="arithmatex">\(t\)</span> 个计算电路已被替换成“假电路”</li>
-<li>其余仍为真实电路</li>
-</ul>
-<p>每一步由半诚实姚电路安全性保证：</p>
+<div class="admonition tip">
+<p class="admonition-title">失败概率界</p>
+<p><code>fail</code> 只会发生在<span class="arithmatex">\(P_2\)</span> 提交了 <span class="arithmatex">\(J'\ne J\)</span> 但仍然猜中了某个检查电路中自己本不该知道的两把正确密钥，因此：</p>
 <div class="arithmatex">\[
-|Pr[D(H_{t-1})=1]-Pr[D(H_t)=1]| \le negl(n).
+\Pr[\text{fail}] \le s\cdot 2^{-n} = negl(n)
 \]</div>
-<p>因而总差异仍为 <span class="arithmatex">\(negl(n,s)\)</span>。</p>
-</div>
-<h2 id="9-uc">9 从独立安全到 UC 安全<a class="headerlink" href="#9-uc" title="Permanent link">&para;</a></h2>
-<details class="warning">
-<summary>真正阻碍 UC 的地方</summary>
-<p>在 LP11 的证明中，只有一步显式依赖了<strong>倒带（rewinding）</strong>：</p>
 <ul>
-<li>从 Sigma 协议中提取见证</li>
+<li>CCOT 的单一选择约束保证 <span class="arithmatex">\(P_2\)</span> 无法在不同电路使用不一致输入。</li>
+<li>因而 <span class="arithmatex">\(P_2\)</span> 视图中，主要差异仅是计算电路由真实电路替换为假电路。</li>
 </ul>
-</details>
-<div class="admonition info">
-<p class="admonition-title">升级方法</p>
-<p>若把协议里的 Sigma 协议替换为 <strong>UC 安全零知识证明</strong>，则整个协议可提升到 UC 安全。</p>
 </div>
+<p>设混合序列 <span class="arithmatex">\(H_0, \dots, H_{s/2}\)</span>：<span class="arithmatex">\(H_t\)</span> 中前 <span class="arithmatex">\(t\)</span> 个计算电路被替换为假电路，其余保持真实。</p>
+<div class="arithmatex">\[
+\left|\Pr\left[\mathcal{D}(H_0)=1\right] - \Pr\left[\mathcal{D}(H_{s/2})=1\right]\right| \le \sum_{t=1}^{s/2} \left|\Pr\left[\mathcal{D}(H_{t-1})=1\right] - \Pr\left[\mathcal{D}(H_t)=1\right]\right|.
+\]</div>
+<p>每一项由姚电路安全性给出 <span class="arithmatex">\(\text{negl}(n)\)</span>，故：</p>
+<div class="arithmatex">\[
+\left|\Pr\left[\mathcal{D}(H_0)=1\right] - \Pr\left[\mathcal{D}(H_{s/2})=1\right]\right| \le \frac{s}{2} \cdot \text{negl}(n) = \text{negl}(n,s)
+\]</div>
+<p>再结合 <span class="arithmatex">\(\Pr[\text{fail}] = \text{negl}(n)\)</span>，得到：</p>
+<div class="arithmatex">\[
+\{\text{IDEAL}_{f,\mathcal{S}}(x,y,n,s)\}_{x,y\in\{0,1\}^\ell; n,s\in\mathbb{N}} \stackrel{\text{comp}}{\approx} \{\text{REAL}_{\Pi,\mathcal{A}}(x,y,n,s)\}_{x,y\in\{0,1\}^\ell; n,s\in\mathbb{N}}.
+\]</div>
+<p>因而 <span class="arithmatex">\(P_2\)</span> 被攻陷的情况下，REAL 与 IDEAL 计算也不可区分。</p>
+<h3 id="6-3-uc">6. 3 从独立安全到 UC 安全<a class="headerlink" href="#6-3-uc" title="Permanent link">&para;</a></h3>
+<p>在 LP11 的证明中，只有“从零知识证明中提取见证”这一步显式依赖了<strong>倒带（rewinding）</strong>，若把协议里的 Sigma 协议替换为 <strong>UC 安全零知识证明</strong>，则整个协议可提升到 UC 安全。</p>
 <p>在 <strong>CRS（公共参考字符串）模型</strong> 和 <strong>DDH 假设</strong> 下，这种替换是可行的。</p>
 <div class="admonition info">
-<p class="admonition-title">最终结论</p>
+<p class="admonition-title">UC 安全性</p>
 <p>对任意输入长度为 <span class="arithmatex">\(\ell\)</span> 的两方功能 <span class="arithmatex">\(f\)</span>，在 CRS 模型和 DDH 假设下，存在协议 <span class="arithmatex">\(\Pi\)</span>，可在静态恶意敌手下 <strong>UC-安全实现</strong> <span class="arithmatex">\(f\)</span>。</p>
 </div>
-<h2 id="10">10 本章小结<a class="headerlink" href="#10" title="Permanent link">&para;</a></h2>
-<ul>
-<li><strong>GMW 编译器</strong>：通用，把“诚实执行”变成“带证明的诚实执行”</li>
-<li><strong>Cut-and-Choose</strong>：用统计抽检逼近恶意 Yao 安全</li>
-<li><strong>LP11</strong>：把 GC、CCOT、承诺与 ZK 组合成两方恶意安全协议</li>
-<li><strong>UC 升级点</strong>：关键在于去掉依赖倒带的见证提取</li>
-</ul>
-<details class="question">
-<summary>1. 为什么 GMW 编译器通常不够高效？</summary>
-<p>因为它要求协议中几乎每一条消息都附带一个“我确实按规则算出来”的零知识证明。</p>
-</details>
-<details class="question">
-<summary>2. 为什么 Cut-and-Choose 里要多数投票而不是发现异常就中止？</summary>
-<p>因为“是否中止”本身会变成一个泄露信号，被恶意生成方用来探测对方输入。</p>
-</details>
-<details class="question">
-<summary>3. LP11 的安全性由哪两部分参数控制？</summary>
-<ul>
-<li><strong>统计参数 <span class="arithmatex">\(s\)</span></strong>：控制 Cut-and-Choose 抽检失败概率</li>
-<li><strong>计算参数 <span class="arithmatex">\(n\)</span> / 群阶大小</strong>：控制 DDH、承诺、ZK、密钥猜测等计算型失败概率</li>
-</ul>
-</details>
-<details class="question">
-<summary>4. 为什么课件还提到恶意 BGW、BDOZ、SPDZ，却没有在本章展开？</summary>
-<p>因为它们代表的是另外两条重要路线：前者依赖诚实多数和一致性检查，后者依赖 MAC 与离线预处理。它们都很重要，但与本章主讲的“GMW 编译器 / Cut-and-Choose 强化 GC”属于不同设计范式。</p>
-</details>
 
 
 
@@ -4795,8 +4927,6 @@ Adv \le 2^{-(s/4-1)} + negl(n).
     
     
       <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
-      
-        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
