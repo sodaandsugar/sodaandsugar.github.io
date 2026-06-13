@@ -2727,6 +2727,8 @@
       
         
       
+        
+      
     
     
     
@@ -3060,6 +3062,29 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../db/collection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    错题集
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -3116,7 +3141,7 @@
   
   
   <span class="md-ellipsis">
-    隐私计算与安全合规
+    隐私计算与数据合规
     
   </span>
   
@@ -3127,7 +3152,7 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4_6">
             <span class="md-nav__icon md-icon"></span>
-            隐私计算与安全合规
+            隐私计算与数据合规
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -3294,6 +3319,30 @@
       2 基于 DDH 的半诚实安全 OT
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="2 基于 DDH 的半诚实安全 OT">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2-1-1-out-of-2-ot" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 1 1-out-of-2 OT 真实协议流程
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-2-1-out-of-2-ot" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 2 1-out-of-2 OT 理想功能模型
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -4102,6 +4151,30 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="2 基于 DDH 的半诚实安全 OT">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2-1-1-out-of-2-ot" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 1 1-out-of-2 OT 真实协议流程
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-2-1-out-of-2-ot" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 2 1-out-of-2 OT 理想功能模型
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -4166,6 +4239,7 @@ x_b = (1\oplus b)x_0 \oplus b x_1.
 <p class="admonition-title">两方 AND 不可能性的证明思路</p>
 <p>设双方输入为 <span class="arithmatex">\(b_0,b_1\in\{0,1\}\)</span>，目标输出为 <span class="arithmatex">\(y=b_0\land b_1\)</span>：</p>
 <p><img src="/mpc/images/image5-2.png" style="display: block; width: 40%; margin: 0 auto;" /></p>
+<p>协议会走若干轮消息交换，因为双方都可能有随机数，所以同一个输入组合可能会产生不同的通信记录和最终输出。</p>
 <p>令 <span class="arithmatex">\(\mathcal{T}(c,d)\)</span> 表示在输入 <span class="arithmatex">\((b_0,b_1)=(c,d)\)</span> 时，协议可能产生的<strong>全部消息集合与输出</strong>的集合，即</p>
 <div class="arithmatex">\[
 \mathcal{T}=(m_{01},m_{11},\dots,m_{0s},m_{1s},y)
@@ -4189,16 +4263,16 @@ x_b = (1\oplus b)x_0 \oplus b x_1.
 </ul>
 </details>
 <h2 id="2-ddh-ot">2 基于 DDH 的半诚实安全 OT<a class="headerlink" href="#2-ddh-ot" title="Permanent link">&para;</a></h2>
+<h3 id="2-1-1-out-of-2-ot">2. 1 1-out-of-2 OT 真实协议流程<a class="headerlink" href="#2-1-1-out-of-2-ot" title="Permanent link">&para;</a></h3>
 <p>设 <span class="arithmatex">\(\mathbb{G}\)</span> 为阶为 <span class="arithmatex">\(q\)</span> 的循环群，生成元为 <span class="arithmatex">\(g\)</span>，发送方消息 <span class="arithmatex">\(x_0,x_1\in\mathbb{G}\)</span>，接收方选择位  <span class="arithmatex">\(b\in\{0,1\}\)</span>：</p>
 <p><img src="/mpc/images/image5-3.png" style="display: block; width: 70%; margin: 0 auto;" /></p>
+<details class="info">
+<summary>解释</summary>
 <ol>
 <li><strong>接收方准备公钥</strong>：取 <span class="arithmatex">\(\text{sk}\xleftarrow{}_{\$}\mathbb{Z}_q\)</span>，令 <span class="arithmatex">\(\text{pk}_b=g^{\text{sk}}\)</span>，<span class="arithmatex">\(\text{pk}_{1-b}\xleftarrow{}_{\$}\mathbb{G}\)</span>，将 <span class="arithmatex">\((\text{pk}_0,\text{pk}_1)\)</span> 发送给发送方</li>
 <li><strong>发送方加密两条消息</strong>：取 <span class="arithmatex">\(r\xleftarrow{}_{\$}\mathbb{Z}_q\)</span>，令 <span class="arithmatex">\(v=g^r\)</span>，计算 <span class="arithmatex">\(c_0=x_0\cdot \text{pk}_0^r\)</span>，<span class="arithmatex">\(c_1=x_1\cdot \text{pk}_1^r\)</span>，将 <span class="arithmatex">\((v,c_0,c_1)\)</span> 发送给接收方</li>
 <li><strong>接收方恢复所选消息</strong>：<span class="arithmatex">\(x_b = c_b / v^{\text{sk}}\)</span></li>
 </ol>
-<details class="quote">
-<summary>正确性</summary>
-<p>因为 <span class="arithmatex">\(c_b = x_b\cdot \text{pk}_b^r = x_b\cdot g^{r\cdot \text{sk}} = x_b\cdot v^{\text{sk}}\)</span>，所以接收方可正确恢复 <span class="arithmatex">\(x_b\)</span></p>
 </details>
 <details class="tip">
 <summary>安全直觉</summary>
@@ -4207,8 +4281,17 @@ x_b = (1\oplus b)x_0 \oplus b x_1.
 <li><strong>发送方隐私</strong>：对未选择的一侧 <span class="arithmatex">\(\text{pk}_{1-b}\)</span>，三元组 <span class="arithmatex">\((g^r,\text{pk}_{1-b},\text{pk}_{1-b}^r)\)</span> 在 DDH 假设下与随机三元组不可区分，因此 <span class="arithmatex">\(c_{1-b}=x_{1-b}\cdot \text{pk}_{1-b}^r\)</span>，看起来就像被一个随机群元素一次性掩盖，从而隐藏了 <span class="arithmatex">\(x_{1-b}\)</span></li>
 </ul>
 </details>
+<h3 id="2-2-1-out-of-2-ot">2. 2 1-out-of-2 OT 理想功能模型<a class="headerlink" href="#2-2-1-out-of-2-ot" title="Permanent link">&para;</a></h3>
 <p>若 DDH 问题在群 <span class="arithmatex">\(\mathbb{G}\)</span> 上困难，则上述协议对静态半诚实敌手 <strong>UC-安全实现</strong> 理想功能 <span class="arithmatex">\(F_{OT}\)</span></p>
 <p><img src="/mpc/images/image5-4.png" style="display: block; width: 80%; margin: 0 auto;" /></p>
+<details class="info">
+<summary>解释</summary>
+<ol>
+<li><strong>发送方提交输入，理想功能同步模拟器</strong>：发送方 <span class="arithmatex">\(P_s\)</span> 向理想功能 <span class="arithmatex">\(\mathcal{F}_{OT}\)</span> 发送 <span class="arithmatex">\((\text{INPUT}, \text{sid}, x_0, x_1)\)</span>，<span class="arithmatex">\(\mathcal{F}_{OT}\)</span> 收到输入后，向模拟器 <span class="arithmatex">\(\mathcal{S}\)</span> 发送通知 <span class="arithmatex">\((\text{INPUT}, \text{sid}, P_s)\)</span>，告知发送方已完成输入提交。</li>
+<li><strong>接收方提交选择，理想功能同步模拟器</strong>：接收方 <span class="arithmatex">\(P_r\)</span> 向理想功能 <span class="arithmatex">\(\mathcal{F}_{OT}\)</span> 发送 <span class="arithmatex">\((\text{INPUT}, \text{sid}, b)\)</span>，<span class="arithmatex">\(\mathcal{F}_{OT}\)</span> 收到选择后，向模拟器 <span class="arithmatex">\(\mathcal{S}\)</span> 发送通知 <span class="arithmatex">\((\text{INPUT}, \text{sid}, P_r)\)</span>，告知接收方已完成选择提交。</li>
+<li><strong>模拟器触发输出，接收方获得目标消息</strong>：模拟器 <span class="arithmatex">\(\mathcal{S}\)</span> 向 <span class="arithmatex">\(\mathcal{F}_{OT}\)</span> 发送输出指令 <span class="arithmatex">\((\text{OUTPUT}, \text{sid}, P_r)\)</span>，<span class="arithmatex">\(\mathcal{F}_{OT}\)</span> 校验会话标识匹配后，向接收方 <span class="arithmatex">\(P_r\)</span> 返回 <span class="arithmatex">\((\text{OUTPUT}, \text{sid}, x_b)\)</span>，接收方得到选中的消息 <span class="arithmatex">\(x_b\)</span>。</li>
+</ol>
+</details>
 <details class="example">
 <summary>情况 1：发送方 <span class="arithmatex">\(P_s\)</span> 被攻陷</summary>
 <p><img src="/mpc/images/image5-5.png" style="display: block; width: 80%; margin: 0 auto;" /></p>
@@ -4222,8 +4305,7 @@ x_b = (1\oplus b)x_0 \oplus b x_1.
 <details class="example">
 <summary>情况 2：接收方 <span class="arithmatex">\(P_r\)</span> 被攻陷</summary>
 <p><img src="/mpc/images/image5-6.png" style="display: block; width: 80%; margin: 0 auto;" /></p>
-<p>核心依赖<strong>DDH假设</strong>（判定Diffie-Hellman问题困难），我们来拆解：</p>
-<p>真实协议中，<span class="arithmatex">\(c_{1-b} = x_{1-b} \cdot pk_{1-b}^r\)</span>。其中 <span class="arithmatex">\(pk_{1-b}\)</span> 是 <span class="arithmatex">\(P_r\)</span> 生成的随机群元素，<span class="arithmatex">\(r\)</span> 是 <span class="arithmatex">\(P_s\)</span> 选取的随机数。</p>
+<p>真实协议中，<span class="arithmatex">\(c_{1-b} = x_{1-b} \cdot pk_{1-b}^r\)</span>，其中 <span class="arithmatex">\(pk_{1-b}\)</span> 是 <span class="arithmatex">\(P_r\)</span> 生成的随机群元素，<span class="arithmatex">\(r\)</span> 是 <span class="arithmatex">\(P_s\)</span> 选取的随机数。</p>
 <p><span class="arithmatex">\((v, pk_{1-b}, pk_{1-b}^r) = (g^r, pk_{1-b}, pk_{1-b}^r)\)</span> 是标准的 DDH 三元组，根据 DDH 假设，<span class="arithmatex">\(pk_{1-b}^r\)</span> 与群上的随机元素是计算不可区分的，因此 <span class="arithmatex">\(c_{1-b}\)</span> 也与群上的随机元素计算不可区分。</p>
 <p>理想世界中，模拟器直接选取群上的随机元素作为 <span class="arithmatex">\(c_{1-b}\)</span>，因此真实与理想的 <span class="arithmatex">\(c_{1-b}\)</span> 是计算不可区分的。</p>
 <p>结合 <span class="arithmatex">\(v\)</span> 和 <span class="arithmatex">\(c_b\)</span> 分布完全一致，整个视图 <span class="arithmatex">\((v, c_0, c_1)\)</span> 对环境 <span class="arithmatex">\(\mathcal{Z}\)</span> 来说是不可区分的，敌手无法从协议交互中推导任何关于 <span class="arithmatex">\(x_{1-b}\)</span> 的信息，发送方的隐私得到了保护，协议满足半诚实安全。</p>
@@ -4236,9 +4318,9 @@ x_b = (1\oplus b)x_0 \oplus b x_1.
 </details>
 <h2 id="3-ot">3 三方恶意安全 OT<a class="headerlink" href="#3-ot" title="Permanent link">&para;</a></h2>
 <p>为阻止接收方双私钥作弊，引入一个<strong>半诚实且不串通</strong>的辅助方 <span class="arithmatex">\(P_h\)</span>。</p>
-<p><img src="/mpc/images/image5-6.png" style="display: block; width: 80%; margin: 0 auto;" /></p>
+<p><img src="/mpc/images/image5-7.png" style="display: block; width: 80%; margin: 0 auto;" /></p>
 <details class="info">
-<summary>协议流程详解</summary>
+<summary>解释</summary>
 <ol>
 <li>
 <p><strong>辅助方准备随机掩码</strong>：取 <span class="arithmatex">\(p_0,p_1\xleftarrow{}_{\$}\mathcal{M}\)</span>，<span class="arithmatex">\(r_0,r_1\xleftarrow{}_{\$}\mathcal{R}\)</span>，<span class="arithmatex">\(\beta\xleftarrow{}_{\$}\{0,1\}\)</span>，计算 <span class="arithmatex">\(c_{\beta\oplus 1}=H(p_{\beta\oplus 1},r_{\beta\oplus 1})\)</span>，向发送方发送 <span class="arithmatex">\((p_0,r_0,p_1,r_1)\)</span>，向接收方发送 <span class="arithmatex">\((\beta,p_\beta,r_\beta,c_{\beta\oplus 1})\)</span></p>

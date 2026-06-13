@@ -1,0 +1,5369 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>Chapter 19 Recovery System - sodasugar的笔记本</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/web/pdf_viewer.min.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chapter-19-recovery-system" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="sodasugar的笔记本" class="md-header__button md-logo" aria-label="sodasugar的笔记本" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            sodasugar的笔记本
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chapter 19 Recovery System
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/sodaandsugar/sodaandsugar.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    sodasugar-notebook
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  🏡首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../physics2/1/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  ⚛️ 物理
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../interpret/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  🔤外语
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../cryptography/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  专业课
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="sodasugar的笔记本" class="md-nav__button md-logo" aria-label="sodasugar的笔记本" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    sodasugar的笔记本
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/sodaandsugar/sodaandsugar.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    sodasugar-notebook
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🏡首页
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    ⚛️ 物理
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            ⚛️ 物理
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    大物乙Ⅱ
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            大物乙Ⅱ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 静电场
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 静电场中的导体和电介质
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 电流和磁场
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 物质中的磁场
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5 电磁感应
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6 麦克斯韦方程与电磁波
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 7 光的干涉
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 8 光的衍射
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 9 光的偏振
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 10 光的量子论
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 11 玻尔的原子模型
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 12 量子力学初步
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/midterm_review/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    期中小结
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/%E7%89%A9%E7%90%86%E5%AD%A6%E5%8D%95%E4%BD%8D%E6%8D%A2%E7%AE%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    物理学单位换算
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    大物实验
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            大物实验
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cpe/final/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    期末复习
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    🔤外语
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            🔤外语
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../interpret/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    英语口译
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            英语口译
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interpret/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1 Ceremonial Speech
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interpret/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2 Tourism
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interpret/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3 Culture and Education
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interpret/5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    5 International Reports
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interpret/text/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    课堂文本
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interpret/cheatsheet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    真题
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    专业课
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            专业课
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../cryptography/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    数据安全与密码学基础
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            数据安全与密码学基础
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/resource/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    资源索引
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 概论
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 完善保密加密
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 对称密钥加密以及伪随机性
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 消息鉴别码
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5 哈希函数
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6 数论和密码学困难性假设
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/midterm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    期中考试卷
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    高级数据结构与算法分析
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            高级数据结构与算法分析
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/resource/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    资源索引
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_2" id="__nav_4_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    题目集
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            题目集
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/blank/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    程序填空题集锦
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/function/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    函数题集锦
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1 AVL Trees, Splay Trees and Amortized Analysis
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2 Red-Black Trees and B+ Trees
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3 Inverted File Index
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    4 Leftist Heaps and Skew Heaps
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    5 Binomial Queue
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    6 Backtracking
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    7 Divide and Conquer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    8 Dynamic Programming
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    9 Greedy Algorithms
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    10 P/NP Problems
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    11 Approximation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    12 Local Search
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    13 Randomized Algorithms
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    14 Parallel Algorithms
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/15/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    15 External Sorting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/cheatsheet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    期中考 cheat sheet
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/midterm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    期中考试
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    计算机系统 Ⅱ
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            计算机系统 Ⅱ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 ISA Review
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 Design of Pipelining
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 Hazard of Pipelining
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 Software-Hardware Interface
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5 Intro&Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6 Structures
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 7 Processes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 8 CPU Scheduling
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 9 Synchronization
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/pbfx/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    朋辈辅学
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    计算机系统 Ⅲ
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            计算机系统 Ⅲ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys3/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 Fundamentals of computer system
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys3/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 Instruction-Level Parallelism (ILP)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys3/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 Memory Hierarchy
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys3/4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 Main Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys3/5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5 Virtual Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys3/6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6 Mass-Storage Structure
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys3/7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 7 I/O Systems
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys3/8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 8 File System Interface
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys3/9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 9 File System Implementation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys3/10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 10 Security and Protection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    数据库系统
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            数据库系统
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 Intro to Relational Model
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 Introduction to SQL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 Intermediate SQL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5 Advanced SQL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6 Entity-Relationship Model
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 7 Relational Database Design
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 12&13 Storage and File Structure
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 14 Indexing and Hashing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 15 Query Processing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../16/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 16 Query Optimization
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../17/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 17 Transactions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../18/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 18 Concurrency Control
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../collection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    错题集
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    隐私计算与数据合规
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            隐私计算与数据合规
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mpc/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 引言
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mpc/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 现代密码学与基础原语
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mpc/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 一个安全多方计算协议的例子
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mpc/4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 安全模型
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mpc/5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5 茫然传输和茫然传输扩展
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mpc/6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6 BGW 协议与 GMW 协议
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mpc/7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 7 通过 Beaver 三元组实现 MPC
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mpc/8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 8 基于混淆电路的协议
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mpc/9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 9 恶意安全性：GMW 编译器与切分选择（Cut-and-Choose）
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_7" id="__nav_4_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    面向对象程序设计
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_7">
+            <span class="md-nav__icon md-icon"></span>
+            面向对象程序设计
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_7_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_7_1" id="__nav_4_7_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    朋辈辅学
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_7_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_7_1">
+            <span class="md-nav__icon md-icon"></span>
+            朋辈辅学
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/pbfx/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lec 1 C++ 概述和 OOP 基础
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/pbfx/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lec 2 构造、析构、拷贝
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/pbfx/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lec3 继承与多态
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/pbfx/4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lec4 移动语义与异常处理
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/pbfx/5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lec5 模板与 STL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/pbfx/6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lec6 迭代器与智能指针
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 Using Objects
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 Class
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 Object Interaction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5 Composition and Inheritance
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6 Polymorphism
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 7 Copy Constructor
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 8 Overloaded Operators
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 9 Streams
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 10 Templates
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 11 STL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 12 Iterators
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 13 Exceptions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 14 Smart Pointers
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/15/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 15 Miscellaneous Points
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      1 Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-storage-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 Storage Structure
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-log-based-recovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 Log-Based Recovery
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-log-and-database-buffering" class="md-nav__link">
+    <span class="md-ellipsis">
+      4 Log and Database Buffering
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4 Log and Database Buffering">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#4-1-log-record-buffering" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. 1 Log Record Buffering
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-2-database-buffering" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. 2 Database Buffering
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-3-latches" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. 3 Latches
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-4-buffer-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. 4 Buffer Management
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-redo-and-undo-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      5 Redo and Undo Operations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5 Redo and Undo Operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#5-1-transaction-rollback-during-normal-operation" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 1 Transaction Rollback During Normal Operation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-2-redo-and-undo-on-recovering-from-failure" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 2 Redo and Undo on Recovering from Failure
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-3-immediate-modification-recovery-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 3 Immediate Modification Recovery Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-checkpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      6 Checkpoints
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6 Checkpoints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#6-1-basic-checkpointing" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. 1 Basic Checkpointing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-2-recovery-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. 2 Recovery Algorithm
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-3-fuzzy-checkpointing" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. 3 Fuzzy Checkpointing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-4-failure-with-loss-of-nonvolatile-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. 4 Failure with Loss of Nonvolatile Storage
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-recovery-with-early-lock-release-and-logical-undo" class="md-nav__link">
+    <span class="md-ellipsis">
+      7 Recovery with Early Lock Release and Logical Undo
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7 Recovery with Early Lock Release and Logical Undo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#7-1-logical-undo-logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. 1 Logical Undo Logging
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-2-physical-redo" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. 2 Physical Redo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-3-operation-logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. 3 Operation Logging
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-4-transaction-rollback-with-logical-undo" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. 4 Transaction Rollback with Logical Undo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-5-recovery-algorithm-with-logical-undo" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. 5 Recovery Algorithm with Logical Undo
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-aries-recovery-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      8 ARIES Recovery Algorithm
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8 ARIES Recovery Algorithm">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#8-1-physiological-redo" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. 1 Physiological Redo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-2-aries-data-structures" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. 2 ARIES Data Structures
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-3-pagelsn" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. 3 PageLSN
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-4-log-record-and-clr" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. 4 Log Record and CLR
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-5-dirtypagetable" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. 5 DirtyPageTable
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-6-checkpoint-log" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. 6 Checkpoint Log
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-7-aries-three-passes" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. 7 ARIES Three Passes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-8-analysis-pass" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. 8 Analysis Pass
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-9-redo-pass" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. 9 Redo Pass
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-10-undo-actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. 10 Undo Actions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-11-undo-pass" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. 11 Undo Pass
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-12-other-aries-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. 12 Other ARIES Features
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-remote-backup-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      9 Remote Backup Systems
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9 Remote Backup Systems">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#9-1-failure-detection-and-transfer-of-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. 1 Failure Detection and Transfer of Control
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-2-time-to-recover-and-hot-spare" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. 2 Time to Recover and Hot Spare
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-3-commit-durability-levels" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. 3 Commit Durability Levels
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="chapter-19-recovery-system">Chapter 19 Recovery System<a class="headerlink" href="#chapter-19-recovery-system" title="Permanent link">&para;</a></h1>
+<div class="admonition warning">
+<p class="admonition-title">TODO</p>
+<p>还没写完笔记。。目前为纯ai生成。。学习中。。</p>
+</div>
+<p>Recovery Algorithm
+Recovery  with Early Lock Release
+ARIES Recovery Algorithm
+Remote Backup Systems</p>
+<h2 id="1-overview">1 Overview<a class="headerlink" href="#1-overview" title="Permanent link">&para;</a></h2>
+<p>恢复系统（recovery system）的目标是在事务失败、系统崩溃或存储介质故障后，把数据库恢复到满足 <strong>atomicity、consistency、durability</strong> 的状态。</p>
+<table>
+<thead>
+<tr>
+<th>故障类型</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Logical error</strong></td>
+<td>事务内部条件导致不能继续执行，如非法输入、完整性约束违反等</td>
+</tr>
+<tr>
+<td><strong>System error</strong></td>
+<td>数据库系统因错误条件主动终止事务，如死锁</td>
+</tr>
+<tr>
+<td><strong>System crash</strong></td>
+<td>电源、硬件或软件故障导致系统崩溃</td>
+</tr>
+<tr>
+<td><strong>Disk failure</strong></td>
+<td>磁头损坏或类似磁盘故障破坏全部或部分磁盘内容</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">Fail-stop assumption</p>
+<p>系统崩溃后，假设非易失性存储（nonvolatile storage）内容没有被破坏。数据库系统通常通过校验和等完整性检查防止磁盘数据静默损坏。</p>
+<p>对磁盘故障，假设破坏是可检测的，例如磁盘驱动器用 checksums 检测失败。</p>
+</div>
+<details class="example">
+<summary>Main Points of Recovery</summary>
+<p>以事务 <span class="arithmatex">\(T_i\)</span> 从账户 <code>A</code> 向账户 <code>B</code> 转账 <code>$50</code> 为例：</p>
+<ul>
+<li>更新 <code>A</code>：<code>A := A - 50</code></li>
+<li>更新 <code>B</code>：<code>B := B + 50</code></li>
+</ul>
+<p>若数据库只写出了其中一个更新就发生故障，数据库会不一致；若事务已经提交但更新没有写出到数据库，又会丢失已提交更新。因此恢复算法包含两类工作：</p>
+<ol>
+<li><strong>正常执行期间的动作</strong>：记录足够的信息，使之后可以从故障中恢复。</li>
+<li><strong>故障之后的动作</strong>：根据记录的信息恢复数据库内容，保证原子性、一致性和持久性。</li>
+</ol>
+</details>
+<h2 id="2-storage-structure">2 Storage Structure<a class="headerlink" href="#2-storage-structure" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>存储类型</th>
+<th>survive system crashes or not</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Volatile storage</strong></td>
+<td>否</td>
+<td>主存、cache memory</td>
+</tr>
+<tr>
+<td><strong>Nonvolatile storage</strong></td>
+<td>是，但介质本身仍可能失败</td>
+<td>disk、tape、flash memory、battery-backed RAM</td>
+</tr>
+<tr>
+<td><strong>Stable storage</strong></td>
+<td>理想上可跨所有故障保留</td>
+<td>实际系统用多个非易失介质副本近似实现</td>
+</tr>
+</tbody>
+</table>
+<details class="example">
+<summary>Stable-Storage Implementation</summary>
+<p>稳定存储通常为每个块维护多个副本，副本可以放在不同磁盘甚至远程站点，以抵抗火灾、洪水等灾难。</p>
+<p>块传输可能有三种结果：</p>
+<table>
+<thead>
+<tr>
+<th>结果</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Successful completion</strong></td>
+<td>目标块被正确写入</td>
+</tr>
+<tr>
+<td><strong>Partial failure</strong></td>
+<td>目标块被写坏，包含错误信息</td>
+</tr>
+<tr>
+<td><strong>Total failure</strong></td>
+<td>目标块完全没有被更新</td>
+</tr>
+</tbody>
+</table>
+<p>若每个块有两个物理副本，一种简单输出方案是：</p>
+<ol>
+<li>先把信息写到第一个物理块。</li>
+<li>第一个写入成功后，再写同样的信息到第二个物理块。</li>
+<li>第二个写入成功后，整个 output 操作才算完成。</li>
+</ol>
+<p>若故障发生在输出过程中，两个副本可能不一致。恢复时要找出可能不一致的块：</p>
+<ul>
+<li>昂贵方案：比较每个磁盘块的两个副本。</li>
+<li>更好的方案：在非易失性存储中记录正在进行的磁盘写操作，恢复时只检查这些可能不一致的块。</li>
+</ul>
+<p>若某个副本校验和错误，用另一个副本覆盖它。</p>
+<p>若两个副本校验和都正确但内容不同，则用第一个副本覆盖第二个副本。硬件 RAID 系统会使用类似思想。</p>
+</details>
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Physical block</strong></td>
+<td>磁盘上的块</td>
+</tr>
+<tr>
+<td><strong>System buffer block</strong></td>
+<td>主存中临时保存的块</td>
+</tr>
+<tr>
+<td><code>input(B)</code></td>
+<td>将磁盘物理块 <code>B</code> 读入主存</td>
+</tr>
+<tr>
+<td><code>output(B)</code></td>
+<td>将缓冲块 <code>B</code> 写回磁盘，替换对应物理块</td>
+</tr>
+</tbody>
+</table>
+<p>为简化讨论，假设每个数据项都完整存放在一个块中。</p>
+<p>每个事务 <span class="arithmatex">\(T_i\)</span> 有自己的私有工作区（private work-area），用于保存它访问和更新的数据项的本地副本。<span class="arithmatex">\(T_i\)</span> 对数据项 <code>X</code> 的本地副本记为 <span class="arithmatex">\(x_i\)</span>，包含 <code>X</code> 的块记为 <span class="arithmatex">\(B_X\)</span>。</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>read(X)</code></td>
+<td>把系统缓冲区中数据项 <code>X</code> 的值赋给本地变量 <span class="arithmatex">\(x_i\)</span></td>
+</tr>
+<tr>
+<td><code>write(X)</code></td>
+<td>把本地变量 <span class="arithmatex">\(x_i\)</span> 的值写入缓冲块中的数据项 <code>X</code></td>
+</tr>
+</tbody>
+</table>
+<p>事务第一次访问 <code>X</code> 前必须执行 <code>read(X)</code>，后续访问可以使用本地副本。<code>write(X)</code> 可以在事务提交前任意时刻执行，但 <code>output(B_X)</code> 不必紧跟 <code>write(X)</code>，系统可以在合适时机再把缓冲块写回磁盘。</p>
+<h2 id="3-log-based-recovery">3 Log-Based Recovery<a class="headerlink" href="#3-log-based-recovery" title="Permanent link">&para;</a></h2>
+<p><strong>日志（log）</strong>保存在稳定存储上，是一串日志记录（log records），记录数据库更新活动。基于日志的恢复思想是：在修改数据库本身之前，先把描述修改的信息写到稳定存储。</p>
+<details class="example">
+<summary>Example of Data Access</summary>
+<p><img src="/db/images/image19-1.png" style="display: block; width: 40%; margin: 0 auto;" /></p>
+</details>
+<table>
+<thead>
+<tr>
+<th>日志记录</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;Ti start&gt;</code></td>
+<td>事务 <span class="arithmatex">\(T_i\)</span> 开始</td>
+</tr>
+<tr>
+<td><code>&lt;Ti, X, V1, V2&gt;</code></td>
+<td><span class="arithmatex">\(T_i\)</span> 将 <code>X</code> 从旧值 <code>V1</code> 更新为新值 <code>V2</code></td>
+</tr>
+<tr>
+<td><code>&lt;Ti commit&gt;</code></td>
+<td><span class="arithmatex">\(T_i\)</span> 完成最后一条语句并提交</td>
+</tr>
+<tr>
+<td><code>&lt;Ti abort&gt;</code></td>
+<td><span class="arithmatex">\(T_i\)</span> 已完成回滚</td>
+</tr>
+</tbody>
+</table>
+<p>在 <span class="arithmatex">\(T_i\)</span> 执行 <code>write(X)</code> 之前，必须先写出更新日志记录 <code>&lt;Ti, X, V1, V2&gt;</code>。</p>
+<table>
+<thead>
+<tr>
+<th>方式</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Immediate database modification</strong></td>
+<td>未提交事务的更新可以在提交前进入缓冲区，甚至写入磁盘</td>
+</tr>
+<tr>
+<td><strong>Deferred database modification</strong></td>
+<td>到事务提交时才把更新写入缓冲区或磁盘</td>
+</tr>
+</tbody>
+</table>
+<p>立即修改方案允许未提交事务的更新在提交前写入缓冲区或磁盘。更新块可以在事务提交前或提交后输出到磁盘，输出顺序也可以不同于事务写入顺序，但必须遵守两条核心规则：</p>
+<ol>
+<li>更新日志记录必须先于对应数据库数据项写出。</li>
+<li>数据页输出到磁盘前，与该页相关的日志记录必须先输出到稳定存储。</li>
+</ol>
+<details class="example">
+<summary>Immediate Database Modification Example</summary>
+<p><img src="/db/images/image19-2.png" style="display: block; width: 60%; margin: 0 auto;" /></p>
+</details>
+<div class="admonition tip">
+<p class="admonition-title">Write-Ahead Logging, WAL</p>
+<p><strong>预写日志规则（write-ahead logging, WAL）</strong>：在主存中的数据块写入数据库之前，与该块中数据相关的日志记录必须先写入稳定存储。</p>
+<p>严格说，WAL 至少要求用于 undo 的信息先于数据块输出。</p>
+</div>
+<p>延迟修改方案简化了部分恢复逻辑，但需要保存本地副本，开销更大。</p>
+<div class="admonition tip">
+<p class="admonition-title">Transaction Commit</p>
+<p>事务的 <code>commit</code> 日志记录输出到稳定存储时，事务才称为已经提交。此时：</p>
+<ul>
+<li>该事务之前的所有日志记录都必须已经输出到稳定存储。</li>
+<li>该事务执行过的写操作仍可能只在缓冲区中，之后才写入磁盘。</li>
+</ul>
+</div>
+<details class="info">
+<summary>Concurrency Control and Recovery</summary>
+<p>并发事务共享同一个磁盘缓冲区和同一个日志。一个缓冲块中的不同数据项可能由一个或多个事务更新，多个事务的日志记录也会交错出现。</p>
+<p>为保证 undo 可行，若事务 <span class="arithmatex">\(T_i\)</span> 修改了某个数据项，在 <span class="arithmatex">\(T_i\)</span> 提交或中止前，其他事务不能修改同一个数据项。否则若 <span class="arithmatex">\(T_1\)</span> 修改 <code>A</code>，随后 <span class="arithmatex">\(T_2\)</span> 修改 <code>A</code> 并提交，最后 <span class="arithmatex">\(T_1\)</span> 中止，就很难恢复 <code>A</code> 的正确状态。</p>
+<p>这一点通常通过严格两阶段锁协议实现：对更新项获取排他锁，并持有到事务结束。</p>
+</details>
+<h2 id="4-log-and-database-buffering">4 Log and Database Buffering<a class="headerlink" href="#4-log-and-database-buffering" title="Permanent link">&para;</a></h2>
+<h3 id="4-1-log-record-buffering">4. 1 Log Record Buffering<a class="headerlink" href="#4-1-log-record-buffering" title="Permanent link">&para;</a></h3>
+<p>日志记录通常先缓存在主存中，而不是每条都立刻输出到稳定存储。日志缓冲区在以下情况输出：</p>
+<ul>
+<li>日志缓冲块满。</li>
+<li>执行 <strong>log force</strong> 操作。</li>
+</ul>
+<p>事务提交时需要 log force，把该事务的所有日志记录，包括 <code>commit</code> 记录，强制输出到稳定存储。这样多个日志记录可以合并成一次输出，降低 I/O 成本。</p>
+<p>若日志记录被缓冲，必须遵守：</p>
+<ol>
+<li>日志记录按创建顺序输出到稳定存储。</li>
+<li>只有 <code>&lt;Ti commit&gt;</code> 已输出到稳定存储，<span class="arithmatex">\(T_i\)</span> 才能进入 committed 状态。</li>
+<li>主存中的数据块输出到数据库前，该块相关的日志记录必须已输出到稳定存储，即 WAL。</li>
+</ol>
+<h3 id="4-2-database-buffering">4. 2 Database Buffering<a class="headerlink" href="#4-2-database-buffering" title="Permanent link">&para;</a></h3>
+<p>数据库在主存中维护数据块缓冲区。若缓冲区满，需要淘汰某个块；若被淘汰块已被修改，则必须写回磁盘。</p>
+<p>恢复算法支持两种重要缓冲策略：</p>
+<table>
+<thead>
+<tr>
+<th>策略</th>
+<th>含义</th>
+<th>恢复需求</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>No-force</strong></td>
+<td>事务提交时，不要求把更新块立即写回磁盘</td>
+<td>已提交更新可能未落盘，因此需要 redo</td>
+</tr>
+<tr>
+<td><strong>Steal</strong></td>
+<td>含有未提交更新的块可以在事务提交前写回磁盘</td>
+<td>未提交更新可能已落盘，因此需要 undo</td>
+</tr>
+</tbody>
+</table>
+<p>脏页（dirty pages）可以由后台线程或进程周期性输出。</p>
+<h3 id="4-3-latches">4. 3 Latches<a class="headerlink" href="#4-3-latches" title="Permanent link">&para;</a></h3>
+<p>若含有未提交更新的块要输出到磁盘，必须先把该更新的 undo 日志信息写到稳定存储。</p>
+<p>同时，块输出期间不能有更新正在进行。可以用短期锁存器（latch）保证：</p>
+<ol>
+<li>写数据项前，事务获取包含该数据项的块上的排他 latch。</li>
+<li>写入完成后即可释放 latch。</li>
+<li>输出块到磁盘时，先获取块上的排他 latch。</li>
+<li>执行 log flush。</li>
+<li>将块输出到磁盘。</li>
+<li>释放 latch。</li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">Latch 与 Lock</p>
+<p>latch 是短时间持有的内部同步机制，用来保护缓冲页的物理一致性；事务锁用于并发控制，通常持有到协议允许释放为止。</p>
+</div>
+<h3 id="4-4-buffer-management">4. 4 Buffer Management<a class="headerlink" href="#4-4-buffer-management" title="Permanent link">&para;</a></h3>
+<p>数据库缓冲区可以实现为：</p>
+<ul>
+<li>数据库预留的一块真实主存区域。</li>
+<li>虚拟内存中的区域。</li>
+</ul>
+<p>预留真实主存的缺点是内存分区提前固定，缺少灵活性；操作系统知道当前内存需求，却不能动态调整数据库缓冲区和其他应用之间的划分。</p>
+<p>实际系统通常用虚拟内存实现数据库缓冲，但会带来 <strong>dual paging problem</strong>：</p>
+<ol>
+<li>操作系统淘汰已修改的缓冲页时，会把它写到 swap space。</li>
+<li>数据库之后要把该缓冲页写回数据库文件时，可能还要先从 swap space 读回，再写到数据库磁盘。</li>
+<li>这会产生额外 I/O。</li>
+</ol>
+<p>理想情况下，操作系统淘汰数据库缓冲页时应把控制交给数据库：若该页已修改，数据库先遵守 WAL 将日志写出，再把页写到数据库文件，然后释放该页。但常见操作系统并不支持这种协作。</p>
+<h2 id="5-redo-and-undo-operations">5 Redo and Undo Operations<a class="headerlink" href="#5-redo-and-undo-operations" title="Permanent link">&para;</a></h2>
+<p>对日志记录 <code>&lt;Ti, X, V1, V2&gt;</code>：</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>redo</strong></td>
+<td>将 <code>X</code> 写成新值 <code>V2</code></td>
+</tr>
+<tr>
+<td><strong>undo</strong></td>
+<td>将 <code>X</code> 恢复为旧值 <code>V1</code></td>
+</tr>
+</tbody>
+</table>
+<p>对整个事务：</p>
+<ul>
+<li><code>redo(Ti)</code>：从 <span class="arithmatex">\(T_i\)</span> 的第一条更新日志开始向前扫描，把 <span class="arithmatex">\(T_i\)</span> 更新过的所有数据项设置为新值；此过程不再额外写日志。</li>
+<li><code>undo(Ti)</code>：从 <span class="arithmatex">\(T_i\)</span> 的最后一条更新日志开始向后扫描，把 <span class="arithmatex">\(T_i\)</span> 更新过的所有数据项恢复为旧值。</li>
+</ul>
+<p>undo 事务时，每恢复一个数据项 <code>X</code> 的旧值 <code>V</code>，就写出一个特殊的 redo-only 日志记录 <code>&lt;Ti, X, V&gt;</code>，也称 compensation log record。事务 undo 完成后，写出 <code>&lt;Ti abort&gt;</code>，表示回滚已经完成。</p>
+<p>redo 和 undo 的使用场景包括：</p>
+<ul>
+<li>正常运行期间事务因逻辑错误不能完成时，需要 undo 该事务。</li>
+<li>系统故障恢复期间，需要 redo 和 undo。</li>
+<li>如果恢复过程中再次故障，之前写出的 redo-only / compensation 记录可以让恢复过程继续正确执行。</li>
+</ul>
+<h3 id="5-1-transaction-rollback-during-normal-operation">5. 1 Transaction Rollback During Normal Operation<a class="headerlink" href="#5-1-transaction-rollback-during-normal-operation" title="Permanent link">&para;</a></h3>
+<p>回滚事务 <span class="arithmatex">\(T_i\)</span>：</p>
+<ol>
+<li>从日志末尾向后扫描。</li>
+<li>对每条属于 <span class="arithmatex">\(T_i\)</span> 的 <code>&lt;Ti, Xj, V1, V2&gt;</code>：<ul>
+<li>把 <code>Xj</code> 写回旧值 <code>V1</code>。</li>
+<li>写出 redo-only 日志记录 <code>&lt;Ti, Xj, V1&gt;</code>。</li>
+</ul>
+</li>
+<li>扫描到 <code>&lt;Ti start&gt;</code> 时停止。</li>
+<li>写出 <code>&lt;Ti abort&gt;</code>。</li>
+</ol>
+<h3 id="5-2-redo-and-undo-on-recovering-from-failure">5. 2 Redo and Undo on Recovering from Failure<a class="headerlink" href="#5-2-redo-and-undo-on-recovering-from-failure" title="Permanent link">&para;</a></h3>
+<p>故障恢复时：</p>
+<table>
+<thead>
+<tr>
+<th>日志中包含</th>
+<th>恢复动作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;Ti start&gt;</code> 且包含 <code>&lt;Ti commit&gt;</code></td>
+<td>redo <span class="arithmatex">\(T_i\)</span></td>
+</tr>
+<tr>
+<td><code>&lt;Ti start&gt;</code> 且包含 <code>&lt;Ti abort&gt;</code></td>
+<td>redo <span class="arithmatex">\(T_i\)</span></td>
+</tr>
+<tr>
+<td><code>&lt;Ti start&gt;</code> 但没有 <code>&lt;Ti commit&gt;</code> 或 <code>&lt;Ti abort&gt;</code></td>
+<td>undo <span class="arithmatex">\(T_i\)</span></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">为什么已经 abort 的事务仍要 redo</p>
+<p>若日志中已有 <code>&lt;Ti abort&gt;</code>，说明 <span class="arithmatex">\(T_i\)</span> 的 undo 已经完成，undo 期间写出的 redo-only 记录也在日志中。</p>
+<p>因此 redo <span class="arithmatex">\(T_i\)</span> 会重复原先的历史：先重做原更新，再重做那些把数据恢复为旧值的 redo-only 记录，最终效果仍是 <span class="arithmatex">\(T_i\)</span> 被撤销。这种思想称为 <strong>repeating history</strong>，可以简化恢复算法。</p>
+</div>
+<h3 id="5-3-immediate-modification-recovery-example">5. 3 Immediate Modification Recovery Example<a class="headerlink" href="#5-3-immediate-modification-recovery-example" title="Permanent link">&para;</a></h3>
+<p>设事务 <span class="arithmatex">\(T_0\)</span> 把 <code>A</code> 从 <code>1000</code> 改为 <code>950</code>、把 <code>B</code> 从 <code>2000</code> 改为 <code>2050</code>，事务 <span class="arithmatex">\(T_1\)</span> 把 <code>C</code> 从 <code>700</code> 改为 <code>600</code>。</p>
+<p>恢复动作取决于故障时日志中已经出现的记录：</p>
+<table>
+<thead>
+<tr>
+<th>情形</th>
+<th>恢复动作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(T_0\)</span> 未提交</td>
+<td><code>undo(T0)</code>，把 <code>B</code> 恢复为 <code>2000</code>、<code>A</code> 恢复为 <code>1000</code>，并写出 <code>&lt;T0, B, 2000&gt;</code>、<code>&lt;T0, A, 1000&gt;</code>、<code>&lt;T0 abort&gt;</code></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(T_0\)</span> 已提交，<span class="arithmatex">\(T_1\)</span> 未提交</td>
+<td><code>redo(T0)</code> 并 <code>undo(T1)</code>，把 <code>A</code>、<code>B</code> 设为 <code>950</code>、<code>2050</code>，把 <code>C</code> 恢复为 <code>700</code>，并写出 <code>&lt;T1, C, 700&gt;</code>、<code>&lt;T1 abort&gt;</code></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(T_0\)</span> 与 <span class="arithmatex">\(T_1\)</span> 都已提交</td>
+<td><code>redo(T0)</code> 并 <code>redo(T1)</code>，把 <code>A</code>、<code>B</code>、<code>C</code> 分别设为 <code>950</code>、<code>2050</code>、<code>600</code></td>
+</tr>
+</tbody>
+</table>
+<p>该例还说明：包含 <code>C</code> 的块 <span class="arithmatex">\(B_C\)</span> 可以在 <span class="arithmatex">\(T_1\)</span> 提交前输出，包含 <code>A</code> 的块 <span class="arithmatex">\(B_A\)</span> 也可以在 <span class="arithmatex">\(T_0\)</span> 提交后才输出。</p>
+<h2 id="6-checkpoints">6 Checkpoints<a class="headerlink" href="#6-checkpoints" title="Permanent link">&para;</a></h2>
+<p>如果恢复时处理整个日志，系统运行越久恢复越慢，而且可能重复 redo 那些更新已经写到数据库的事务。因此需要周期性 checkpoint。</p>
+<h3 id="6-1-basic-checkpointing">6. 1 Basic Checkpointing<a class="headerlink" href="#6-1-basic-checkpointing" title="Permanent link">&para;</a></h3>
+<p>普通 checkpoint 会暂时停止所有更新，并执行：</p>
+<ol>
+<li>将当前主存中的所有日志记录输出到稳定存储。</li>
+<li>将所有已修改缓冲块输出到磁盘。</li>
+<li>在稳定存储日志中写入 <code>&lt;checkpoint L&gt;</code>，其中 <code>L</code> 是 checkpoint 时仍活跃的事务列表。</li>
+</ol>
+<p>恢复时：</p>
+<ul>
+<li>从日志末尾向后扫描，找到最近的 <code>&lt;checkpoint L&gt;</code>。</li>
+<li>只有 <code>L</code> 中的事务和 checkpoint 之后开始的事务需要 redo 或 undo。</li>
+<li>checkpoint 前已经提交或中止的事务，其更新已经输出到稳定存储，不需要恢复处理。</li>
+<li>但 undo 可能仍需要更早日志，因此还要继续向后扫描，直到对 <code>L</code> 中每个事务 <span class="arithmatex">\(T_i\)</span> 都找到 <code>&lt;Ti start&gt;</code>。</li>
+<li>早于这些最早 <code>&lt;Ti start&gt;</code> 的日志部分恢复时不再需要，可以在需要时删除。</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">Checkpoint example</p>
+<p>若 <code>T1</code> 在 checkpoint 前已经完成，<code>T2</code>、<code>T3</code> 需要 redo，<code>T4</code> 故障时仍未完成，则：</p>
+<ul>
+<li><code>T1</code> 可以忽略，因为 checkpoint 已经把它的更新输出到磁盘。</li>
+<li><code>T2</code> 和 <code>T3</code> redo。</li>
+<li><code>T4</code> undo。</li>
+</ul>
+</div>
+<h3 id="6-2-recovery-algorithm">6. 2 Recovery Algorithm<a class="headerlink" href="#6-2-recovery-algorithm" title="Permanent link">&para;</a></h3>
+<p>故障恢复分为两阶段：</p>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Redo phase</strong></td>
+<td>重放所有相关事务的更新，不区分 committed、aborted 或 incomplete</td>
+</tr>
+<tr>
+<td><strong>Undo phase</strong></td>
+<td>撤销所有未完成事务</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Redo phase</strong>：</p>
+<ol>
+<li>找到最后一个 <code>&lt;checkpoint L&gt;</code>，将 <code>undo-list</code> 初始化为 <code>L</code>。</li>
+<li>从该 checkpoint 向前扫描到日志末尾。</li>
+<li>遇到 <code>&lt;Ti, Xj, V1, V2&gt;</code>，把 <code>Xj</code> 写成 <code>V2</code>。</li>
+<li>遇到 <code>&lt;Ti start&gt;</code>，把 <span class="arithmatex">\(T_i\)</span> 加入 <code>undo-list</code>。</li>
+<li>遇到 <code>&lt;Ti commit&gt;</code> 或 <code>&lt;Ti abort&gt;</code>，把 <span class="arithmatex">\(T_i\)</span> 从 <code>undo-list</code> 删除。</li>
+</ol>
+<p><strong>Undo phase</strong>：</p>
+<ol>
+<li>从日志末尾向后扫描。</li>
+<li>若遇到 <code>&lt;Ti, Xj, V1, V2&gt;</code> 且 <span class="arithmatex">\(T_i\)</span> 在 <code>undo-list</code> 中：<ul>
+<li>把 <code>Xj</code> 写回旧值 <code>V1</code>。</li>
+<li>写出 <code>&lt;Ti, Xj, V1&gt;</code>。</li>
+</ul>
+</li>
+<li>若遇到 <code>&lt;Ti start&gt;</code> 且 <span class="arithmatex">\(T_i\)</span> 在 <code>undo-list</code> 中：<ul>
+<li>写出 <code>&lt;Ti abort&gt;</code>。</li>
+<li>将 <span class="arithmatex">\(T_i\)</span> 从 <code>undo-list</code> 删除。</li>
+</ul>
+</li>
+<li><code>undo-list</code> 为空时停止。</li>
+<li>undo phase 完成后，系统可以恢复正常事务处理。</li>
+</ol>
+<h3 id="6-3-fuzzy-checkpointing">6. 3 Fuzzy Checkpointing<a class="headerlink" href="#6-3-fuzzy-checkpointing" title="Permanent link">&para;</a></h3>
+<p>普通 checkpoint 会长时间暂停正常更新。<strong>模糊检查点（fuzzy checkpointing）</strong>允许 checkpoint 期间继续更新：</p>
+<ol>
+<li>暂时停止所有事务更新。</li>
+<li>写入 <code>&lt;checkpoint L&gt;</code> 日志记录，并 force log 到稳定存储。</li>
+<li>记录当前已修改缓冲块列表 <code>M</code>。</li>
+<li>允许事务继续执行。</li>
+<li>将列表 <code>M</code> 中的已修改缓冲块输出到磁盘。<ul>
+<li>块输出期间不能被更新。</li>
+<li>必须遵守 WAL，即该块相关日志先于块输出。</li>
+</ul>
+</li>
+<li>在磁盘固定位置 <code>last_checkpoint</code> 中保存指向该 checkpoint 记录的指针。</li>
+</ol>
+<p>恢复时从 <code>last_checkpoint</code> 指向的 checkpoint 记录开始扫描。该位置之前的日志记录，其更新已经反映到磁盘数据库中，不需要 redo。</p>
+<p>若系统在 checkpoint 过程中崩溃，只要 <code>last_checkpoint</code> 尚未更新，就会继续使用上一个完整 checkpoint，因此可以安全处理 incomplete checkpoint。</p>
+<h3 id="6-4-failure-with-loss-of-nonvolatile-storage">6. 4 Failure with Loss of Nonvolatile Storage<a class="headerlink" href="#6-4-failure-with-loss-of-nonvolatile-storage" title="Permanent link">&para;</a></h3>
+<p>前面的恢复算法假设非易失性存储没有丢失。若磁盘内容可能丢失，需要类似 checkpoint 的 dump 技术：</p>
+<ol>
+<li>周期性把整个数据库内容 dump 到稳定存储。</li>
+<li>dump 期间不允许有活跃事务，需要先执行类似 checkpoint 的过程。</li>
+<li>将主存中的所有日志记录输出到稳定存储。</li>
+<li>将所有缓冲块输出到磁盘。</li>
+<li>把数据库内容复制到稳定存储。</li>
+<li>在稳定存储日志中写入 <code>&lt;dump&gt;</code>。</li>
+</ol>
+<p>磁盘故障恢复时：</p>
+<ol>
+<li>从最近的 dump 恢复数据库。</li>
+<li>查阅日志，redo 所有 dump 之后提交的事务。</li>
+</ol>
+<p>该方法可以扩展为允许 dump 期间仍有事务活跃，称为 <strong>fuzzy dump</strong> 或 <strong>online dump</strong>，思想类似 fuzzy checkpointing。</p>
+<h2 id="7-recovery-with-early-lock-release-and-logical-undo">7 Recovery with Early Lock Release and Logical Undo<a class="headerlink" href="#7-recovery-with-early-lock-release-and-logical-undo" title="Permanent link">&para;</a></h2>
+<p>某些高并发并发控制技术会提前释放锁，例如 B+ 树并发控制。为了支持这类技术，恢复系统需要 <strong>logical undo</strong>，并且恢复过程通常基于 repeating history：恢复时执行与正常处理完全相同的动作。</p>
+<h3 id="7-1-logical-undo-logging">7. 1 Logical Undo Logging<a class="headerlink" href="#7-1-logical-undo-logging" title="Permanent link">&para;</a></h3>
+<p>B+ 树插入、删除等操作会提前释放锁，不能简单通过恢复旧值完成 undo。原因是锁释放后，其他事务可能已经更新了同一 B+ 树结构；物理地写回旧值可能破坏后续更新。</p>
+<p>因此：</p>
+<ul>
+<li>插入操作的 undo 通常是执行对应删除操作。</li>
+<li>删除操作的 undo 通常是执行对应插入操作。</li>
+<li>undo 日志记录中需要包含要执行的 undo operation。</li>
+</ul>
+<p>这种日志称为 <strong>logical undo logging</strong>，与记录旧值的 <strong>physical undo logging</strong> 相对。被这样记录的操作称为 <strong>logical operations</strong>。</p>
+<div class="admonition example">
+<p class="admonition-title">Logical undo examples</p>
+<ul>
+<li>为撤销 tuple insert，执行 tuple delete。</li>
+<li>对空间分配信息提前释放锁时，用逻辑操作撤销空间分配。</li>
+<li>为撤销 deposit，可以执行 subtract deposited amount，这允许提前释放账户余额上的某些锁。</li>
+</ul>
+</div>
+<h3 id="7-2-physical-redo">7. 2 Physical Redo<a class="headerlink" href="#7-2-physical-redo" title="Permanent link">&para;</a></h3>
+<p>即使某些操作使用 logical undo，redo 信息仍然物理记录，即记录每次写入的新值。</p>
+<p>原因是恢复开始时，磁盘上的数据库状态可能不是 operation consistent，逻辑 redo 很复杂；物理 redo 与 early lock release 不冲突。</p>
+<h3 id="7-3-operation-logging">7. 3 Operation Logging<a class="headerlink" href="#7-3-operation-logging" title="Permanent link">&para;</a></h3>
+<p>操作日志记录方式如下：</p>
+<ol>
+<li>操作开始时，写入 <code>&lt;Ti, Oj, operation-begin&gt;</code>，其中 <code>Oj</code> 是该操作实例的唯一标识。</li>
+<li>操作执行期间，照常写入带有 physical redo 和 physical undo 信息的日志记录。</li>
+<li>操作完成时，写入 <code>&lt;Ti, Oj, operation-end, U&gt;</code>，其中 <code>U</code> 包含执行 logical undo 所需的信息。</li>
+</ol>
+<div class="admonition example">
+<p class="admonition-title">向索引 <code>I9</code> 插入 <code>(K5, RID7)</code></p>
+<div class="highlight"><pre><span></span><code>&lt;T1, O1, operation-begin&gt;
+...
+&lt;T1, X, 10, K5&gt;
+&lt;T1, Y, 45, RID7&gt;
+&lt;T1, O1, operation-end, (delete I9, K5, RID7)&gt;
+</code></pre></div>
+<p>插入步骤本身用 physical redo 记录；若要撤销完整插入操作，则用 <code>delete I9, K5, RID7</code> 作为 logical undo。</p>
+</div>
+<p>若 crash 或 rollback 发生在操作完成前：</p>
+<ul>
+<li>找不到 <code>operation-end</code> 记录。</li>
+<li>使用物理 undo 信息撤销该操作。</li>
+</ul>
+<p>若 crash 或 rollback 发生在操作完成后：</p>
+<ul>
+<li>找得到 <code>operation-end</code> 记录。</li>
+<li>用 <code>U</code> 执行 logical undo。</li>
+<li>该操作内部的 physical undo 信息被忽略。</li>
+</ul>
+<p>无论哪种情况，故障后的 redo 仍使用 physical redo 信息。</p>
+<h3 id="7-4-transaction-rollback-with-logical-undo">7. 4 Transaction Rollback with Logical Undo<a class="headerlink" href="#7-4-transaction-rollback-with-logical-undo" title="Permanent link">&para;</a></h3>
+<p>回滚事务 <span class="arithmatex">\(T_i\)</span> 时，从日志末尾向后扫描：</p>
+<ol>
+<li>若遇到普通更新记录 <code>&lt;Ti, X, V1, V2&gt;</code>：<ul>
+<li>执行物理 undo，把 <code>X</code> 写回 <code>V1</code>。</li>
+<li>写出 <code>&lt;Ti, X, V1&gt;</code>。</li>
+</ul>
+</li>
+<li>若遇到 <code>&lt;Ti, Oj, operation-end, U&gt;</code>：<ul>
+<li>用 <code>U</code> 执行该操作的 logical rollback。</li>
+<li>rollback 期间产生的更新像正常操作一样写日志。</li>
+<li>操作 rollback 结束时，不写 <code>operation-end</code>，而写 <code>&lt;Ti, Oj, operation-abort&gt;</code>。</li>
+<li>跳过此前属于该操作的日志记录，直到 <code>&lt;Ti, Oj, operation-begin&gt;</code>。</li>
+</ul>
+</li>
+<li>若遇到 redo-only 记录，忽略。</li>
+<li>若遇到 <code>&lt;Ti, Oj, operation-abort&gt;</code>：<ul>
+<li>跳过此前属于该操作的日志记录，直到 <code>&lt;Ti, Oj, operation-begin&gt;</code>。</li>
+</ul>
+</li>
+<li>遇到 <code>&lt;Ti start&gt;</code> 时停止扫描，并写出 <code>&lt;Ti abort&gt;</code>。</li>
+</ol>
+<div class="admonition warning">
+<p class="admonition-title">为什么要跳过 operation-abort 前的日志</p>
+<p><code>operation-abort</code> 说明该操作已经被逻辑撤销。若恢复或回滚时再次扫描到该操作内部日志并重复撤销，会造成重复 undo。</p>
+<p>redo-only 记录和 <code>operation-abort</code> 情形通常只会在数据库正执行事务回滚时又发生 crash 的情况下出现。</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">完整操作与未完成操作同时存在</p>
+<div class="highlight"><pre><span></span><code>&lt;T1, start&gt;
+&lt;T1, O1, operation-begin&gt;
+...
+&lt;T1, X, 10, K5&gt;
+&lt;T1, Y, 45, RID7&gt;
+&lt;T1, O1, operation-end, (delete I9, K5, RID7)&gt;
+&lt;T1, O2, operation-begin&gt;
+&lt;T1, Z, 45, 70&gt;
+    T1 rollback begins here
+&lt;T1, Z, 45&gt;                 redo-only record during physical undo of incomplete O2
+&lt;T1, Y, ..., ...&gt;            normal redo records for logical undo of O1
+...
+&lt;T1, O1, operation-abort&gt;
+&lt;T1, abort&gt;
+</code></pre></div>
+<p>若 crash 发生在 <code>&lt;T1, O1, operation-abort&gt;</code> 之后，恢复时必须跳过 <code>O1</code> 内部日志，避免再次撤销 <code>O1</code>。</p>
+</div>
+<h3 id="7-5-recovery-algorithm-with-logical-undo">7. 5 Recovery Algorithm with Logical Undo<a class="headerlink" href="#7-5-recovery-algorithm-with-logical-undo" title="Permanent link">&para;</a></h3>
+<p>带 logical undo 的恢复算法与前面的算法基本相同，区别在于 undo 阶段按 logical rollback 规则处理操作日志。</p>
+<p><strong>Redo phase</strong>：</p>
+<ol>
+<li>从最后一个 <code>&lt;checkpoint L&gt;</code> 向前扫描到日志末尾。</li>
+<li>通过 physical redo 重复所有事务的所有更新，即 repeat history。</li>
+<li>扫描期间维护 <code>undo-list</code>：<ul>
+<li>初始为 <code>L</code>。</li>
+<li>遇到 <code>&lt;Ti start&gt;</code>，把 <span class="arithmatex">\(T_i\)</span> 加入 <code>undo-list</code>。</li>
+<li>遇到 <code>&lt;Ti commit&gt;</code> 或 <code>&lt;Ti abort&gt;</code>，把 <span class="arithmatex">\(T_i\)</span> 从 <code>undo-list</code> 删除。</li>
+</ul>
+</li>
+</ol>
+<p>redo phase 结束后，数据库回到 crash 时的状态，已提交、已中止和尚未完成事务的动作都被重放。此时 <code>undo-list</code> 中只剩未完成事务，即既没有 commit 也没有 abort 的事务。</p>
+<p><strong>Undo phase</strong>：</p>
+<ol>
+<li>从日志末尾向后扫描。</li>
+<li>对 <code>undo-list</code> 中事务的日志记录，按前述 logical undo rollback 规则处理。</li>
+<li>所有待撤销事务共享一次向后扫描。</li>
+<li>对 <code>undo-list</code> 中某个事务 <span class="arithmatex">\(T_i\)</span>，若扫描到 <code>&lt;Ti start&gt;</code>，写出 <code>&lt;Ti abort&gt;</code>。</li>
+<li>当 <code>undo-list</code> 中所有事务的 <code>&lt;Ti start&gt;</code> 都被找到时停止。</li>
+</ol>
+<p>该阶段撤销所有未完成事务的影响，恢复完成。</p>
+<h2 id="8-aries-recovery-algorithm">8 ARIES Recovery Algorithm<a class="headerlink" href="#8-aries-recovery-algorithm" title="Permanent link">&para;</a></h2>
+<p><strong>ARIES</strong> 全称 <strong>Algorithm for Recovery and Isolation Exploiting Semantics</strong>，是经典的工业级恢复算法。前面介绍的恢复算法可看作 ARIES 的简化版本。</p>
+<p>ARIES 的主要优化包括：</p>
+<ul>
+<li>使用 <strong>log sequence number, LSN</strong> 标识日志记录。</li>
+<li>在页中保存 LSN，判断哪些更新已经反映到数据库页。</li>
+<li>使用 <strong>physiological redo</strong>。</li>
+<li>使用 <strong>dirty page table</strong> 避免不必要的 redo。</li>
+<li>使用 fuzzy checkpointing，只记录脏页信息，不要求 checkpoint 时写出脏页。</li>
+</ul>
+<h3 id="8-1-physiological-redo">8. 1 Physiological Redo<a class="headerlink" href="#8-1-physiological-redo" title="Permanent link">&para;</a></h3>
+<p><strong>Physiological redo</strong> 物理标识受影响的页，但页内动作可以是逻辑的。</p>
+<p>它可以降低日志开销。例如删除一条记录后，页内其他记录可能移动以填补空洞：</p>
+<ul>
+<li>physical redo 可能要记录页面中大部分内容的旧值和新值。</li>
+<li>physiological redo 只需记录“删除该记录”这一页内动作。</li>
+</ul>
+<p>physiological redo 要求页输出到磁盘时具有原子性。硬件 RAID 或部分磁盘系统较容易支持这一点；若页输出不完整，可通过 checksum 检测，但需要额外恢复处理，通常视为 media failure。</p>
+<h3 id="8-2-aries-data-structures">8. 2 ARIES Data Structures<a class="headerlink" href="#8-2-aries-data-structures" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>结构</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>LSN</strong></td>
+<td>每条日志记录的递增编号，常用日志文件起始位置的偏移量表示，便于快速访问</td>
+</tr>
+<tr>
+<td><strong>PageLSN</strong></td>
+<td>数据页中保存的 LSN，表示该页已经反映到哪条日志记录</td>
+</tr>
+<tr>
+<td><strong>Log record</strong></td>
+<td>包含事务、前一日志记录、redo / undo 信息等</td>
+</tr>
+<tr>
+<td><strong>DirtyPageTable</strong></td>
+<td>记录缓冲区中被更新过、磁盘版本可能落后的页</td>
+</tr>
+</tbody>
+</table>
+<p>LSN 必须单调递增，也可以扩展到多个日志文件。</p>
+<h3 id="8-3-pagelsn">8. 3 PageLSN<a class="headerlink" href="#8-3-pagelsn" title="Permanent link">&para;</a></h3>
+<p>每个页包含一个 <code>PageLSN</code>，表示该页已经反映的最后一条日志记录的 LSN。</p>
+<p>更新页时：</p>
+<ol>
+<li>对页加 <code>X-latch</code>。</li>
+<li>写日志记录。</li>
+<li>更新该页。</li>
+<li>将该日志记录的 LSN 写入 <code>PageLSN</code>。</li>
+<li>释放页 latch。</li>
+</ol>
+<p>将页刷新到磁盘前，需要先对页加 <code>S-latch</code>，保证磁盘上的页状态是 operation consistent。这是支持 physiological redo 的前提。</p>
+<p>恢复时，<code>PageLSN</code> 用于避免重复 redo，从而保证 redo 的幂等性（idempotence）。</p>
+<h3 id="8-4-log-record-and-clr">8. 4 Log Record and CLR<a class="headerlink" href="#8-4-log-record-and-clr" title="Permanent link">&para;</a></h3>
+<p>普通 ARIES 日志记录包含同一事务前一条日志记录的 LSN，即 <code>PrevLSN</code>。日志记录中的 LSN 本身可以是隐式的。</p>
+<p>普通更新日志记录可抽象为：</p>
+<div class="highlight"><pre><span></span><code>LSN  TransID  PrevLSN  RedoInfo  UndoInfo
+</code></pre></div>
+<p>ARIES 使用一种特殊的 redo-only 日志记录，称为 <strong>compensation log record, CLR</strong>，记录恢复过程中已经执行的 undo 动作。CLR 永远不需要再被 undo。</p>
+<p>CLR 包含 <code>UndoNextLSN</code>，指向该事务下一条还需要 undo 的更早日志记录：</p>
+<div class="highlight"><pre><span></span><code>LSN  TransID  UndoNextLSN  RedoInfo
+</code></pre></div>
+<p><code>UndoNextLSN</code> 的作用是跳过已经被撤销过的日志记录，避免重复 undo。</p>
+<h3 id="8-5-dirtypagetable">8. 5 DirtyPageTable<a class="headerlink" href="#8-5-dirtypagetable" title="Permanent link">&para;</a></h3>
+<p><strong>DirtyPageTable</strong> 记录缓冲区中已经被更新的页。对每个这样的页，记录：</p>
+<ul>
+<li>页的 <code>PageLSN</code>。</li>
+<li><code>RecLSN</code>：一个 LSN，表示该 LSN 之前的日志记录已经应用到磁盘上的页版本。</li>
+</ul>
+<p>当某页第一次进入 DirtyPageTable 时，<code>RecLSN</code> 设置为当前日志末尾，即该页即将被更新前的位置。DirtyPageTable 会写入 checkpoint，用来减少恢复时需要 redo 的工作量。</p>
+<h3 id="8-6-checkpoint-log">8. 6 Checkpoint Log<a class="headerlink" href="#8-6-checkpoint-log" title="Permanent link">&para;</a></h3>
+<p>ARIES 的 checkpoint 日志记录包含：</p>
+<ul>
+<li>DirtyPageTable。</li>
+<li>活跃事务列表。</li>
+<li>对每个活跃事务，记录 <code>LastLSN</code>，即该事务最后一条日志记录的 LSN。</li>
+</ul>
+<p>磁盘固定位置保存最后一个完整 checkpoint 日志记录的 LSN。checkpoint 时不要求写出脏页；脏页可以在后台持续刷新。因此 ARIES checkpoint 开销很低，可以频繁执行。</p>
+<h3 id="8-7-aries-three-passes">8. 7 ARIES Three Passes<a class="headerlink" href="#8-7-aries-three-passes" title="Permanent link">&para;</a></h3>
+<p>ARIES 恢复包含三趟：</p>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Analysis pass</strong></td>
+<td>确定哪些事务需要 undo，哪些页 crash 时是 dirty，redo 从哪个 LSN 开始</td>
+</tr>
+<tr>
+<td><strong>Redo pass</strong></td>
+<td>从 <code>RedoLSN</code> 开始 repeat history，重做还没有反映到磁盘页的动作</td>
+</tr>
+<tr>
+<td><strong>Undo pass</strong></td>
+<td>回滚所有未完成事务</td>
+</tr>
+</tbody>
+</table>
+<p>Analysis 决定 redo 的起点；undo 可能需要回退到最早未完成事务的开始处。</p>
+<h3 id="8-8-analysis-pass">8. 8 Analysis Pass<a class="headerlink" href="#8-8-analysis-pass" title="Permanent link">&para;</a></h3>
+<p>Analysis pass 从最后一个完整 checkpoint 日志记录开始：</p>
+<ol>
+<li>从 checkpoint 记录中读出 DirtyPageTable。</li>
+<li>设置 <code>RedoLSN = min(DirtyPageTable 中所有页的 RecLSN)</code>。</li>
+<li>若没有脏页，则 <code>RedoLSN</code> 设为 checkpoint 记录的 LSN。</li>
+<li>将 <code>undo-list</code> 初始化为 checkpoint 记录中的活跃事务列表。</li>
+<li>读取 <code>undo-list</code> 中每个事务的最后日志记录 LSN。</li>
+<li>从 checkpoint 向前扫描。</li>
+</ol>
+<p>向前扫描过程中：</p>
+<ul>
+<li>若发现某事务的日志记录，而该事务不在 <code>undo-list</code> 中，则将其加入 <code>undo-list</code>。</li>
+<li>遇到更新日志记录时：<ul>
+<li>若对应页不在 DirtyPageTable 中，将该页加入 DirtyPageTable。</li>
+<li>该页的 <code>RecLSN</code> 设置为该更新日志记录的 LSN。</li>
+</ul>
+</li>
+<li>遇到 transaction end 日志记录时，将该事务从 <code>undo-list</code> 中删除。</li>
+<li>持续记录 <code>undo-list</code> 中每个事务的最后日志记录，供 undo pass 使用。</li>
+</ul>
+<p>Analysis pass 结束时：</p>
+<ul>
+<li><code>RedoLSN</code> 决定 redo pass 从哪里开始。</li>
+<li>DirtyPageTable 中每页的 <code>RecLSN</code> 用于减少 redo 工作。</li>
+<li><code>undo-list</code> 中所有事务都需要回滚。</li>
+</ul>
+<h3 id="8-9-redo-pass">8. 9 Redo Pass<a class="headerlink" href="#8-9-redo-pass" title="Permanent link">&para;</a></h3>
+<p>Redo pass 从 <code>RedoLSN</code> 向前扫描，重复历史。每遇到一条更新日志记录：</p>
+<ol>
+<li>若该页不在 DirtyPageTable 中，跳过该日志记录。</li>
+<li>若该日志记录的 LSN 小于该页在 DirtyPageTable 中的 <code>RecLSN</code>，跳过该日志记录。</li>
+<li>否则从磁盘取该页。</li>
+<li>若磁盘页的 <code>PageLSN</code> 小于该日志记录的 LSN，则 redo 该日志记录。</li>
+<li>若 <code>PageLSN &gt;= LSN</code>，说明该日志记录的效果已经在磁盘页中，跳过。</li>
+</ol>
+<p>第 1、2 个测试可以避免无意义地从磁盘读取页面；第 4 个测试避免重复 redo。</p>
+<h3 id="8-10-undo-actions">8. 10 Undo Actions<a class="headerlink" href="#8-10-undo-actions" title="Permanent link">&para;</a></h3>
+<p>当 ARIES 对一条更新日志记录执行 undo 时：</p>
+<ol>
+<li>生成一个 CLR，记录本次 undo 动作。</li>
+<li>CLR 的 redo 信息记录 undo 后的效果。</li>
+<li>CLR 的 <code>UndoNextLSN</code> 设置为被 undo 的更新日志记录中的 <code>PrevLSN</code>。</li>
+</ol>
+<p>CLR 在图示中常写作原记录编号加撇号，例如记录 <code>4</code> 的 CLR 写作 <code>4'</code>。箭头表示 <code>UndoNextLSN</code>。</p>
+<p>ARIES 支持部分回滚（partial rollback），例如处理死锁时只回滚到足以释放所需锁的位置。部分回滚后可以继续向前执行，之后也可以再次部分回滚或最终完全回滚。</p>
+<h3 id="8-11-undo-pass">8. 11 Undo Pass<a class="headerlink" href="#8-11-undo-pass" title="Permanent link">&para;</a></h3>
+<p>Undo pass 对 <code>undo-list</code> 中所有事务执行向后回滚，并通过 LSN 跳过不需要处理的日志记录：</p>
+<ol>
+<li>对每个待 undo 事务，把它下一条需要 undo 的 LSN 初始化为 analysis pass 得到的该事务最后日志记录 LSN。</li>
+<li>每一步选择这些 LSN 中最大的一个，直接跳到该日志记录并 undo。</li>
+<li>若 undo 的是普通日志记录，则该事务下一条待 undo LSN 设为该记录的 <code>PrevLSN</code>。</li>
+<li>若遇到 CLR，则下一条待 undo LSN 设为该 CLR 的 <code>UndoNextLSN</code>。</li>
+<li>中间被跳过的记录已经被 undo 过，不需要再次处理。</li>
+</ol>
+<p>undo 动作本身按前面介绍的规则执行，并写出相应 CLR。</p>
+<h3 id="8-12-other-aries-features">8. 12 Other ARIES Features<a class="headerlink" href="#8-12-other-aries-features" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Recovery independence</strong>：页可以独立恢复。例如部分磁盘页损坏时，可以从备份恢复这些页，同时其他页仍可使用。</li>
+<li><strong>Savepoints</strong>：事务可以记录 savepoint，并回滚到某个 savepoint。复杂事务和死锁处理都可能使用 savepoint，只回滚到足以释放锁的位置。</li>
+<li><strong>Fine-grained locking</strong>：允许索引并发算法使用 tuple-level locking，这需要 logical undo，而不是简单 physical undo。</li>
+<li><strong>Redo prefetch</strong>：DirtyPageTable 可用于 redo 期间预取页面。</li>
+<li><strong>Out-of-order redo</strong>：某页正在从磁盘读取时，可以推迟该页上的 redo，继续处理其他日志记录；页面读入后再执行对应 redo。</li>
+</ul>
+<h2 id="9-remote-backup-systems">9 Remote Backup Systems<a class="headerlink" href="#9-remote-backup-systems" title="Permanent link">&para;</a></h2>
+<p><strong>远程备份系统（remote backup systems）</strong>通过在 primary site 被破坏后仍允许事务处理继续进行，提供高可用性。</p>
+<h3 id="9-1-failure-detection-and-transfer-of-control">9. 1 Failure Detection and Transfer of Control<a class="headerlink" href="#9-1-failure-detection-and-transfer-of-control" title="Permanent link">&para;</a></h3>
+<p>备份站点必须检测 primary site 是否失败。为区分 primary failure 与通信链路 failure，系统通常在 primary 和 remote backup 之间维护多条通信链路，并发送 heart-beat messages。</p>
+<p>控制权转移过程：</p>
+<ol>
+<li>backup site 确认 primary site 失败。</li>
+<li>backup 使用自己的数据库副本和已经从 primary 接收到的日志记录执行恢复。</li>
+<li>已完成事务 redo，未完成事务 rollback。</li>
+<li>backup 接管处理并成为新的 primary。</li>
+<li>若旧 primary 恢复并要重新接管，必须先从旧 backup 接收 redo logs，并在本地应用所有更新。</li>
+</ol>
+<h3 id="9-2-time-to-recover-and-hot-spare">9. 2 Time to Recover and Hot Spare<a class="headerlink" href="#9-2-time-to-recover-and-hot-spare" title="Permanent link">&para;</a></h3>
+<p>为了减少接管延迟，backup site 可以周期性处理收到的 redo log records，相当于不断从之前的数据库状态做恢复；之后执行 checkpoint，并删除更早日志。</p>
+<p><strong>Hot-spare configuration</strong> 可以实现很快接管：</p>
+<ul>
+<li>backup 持续处理收到的 redo log records，并在本地应用更新。</li>
+<li>检测到 primary failure 后，backup 只需回滚未完成事务，就可以开始处理新事务。</li>
+</ul>
+<p>远程备份的替代方案是使用带复制数据的分布式数据库。远程备份通常更快、更便宜，但对某些故障的容忍度较低。</p>
+<h3 id="9-3-commit-durability-levels">9. 3 Commit Durability Levels<a class="headerlink" href="#9-3-commit-durability-levels" title="Permanent link">&para;</a></h3>
+<p>为了保证更新持久性，可以延迟事务提交，直到更新也记录到 backup。若希望减少提交延迟，可以接受较低级别的持久性。</p>
+<table>
+<thead>
+<tr>
+<th>策略</th>
+<th>提交条件</th>
+<th>优点</th>
+<th>风险或代价</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>One-safe</strong></td>
+<td>commit log record 写到 primary 后即可提交</td>
+<td>提交延迟低</td>
+<td>更新可能尚未到达 backup，backup 接管后可能丢失已提交事务</td>
+</tr>
+<tr>
+<td><strong>Two-very-safe</strong></td>
+<td>commit log record 写到 primary 和 backup 后才提交</td>
+<td>避免 one-safe 的丢失事务问题</td>
+<td>可用性下降，任一站点失败都可能导致事务不能提交</td>
+</tr>
+<tr>
+<td><strong>Two-safe</strong></td>
+<td>primary 和 backup 都 active 时按 two-very-safe；若只有 primary active，则写到 primary 后提交</td>
+<td>比 two-very-safe 可用性更好，同时避免 one-safe 在 backup active 时的丢失事务问题</td>
+<td>backup 不可用期间退化为 primary-only 提交</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.top", "navigation.sidebar", "navigation.indexes"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../../javascripts/mathjax-config.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf_viewer.min.js"></script>
+      
+    
+  </body>
+</html>

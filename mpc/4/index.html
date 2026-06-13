@@ -2727,6 +2727,8 @@
       
         
       
+        
+      
     
     
     
@@ -3060,6 +3062,29 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../db/collection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    错题集
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -3116,7 +3141,7 @@
   
   
   <span class="md-ellipsis">
-    隐私计算与安全合规
+    隐私计算与数据合规
     
   </span>
   
@@ -3127,7 +3152,7 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4_6">
             <span class="md-nav__icon md-icon"></span>
-            隐私计算与安全合规
+            隐私计算与数据合规
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -4263,7 +4288,7 @@ y_1 = x_1' x_2 x_3 = x_2 x_3.
 <div class="arithmatex">\[
 y_1 = ux_3 = x_3.
 \]</div>
-<p>但在理想功能中，当 <span class="arithmatex">\(x_2 = 0\)</span> 时，<span class="arithmatex">\(P_1\)</span> <strong>不可能总是学到</strong> <span class="arithmatex">\(x_3\)</span>，因而这类攻击<strong>不能</strong>被输入替换解释，是<strong>不允许影响</strong>。</p>
+<p>但在理想功能中，当 <span class="arithmatex">\(x_1 = 0\)</span> 时，<span class="arithmatex">\(P_1\)</span> <strong>不可能总是学到</strong> <span class="arithmatex">\(x_3\)</span>，因而这类攻击<strong>不能</strong>被输入替换解释，是<strong>不允许影响</strong>。</p>
 </details>
 <ul>
 <li><strong>允许影响（Allowed Influence）</strong>：理想功能中允许的攻击效果，典型就是<strong>输入替换</strong></li>
@@ -4305,27 +4330,23 @@ y_1 = ux_3 = x_3.
 <details class="example">
 <summary>真实协议及其运行</summary>
 <p><img src="/mpc/images/image4-3.png" style="display: block; width: 60%; margin: 0 auto;" /></p>
-<p><span class="arithmatex">\(\mathcal{C}\)</span> 连接所有参与方，被攻陷方接入 <span class="arithmatex">\(\mathcal{A}\)</span>，<span class="arithmatex">\(\mathcal{Z}\)</span> 与诚实方交互并与敌手 <span class="arithmatex">\(\mathcal{A}\)</span> 通信。</p>
 <ul>
-<li><span class="arithmatex">\(\mathcal{Z} \to P_i\)</span>: 输入 (<span class="arithmatex">\(\mathcal{Z}\)</span>-<span class="arithmatex">\(I/O\)</span>)</li>
-<li><span class="arithmatex">\(\mathcal{Z} \to \mathcal{A}\)</span>: 传递控制消息</li>
-<li><span class="arithmatex">\(P_i/\mathcal{A} \to \mathcal{C}\)</span>: 发送请求 (<span class="arithmatex">\(\text{SEND}, j, m\)</span>)</li>
-<li><span class="arithmatex">\(\mathcal{C} \to \mathcal{A}\)</span>: 泄露 (<span class="arithmatex">\(\text{SENT}, i, \text{len}(m)\)</span>)</li>
-<li><span class="arithmatex">\(\mathcal{A} \to \mathcal{Z}\)</span>: 传递泄露消息</li>
-<li><span class="arithmatex">\(\mathcal{A} \to \mathcal{C}\)</span>: 调度 (<span class="arithmatex">\(\text{DELIVER}, k\)</span>)</li>
-<li><span class="arithmatex">\(\mathcal{C} \to P_j/\mathcal{A}\)</span>: 传递 (<span class="arithmatex">\(\text{RECEIVE}, i, m\)</span>)</li>
-<li><span class="arithmatex">\(P_i \to \mathcal{Z}\)</span>: 输出</li>
+<li>共有 <span class="arithmatex">\(4\)</span> 个参与方 <span class="arithmatex">\(P_1, ..., P_4\)</span>，其中参与方 <span class="arithmatex">\(P_3\)</span> 和 <span class="arithmatex">\(P_4\)</span> 被攻陷，行为由敌手 <span class="arithmatex">\(\mathcal{A}\)</span> 控制。</li>
+<li>通信网络 <span class="arithmatex">\(C\)</span> 连接所有参与方，原本连接 <span class="arithmatex">\(P_3\)</span> 和 <span class="arithmatex">\(P_4\)</span> 的通信线路现在直接与 <span class="arithmatex">\(\mathcal{A}\)</span> 相连，允许 <span class="arithmatex">\(\mathcal{A}\)</span> 向 <span class="arithmatex">\(P_1\)</span> 发送消息，也可以接收 <span class="arithmatex">\(P_1\)</span> 发往 <span class="arithmatex">\(P_3\)</span> 的消息，以上线路称为 <span class="arithmatex">\(C-\text{I/O}\)</span> 线。</li>
+<li><span class="arithmatex">\(\mathcal{A}\)</span> 和 <span class="arithmatex">\(C\)</span> 之间有一条 <span class="arithmatex">\(C\)</span>-控制线，向 <span class="arithmatex">\(\mathcal{A}\)</span> 泄露关于诚实方发送消息的信息，<span class="arithmatex">\(\mathcal{A}\)</span> 还能够发送控制消息给 <span class="arithmatex">\(C\)</span>，以指示 <span class="arithmatex">\(C\)</span> 何时将消息传递给诚实方。</li>
+<li>环境 <span class="arithmatex">\(\mathcal{Z}\)</span> 与诚实方 <span class="arithmatex">\(P_1\)</span> 和 <span class="arithmatex">\(P_2\)</span> 连接，能够向诚实方发送协议输入并接收输出，这些连接称为 <span class="arithmatex">\(\mathcal{Z}-\text{I/O}\)</span> 线。</li>
+<li>环境和 <span class="arithmatex">\(\mathcal{A}\)</span> 之间还有一条 <span class="arithmatex">\(\mathcal{A}\)</span>-控制线，允许二者直接通信。<span class="arithmatex">\(\mathcal{Z}\)</span> 可以发送控制消息给 <span class="arithmatex">\(\mathcal{A}\)</span>，也可能接收来自 <span class="arithmatex">\(\mathcal{A}\)</span> 的泄露消息。</li>
 </ul>
 <p>敌手知道谁向谁发送、消息长度，决定消息是否/何时被传递（调度顺序），但不能读取内容、不能篡改或改写发送方。被攻陷方的全部行为由敌手 <span class="arithmatex">\(\mathcal{A}\)</span> 决定。</p>
 </details>
 <details class="example">
 <summary>理想协议及其运行</summary>
 <p><img src="/mpc/images/image4-4.png" style="display: block; width: 60%; margin: 0 auto;" /></p>
-<p><span class="arithmatex">\(\mathcal{F}\)</span> 替代网络 <span class="arithmatex">\(\mathcal{C}\)</span>，被攻陷方接入模拟器 <span class="arithmatex">\(\mathcal{S}\)</span>，<span class="arithmatex">\(\mathcal{Z}\)</span> 与“诚实方”交互，并与“敌手” <span class="arithmatex">\(\mathcal{S}\)</span> 通信。</p>
+<p><span class="arithmatex">\(\mathcal{F}\)</span> 替代网络 <span class="arithmatex">\(\mathcal{C}\)</span>，被攻陷方接入模拟器 <span class="arithmatex">\(\mathcal{S}\)</span>，<span class="arithmatex">\(\mathcal{Z}\)</span> 与诚实方交互，并与敌手 <span class="arithmatex">\(\mathcal{S}\)</span> 通信。</p>
 <ul>
-<li><span class="arithmatex">\(\mathcal{F}\)</span>-I/O 线：连接诚实方与 <span class="arithmatex">\(\mathcal{F}\)</span>（输入/输出转发）</li>
-<li><span class="arithmatex">\(\mathcal{F}\)</span>-控制线：连接 <span class="arithmatex">\(\mathcal{S}\)</span> 与 <span class="arithmatex">\(\mathcal{F}\)</span>（允许影响）</li>
-<li><span class="arithmatex">\(\mathcal{S}\)</span>-控制线：连接 <span class="arithmatex">\(\mathcal{Z}\)</span> 与 <span class="arithmatex">\(\mathcal{S}\)</span>（控制与泄露）.</li>
+<li><span class="arithmatex">\(\mathcal{F}-I/O\)</span> 线：连接诚实方与 <span class="arithmatex">\(\mathcal{F}\)</span>（输入/输出转发）</li>
+<li><span class="arithmatex">\(\mathcal{F}-\)</span>控制线：连接 <span class="arithmatex">\(\mathcal{S}\)</span> 与 <span class="arithmatex">\(\mathcal{F}\)</span>（允许影响）</li>
+<li><span class="arithmatex">\(\mathcal{S}-\)</span>控制线：连接 <span class="arithmatex">\(\mathcal{Z}\)</span> 与 <span class="arithmatex">\(\mathcal{S}\)</span>（控制与泄露）.</li>
 </ul>
 <p>真实/理想世界对环境 <span class="arithmatex">\(\mathcal{Z}\)</span> 的接口完全一致，核心目标是通过 <span class="arithmatex">\(\mathcal{S}\)</span>，使理想世界对 <span class="arithmatex">\(\mathcal{Z}\)</span> 不可区分于真实世界。</p>
 <ul>
@@ -4385,7 +4406,7 @@ exec_{\Pi,\mathcal{A},\mathcal{Z}} \approx exec_{F,\mathcal{S},\mathcal{Z}},
 <ul>
 <li><span class="arithmatex">\(\Pi^*\)</span> 是一个高效的协议，它安全地实现了理想功能 <span class="arithmatex">\(\mathcal{F}^*\)</span></li>
 <li><span class="arithmatex">\(\Pi\)</span> 是一个高效的协议，它使用 <span class="arithmatex">\(\Pi^*\)</span> 作为子协议</li>
-<li>混合协议 <span class="arithmatex">\(\Pi_{\mathcal{F}^*}\)</span>(其中理想功能 <span class="arithmatex">\(\mathcal{F}^*\)</span> 取代了子协议 <span class="arithmatex">\(\Pi^*\)</span>)UC-安全实现了 <span class="arithmatex">\(\mathcal{F}\)</span></li>
+<li>混合协议 <span class="arithmatex">\(\Pi_{\mathcal{F}^*}\)</span>（其中理想功能 <span class="arithmatex">\(\mathcal{F}^*\)</span> 取代了子协议 <span class="arithmatex">\(\Pi^*\)</span>）UC-安全实现了 <span class="arithmatex">\(\mathcal{F}\)</span></li>
 </ul>
 <p>那么 <span class="arithmatex">\(\Pi\)</span> UC-安全实现了 <span class="arithmatex">\(\mathcal{F}\)</span>。</p>
 <p><img src="/mpc/images/image4-6.png" style="display: block; width: 80%; margin: 0 auto;" /></p>

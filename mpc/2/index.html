@@ -2727,6 +2727,8 @@
       
         
       
+        
+      
     
     
     
@@ -3060,6 +3062,29 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../db/collection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    错题集
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -3116,7 +3141,7 @@
   
   
   <span class="md-ellipsis">
-    隐私计算与安全合规
+    隐私计算与数据合规
     
   </span>
   
@@ -3127,7 +3152,7 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4_6">
             <span class="md-nav__icon md-icon"></span>
-            隐私计算与安全合规
+            隐私计算与数据合规
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -3308,9 +3333,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#35-message-authentication-codes-macs" class="md-nav__link">
+  <a href="#3-5-message-authentication-codes-macs" class="md-nav__link">
     <span class="md-ellipsis">
-      3.5 消息认证码（Message Authentication Codes, MACs）
+      3. 5 消息认证码（Message Authentication Codes, MACs）
     </span>
   </a>
   
@@ -4277,9 +4302,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#35-message-authentication-codes-macs" class="md-nav__link">
+  <a href="#3-5-message-authentication-codes-macs" class="md-nav__link">
     <span class="md-ellipsis">
-      3.5 消息认证码（Message Authentication Codes, MACs）
+      3. 5 消息认证码（Message Authentication Codes, MACs）
     </span>
   </a>
   
@@ -4413,7 +4438,7 @@ $$
 </ul>
 </div>
 <ul>
-<li>若 <span class="arithmatex">\((h_1,h_2,h_3)=(g^x,g^y,g^z)\)</span> 是随机三元组，此时 <span class="arithmatex">\((c_1,c_2)\)</span> 与 <span class="arithmatex">\(m_b\)</span>，因而有：</li>
+<li>若 <span class="arithmatex">\((h_1,h_2,h_3)=(g^x,g^y,g^z)\)</span> 是随机三元组，此时 <span class="arithmatex">\((c_1,c_2)\)</span> 与 <span class="arithmatex">\(m_b\)</span> 无关，因而有：</li>
 </ul>
 <div class="arithmatex">\[
 \Pr[\mathcal{B}(\mathbb{G},q,g,g^x,g^y,g^z)=1] = \frac{1}{2}
@@ -4475,7 +4500,7 @@ $$
 \Pr[\forall k \ge t+1,\ Rec(s_{i_1},\dots,s_{i_k})=s]=1
 \]</div>
 <ul>
-<li><strong>（完美） 隐私性</strong>：任意 <span class="arithmatex">\(|U| \leq t\)</span> 的份额集合 <span class="arithmatex">\(\{s_j\}_{j \in U}\)</span> 的分布与 <span class="arithmatex">\(s\)</span> 无关，即敌手即便拥有这些份额，也得不到任何关于秘密的额外信息</li>
+<li><strong>（完美）隐私性</strong>：任意 <span class="arithmatex">\(|U| \leq t\)</span> 的份额集合 <span class="arithmatex">\(\{s_j\}_{j \in U}\)</span> 的分布与 <span class="arithmatex">\(s\)</span> 无关，即敌手即便拥有这些份额，也得不到任何关于秘密的额外信息</li>
 </ul>
 </li>
 </ul>
@@ -4504,8 +4529,8 @@ H:\{0,1\}^* \to \{0,1\}^{\kappa}
 </details>
 <ul>
 <li><strong>随机谕示机（RO）</strong>是一个理想化公共函数 <span class="arithmatex">\(H\)</span>：<ul>
-<li>如果输入 <strong>第一次出现</strong>，则返回一个随机值 <span class="arithmatex">\(r_x \leftarrow \{0,1\}^{\kappa}\)</span></li>
-<li>如果输入 <strong>之前出现过</strong>，则返回和之前完全相同的结果</li>
+<li>如果输入<strong>第一次出现</strong>，则返回一个随机值 <span class="arithmatex">\(r_x \leftarrow \{0,1\}^{\kappa}\)</span></li>
+<li>如果输入<strong>之前出现过</strong>，则返回和之前完全相同的结果</li>
 </ul>
 </li>
 </ul>
@@ -4563,11 +4588,41 @@ b=b'
 \right]
 \le \frac{1}{2}+negl(\kappa)
 \]</div>
+<details class="info">
+<summary>解释</summary>
+<ol>
+<li>
+<p><strong>密钥生成</strong> ：运行密钥生成算法，产生密钥 <span class="arithmatex">\(k\)</span>，即</p>
+<div class="arithmatex">\[
+k \leftarrow \text{Gen}(1^\kappa)
+\]</div>
+</li>
+<li>
+<p><strong>第一阶段查询 &amp; 挑战明文选择</strong>：敌手 <span class="arithmatex">\(\mathcal{A}\)</span> 获得安全参数 <span class="arithmatex">\(1^\kappa\)</span>，并且可以<strong>自适应地访问加密预言机</strong> <span class="arithmatex">\(\text{Enc}_k(\cdot)\)</span>（即可以任意选择明文，获得对应的密文）。之后，敌手输出一对等长的挑战明文 <span class="arithmatex">\((m_0, m_1)\)</span>，即</p>
+<div class="arithmatex">\[
+(m_0, m_1) \leftarrow \mathcal{A}^{\text{Enc}_k(\cdot)}(1^\kappa)
+\]</div>
+</li>
+<li>
+<p><strong>挑战密文生成</strong>：随机选择一个秘密比特 <span class="arithmatex">\(b\)</span>，加密 <span class="arithmatex">\(m_b\)</span> 得到挑战密文 <span class="arithmatex">\(c\)</span>，即</p>
+<div class="arithmatex">\[
+b \leftarrow \{0,1\}, \quad c \leftarrow \text{Enc}_k(m_b)
+\]</div>
+</li>
+<li>
+<p><strong>第二阶段查询 &amp; 猜测</strong>：敌手再次获得加密预言机访问权，并收到挑战密文 <span class="arithmatex">\(c\)</span> 以及它自己选的 <span class="arithmatex">\((m_0, m_1)\)</span>（写在输入里表示敌手知道它们），最终输出对 <span class="arithmatex">\(b\)</span> 的猜测 <span class="arithmatex">\(b'\)</span>，即</p>
+<div class="arithmatex">\[
+b' \leftarrow \mathcal{A}^{\text{Enc}_k(\cdot)}(1^\kappa, c, m_0, m_1)
+\]</div>
+</li>
+</ol>
+<p>总的来说，这个式子要求即使敌手能随时加密任意明文，它也无法在区分 <span class="arithmatex">\(m_0\)</span> 的加密和 <span class="arithmatex">\(m_1\)</span> 的加密上获得任何不可忽略的优势，这正是<strong>选择明文攻击下的语义安全性</strong>。</p>
+</details>
 <div class="admonition warning">
 <p class="admonition-title">实践结论</p>
-<p>若想达到 IND-CPA 安全，通常必须使用<strong>随机 IV（Initialization Vector）</strong>或 <strong>概率加密</strong>，单纯的<strong>确定性加密</strong>通常不满足 IND-CPA 安全。</p>
+<p>若想达到 IND-CPA 安全，通常必须使用<strong>随机 IV（Initialization Vector）</strong>或<strong>概率加密</strong>，单纯的<strong>确定性加密</strong>通常不满足 IND-CPA 安全。</p>
 </div>
-<h3 id="35-message-authentication-codes-macs">3.5 消息认证码（Message Authentication Codes, MACs）<a class="headerlink" href="#35-message-authentication-codes-macs" title="Permanent link">&para;</a></h3>
+<h3 id="3-5-message-authentication-codes-macs">3. 5 消息认证码（Message Authentication Codes, MACs）<a class="headerlink" href="#3-5-message-authentication-codes-macs" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">消息认证码（MAC）</p>
 <p>设密钥空间为 <span class="arithmatex">\(\mathcal{K}\)</span>，消息空间为 <span class="arithmatex">\(\mathcal{M}\)</span>，标签空间为 <span class="arithmatex">\(\mathcal{T}\)</span>，MAC 方案包含算法 <span class="arithmatex">\((\text{Gen}, \text{Mac}, \text{Ver})\)</span>：</p>
@@ -4583,8 +4638,6 @@ b=b'
 </li>
 <li>
 <p><strong>安全性</strong>：若对任意敌手 <span class="arithmatex">\(\mathcal{A}\)</span>，其伪造一个新消息合法标签的概率可忽略，即：</p>
-</li>
-</ul>
 <div class="arithmatex">\[
 \Pr\left[
 \begin{aligned}
@@ -4594,26 +4647,66 @@ b=b'
 : \text{Ver}_\text{k}(m, t) = 1 \land m \neq m'
 \right] \leq \text{negl}(\kappa)
 \]</div>
-<p>则称 <span class="arithmatex">\(\Pi = (\text{Gen}, \text{Mac}, \text{Ver})\)</span> 为<strong>信息论安全的一次性 MAC</strong></p>
+<p>则称 <span class="arithmatex">\(\Pi = (\text{Gen}, \text{Mac}, \text{Ver})\)</span> 为<strong>信息论安全的一次性 MAC</strong>。</p>
+</li>
+</ul>
+<details class="info">
+<summary>解释</summary>
+<ol>
+<li>
+<p><strong>密钥生成</strong>：挑战者用安全参数生成密钥 <span class="arithmatex">\(k\)</span>，即</p>
+<div class="arithmatex">\[
+k \leftarrow \text{Gen}(1^\kappa)
+\]</div>
+</li>
+<li>
+<p><strong>敌手选择挑战消息</strong>：敌手根据安全参数，<strong>自己选择</strong>一条消息 <span class="arithmatex">\(m'\)</span>，发送给挑战者（此时敌手还不知道 <span class="arithmatex">\(k\)</span>，也没见过任何标签），即</p>
+<div class="arithmatex">\[
+m' \leftarrow \mathcal{A}(1^\kappa)
+\]</div>
+</li>
+<li>
+<p><strong>挑战者生成合法标签</strong>：挑战者用密钥 <span class="arithmatex">\(k\)</span> 为 <span class="arithmatex">\(m'\)</span> 计算一个真实的认证标签 <span class="arithmatex">\(t'\)</span>，然后把 <span class="arithmatex">\((m', t')\)</span> 返回给敌手，即</p>
+<div class="arithmatex">\[
+t' \leftarrow \text{Mac}_k(m')
+\]</div>
+</li>
+<li>
+<p><strong>敌手尝试伪造</strong>：敌手拿到一对真实的 <span class="arithmatex">\((m', t')\)</span> 后，试图输出另一对 <span class="arithmatex">\((m, t)\)</span>，作为它的伪造，即</p>
+<div class="arithmatex">\[
+(m, t) \leftarrow \mathcal{A}(1^\kappa, m', t')
+\]</div>
+</li>
+</ol>
+<p>上式要即使敌手已经拿到了一对正确的 <span class="arithmatex">\((m', t')\)</span>，它想为<strong>另一条不同的消息</strong> <span class="arithmatex">\(m\)</span> 造出有效标签的概率必须是<strong>可忽略的</strong>。</p>
+</details>
 <div class="admonition example">
 <p class="admonition-title">线性一次性 MAC</p>
 <p>令消息空间 <span class="arithmatex">\(\mathcal{M}\)</span>、标签空间 <span class="arithmatex">\(\mathcal{T}\)</span> 都为 <span class="arithmatex">\(\mathbb{Z}_p\)</span>，密钥 <span class="arithmatex">\((a,b)\leftarrow \mathbb{Z}_p^2\)</span>，定义：</p>
 <div class="arithmatex">\[
 Mac_{a,b}(m)=a \cdot m + b \pmod p
 \]</div>
+<details class="tip">
+<summary>直观解释</summary>
+<p>密钥是一条随机直线，标签是直线上的一个点。一个点无法确定一条直线，因此无法为另一个点伪造标签；但两个点可以确定了直线，所以绝不能重用密钥。</p>
+</details>
 </div>
 <h3 id="3-6-commitments">3. 6 承诺（Commitments）<a class="headerlink" href="#3-6-commitments" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>隐藏性（Hiding）</strong>：在打开之前，接收方无法得知承诺的消息 <span class="arithmatex">\(m\)</span></li>
 <li><strong>绑定性（Binding）</strong>：承诺方一旦生成承诺值 <span class="arithmatex">\(c\)</span>，之后就不能把它解释成另一个不同消息 <span class="arithmatex">\(m' \ne m\)</span></li>
 </ul>
-<details class="info">
-<summary>常见构造</summary>
+<div class="admonition example">
+<p class="admonition-title">常见构造</p>
 <ul>
 <li><strong>Hash-based 承诺</strong>：<span class="arithmatex">\(c=H(m \| r)\)</span>，一般依赖随机谕示机模型</li>
 <li><strong>Pedersen 承诺</strong>：<span class="arithmatex">\(c=g^m h^r\)</span>，基于离散对数困难性，具有<strong>完美隐藏、计算绑定</strong>性质</li>
 </ul>
+<details class="question">
+<summary>为什么不能直接用 <span class="arithmatex">\(c=H(m \| r)\)</span> 或 <span class="arithmatex">\(c=g^m\)</span>？</summary>
+<p>如果承诺只用 <span class="arithmatex">\(H(m)\)</span> 或 <span class="arithmatex">\(g^m\)</span>，而消息 <span class="arithmatex">\(m\)</span> 只有少数可能，攻击者直接计算所有候选消息的承诺值，对比一下就能立即破解隐藏性。除此之外，由于此时 <span class="arithmatex">\(c\)</span> 是确定性函数，相同 <span class="arithmatex">\(m\)</span> 对应的 <span class="arithmatex">\(c\)</span> 相同，攻击者可以通过观察承诺值获取相等性。</p>
 </details>
+</div>
 <h3 id="37-oblivious-transfer-ot">3.7 茫然传输（Oblivious Transfer, OT）<a class="headerlink" href="#37-oblivious-transfer-ot" title="Permanent link">&para;</a></h3>
 <p><img src="/mpc/images/image2-2.png" style="display: block; width: 80%; margin: 0 auto;" /></p>
 <ul>

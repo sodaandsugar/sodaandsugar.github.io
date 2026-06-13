@@ -2727,6 +2727,8 @@
       
         
       
+        
+      
     
     
     
@@ -3060,6 +3062,29 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../db/collection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    错题集
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -3116,7 +3141,7 @@
   
   
   <span class="md-ellipsis">
-    隐私计算与安全合规
+    隐私计算与数据合规
     
   </span>
   
@@ -3127,7 +3152,7 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4_6">
             <span class="md-nav__icon md-icon"></span>
-            隐私计算与安全合规
+            隐私计算与数据合规
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -4324,8 +4349,8 @@
 <h1 id="chapter-3">Chapter 3 一个安全多方计算协议的例子<a class="headerlink" href="#chapter-3" title="Permanent link">&para;</a></h1>
 <h2 id="1">1 协议概览与假设<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>本章目标</strong>：构建一个基于 <strong>Shamir 秘密分享</strong> 的通用 MPC 协议，在<strong>信息论意义</strong>下实现<strong>完美隐私性（Perfect Privacy）</strong></li>
-<li><strong>核心思路</strong>：先把待计算函数表示为<strong>算术电路（Arithmetic Circuit）</strong>，再对电路中的每条导线维护秘密份额</li>
+<li><strong>本章目标</strong>：构建一个基于 <strong>Shamir 秘密分享</strong> 的通用 MPC 协议，在<strong>信息论意义</strong>下实现<strong>完美隐私性（Perfect Privacy）</strong>。</li>
+<li><strong>核心思路</strong>：先把待计算函数表示为<strong>算术电路（Arithmetic Circuit）</strong>，再对电路中的每条导线维护秘密份额。</li>
 </ul>
 <div class="admonition info">
 <p class="admonition-title">基本设定</p>
@@ -4404,11 +4429,7 @@ s = f(0) = \sum_{i \in S} \lambda_i s_i
 <div class="admonition warning">
 <p class="admonition-title">关键困难</p>
 <p>直接把两个份额逐点相乘后，得到的是一个<strong>次数至多为 <span class="arithmatex">\(2t\)</span> 的多项式</strong>上的点。</p>
-<ul>
-<li>虽然其常数项确实是 <span class="arithmatex">\(ab\)</span></li>
-<li>但它已经<strong>不再是 <span class="arithmatex">\(t\)</span>-门限分享</strong></li>
-<li>因此无法直接作为后续门电路的输入，必须做<strong>降阶（Degree Reduction）</strong></li>
-</ul>
+<p>虽然其常数项确实是 <span class="arithmatex">\(ab\)</span>，但它已经<strong>不再是 <span class="arithmatex">\(t\)</span>-门限分享</strong>，因此无法直接作为后续门电路的输入，必须做<strong>降阶（Degree Reduction）</strong>。</p>
 </div>
 <h2 id="3">3 半诚实安全多方计算协议<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
 <h3 id="3-1">3. 1 算术电路视角<a class="headerlink" href="#3-1" title="Permanent link">&para;</a></h3>
@@ -4464,7 +4485,7 @@ s = f(0) = \sum_{i \in S} \lambda_i s_i
 <li>
 <p><strong>线性重组</strong></p>
 <ul>
-<li>由于 <span class="arithmatex">\(h(x)\)</span> 的次数至多为 <span class="arithmatex">\(2t\)</span>，存在公开的重组向量 <span class="arithmatex">\(r=(r_1,\dots,r_n)\)</span>，使得 <span class="arithmatex">\(h(0)=\sum\limits_{i=1}^{n} r_i h(\alpha_i)\)</span></li>
+<li>由于 <span class="arithmatex">\(h(x)\)</span> 的次数至多为 <span class="arithmatex">\(2t\)</span>，存在公开的重组向量 <span class="arithmatex">\(r=(r_1,\dots,r_n)\)</span>，使得 <span class="arithmatex">\(h(0) = \sum\limits_{i=1}^{n} r_i h(\alpha_i) = \sum\limits_{i=1}^{n} r_i v_i\)</span></li>
 <li>各方据此本地计算 <span class="arithmatex">\([ab]_t = \sum\limits_{i=1}^{n} r_i \cdot [v_i;g_i]_t\)</span></li>
 <li>因为右边是若干个<strong>次数至多为 <span class="arithmatex">\(t\)</span> 的份额</strong>的线性组合，所以结果重新回到了<strong>次数至多为 <span class="arithmatex">\(t\)</span></strong></li>
 </ul>
@@ -4484,7 +4505,7 @@ s = f(0) = \sum_{i \in S} \lambda_i s_i
 <h3 id="4-1-correctness">4. 1 正确性（Correctness）<a class="headerlink" href="#4-1-correctness" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>加法门</strong>和<strong>常数乘法门</strong>的正确性，直接来自 Shamir 分享的线性同态性质</li>
-<li>惩罚协议利用 <span class="arithmatex">\(h(0)=\sum\limits_{i=1}^{n} r_i h(\alpha_i)=ab\)</span> 确保了结果是 <span class="arithmatex">\(ab\)</span>，且最终多项式阶数为 <span class="arithmatex">\(t\)</span></li>
+<li>乘法协议利用 <span class="arithmatex">\(h(0)=\sum\limits_{i=1}^{n} r_i h(\alpha_i)=ab\)</span> 确保了结果是 <span class="arithmatex">\(ab\)</span>，且最终多项式阶数为 <span class="arithmatex">\(t\)</span></li>
 </ul>
 <h3 id="42-perfect-privacy">4.2 完美隐私性（Perfect Privacy）<a class="headerlink" href="#42-perfect-privacy" title="Permanent link">&para;</a></h3>
 <div class="admonition info">

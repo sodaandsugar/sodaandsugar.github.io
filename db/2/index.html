@@ -2729,6 +2729,8 @@
       
         
       
+        
+      
     
     
     
@@ -3206,6 +3208,29 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../collection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    错题集
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -3260,7 +3285,7 @@
   
   
   <span class="md-ellipsis">
-    隐私计算与安全合规
+    隐私计算与数据合规
     
   </span>
   
@@ -3271,7 +3296,7 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4_6">
             <span class="md-nav__icon md-icon"></span>
-            隐私计算与安全合规
+            隐私计算与数据合规
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -4421,12 +4446,14 @@
 <ul>
 <li><strong>等值连接</strong>：筛选笛卡尔积中<strong>指定属性值相等</strong>的元组，如 <span class="arithmatex">\(\sigma_{instructor.ID=teaches.ID}(instructor × teaches)\)</span>。</li>
 <li>
-<ul>
-<li><strong>Query 1</strong>：<span class="arithmatex">\(\prod_{\text{instructor.name}, \text{course-id}} \left( \sigma_{\text{dept-name} = \text{'Physics'}} \left( \sigma_{\text{instructor.ID} = \text{teaches.ID}} \left( \text{instructor} \times \text{teaches} \right) \right) \right)\)</span></li>
-</ul>
 <p><strong>组合操作（找出物理系所有教师的姓名及他们所教授的所有课程的课程 ID）</strong>：</p>
 <ul>
-<li><strong>Query 2</strong>：<span class="arithmatex">\(\prod_{\text{instructor.name}, \text{course-id}} \left( \sigma_{\text{instructor.ID} = \text{teaches.ID}} \left( \sigma_{\text{dept-name} = \text{'Physics'}} \left( \text{instructor} \right) \times \text{teaches} \right) \right)\)</span></li>
+<li>
+<p><strong>Query 1</strong>：<span class="arithmatex">\(\prod_{\text{instructor.name}, \text{course-id}} \left( \sigma_{\text{dept-name} = \text{'Physics'}} \left( \sigma_{\text{instructor.ID} = \text{teaches.ID}} \left( \text{instructor} \times \text{teaches} \right) \right) \right)\)</span></p>
+</li>
+<li>
+<p><strong>Query 2</strong>：<span class="arithmatex">\(\prod_{\text{instructor.name}, \text{course-id}} \left( \sigma_{\text{instructor.ID} = \text{teaches.ID}} \left( \sigma_{\text{dept-name} = \text{'Physics'}} \left( \text{instructor} \right) \times \text{teaches} \right) \right)\)</span></p>
+</li>
 </ul>
 </li>
 </ul>
@@ -4499,7 +4526,7 @@
 <tr>
 <td><strong>聚合操作 <br>（Aggregate Operations）</strong></td>
 <td><span class="arithmatex">\(_{G_1,G_2,\dots,G_n} \ \mathcal{G} \ _{F_1(A_1),F_2(A_2),\dots,F_n(A_n)}(E)\)</span></td>
-<td><span class="arithmatex">\(\textbf{·}\)</span> <span class="arithmatex">\(E\)</span> 为关系代数表达式 <br> <span class="arithmatex">\(\textbf{·}\)</span> <span class="arithmatex">\(G_i\)</span> 为用于分组的属性列表（可为空）<br> <span class="arithmatex">\(\textbf{·}\)</span> <span class="arithmatex">\(F_i\)</span> 为聚合函数，<span class="arithmatex">\(A_i\)</span> 为属性 <br> <span class="arithmatex">\(\textbf{·}\)</span></td>
+<td><span class="arithmatex">\(\textbf{·}\)</span> <span class="arithmatex">\(E\)</span> 为关系代数表达式 <br> <span class="arithmatex">\(\textbf{·}\)</span> <span class="arithmatex">\(G_i\)</span> 为用于分组的属性列表（可为空）<br> <span class="arithmatex">\(\textbf{·}\)</span> <span class="arithmatex">\(F_i\)</span> 为聚合函数，<span class="arithmatex">\(A_i\)</span> 为属性 <br></td>
 </tr>
 </tbody>
 </table>

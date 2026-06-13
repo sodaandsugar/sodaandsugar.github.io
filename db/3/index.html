@@ -2729,6 +2729,8 @@
       
         
       
+        
+      
     
     
     
@@ -3158,6 +3160,29 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../collection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    错题集
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -3212,7 +3237,7 @@
   
   
   <span class="md-ellipsis">
-    隐私计算与安全合规
+    隐私计算与数据合规
     
   </span>
   
@@ -3223,7 +3248,7 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4_6">
             <span class="md-nav__icon md-icon"></span>
-            隐私计算与安全合规
+            隐私计算与数据合规
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -4221,8 +4246,8 @@
 <p class="admonition-title">完整性约束</p>
 <ul>
 <li><span class="arithmatex">\(not\ null\)</span>：属性值不可为空</li>
-<li><span class="arithmatex">\(primary\ key (A_1, ..., A_n)\)</span>：指定主键，主键属性自动满足 <span class="arithmatex">\(not\ null\)</span></li>
-<li><span class="arithmatex">\(foreign\ key (A_m, ..., A_n) references r\)</span>：指定外键，关联另一张表的主键</li>
+<li><span class="arithmatex">\(primary\ key\ (A_1, ..., A_n)\)</span>：指定主键，主键属性自动满足 <span class="arithmatex">\(not\ null\)</span></li>
+<li><span class="arithmatex">\(foreign\ key\ (A_m, ..., A_n)\ references\ r\)</span>：指定外键，关联另一张表的主键</li>
 </ul>
 </div>
 <table>
@@ -4380,7 +4405,8 @@
 
 <span class="c1">-- 正确版本</span>
 <span class="k">select</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">title</span>
-<span class="k">from</span><span class="w"> </span><span class="n">instructor</span><span class="w"> </span><span class="k">natural</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">teaches</span><span class="p">,</span><span class="w"> </span><span class="n">course</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">teaches</span><span class="p">.</span><span class="n">course_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">course</span><span class="p">.</span><span class="n">course_id</span><span class="p">;</span>
+<span class="k">from</span><span class="w"> </span><span class="n">instructor</span><span class="w"> </span><span class="k">natural</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">teaches</span><span class="p">,</span><span class="w"> </span><span class="n">course</span>
+<span class="k">where</span><span class="w"> </span><span class="n">teaches</span><span class="p">.</span><span class="n">course_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">course</span><span class="p">.</span><span class="n">course_id</span><span class="p">;</span>
 </code></pre></div>
 </details>
 <ul>
@@ -4604,7 +4630,7 @@
 <li><strong>分组过滤</strong>：对分组后的结果进行过滤（<code>having</code>），区别于分组前过滤元组（<code>WHERE</code>），紧跟GROUP BY，可使用聚合函数</li>
 </ul>
 <details class="question">
-<summary>针对每个院系，找出薪资超过 30000的教师的平均薪资，然后输出院系名称以及平均值超过 42000的结果</summary>
+<summary>针对每个院系，找出薪资超过 30000 的教师的平均薪资，然后输出院系名称以及平均值超过 42000 的结果</summary>
 <div class="highlight"><pre><span></span><code><span class="k">select</span><span class="w"> </span><span class="n">dept_name</span><span class="p">,</span><span class="w"> </span><span class="k">avg</span><span class="p">(</span><span class="n">salary</span><span class="p">)</span>
 <span class="k">from</span><span class="w"> </span><span class="n">instructor</span>
 <span class="k">where</span><span class="w"> </span><span class="n">salary</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">30000</span>
@@ -4831,7 +4857,7 @@
 <span class="k">as</span><span class="w"> </span><span class="n">dept_avg</span><span class="w"> </span><span class="p">(</span><span class="n">dept_name</span><span class="p">,</span><span class="w"> </span><span class="n">avg_salary</span><span class="p">)</span>
 <span class="k">where</span><span class="w"> </span><span class="n">avg_salary</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">42000</span><span class="p">;</span>
 </code></pre></div>
-<div class="highlight"><span class="filename">使用 lateral 子句</span><pre><span></span><code><span class="k">select</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">salary</span><span class="p">,</span><span class="w"> </span><span class="n">avg_salary</span>
+<div class="highlight"><span class="filename">使用 lateral 子句（课件提供的代码，但似乎不符合要求）</span><pre><span></span><code><span class="k">select</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">salary</span><span class="p">,</span><span class="w"> </span><span class="n">avg_salary</span>
 <span class="k">from</span><span class="w"> </span><span class="n">instructor</span><span class="w"> </span><span class="n">I1</span><span class="p">,</span>
 <span class="w">    </span><span class="k">lateral</span><span class="w"> </span><span class="p">(</span>
 <span class="w">        </span><span class="k">select</span><span class="w"> </span><span class="k">avg</span><span class="p">(</span><span class="n">salary</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">avg_salary</span>
