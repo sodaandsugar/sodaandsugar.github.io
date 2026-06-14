@@ -4483,6 +4483,15 @@
 </ul>
 </li>
 </ul>
+<details class="example">
+<summary>设计一个零知识证明协议，证明一副标准扑克牌中抽出的牌是红桃，但不泄露点数。</summary>
+<ol>
+<li><span class="arithmatex">\(P\)</span> 将手中抽出的牌正面朝下扣好。</li>
+<li><span class="arithmatex">\(P\)</span> 将牌堆中所有非红桃花色的牌（♠13张、♦13张、♣13张，共39张）正面朝上摊开给 <span class="arithmatex">\(V\)</span> 看。</li>
+<li><span class="arithmatex">\(V\)</span> 核验：三种花色各恰好13张，点数 A–K 各一张，无缺失无重复，且无红桃牌露出。</li>
+<li>核验通过则 <span class="arithmatex">\(V\)</span> 接受证明。</li>
+</ol>
+</details>
 <h2 id="2-sigma">2 Sigma 协议<a class="headerlink" href="#2-sigma" title="Permanent link">&para;</a></h2>
 <p>对关系 <span class="arithmatex">\(R\)</span> 的 Sigma 协议由三部分组成：</p>
 <ul>
@@ -4532,11 +4541,17 @@ a \leftarrow C(x, w; r);\ z \leftarrow Z(x, w, r, e):\ \mathcal{V}(x, a, e, z) =
 <p>其中 <span class="arithmatex">\(r\)</span> 是均匀随机选取的，<span class="arithmatex">\(\mathcal{A}\)</span> 输出的值必须满足 <span class="arithmatex">\((x, w) \in \mathcal{R}\)</span> 和 <span class="arithmatex">\(e \in \{0, 1\}^\lambda\)</span></p>
 </li>
 </ul>
-<div class="admonition example">
-<p class="admonition-title">示例</p>
+<details class="tip">
+<summary>直观解释</summary>
+<ul>
+<li>完备性：真的假不了。</li>
+<li>2-特殊可靠性：能回答两次不同挑战的人必定掌握秘密。</li>
+<li>诚实验证者零知识：验证者看完对话后除了“你确实知道秘密”以外什么也没学到。</li>
+</ul>
+</details>
 <p><img src="/mpc/images/image9-1.png" style="display: block; width: 80%; margin: 0 auto;" /></p>
 <details class="info">
-<summary>步骤说明</summary>
+<summary>解释</summary>
 <ol>
 <li>随机取 <span class="arithmatex">\(m',s',t'\)</span></li>
 <li>
@@ -4566,7 +4581,6 @@ g^{z_1}pk^{z_3}=a_3c_2^e.
 </li>
 </ol>
 </details>
-</div>
 <details class="question">
 <summary>完备性证明</summary>
 <div class="arithmatex">\[

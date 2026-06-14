@@ -4215,7 +4215,7 @@
 </details>
 <div class="admonition tip">
 <p class="admonition-title">提示</p>
-<p>BGW 协议其实基本就是 Chapter 3 第三节的半诚实安全多方计算协议。</p>
+<p>BGW 协议其实就是 Chapter 3 第三节的半诚实安全多方计算协议。</p>
 </div>
 <ol>
 <li>
@@ -4318,29 +4318,10 @@ x = x_1 \oplus x_2 \oplus \cdots \oplus x_n
 </ul>
 <div class="admonition tip">
 <p class="admonition-title">用 1-out-of-4 OT 计算交叉项</p>
-<p>对于一对参与方 <span class="arithmatex">\(P_i, P_j\)</span>：</p>
 <ol>
-<li>
-<p><span class="arithmatex">\(P_i\)</span> 构造四项 OT 表，对应 <span class="arithmatex">\(P_j\)</span> 的 <span class="arithmatex">\(4\)</span> 种可能输入</p>
-<div class="arithmatex">\[
-T_{u,v} = (a_i\cdot v)\oplus(u\cdot b_i)\oplus r,\qquad u,v\in\{0,1\}
-\]</div>
-</li>
-<li>
-<p>双方执行 1-out-of-4 OT：</p>
-<ul>
-<li><span class="arithmatex">\(P_i\)</span> 是发送方，输入整张表</li>
-<li><span class="arithmatex">\(P_j\)</span> 是接收方，选择 <span class="arithmatex">\((a_j,b_j)\)</span></li>
-</ul>
-</li>
-<li>
-<p>输出分配：</p>
-<ul>
-<li><span class="arithmatex">\(P_i\)</span> 保留份额 <span class="arithmatex">\(r\)</span></li>
-<li><span class="arithmatex">\(P_j\)</span> 得到 <span class="arithmatex">\(=(a_i b_j \oplus a_j b_i)\oplus r\)</span></li>
-<li>两者异或起来就是所需交叉项</li>
-</ul>
-</li>
+<li><span class="arithmatex">\(P_i\)</span> 随机取 <span class="arithmatex">\(r\)</span>，把 <span class="arithmatex">\((a_j,b_j)\)</span> 的四种可能对应的 <span class="arithmatex">\(X\)</span> 全部算出，用 <span class="arithmatex">\(r\)</span> 异或掩盖成一张表。</li>
+<li>双方执行 1-out-of-4 OT：<span class="arithmatex">\(P_i\)</span> 输入整张表，<span class="arithmatex">\(P_j\)</span> 按自己的 <span class="arithmatex">\((a_j,b_j)\)</span> 盲取其中一项，得到 <span class="arithmatex">\(X \oplus r\)</span>。</li>
+<li>最终 <span class="arithmatex">\(P_i\)</span> 持 <span class="arithmatex">\(r\)</span>，<span class="arithmatex">\(P_j\)</span> 持 <span class="arithmatex">\(X \oplus r\)</span>，异或即得交叉项。</li>
 </ol>
 </div>
 <h2 id="4-gmw">4 GMW 布尔协议的安全性<a class="headerlink" href="#4-gmw" title="Permanent link">&para;</a></h2>
@@ -4391,19 +4372,13 @@ r_{i,k}^{1},\dots,r_{i,k}^{n}\in\mathbb{F},\qquad
 </ul>
 </li>
 </ul>
-<details class="quote">
-<summary>OLE 理想功能 <span class="arithmatex">\(F_{OLE}\)</span></summary>
-<ul>
-<li>发送方输入 <span class="arithmatex">\((\alpha,\beta)\in\mathbb{F}^2\)</span></li>
-<li>接收方输入 <span class="arithmatex">\(x\in\mathbb{F}\)</span></li>
-<li>
-<p>接收方得到</p>
+<div class="admonition info">
+<p class="admonition-title">OLE 理想功能 <span class="arithmatex">\(F_{OLE}\)</span></p>
+<p>发送方输入 <span class="arithmatex">\((\alpha,\beta)\in\mathbb{F}^2\)</span>，接收方输入 <span class="arithmatex">\(x\in\mathbb{F}\)</span>，接收方得到</p>
 <div class="arithmatex">\[
 \gamma = \alpha x + \beta
 \]</div>
-</li>
-</ul>
-</details>
+</div>
 <div class="admonition tip">
 <p class="admonition-title">用 OLE 计算交叉项</p>
 <p>对每对 <span class="arithmatex">\((\ell_1,\ell_2)\)</span>，<span class="arithmatex">\(P_{\ell_1}\)</span> 取随机 <span class="arithmatex">\(r_{\ell_1,\ell_2}\xleftarrow{}_{\$}\mathbb{F}\)</span></p>
@@ -4411,16 +4386,17 @@ r_{i,k}^{1},\dots,r_{i,k}^{n}\in\mathbb{F},\qquad
 <div class="arithmatex">\[
 \gamma_{\ell_1,\ell_2}=s_i^{\ell_1}s_j^{\ell_2}-r_{\ell_1,\ell_2}
 \]</div>
+<p>现在 <span class="arithmatex">\(P_{\ell_1}\)</span> 持有 <span class="arithmatex">\(r\)</span>，<span class="arithmatex">\(P_{\ell_2}\)</span> 持有 <span class="arithmatex">\(\gamma = s_i^{\ell_1} s_j^{\ell_2} - r\)</span>，两者相加正好是 <span class="arithmatex">\(s_i^{\ell_1} s_j^{\ell_2}\)</span>。这样就把一对交叉项变成了两个参与方的加法份额。</p>
 <p>最终 <span class="arithmatex">\(P_\ell\)</span> 的输出份额为</p>
 <div class="arithmatex">\[
-s_k^\ell = s_i^\ell s_j^\ell + \sum_{\ell'\ne \ell}\left(r_{\ell,\ell'}+\gamma_{\ell',\ell}\right)
+s_k^\ell = \underbrace{s_i^\ell s_j^\ell}_{\text{自己的本地项}} \;+\; \underbrace{\sum_{\ell' \ne \ell} r_{\ell,\ell'}}_{\text{自己当发送方的交叉项}} \;+\; \underbrace{\sum_{\ell' \ne \ell} \gamma_{\ell',\ell}}_{\text{自己当接收方的交叉项}}
 \]</div>
 </div>
 <ul>
 <li><strong>输出重建</strong>：对输出 <span class="arithmatex">\(y_{i,k}\)</span>，其他参与方把各自份额发给 <span class="arithmatex">\(P_i\)</span>，由其计算</li>
 </ul>
 <div class="arithmatex">\[
-y_{i,k} = \sum_{\ell=1}^{n} s_{i,k}^{\ell}.
+y_{i,k} = \sum_{\ell=1}^{n} s_{i,k}^{\ell}
 \]</div>
 <div class="admonition info">
 <p class="admonition-title">BGW 与 GMW 的比较</p>
