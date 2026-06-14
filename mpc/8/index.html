@@ -4439,7 +4439,7 @@
 <h1 id="chapter-8">Chapter 8 基于混淆电路的协议<a class="headerlink" href="#chapter-8" title="Permanent link">&para;</a></h1>
 <div class="admonition warning">
 <p class="admonition-title">注意</p>
-<p>本章笔记主要基于 beamer_8 整理，课堂 PPT 为 L4-Yao GC，内容仅涵盖本章第一节和第五节（甚至更少），因此其余部分（<strong>应该大概可能也许</strong>）可以忽略。</p>
+<p>本章笔记主要基于 beamer_8 整理，课堂 PPT 为 L4-Yao GC，内容仅涵盖本章第一节和第五节（<del>甚至更少</del>），因此其余部分<strong>可能</strong>可以忽略。（<del>但是复习课又讲到了独立模型和 UC 的区别，我也不知道究竟何意味。</del>）</p>
 </div>
 <h2 id="1-yaos-garbled-circuits">1 姚氏混淆电路（Yao's Garbled Circuits）<a class="headerlink" href="#1-yaos-garbled-circuits" title="Permanent link">&para;</a></h2>
 <h3 id="1-1">1. 1 协议流程<a class="headerlink" href="#1-1" title="Permanent link">&para;</a></h3>
@@ -4679,19 +4679,19 @@ c = k \oplus m,\qquad m\in\{\text{buy},\text{sell}\},
 <tbody>
 <tr>
 <td>无环境实时交互</td>
-<td>有环境 <span class="arithmatex">\(Z\)</span> 与协议实时交互</td>
+<td><strong>有环境 <span class="arithmatex">\(Z\)</span> 与协议实时交互</strong></td>
 </tr>
 <tr>
 <td>输入在开始时确定</td>
 <td>环境可动态喂入输入与消息</td>
 </tr>
 <tr>
-<td>恶意证明里常可倒带</td>
+<td><strong>恶意证明里常可倒带</strong></td>
 <td>UC 中模拟器通常不可倒带</td>
 </tr>
 <tr>
 <td>只保证单次/顺序组合</td>
-<td>保证任意并发组合</td>
+<td><strong>保证任意并发组合</strong></td>
 </tr>
 </tbody>
 </table>
@@ -4746,11 +4746,23 @@ f'((x,r),(y,s)) =
 <p>最后各自去掉自己加的掩码即可。</p>
 </div>
 <h2 id="5">5 混淆电路优化技术<a class="headerlink" href="#5" title="Permanent link">&para;</a></h2>
-<p><img src="/mpc/images/image8-9.png" style="display: block; width: 60%; margin: 0 auto;" /></p>
+<p><img src="/mpc/images/image8-9.png" style="display: block; width: 80%; margin: 0 auto;" /></p>
+<details class="quote">
+<summary>经典方案开销解释</summary>
+<ul>
+<li><strong>表大小</strong>：两条输入导线，标签组合共 <span class="arithmatex">\(4\)</span> 种，每行一个密文，所以表是 <span class="arithmatex">\(4\)</span> 个密文。</li>
+<li><strong>生成开销</strong>：生成方为表里 <span class="arithmatex">\(4\)</span> 行各做一次双重加密。</li>
+<li><strong>计算开销</strong>：表顺序打乱，计算方逐行试解密，目标行在第 <span class="arithmatex">\(1/2/3/4\)</span> 位的概率各 <span class="arithmatex">\(\frac{1}{4}\)</span>，平均尝试 <span class="arithmatex">\(\frac{1+2+3+4}{4} = 2.5\)</span> 次。</li>
+</ul>
+</details>
+<details class="warning">
+<summary>注意</summary>
+<p>L4-Yao GC 课件中将半门的异或门混淆表开销写为 4，但半门技术按理来说是与 Free-XOR 结合使用的，所以这里使用了 beamer_4 课件中的总结表格。</p>
+</details>
 <h3 id="5-1-point-and-permute">5. 1 Point-and-Permute（标识置换）<a class="headerlink" href="#5-1-point-and-permute" title="Permanent link">&para;</a></h3>
-<p>经典方案中，计算方需要尝试解密每一行，标识置换给每个标签附加一个<strong>标识位</strong>，该标识位直接告诉计算方该解哪一行。</p>
-<p>同一导线的 <span class="arithmatex">\(0/1\)</span> 标签使用不同标识位，两条输入导线的标识位组合决定门表行号。</p>
+<p>经典方案中，计算方需要尝试解密每一行，标识置换给每个标签附加一个<strong>标识位</strong>，该标识位直接告诉计算方该解哪一行。同一导线的 <span class="arithmatex">\(0/1\)</span> 标签使用不同标识位，两条输入导线的标识位组合决定门表行号。</p>
 <p><img src="/mpc/images/image8-10.png" style="display: block; width: 60%; margin: 0 auto;" /></p>
+<p><img src="/mpc/images/image8-15.png" style="display: block; width: 80%; margin: 0 auto;" /></p>
 <h3 id="5-2-grr34-3">5. 2 GRR3（4 → 3）<a class="headerlink" href="#5-2-grr34-3" title="Permanent link">&para;</a></h3>
 <p>通过巧妙选择输出标签，使一行密文固定为全零，从而无需显式发送这一行。典型实现把加密写成</p>
 <div class="arithmatex">\[
@@ -4760,21 +4772,31 @@ Enc_{k_a,k_b}(m)=H(k_a\|k_b)\oplus m,
 <p><img src="/mpc/images/image8-11.png" style="display: block; width: 80%; margin: 0 auto;" /></p>
 <h3 id="5-3-grr24-2">5. 3 GRR2（4 → 2）<a class="headerlink" href="#5-3-grr24-2" title="Permanent link">&para;</a></h3>
 <p>利用多项式插值进一步压缩门表，对<strong>奇门</strong>（如 AND/OR）与<strong>偶门</strong>（如 XOR）采用不同构造。</p>
-<p>对 AND 门，前三行输出同一个标签 <span class="arithmatex">\(C^0\)</span>，最后一行输出 <span class="arithmatex">\(C^1\)</span>。GRR2 将哈希得到的四个伪随机点嵌入两个低阶多项式，用少量额外点作为混淆表。计算方用自己输入标签对应的点与混淆表点插值，在 <span class="arithmatex">\(0\)</span> 点恢复对应输出标签。</p>
-<p>对 XOR 门也可做类似插值，因此 GRR2 能把 XOR/AND 都压到 2 行；但它破坏了 Free-XOR 所需的全局偏移结构。</p>
-<details class="info">
-<summary>奇门的构造</summary>
+<p>对 AND 门，前三行输出同一个标签 <span class="arithmatex">\(C^0\)</span>，最后一行输出 <span class="arithmatex">\(C^1\)</span>。</p>
+<p><img src="/mpc/images/image8-17.png" style="display: block; width: 65%; margin: 0 auto;" /></p>
+<div class="admonition tip">
+<p class="admonition-title">奇门的构造</p>
 <p>设 <span class="arithmatex">\(p_a^0 = p_b^0 = 0\)</span>，混淆表四行中有三行对应同一输出密钥</p>
 <ul>
 <li>对 <span class="arithmatex">\((1, K_1), (2, K_2), (3, K_3)\)</span> 插值得 <span class="arithmatex">\(P(X)\)</span>，设 <span class="arithmatex">\(K_5 = P(5), K_6 = P(6)\)</span></li>
 <li>对 <span class="arithmatex">\((4, K_4), (5, K_5), (6, K_6)\)</span> 插值得 <span class="arithmatex">\(Q(X)\)</span></li>
-<li>设 <span class="arithmatex">\(k_c^0 = P(0)\)</span>, <span class="arithmatex">\(k_c^1 = Q(0)\)</span>，混淆表仅发送 <span class="arithmatex">\((K_5, K_6)\)</span> 与 <span class="arithmatex">\(c_r = M_r \oplus p_c^{(\cdot)}\)</span>（4 个加密标识比特）</li>
+<li>设 <span class="arithmatex">\(k_c^0 = P(0)\)</span>、<span class="arithmatex">\(k_c^1 = Q(0)\)</span>，混淆表仅发送 <span class="arithmatex">\((K_5, K_6)\)</span> 与 <span class="arithmatex">\(c_r = M_r \oplus p_c^{(\cdot)}\)</span>（4 个加密标识比特）</li>
 </ul>
-<p>计算方通过多项式插值解密混淆表。</p>
-<p><img src="/mpc/images/image8-12.png" style="display: block; width: 70%; margin: 0 auto;" /></p>
-</details>
-<details class="info">
-<summary>偶门的构造</summary>
+<p><div style="display: flex; justify-content: center; gap: 10px; align-items: center;">
+    <img src="/mpc/images/image8-18.png" style="width: 45%;" />
+    <img src="/mpc/images/image8-19.png" style="width: 45%;" />
+</div></p>
+<p>计算方 <span class="arithmatex">\(P_2\)</span> 根据自己的输入标签解出该行对应的 <span class="arithmatex">\(K_i\)</span>（<span class="arithmatex">\(i \in \{1,2,3,4\}\)</span>），结合公开的 <span class="arithmatex">\(K_5, K_6\)</span>，得到三个点 <span class="arithmatex">\((i, K_i), (5, K_5), (6, K_6)\)</span>。对这三个点进行多项式插值，得到一个二次多项式 <span class="arithmatex">\(T(X)\)</span>。  </p>
+<ul>
+<li>若 <span class="arithmatex">\(i \in \{1,2,3\}\)</span>，则 <span class="arithmatex">\(T(X) = P(X)\)</span>，<span class="arithmatex">\(T(0) = k_c^0\)</span>。</li>
+<li>若 <span class="arithmatex">\(i = 4\)</span>，则 <span class="arithmatex">\(T(X) = Q(X)\)</span>，<span class="arithmatex">\(T(0) = k_c^1\)</span>。  </li>
+</ul>
+<p>由此计算方无需完整混淆表即可还原出正确的输出导线标签。</p>
+</div>
+<p>对 XOR 门也可做类似插值，因此 GRR2 能把 XOR/AND 都压到 2 行，但它<strong>破坏了 Free-XOR 所需的全局偏移结构</strong>。</p>
+<p><img src="/mpc/images/image8-12.png" style="display: block; width: 35%; margin: 0 auto;" /></p>
+<div class="admonition tip">
+<p class="admonition-title">偶门的构造</p>
 <ul>
 <li>对 <span class="arithmatex">\((1, K_1), (4, K_4)\)</span> 插值得 <span class="arithmatex">\(P(X)\)</span>，设 <span class="arithmatex">\(k_c^0 = P(0)\)</span></li>
 <li>对 <span class="arithmatex">\((2, K_2), (3, K_3)\)</span> 插值得 <span class="arithmatex">\(Q(X)\)</span>，设 <span class="arithmatex">\(k_c^1 = Q(0)\)</span></li>
@@ -4782,7 +4804,7 @@ Enc_{k_a,k_b}(m)=H(k_a\|k_b)\oplus m,
 </ul>
 <p>计算方通过多项式插值解密混淆表。</p>
 <p><img src="/mpc/images/image8-13.png" style="display: block; width: 70%; margin: 0 auto;" /></p>
-</details>
+</div>
 <h3 id="5-4-free-xor">5. 4 Free-XOR<a class="headerlink" href="#5-4-free-xor" title="Permanent link">&para;</a></h3>
 <p>选取全局偏移量 <span class="arithmatex">\(\Delta \xleftarrow{}_{\$} \{0,1\}^{\kappa}\)</span>，并令</p>
 <div class="arithmatex">\[
@@ -4793,15 +4815,14 @@ k_i^1 = k_i^0 \oplus \Delta.
 k_c^0 = k_a^0 \oplus k_b^0,\qquad
 k_c^1 = k_c^0 \oplus \Delta.
 \]</div>
-<p>于是 XOR 门无需混淆表，通信量为 0*，计算只需标签异或。</p>
-<details class="warning">
-<summary>兼容性</summary>
-<p>Free-XOR 与 <strong>GRR2 不兼容</strong>，但可与 <strong>GRR3</strong> 配合。</p>
-</details>
+<p>于是 XOR 门无需混淆表，通信量为 0，计算只需标签异或。</p>
+<p><img src="/mpc/images/image8-16.png" style="display: block; width: 40%; margin: 0 auto;" /></p>
+<div class="admonition warning">
+<p class="admonition-title">兼容性</p>
+<p>Free-XOR <strong>与 GRR2 不兼容</strong>，但<strong>可与 GRR3</strong> 配合。</p>
+</div>
 <h3 id="5-5-half-gates">5. 5 Half-Gates<a class="headerlink" href="#5-5-half-gates" title="Permanent link">&para;</a></h3>
-<ul>
-<li><strong>目标</strong>：在兼容 Free-XOR 的前提下，把奇门（尤其 AND 门）开销压到 2 个密文。</li>
-</ul>
+<p>半门的目标是在兼容 Free-XOR 的前提下，把奇门（尤其 AND 门）开销压到 2 个密文。</p>
 <p>对与门 <span class="arithmatex">\(v_c = v_a \land v_b\)</span>，取随机比特 <span class="arithmatex">\(r\)</span>，有</p>
 <div class="arithmatex">\[
 v_c = (r\land v_a)\oplus((r\oplus v_b)\land v_a).
@@ -4812,10 +4833,21 @@ v_c = (r\land v_a)\oplus((r\oplus v_b)\land v_a).
 <li><strong>计算方半门</strong>：计算方知道 <span class="arithmatex">\(r\oplus v_b\)</span></li>
 </ul>
 <p>每个半门再用 GRR 缩成 1 个密文，所以总共只需 2 个密文。</p>
-<details class="tip">
-<summary>实践结论</summary>
-<p>现代 Yao GC 实现通常采用 <strong>Point-and-Permute + Free-XOR + Half-Gates</strong>：XOR 门免费，AND 门只需 2 个密文，是通信与计算之间较均衡的标准选择。</p>
+<details class="quote">
+<summary>等式是怎么来的？</summary>
+<div class="arithmatex">\[
+\begin{aligned}
+v_c &amp;= v_a \land v_b \\
+    &amp;= (v_a \land v_b) \oplus 0 \\
+    &amp;= (v_a \land v_b) \oplus (v_a \land r) \oplus (v_a \land r) \\
+    &amp;= (v_a \land r) \oplus \big(v_a \land (v_b \oplus r)\big)
+\end{aligned}
+\]</div>
 </details>
+<div class="admonition tip">
+<p class="admonition-title">实践结论</p>
+<p>现代 Yao GC 实现通常采用 <strong>Point-and-Permute + Free-XOR + Half-Gates</strong>：XOR 门免费，AND 门只需 2 个密文，是通信与计算之间较均衡的标准选择。</p>
+</div>
 <h2 id="6-bmr">6 多方混淆电路：BMR 协议<a class="headerlink" href="#6-bmr" title="Permanent link">&para;</a></h2>
 <div class="admonition warning">
 <p class="admonition-title">为什么不能直接把 Yao 扩到 <span class="arithmatex">\(n\)</span> 方？</p>

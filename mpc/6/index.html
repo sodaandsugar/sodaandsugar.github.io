@@ -4213,15 +4213,10 @@
 <li><strong>符号</strong>：<span class="arithmatex">\([a; f_a]_t\)</span> 表示秘密 <span class="arithmatex">\(a\)</span> 由 <span class="arithmatex">\(t\)</span> 次多项式 <span class="arithmatex">\(f_a\)</span> 分享</li>
 </ul>
 </details>
-<details class="info">
-<summary>协议流程</summary>
-<p>BGW 先将函数 <span class="arithmatex">\(f\)</span> 表示为算术电路，并在每条导线上维护一个 <span class="arithmatex">\(t\)</span> 次 Shamir 分享。</p>
-<ol>
-<li><strong>输入分享</strong>：每个 <span class="arithmatex">\(P_i\)</span> 对输入 <span class="arithmatex">\(x_i\)</span> 生成 <span class="arithmatex">\([x_i;f_i]_t\)</span>，把份额 <span class="arithmatex">\(f_i(\alpha_j)\)</span> 发给 <span class="arithmatex">\(P_j\)</span></li>
-<li><strong>逐门计算</strong>：按电路拓扑顺序处理加法门、常数乘法门和乘法门</li>
-<li><strong>输出重构</strong>：对输出 <span class="arithmatex">\(y_i\)</span>，各方把输出导线份额发送给接收方 <span class="arithmatex">\(P_i\)</span>，由 <span class="arithmatex">\(P_i\)</span> 插值恢复输出</li>
-</ol>
-</details>
+<div class="admonition tip">
+<p class="admonition-title">提示</p>
+<p>BGW 协议其实基本就是 Chapter 3 第三节的半诚实安全多方计算协议。</p>
+</div>
 <ol>
 <li>
 <p><strong>线性运算 (本地计算)</strong>：</p>
@@ -4253,9 +4248,9 @@
 </div>
 <div class="admonition tip">
 <p class="admonition-title">定理（BGW 半诚实安全）</p>
-<p>假设参与方之间有点对点安全信道，且被攻陷方数满足 <span class="arithmatex">\(|C| \le t &lt; n/2\)</span>，则 BGW 协议对静态半诚实敌手 UC-安全实现 <span class="arithmatex">\(F_{sfe}\)</span>。</p>
+<p>假设参与方之间有点对点安全信道，且被攻陷方数 <span class="arithmatex">\(|C| \le t &lt; n/2\)</span>，则 BGW 协议对静态半诚实敌手 UC-安全实现 <span class="arithmatex">\(F_{sfe}\)</span>。</p>
 </div>
-<p>为简化证明，假设每个输出门前紧跟一个乘法门；必要时可增加常数个乘法门，使输出分享在重构前被重新随机化。</p>
+<p>为简化证明，假设每个输出门前紧跟一个乘法门，必要时可增加常数个乘法门，使输出分享在重构前被重新随机化。</p>
 <div class="admonition example">
 <p class="admonition-title">模拟器 <span class="arithmatex">\(S\)</span> 的做法</p>
 <ul>

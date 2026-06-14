@@ -64,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#chapter-9-gmw" class="md-skip">
+        <a href="#chapter-9" class="md-skip">
           Skip to content
         </a>
       
@@ -4454,7 +4454,11 @@
   
 
 
-<h1 id="chapter-9-gmw">Chapter 9 恶意安全性：GMW 编译器与切分选择<a class="headerlink" href="#chapter-9-gmw" title="Permanent link">&para;</a></h1>
+<h1 id="chapter-9">Chapter 9 恶意安全性<a class="headerlink" href="#chapter-9" title="Permanent link">&para;</a></h1>
+<div class="admonition warning">
+<p class="admonition-title">注意</p>
+<p>本章只考察零知识证明（即本章笔记前两节），GMW 编译器、切分选择以及应用于安全多方计算的零知识证明均不作考察，但是不涉及安全多方计算的零知识证明协议又可能考（如 DH 元组的零知识证明协议）。（<del>不知何意味，感觉像是zbs翻书看到零知识证明五个字随口一提的</del>）</p>
+</div>
 <details class="quote">
 <summary>半诚实 V.S. 恶意</summary>
 <ul>
@@ -4462,15 +4466,6 @@
 <li><strong>恶意（Malicious）</strong>：可以任意偏离协议，包括错误消息、替换输入、选择性中止</li>
 </ul>
 </details>
-<div class="admonition info">
-<p class="admonition-title">本章核心技术路线</p>
-<ol>
-<li><strong>GMW 编译器</strong>：把任意半诚实协议编译成恶意安全协议，通用但效率较低</li>
-<li><strong>Cut-and-Choose</strong>：专门强化姚氏混淆电路</li>
-<li><strong>恶意 BGW</strong>：适合诚实多数下的信息论安全，典型门限是 <span class="arithmatex">\(t &lt; n/3\)</span></li>
-<li><strong>BDOZ / SPDZ</strong>：基于 MAC 与预处理的高效通用 MPC，适合现代高性能实现</li>
-</ol>
-</div>
 <h2 id="1">1 零知识证明<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
 <div class="admonition info">
 <p class="admonition-title">NP 关系与陈述</p>

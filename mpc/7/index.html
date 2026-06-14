@@ -4340,6 +4340,14 @@ d = Open([x]-[a]),\qquad e = Open([y]-[b])
 <p><strong>输出重建阶段</strong>：对每条输出导线 <span class="arithmatex">\([y_i]\)</span>，各方把份额发送给指定接收者，接收者恢复最终输出</p>
 </li>
 </ol>
+<details class="warning">
+<summary>Beaver 三元组不能复用</summary>
+<p>在线阶段的乘法计算过程会<strong>公开中间差值</strong>，如果复用三元组，就会泄露私密输入之间的相关性。</p>
+<p>假设第一次乘法公开 <span class="arithmatex">\(\varepsilon_1 = x_1 - a\)</span> 和 <span class="arithmatex">\(\delta_1 = y_1 - b\)</span>，第二次乘法仍然使用同一个三元组，公开 <span class="arithmatex">\(\varepsilon_2 = x_2 - a\)</span> 和 <span class="arithmatex">\(\delta_2 = y_2 - b\)</span>，此时任何参与方都可以计算：</p>
+<div class="arithmatex">\[\varepsilon_1 - \varepsilon_2 = (x_1 - a) - (x_2 - a) = x_1 - x_2\]</div>
+<p>这直接<strong>暴露了两个私密输入的差值</strong>。如果攻击者恰好知道其中一个输入，另一个立即泄露。即便没有直接暴露完整明文，也让输入之间的相关性暴露出来，破坏了安全多方计算的信息论安全或计算安全性。</p>
+<p>因此，三元组中的 <span class="arithmatex">\(a, b\)</span> 必须严格作为 one-time pad 使用，不能重复。电路里有多少个乘法门，就需要多少组独立的三元组。</p>
+</details>
 <h2 id="4-uc">4 UC 框架下的安全性<a class="headerlink" href="#4-uc" title="Permanent link">&para;</a></h2>
 <div class="admonition info">
 <p class="admonition-title">理想功能 <span class="arithmatex">\(F_{triple}\)</span></p>
