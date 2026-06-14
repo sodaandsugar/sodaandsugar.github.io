@@ -3344,6 +3344,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#8" class="md-nav__link">
+    <span class="md-ellipsis">
+      8 思考题
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -4201,6 +4210,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#8" class="md-nav__link">
+    <span class="md-ellipsis">
+      8 思考题
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -4221,6 +4239,11 @@
 
 
 <h1 id="chapter-4">Chapter 4 安全模型<a class="headerlink" href="#chapter-4" title="Permanent link">&para;</a></h1>
+<div class="admonition tip">
+<p class="admonition-title">模拟器作用的直观解释</p>
+<p>目标是证明除了最终结果，协议中所有交互的信息，攻击者都能自己伪造出来。</p>
+<p>如果能伪造，就说明这些信息对攻击者来说全是已知的废话，没泄露任何新秘密。这就是模拟器的作用。</p>
+</div>
 <h2 id="1-privacy">1 隐私性（Privacy）<a class="headerlink" href="#1-privacy" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>允许值（Allowed Information）</strong>：被攻陷方自己的输入输出 <span class="arithmatex">\(\{x_j, y_j\}_{P_j \in C}\)</span></li>
@@ -4448,6 +4471,7 @@ exec_{\Pi,\mathcal{A},\mathcal{Z}} \approx exec_{F,\mathcal{S},\mathcal{Z}},
 <p class="admonition-title">为什么适应性攻陷更难？</p>
 <p>因为模拟器不仅要解释当前消息，还要能补出一个被新攻陷方的<strong>内部历史状态</strong>，这比静态攻陷困难得多。</p>
 </div>
+<h2 id="8">8 思考题<a class="headerlink" href="#8" title="Permanent link">&para;</a></h2>
 <details class="question">
 <summary>1. UC 框架中的环境 <span class="arithmatex">\(Z\)</span> 在现实里对应什么？</summary>
 <p>可把它理解为“协议外的整个世界”：应用层逻辑、用户行为、并发会话、网络调度、甚至其他正在同时运行的协议。</p>

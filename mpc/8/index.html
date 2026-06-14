@@ -3393,9 +3393,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#1-2-l4" class="md-nav__link">
+  <a href="#1-2" class="md-nav__link">
     <span class="md-ellipsis">
-      1. 2 混淆方案的抽象定义（L4 补充）
+      1. 2 混淆方案的抽象定义
     </span>
   </a>
   
@@ -3530,6 +3530,15 @@
   <a href="#6-bmr" class="md-nav__link">
     <span class="md-ellipsis">
       6 多方混淆电路：BMR 协议
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      7 思考题
     </span>
   </a>
   
@@ -4257,9 +4266,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#1-2-l4" class="md-nav__link">
+  <a href="#1-2" class="md-nav__link">
     <span class="md-ellipsis">
-      1. 2 混淆方案的抽象定义（L4 补充）
+      1. 2 混淆方案的抽象定义
     </span>
   </a>
   
@@ -4399,6 +4408,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      7 思考题
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -4419,6 +4437,10 @@
 
 
 <h1 id="chapter-8">Chapter 8 基于混淆电路的协议<a class="headerlink" href="#chapter-8" title="Permanent link">&para;</a></h1>
+<div class="admonition warning">
+<p class="admonition-title">注意</p>
+<p>本章笔记主要基于 beamer_8 整理，课堂 PPT 为 L4-Yao GC，内容仅涵盖本章第一节和第五节（甚至更少），因此其余部分（<strong>应该大概可能也许</strong>）可以忽略。</p>
+</div>
 <h2 id="1-yaos-garbled-circuits">1 姚氏混淆电路（Yao's Garbled Circuits）<a class="headerlink" href="#1-yaos-garbled-circuits" title="Permanent link">&para;</a></h2>
 <h3 id="1-1">1. 1 协议流程<a class="headerlink" href="#1-1" title="Permanent link">&para;</a></h3>
 <div class="admonition example">
@@ -4448,6 +4470,16 @@
 <p>再把四行<strong>随机打乱</strong>后发送给计算方。</p>
 </div>
 <p><img src="/mpc/images/image8-2.png" style="display: block; width: 70%; margin: 0 auto;" /></p>
+<details class="info">
+<summary>解释</summary>
+<ol>
+<li><strong>电路混淆预处理</strong>：为每根导线生成 <span class="arithmatex">\(0/1\)</span> 对应的一对密钥，构造置换查找表与输出解密表。</li>
+<li><strong>传输混淆电路</strong>：<span class="arithmatex">\(P_1\)</span> 将全部查找表、解密表发送给 <span class="arithmatex">\(P_2\)</span>。</li>
+<li><strong>发送 <span class="arithmatex">\(P_1\)</span> 输入密钥</strong>：<span class="arithmatex">\(P_1\)</span> 根据自身输入 <span class="arithmatex">\(x\)</span>，选取对应比特的密钥集合 <span class="arithmatex">\(K_x\)</span> 发送给 <span class="arithmatex">\(P_2\)</span>。</li>
+<li><strong>OT 获取 <span class="arithmatex">\(P_2\)</span> 输入密钥</strong>：通过茫然传输 OT，<span class="arithmatex">\(P_2\)</span> 根据自身输入 <span class="arithmatex">\(y\)</span> 私密获取对应密钥集合 <span class="arithmatex">\(K_y\)</span>。</li>
+<li><strong>逐门解密求值</strong>：<span class="arithmatex">\(P_2\)</span> 用 <span class="arithmatex">\(K_x\)</span>、<span class="arithmatex">\(K_y\)</span> 逐门解密混淆电路，最终得到计算结果 <span class="arithmatex">\(f(x,y)\)</span>。</li>
+</ol>
+</details>
 <details class="example">
 <summary>姚氏混淆电路协议</summary>
 <ul>
@@ -4468,7 +4500,7 @@
 <p><img src="/mpc/images/image8-6.png" style="display: block; width: 80%; margin: 0 auto;" /></p>
 </details>
 <p>每个加密真值表被称为混淆表，所有的混淆表的组合即为布尔电路 <span class="arithmatex">\(C\)</span> 对应的混淆电路。</p>
-<h3 id="1-2-l4">1. 2 混淆方案的抽象定义（L4 补充）<a class="headerlink" href="#1-2-l4" title="Permanent link">&para;</a></h3>
+<h3 id="1-2">1. 2 混淆方案的抽象定义<a class="headerlink" href="#1-2" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">Garbled Scheme: <span class="arithmatex">\((Gb,En,Ev,De)\)</span></p>
 <ul>
@@ -4488,37 +4520,55 @@
 </details>
 <details class="tip">
 <summary>模拟隐私的经典门级直觉</summary>
-<p>对一个 XOR 门 <span class="arithmatex">\(c=a\oplus b\)</span>，若模拟器只知道输出位 <span class="arithmatex">\(y=1\)</span> 而不知道输入 <span class="arithmatex">\((a,b)\)</span>，它可为所有四行都加密同一个输出标签 <span class="arithmatex">\(C^1\)</span>。只要底层加密 / PRP 让门表看起来伪随机，真实门表与“恒输出活跃标签”的门表在混合论证下不可区分。</p>
+<p>对一个 XOR 门 <span class="arithmatex">\(c=a\oplus b\)</span>，若模拟器只知道输出位 <span class="arithmatex">\(y=1\)</span> 而不知道输入 <span class="arithmatex">\((a,b)\)</span>，它可为所有四行都加密同一个输出标签 <span class="arithmatex">\(C^1\)</span>。只要底层加密 / PRP 让门表看起来伪随机，真实门表与恒输出活跃标签的门表在混合论证下不可区分。</p>
 </details>
 <h2 id="2">2 混淆电路正确性所需的加密性质<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
 <h3 id="2-1">2. 1 可验证 / 不可知密文空间<a class="headerlink" href="#2-1" title="Permanent link">&para;</a></h3>
 <p>计算方用错密钥去解密别的行时，希望<strong>不会泄露明文</strong>，且<strong>能够高效识别这是错的</strong>。</p>
 <ul>
-<li><strong>不可知密文空间（Elusive Range）</strong>：攻击者难以伪造一个看起来像合法密文空间里的密文</li>
-<li><strong>可验证密文空间（Efficiently Verifiable Range）</strong>：给定密钥 <span class="arithmatex">\(k\)</span> 和密文 <span class="arithmatex">\(c\)</span>，能高效检查 <span class="arithmatex">\(c\)</span> 是否属于 <span class="arithmatex">\(Range_n(k)\)</span></li>
+<li><strong>不可知密文空间（Elusive Range）</strong>：攻击者难以伪造一个看起来像合法密文空间里的密文。</li>
+<li><strong>可验证密文空间（Efficiently Verifiable Range）</strong>：给定密钥 <span class="arithmatex">\(k\)</span> 和密文 <span class="arithmatex">\(c\)</span>，能高效检查 <span class="arithmatex">\(c\)</span> 是否属于 <span class="arithmatex">\(Range_n(k)\)</span>。</li>
 </ul>
+<details class="tip">
+<summary>直观解释</summary>
+<ul>
+<li><strong>不可知</strong>：没有正确密钥的人构造不出符合合法密文格式的数据。</li>
+<li><strong>可验证</strong>：持有密钥的人能高效检查一段数据是否符合合法密文格式。</li>
+</ul>
+</details>
 <div class="admonition info">
 <p class="admonition-title">形式化定义</p>
 <p>若加密算法的密文空间记为 <span class="arithmatex">\(Range_n(k)\)</span>，则常见形式化要求是：</p>
 <ul>
-<li><strong>不可知密文空间</strong>：对任意 PPT 算法 <span class="arithmatex">\(\mathcal{A}\)</span>、任意多项式 <span class="arithmatex">\(p(\cdot)\)</span>，当安全参数足够大时，</li>
-</ul>
+<li>
+<p><strong>不可知密文空间</strong>：对任意 PPT 算法 <span class="arithmatex">\(\mathcal{A}\)</span>、任意多项式 <span class="arithmatex">\(p(\cdot)\)</span>，当安全参数足够大时，</p>
 <div class="arithmatex">\[
 \Pr[k\leftarrow Gen(1^n),\ c\leftarrow\mathcal{A}(1^n): c \in Range_n(k)] &lt; \frac{1}{p(n)}
 \]</div>
-<p>即攻击者很难伪造像是合法密文的字符串</p>
-<ul>
-<li><strong>可验证密文空间</strong>：存在 PPT 算法 <span class="arithmatex">\(M\)</span>，满足</li>
-</ul>
+<p>即攻击者很难伪造像是合法密文的字符串。</p>
+</li>
+<li>
+<p><strong>可验证密文空间</strong>：存在 PPT 算法 <span class="arithmatex">\(M\)</span>，满足</p>
 <div class="arithmatex">\[
 M(1^n,k,c)=1 \iff c\in Range_n(k)
 \]</div>
-<p>即接收方能高效判断某次解密结果是否合法</p>
+<p>即接收方能高效判断某次解密结果是否合法。</p>
+</li>
+</ul>
 </div>
 <h3 id="2-2">2. 2 双重加密安全<a class="headerlink" href="#2-2" title="Permanent link">&para;</a></h3>
-<p>因为门表里的每一行通常是“<strong>双层加密</strong>”，所以除了 IND-CPA 外，还需要保证用一层错误密钥解另一层时不会泄露明文差异。</p>
+<p>因为门表里的每一行通常是<strong>双层加密</strong>，所以除了 IND-CPA 外，还需要保证<strong>用一层错误密钥解另一层时不会泄露明文差异</strong>。</p>
+<div class="admonition example">
+<p class="admonition-title">双重加密安全游戏 <span class="arithmatex">\(\text{Game}^{\text{double}}_{\mathcal{A}}(n)\)</span></p>
 <p><img src="/mpc/images/image8-7.png" style="display: block; width: 70%; margin: 0 auto;" /></p>
-<div class="admonition info">
+<ol>
+<li>敌手 <span class="arithmatex">\(\mathcal{A}\)</span> 向挑战者发送密钥对 <span class="arithmatex">\((k_0,k_1)\)</span>，以及两组明文三元组 <span class="arithmatex">\((x_0,y_0,z_0)\)</span>、<span class="arithmatex">\((x_1,y_1,z_1)\)</span>。</li>
+<li>挑战者随机选取挑战比特 <span class="arithmatex">\(b\)</span>，运行密钥生成算法得到新密钥对 <span class="arithmatex">\(k_0',k_1'\)</span>。</li>
+<li>挑战者用不同的双层密钥组合加密第 <span class="arithmatex">\(b\)</span> 组对应的明文，将 <span class="arithmatex">\(\langle E(k_0, k_1', x_b), E(k_0', k_1, y_0), E(k_0', k_1', z_b)\rangle\)</span> 返回给敌手。</li>
+<li>敌手 <span class="arithmatex">\(\mathcal{A}\)</span> 可以访问 <span class="arithmatex">\(E(\cdot,k_1',\cdot)\)</span> 和 <span class="arithmatex">\(E(k_0',\cdot,\cdot)\)</span>，输出对 <span class="arithmatex">\(b\)</span> 的猜测值 <span class="arithmatex">\(b'\)</span>，安全定义为敌手猜对的优势可忽略。</li>
+</ol>
+</div>
+<div class="admonition tip">
 <p class="admonition-title">选择明文攻击下的双重加密安全（Secure under Chosen Double Encryption）</p>
 <p>如果对任意概率多项式时间的敌手 <span class="arithmatex">\(\mathcal{A}\)</span>，都存在一个可忽略函数 <span class="arithmatex">\(\text{negl}\)</span>，使得</p>
 <div class="arithmatex">\[
@@ -4526,15 +4576,24 @@ M(1^n,k,c)=1 \iff c\in Range_n(k)
 \]</div>
 <p>那么，我们说对称加密方案 <span class="arithmatex">\((\text{Gen}, \text{Enc}, \text{Dec})\)</span> 在选择明文攻击下具有双重加密安全。</p>
 </div>
-<details class="quote">
-<summary>选择明文攻击下的不可区分性（IND-CPA Secure）</summary>
+<div class="admonition example">
+<p class="admonition-title">对称加密方案 IND-CPA 游戏 <span class="arithmatex">\(\text{Game}_\mathcal{A}^\text{CPA}(n)\)</span></p>
 <p><img src="/mpc/images/image8-8.png" style="display: block; width: 70%; margin: 0 auto;" /></p>
+<ol>
+<li>挑战者生成密钥 <span class="arithmatex">\(k \leftarrow \text{Gen}(1^n)\)</span> ，随机选取挑战比特<span class="arithmatex">\(b\)</span>。</li>
+<li>敌手 <span class="arithmatex">\(\mathcal{A}\)</span> 以 <span class="arithmatex">\(1^n\)</span> 为输入，可访问加密预言机 <span class="arithmatex">\(\text{Enc}_k(\cdot)\)</span>，提交两组等长明文对 <span class="arithmatex">\((x_0,y_0)\)</span>、<span class="arithmatex">\((x_1,y_1)\)</span> 给挑战者。</li>
+<li>挑战者用 <span class="arithmatex">\(k\)</span> 加密第 <span class="arithmatex">\(b\)</span> 组明文，返回密文 <span class="arithmatex">\(c_1 \leftarrow \text{Enc}_k(x_b)\)</span>、<span class="arithmatex">\(c_2 \leftarrow \text{Enc}_k(y_b)\)</span>。</li>
+<li>敌手 <span class="arithmatex">\(\mathcal{A}\)</span> 输出对 <span class="arithmatex">\(b\)</span> 的猜测值 <span class="arithmatex">\(b'\)</span>，猜对则攻击成功。</li>
+</ol>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">选择明文攻击下的不可区分性（IND-CPA Secure）</p>
 <p>如果对任意概率多项式时间的敌手 <span class="arithmatex">\(\mathcal{A}\)</span>，都存在一个可忽略函数 <span class="arithmatex">\(\text{negl}\)</span>，使得</p>
 <div class="arithmatex">\[
 \Pr\left[\text{Game}_{\mathcal{A}}^{\text{CPA}}(n) = 1\right] \le \frac{1}{2} + \text{negl}(n)
 \]</div>
 <p>那么，我们说对称加密方案 <span class="arithmatex">\((\text{Gen}, \text{Enc}, \text{Dec})\)</span> 在选择明文攻击下具有不可区分性。</p>
-</details>
+</div>
 <p>通过混合游戏可证明，若对称加密方案 IND-CPA 安全，则其满足混淆电路所需的双重加密安全。</p>
 <details class="info">
 <summary>证明思路</summary>
@@ -4542,15 +4601,15 @@ M(1^n,k,c)=1 \iff c\in Range_n(k)
 <li><span class="arithmatex">\(\text{double} \approx \text{mod}\)</span>：<ul>
 <li>在 mod 中总是加密 <span class="arithmatex">\(y_0\)</span>: <span class="arithmatex">\(\langle E(k_0, k_1', x_b), E(k_0', k_1, y_0), E(k_0', k_1', z_b)\rangle\)</span><ul>
 <li>当 <span class="arithmatex">\(b=0\)</span> 两游戏相同</li>
-<li>当 <span class="arithmatex">\(b=1\)</span> 区分它们等价于区分 <span class="arithmatex">\(E(k_0', k_1, y_0)\)</span> 与 <span class="arithmatex">\(E(k_0', k_1, y_1)\)</span></li>
+<li>当 <span class="arithmatex">\(b=1\)</span> 区分它们等价于区分 <span class="arithmatex">\(E(k_0', k_1, y_0)\)</span> 与 <span class="arithmatex">\(E(k_0', k_1, y_1)\)</span>，即 IND‑CPA 游戏</li>
 </ul>
 </li>
 </ul>
 </li>
 <li><span class="arithmatex">\(\Pr[\text{mod} = 1] \le \frac{1}{2} + \text{negl}(n)\)</span>：<ul>
-<li>假设 <span class="arithmatex">\(\mathcal{A}\)</span> 已知 <span class="arithmatex">\(k_0'\)</span>，收到的 <span class="arithmatex">\(E(k_0', k_1, y_0)\)</span> 与 <span class="arithmatex">\(b\)</span> 无关，可移除</li>
-<li>若 <span class="arithmatex">\(\mathcal{A}\)</span> 在 mod 中获胜，则可构造在 <span class="arithmatex">\(\text{Game}_\mathcal{A}^{\text{CPA}}(n)\)</span> 中获胜的算法</li>
-<li>对 <span class="arithmatex">\(\langle E(k_0, k_1', x_b), E(k_0', k_1', z_b)\rangle\)</span> 去一层解密得到 CPA 视图</li>
+<li>增强敌手，假设 <span class="arithmatex">\(\mathcal{A}\)</span> 已知 <span class="arithmatex">\(k_0'\)</span>，收到的 <span class="arithmatex">\(E(k_0', k_1, y_0)\)</span> 与 <span class="arithmatex">\(b\)</span> 无关，可移除，视图只剩下 <span class="arithmatex">\(\langle\; E(k_0, k_1', x_b), E(k_0', k_1', z_b) \;\rangle\)</span></li>
+<li>根据假设，敌手知道 <span class="arithmatex">\(k_0'\)</span>，也知道自己选的 <span class="arithmatex">\(k_0\)</span> 和 <span class="arithmatex">\(k_1\)</span>，去一层解密得到视图 <span class="arithmatex">\(\langle\;E(k_1', x_b), E(k_1', z_b) \;\rangle\)</span></li>
+<li>转化为多消息的 IND‑CPA 游戏，若 <span class="arithmatex">\(\mathcal{A}\)</span> 在 mod 中获胜，则可构造在 <span class="arithmatex">\(\text{Game}_\mathcal{A}^{\text{CPA}}(n)\)</span> 中获胜的算法</li>
 </ul>
 </li>
 </ol>
@@ -4562,12 +4621,12 @@ M(1^n,k,c)=1 \iff c\in Range_n(k)
 <ul>
 <li>对每个门，正确的两把输入标签只会匹配混淆表中的<strong>唯一一行</strong></li>
 <li>其他行要么根本解不开，要么解出后不落在合法密文空间中</li>
-<li>再对整个电路使用并合界（union bound），即可把“单门唯一正确”推广到“整条求值路径唯一正确”</li>
+<li>再对整个电路使用并合界（union bound），即可把单门唯一正确推广到整条求值路径唯一正确</li>
 </ul>
 </details>
 <h2 id="3-stand-alone-model">3 独立模型（Stand-alone Model）<a class="headerlink" href="#3-stand-alone-model" title="Permanent link">&para;</a></h2>
-<div class="admonition quote">
-<p class="admonition-title">独立模型下的半诚实安全</p>
+<div class="admonition example">
+<p class="admonition-title">独立模型下对于半诚实敌手的安全性</p>
 <p>对功能 <span class="arithmatex">\(f=(f_1,f_2)\)</span>，若存在模拟器 <span class="arithmatex">\(S_1,S_2\)</span>，使得</p>
 <ul>
 <li><span class="arithmatex">\(S_1(x,f_1(x,y))\)</span> 与 <span class="arithmatex">\(P_1\)</span> 的真实视图不可区分</li>
@@ -4575,6 +4634,8 @@ M(1^n,k,c)=1 \iff c\in Range_n(k)
 </ul>
 <p>则协议在独立模型下对静态半诚实敌手安全。</p>
 </div>
+<div class="admonition example">
+<p class="admonition-title">独立模型下对于恶意敌手的安全性</p>
 <p>对两方功能 <span class="arithmatex">\(f=(f_1,f_2)\)</span>，若对每个真实世界可允许的非统一 PPT 敌手 <span class="arithmatex">\(\mathcal{A}=(A_1,A_2)\)</span>，都存在理想世界可允许的期望多项式时间模拟器 <span class="arithmatex">\(\mathcal{B}=(B_1,B_2)\)</span>，使得</p>
 <div class="arithmatex">\[
 \{ideal_{f,\mathcal{B}}(x,y)\}_{|x|=|y|}
@@ -4582,31 +4643,28 @@ M(1^n,k,c)=1 \iff c\in Range_n(k)
 \{real_{\Pi,\mathcal{A}}(x,y)\}_{|x|=|y|},
 \]</div>
 <p>则协议 <span class="arithmatex">\(\Pi\)</span> 在独立模型下对静态恶意敌手安全实现 <span class="arithmatex">\(f\)</span>。</p>
+</div>
 <details class="info">
 <summary>理想世界运行方式</summary>
 <ul>
-<li>诚实方把真实输入发送给可信方；恶意方可中止或提交同长度替换输入</li>
+<li>诚实方把真实输入发送给可信方，恶意方可中止或提交同长度替换输入</li>
 <li>可信方收到合法输入对后，先向第一个参与方发送 <span class="arithmatex">\(f_1(x,y)\)</span></li>
-<li>若第一个参与方恶意，它可根据已获输出选择是否让第二个参与方收到输出；若中止，第二方得到 <span class="arithmatex">\(\bot\)</span></li>
-<li>诚实方输出可信方返回的消息；恶意方可输出任意 PPT 可计算结果</li>
+<li>若第一个参与方恶意，它可根据已获输出选择是否让第二个参与方收到输出，若中止，第二方得到 <span class="arithmatex">\(\bot\)</span></li>
+<li>诚实方输出可信方返回的消息，恶意方可输出任意 PPT 可计算结果</li>
 </ul>
 <p>这个理想功能刻画了两方恶意安全中常见的<strong>输入替换</strong>与<strong>不公平输出递送</strong>，但不允许敌手产生除此之外的效果。</p>
 </details>
-<div class="admonition example">
+<div class="admonition tip">
 <p class="admonition-title">独立模型不保证并发安全</p>
-<p>假设协议 <span class="arithmatex">\(\Pi\)</span> 在独立模型下安全地产生共享密钥 <span class="arithmatex">\(k\)</span>，再构造新协议 <span class="arithmatex">\(\Pi'\)</span>：如果收到消息等于 <span class="arithmatex">\(k\)</span>，就返回 <code>yes</code>，否则返回 <code>no</code>。</p>
+<p>假设协议 <span class="arithmatex">\(\Pi\)</span> 在独立模型下安全地产生共享密钥 <span class="arithmatex">\(k\)</span>，构造新协议 <span class="arithmatex">\(\Pi'\)</span>：收到消息等于 <span class="arithmatex">\(k\)</span> 时返回 <code>yes</code>，否则返回 <code>no</code>。</p>
 <p>若另一个并发协议用一次一密发送</p>
 <div class="arithmatex">\[
 c = k \oplus m,\qquad m\in\{\text{buy},\text{sell}\},
 \]</div>
-<p>敌手可发送</p>
-<div class="arithmatex">\[
-c' = c \oplus \text{buy}
-\]</div>
-<p>给 <span class="arithmatex">\(\Pi'\)</span>：</p>
+<p>敌手可发送 <span class="arithmatex">\(c' = c \oplus \text{buy}\)</span> 给 <span class="arithmatex">\(\Pi'\)</span>：</p>
 <ul>
-<li>若 <span class="arithmatex">\(m=\text{buy}\)</span>，则 <span class="arithmatex">\(c'=k\)</span>，回复 <code>yes</code></li>
-<li>若 <span class="arithmatex">\(m=\text{sell}\)</span>，则回复 <code>no</code></li>
+<li>若 <span class="arithmatex">\(m=\text{buy}\)</span>，则 <span class="arithmatex">\(c'=k\)</span>，返回 <code>yes</code></li>
+<li>若 <span class="arithmatex">\(m=\text{sell}\)</span>，则返回 <code>no</code></li>
 </ul>
 <p>于是明文被区分，隐私被破坏。</p>
 </div>
@@ -4639,14 +4697,14 @@ c' = c \oplus \text{buy}
 </table>
 <p>在<strong>非并发环境</strong>下，UC 安全与独立模型安全可以对应；但一旦允许并发，UC 更强。</p>
 <details class="tip">
-<summary>总结</summary>
+<summary>直观解释</summary>
 <ul>
-<li><strong>独立模型</strong>：单次执行时安全不安全</li>
+<li><strong>独立模型</strong>：单次执行时是否安全</li>
 <li><strong>UC 模型</strong>：把协议丢进任何更大的系统里反复并发调用后，是否仍像理想功能一样安全</li>
 </ul>
 </details>
 <h2 id="4">4 姚氏混淆电路的安全性<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
-<p>若使用的加密方案<strong>满足 IND-CPA 安全、不可知密文空间和可验证密文空间</strong>，则姚氏混淆电路协议在 <span class="arithmatex">\(F_{OT}\)</span>-混合模型下，对静态半诚实敌手安全实现单一输出确定性功能。</p>
+<p>若使用的加密方案<strong>满足 IND-CPA 安全、不可知密文空间和可验证密文空间</strong>，则姚氏混淆电路协议在 <span class="arithmatex">\(F_{OT}-\)</span>混合模型下，对静态半诚实敌手安全实现单一输出确定性功能。</p>
 <div class="admonition example">
 <p class="admonition-title">情况 1：生成方 <span class="arithmatex">\(P_1\)</span> 被攻陷</p>
 <p>模拟器 <span class="arithmatex">\(S_1\)</span> 的输入是 <span class="arithmatex">\((x, f(x,y))\)</span>，只需随机采样一份和真实分布一致的生成随机数 <span class="arithmatex">\(r_C\)</span>，然后输出 <span class="arithmatex">\((x, r_C, f(x,y))\)</span>。</p>
@@ -4815,6 +4873,7 @@ v_j = p_j \oplus \lambda_j
 <li>混淆表公开后，后续求值完全本地进行</li>
 </ul>
 </div>
+<h2 id="7">7 思考题<a class="headerlink" href="#7" title="Permanent link">&para;</a></h2>
 <details class="question">
 <summary>1. 为什么常数轮协议仍可能很慢？</summary>
 <p>因为轮数少不等于总工作量小。BMR 虽是常数轮，但每个门的标签、PRG、底层 MPC 都可能非常重。</p>

@@ -3419,6 +3419,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      6 思考题
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -4213,6 +4222,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      6 思考题
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -4333,9 +4351,47 @@ d = Open([x]-[a]),\qquad e = Open([y]-[b])
 <li><strong>被攻陷方输入</strong>：用真实输入模拟</li>
 <li><strong>诚实方输入</strong>：全部置为 <span class="arithmatex">\(0\)</span> 后模拟输入分享</li>
 <li><strong>计算阶段</strong>：模拟诚实方与被攻陷方按协议执行，乘法门中公开的 <span class="arithmatex">\(d,e\)</span> 可按均匀随机值模拟</li>
-<li><strong>输出阶段</strong>：向 <span class="arithmatex">\(F_{sfe}\)</span> 请求输出，再均匀补出与该输出一致的诚实方份额</li>
+<li><strong>输出阶段</strong>：向 <span class="arithmatex">\(F_{sfe}\)</span> 请求输出，再均匀补出与该输出一致的诚实方份额（偷看答案再调整份额）</li>
 </ul>
 </div>
+<details class="info">
+<summary>示意图及解释</summary>
+<ol>
+<li>
+<p><strong>被攻陷方输入提交与分享模拟</strong></p>
+<ul>
+<li>理想功能 <span class="arithmatex">\(\mathcal{F}_\text{sfe}\)</span> 向模拟器 <span class="arithmatex">\(\mathcal{S}\)</span> 发送 <span class="arithmatex">\((\text{INPUT}, \text{sid}, P_i)\)</span>，通知被攻陷参与方 <span class="arithmatex">\(P_i \in C\)</span> 已完成输入提交。</li>
+<li>模拟器 <span class="arithmatex">\(\mathcal{S}\)</span> 基于被攻陷方真实输入 <span class="arithmatex">\(x_i\)</span> 模拟输入分享过程，将生成的份额消息发送给环境 <span class="arithmatex">\(\mathcal{Z}\)</span>。</li>
+</ul>
+<p><img src="/mpc/images/image7-1.png" style="display: block; width: 60%; margin: 0 auto;" /></p>
+</li>
+<li>
+<p><strong>诚实方输入通知与分享模拟</strong></p>
+<ul>
+<li>理想功能 <span class="arithmatex">\(\mathcal{F}_\text{sfe}\)</span> 向模拟器 <span class="arithmatex">\(\mathcal{S}\)</span> 发送 <span class="arithmatex">\((\text{INPUT}, \text{sid}, P_j)\)</span>，通知诚实参与方 <span class="arithmatex">\(P_j \notin C\)</span> 已完成输入提交，不泄露具体输入值。</li>
+<li>模拟器 <span class="arithmatex">\(\mathcal{S}\)</span> 将诚实方输入置为 <span class="arithmatex">\(0\)</span>（<span class="arithmatex">\(x_j=0\)</span>），基于该固定值模拟诚实方的输入分享过程，将对应份额发送给环境<span class="arithmatex">\(\mathcal{Z}\)</span>。</li>
+</ul>
+<p><img src="/mpc/images/image7-2.png" style="display: block; width: 60%; margin: 0 auto;" /></p>
+</li>
+<li>
+<p><strong>协议计算过程模拟</strong></p>
+<ul>
+<li>模拟器 <span class="arithmatex">\(\mathcal{S}\)</span> 以被攻陷方真实输入份额、诚实方 <span class="arithmatex">\(0\)</span> 值输入份额为基础，按照真实协议逻辑模拟完整函数计算过程。</li>
+<li>模拟器将计算阶段所有被攻陷方可见的交互视图，发送给环境<span class="arithmatex">\(\mathcal{Z}\)</span>。</li>
+</ul>
+<p><img src="/mpc/images/image7-3.png" style="display: block; width: 60%; margin: 0 auto;" /></p>
+</li>
+<li>
+<p><strong>输出获取与重建模拟</strong></p>
+<ul>
+<li>模拟器 <span class="arithmatex">\(\mathcal{S}\)</span> 向理想功能 <span class="arithmatex">\(\mathcal{F}_\text{sfe}\)</span> 发送 <span class="arithmatex">\((\text{OUTPUT}, \text{sid}, P_i)\)</span>，请求被攻陷方对应的计算输出。</li>
+<li>理想功能 <span class="arithmatex">\(\mathcal{F}_\text{sfe}\)</span> 基于全部参与方的真实输入计算函数结果，向模拟器 <span class="arithmatex">\(\mathcal{S}\)</span> 返回 <span class="arithmatex">\((\text{OUTPUT}, \text{sid}, y_i)\)</span>。</li>
+<li>模拟器 <span class="arithmatex">\(\mathcal{S}\)</span> 基于真实输出 <span class="arithmatex">\(y_i\)</span> 构造匹配的诚实方输出份额，将输出重建阶段的交互视图发送给环境 <span class="arithmatex">\(\mathcal{Z}\)</span>。</li>
+</ul>
+<p><img src="/mpc/images/image7-4.png" style="display: block; width: 60%; margin: 0 auto;" /></p>
+</li>
+</ol>
+</details>
 <div class="admonition tip">
 <p class="admonition-title">理想/真实世界不可区分</p>
 <ol>
@@ -4371,6 +4427,7 @@ a=\sum_i a_i,\qquad b=\sum_i b_i
 <p>用一个底层 MPC 协议计算 <span class="arithmatex">\([c]=[ab]\)</span>，从而得到三元组 <span class="arithmatex">\(([a],[b],[c])\)</span></p>
 </li>
 </ol>
+<h2 id="6">6 思考题<a class="headerlink" href="#6" title="Permanent link">&para;</a></h2>
 <details class="question">
 <summary>1. 为什么 Beaver 三元组对效率提升这么大？</summary>
 <p>因为它把“真正困难的乘法相关性”预先生成好了，在线时只需用随机掩码把真实输入贴到这个相关性上。</p>
