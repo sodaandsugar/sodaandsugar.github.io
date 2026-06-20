@@ -2420,6 +2420,8 @@
       
         
       
+        
+      
     
     
     
@@ -2684,6 +2686,29 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys3/11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 11 DLP and TLP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -2700,6 +2725,8 @@
   
     
     
+      
+        
       
         
       
@@ -3069,6 +3096,29 @@
   
   
     <li class="md-nav__item">
+      <a href="../../db/19/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 19 Recovery System
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../db/collection/" class="md-nav__link">
         
   
@@ -3314,13 +3364,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-ddh-ot" class="md-nav__link">
+  <a href="#2-ddh-ot1-out-of-2-ot" class="md-nav__link">
     <span class="md-ellipsis">
-      2 基于 DDH 的半诚实安全 OT
+      2 基于 DDH 的半诚实安全 OT（1-out-of-2 OT）
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="2 基于 DDH 的半诚实安全 OT">
+    <nav class="md-nav" aria-label="2 基于 DDH 的半诚实安全 OT（1-out-of-2 OT）">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -3511,7 +3561,7 @@
   
   
   <span class="md-ellipsis">
-    Chapter 9 恶意安全性：GMW 编译器与切分选择（Cut-and-Choose）
+    Chapter 9 恶意安全性
     
   </span>
   
@@ -4202,13 +4252,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-ddh-ot" class="md-nav__link">
+  <a href="#2-ddh-ot1-out-of-2-ot" class="md-nav__link">
     <span class="md-ellipsis">
-      2 基于 DDH 的半诚实安全 OT
+      2 基于 DDH 的半诚实安全 OT（1-out-of-2 OT）
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="2 基于 DDH 的半诚实安全 OT">
+    <nav class="md-nav" aria-label="2 基于 DDH 的半诚实安全 OT（1-out-of-2 OT）">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -4376,7 +4426,7 @@ x_b = (1\oplus b)x_0 \oplus b x_1.
 <li><em>注：不能以黑盒的方式基于公钥加密 (Public Key Encryption, PKE) 构造 OT</em></li>
 </ul>
 </details>
-<h2 id="2-ddh-ot">2 基于 DDH 的半诚实安全 OT<a class="headerlink" href="#2-ddh-ot" title="Permanent link">&para;</a></h2>
+<h2 id="2-ddh-ot1-out-of-2-ot">2 基于 DDH 的半诚实安全 OT（1-out-of-2 OT）<a class="headerlink" href="#2-ddh-ot1-out-of-2-ot" title="Permanent link">&para;</a></h2>
 <h3 id="2-1">2. 1 真实协议流程<a class="headerlink" href="#2-1" title="Permanent link">&para;</a></h3>
 <p>设 <span class="arithmatex">\(\mathbb{G}\)</span> 为阶为 <span class="arithmatex">\(q\)</span> 的循环群，生成元为 <span class="arithmatex">\(g\)</span>，发送方消息 <span class="arithmatex">\(x_0,x_1\in\mathbb{G}\)</span>，接收方选择位  <span class="arithmatex">\(b\in\{0,1\}\)</span>：</p>
 <p><img src="/mpc/images/image5-3.png" style="display: block; width: 70%; margin: 0 auto;" /></p>
@@ -4395,6 +4445,39 @@ x_b = (1\oplus b)x_0 \oplus b x_1.
 <li><strong>发送方隐私</strong>：对未选择的一侧 <span class="arithmatex">\(\text{pk}_{1-b}\)</span>，三元组 <span class="arithmatex">\((g^r,\text{pk}_{1-b},\text{pk}_{1-b}^r)\)</span> 在 DDH 假设下与随机三元组不可区分，因此 <span class="arithmatex">\(c_{1-b}=x_{1-b}\cdot \text{pk}_{1-b}^r\)</span>，看起来就像被一个随机群元素一次性掩盖，从而隐藏了 <span class="arithmatex">\(x_{1-b}\)</span></li>
 </ul>
 </details>
+<div class="admonition question">
+<p class="admonition-title">问答题【24-25春夏期末】</p>
+<p>What is the security definition of the oblivious transfer protocol? Given a secure (1,2)-OT, (i.e. 1-out-of-2 oblivious transfer protocol,) could you construct a (1,4)-OT protocol? And show why the proposed a (1,4)-OT protocol is secure.</p>
+<details class="success">
+<summary>参考答案（LLM生成）</summary>
+<p>理想功能 <span class="arithmatex">\(\mathcal{F}_{\text{OT}}\)</span>：发送方输入 <span class="arithmatex">\((m_0,m_1)\)</span>，接收方输入选择比特 <span class="arithmatex">\(b\)</span>，接收方获得 <span class="arithmatex">\(m_b\)</span>，发送方无输出，半诚实安全要求：</p>
+<ul>
+<li><strong>接收方隐私</strong>：发送方无法区分 <span class="arithmatex">\(b=0\)</span> 和 <span class="arithmatex">\(b=1\)</span>。</li>
+<li><strong>发送方隐私</strong>：接收方除 <span class="arithmatex">\(m_b\)</span> 外，得不到 <span class="arithmatex">\(m_{1-b}\)</span> 的任何信息。</li>
+</ul>
+<hr />
+<p>下面构造 1-out-of-4 OT.发送方有消息 <span class="arithmatex">\(\{m_{00},m_{01},m_{10},m_{11}\}\)</span>，接收方有选择 <span class="arithmatex">\((s_1,s_2)\in\{0,1\}^2\)</span>。</p>
+<ol>
+<li>发送方随机生成四个对称密钥 <span class="arithmatex">\(k_1^0,k_1^1,k_2^0,k_2^1\)</span>，计算双重密文：<br />
+<span class="arithmatex">\(c_{ab} = E_{k_1^a}(E_{k_2^b}(m_{ab}))\)</span>，将全部四个密文发给接收方。</li>
+<li>
+<p>执行两次 (1,2)-OT：</p>
+<ul>
+<li>OT₁：发送方输入 <span class="arithmatex">\((k_1^0,k_1^1)\)</span>，接收方输入 <span class="arithmatex">\(s_1\)</span>，得到 <span class="arithmatex">\(k_1^{s_1}\)</span></li>
+<li>OT₂：发送方输入 <span class="arithmatex">\((k_2^0,k_2^1)\)</span>，接收方输入 <span class="arithmatex">\(s_2\)</span>，得到 <span class="arithmatex">\(k_2^{s_2}\)</span></li>
+</ul>
+</li>
+<li>
+<p>接收方用 <span class="arithmatex">\(k_1^{s_1},k_2^{s_2}\)</span> 解密 <span class="arithmatex">\(c_{s_1 s_2}\)</span> 得 <span class="arithmatex">\(m_{s_1 s_2}\)</span>，其余密文无法解密。</p>
+</li>
+</ol>
+<hr />
+<ul>
+<li><strong>接收方隐私</strong>：发送方仅参与两次独立的 (1,2)-OT，由基础 OT 的接收方隐私保证其无法区分选择比特，从而不知 <span class="arithmatex">\((s_1,s_2)\)</span>。</li>
+<li><strong>发送方隐私</strong>：对于 <span class="arithmatex">\((a,b)\neq(s_1,s_2)\)</span>，接收方至少缺失一个密钥，由加密的 IND-CPA 安全性和 OT 保证缺失密钥不可知，故其他三个消息信息论隐藏。模拟器可用随机密文和仅目标位置的正确消息构建不可区分的视图。</li>
+</ul>
+</details>
+</div>
 <h3 id="2-2">2. 2 理想功能模型<a class="headerlink" href="#2-2" title="Permanent link">&para;</a></h3>
 <p>若 DDH 问题在群 <span class="arithmatex">\(\mathbb{G}\)</span> 上困难，则上述协议对静态半诚实敌手 <strong>UC-安全实现</strong> 理想功能 <span class="arithmatex">\(F_{OT}\)</span></p>
 <p><img src="/mpc/images/image5-4.png" style="display: block; width: 80%; margin: 0 auto;" /></p>

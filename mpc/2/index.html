@@ -2420,6 +2420,8 @@
       
         
       
+        
+      
     
     
     
@@ -2684,6 +2686,29 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys3/11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 11 DLP and TLP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -2700,6 +2725,8 @@
   
     
     
+      
+        
       
         
       
@@ -3052,6 +3079,29 @@
   
   <span class="md-ellipsis">
     Chapter 18 Concurrency Control
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../db/19/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 19 Recovery System
     
   </span>
   
@@ -3532,7 +3582,7 @@
   
   
   <span class="md-ellipsis">
-    Chapter 9 恶意安全性：GMW 编译器与切分选择（Cut-and-Choose）
+    Chapter 9 恶意安全性
     
   </span>
   
@@ -4473,6 +4523,23 @@ $$
 \]</div>
 <p>由于 <span class="arithmatex">\(\epsilon(\kappa)\)</span> 不可忽略，说明 <span class="arithmatex">\(\mathcal{B}\)</span> 可以有效区分随机三元组与 DDH 三元组，这与 DDH 假设成立矛盾，因此 ElGamal 在 DDH 假设下必须是 IND-CPA 安全的。</p>
 </details>
+<div class="admonition question">
+<p class="admonition-title">不定项选择题（24-25春夏期末）</p>
+<p>Lifted El-Gamal encryption is a modification of El-Gamal encryption; namely, encrypting of <span class="arithmatex">\(g^m\)</span> instead of <span class="arithmatex">\(m\)</span>.</p>
+<p>Choose all correct descriptions.</p>
+<p>(A) Lifted El-Gamal encryption is additively homomorphic.</p>
+<p>(B) The security assumption of lifted El-Gamal encryption is the same as El-Gamal encryption.</p>
+<p>(C) Lifted El-Gamal cannot be used to encryption large plaintext; otherwise, the description may fail.</p>
+<p>(D) The security of lifted El-Gamal can be reduced to the discrete logarithm assumption.</p>
+<details class="success">
+<summary>参考答案（LLM生成）</summary>
+<p>Lifted El-Gamal 加密将明文 <span class="arithmatex">\(m\)</span> 编码为 <span class="arithmatex">\(g^m\)</span> 后再用 ElGamal 加密，即 <span class="arithmatex">\(c_1=g^y,\; c_2=g^m \cdot h^y\)</span>。</p>
+<p>(A) 正确。密文的乘法会导致明文的指数相加，<span class="arithmatex">\(\text{Enc}(m_1) \cdot \text{Enc}(m_2) = (g^{y_1+y_2},\; g^{m_1+m_2} \cdot h^{y_1+y_2})\)</span>，解密后得到 <span class="arithmatex">\(g^{m_1+m_2}\)</span>，实现加法同态。</p>
+<p>(B) 正确。其 IND-CPA 安全性同样依赖于 <strong>判定性 Diffie-Hellman (DDH) 假设</strong>，与标准 ElGamal 加密一致。</p>
+<p>(C) 正确。解密时需通过计算离散对数从 <span class="arithmatex">\(g^m\)</span> 中恢复 <span class="arithmatex">\(m\)</span>，这要求 <span class="arithmatex">\(m\)</span> 的取值范围很小（如 0/1 投票），否则离散对数无法有效求解，解密将失败。</p>
+<p>(D) 错误。其安全性归约基于 <strong>DDH 假设</strong>，而非单纯的离散对数假设。DDH 严格强于离散对数，仅靠离散对数困难不足以证明其语义安全。</p>
+</details>
+</div>
 <h2 id="2">2 基本术语与符号<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>可忽略函数（Negligible Function）</strong>：表示一个随安全参数增长而趋近于 0，且趋近速度快于任何多项式倒数的函数，记作 <span class="arithmatex">\(negl(\kappa)\)</span></li>

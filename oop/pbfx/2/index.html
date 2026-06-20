@@ -2420,6 +2420,8 @@
       
         
       
+        
+      
     
     
     
@@ -2684,6 +2686,29 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sys3/11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 11 DLP and TLP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -2700,6 +2725,8 @@
   
     
     
+      
+        
       
         
       
@@ -3069,6 +3096,29 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../db/19/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 19 Recovery System
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../db/collection/" class="md-nav__link">
         
   
@@ -3350,7 +3400,7 @@
   
   
   <span class="md-ellipsis">
-    Chapter 9 恶意安全性：GMW 编译器与切分选择（Cut-and-Choose）
+    Chapter 9 恶意安全性
     
   </span>
   
@@ -4530,7 +4580,7 @@
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 
 <span class="c1">// 1. 外部类 Outer</span>
-<span class="k">class</span><span class="w"> </span><span class="nc">Outer</span><span class="p">{</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Outer</span><span class="w"> </span><span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
 <span class="w">    </span><span class="c1">// 外部类的构造函数（给私有成员 x 赋值）</span>
 <span class="w">    </span><span class="n">Outer</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="n">x</span><span class="p">(</span><span class="n">x</span><span class="p">){}</span>
@@ -4559,15 +4609,9 @@
 </code></pre></div>
 <details class="success">
 <summary>运行结果</summary>
-<p>输出 <code>10</code></p>
-</details>
-<details class="tip">
-<summary>解析</summary>
-<ul>
-<li><code>Inner</code> 是 <code>Outer</code> 的嵌套类</li>
-<li><code>display()</code> 接收了一个 <code>Outer&amp; outer</code>，因此可以通过这个对象访问 <code>outer.x</code></li>
-<li>这里并不是 <code>Inner</code> 自动携带一个外部类对象，而是<strong>显式传入了一个 <code>Outer</code> 对象</strong></li>
-</ul>
+<p>输出 <code>10</code>。</p>
+<p><code>display()</code> 接收了一个 <code>Outer&amp; outer</code>，因此可以通过这个对象访问 <code>outer.x</code>。</p>
+<p>这里并不是 <code>Inner</code> 自动携带一个外部类对象，而是<strong>显式传入了一个 <code>Outer</code> 对象</strong></p>
 </details>
 </div>
 <div class="admonition question">
@@ -4585,10 +4629,7 @@
 </code></pre></div>
 <details class="success">
 <summary>运行结果</summary>
-<p>输出 <code>x:200 y:200</code></p>
-</details>
-<details class="tip">
-<summary>解析</summary>
+<p>输出 <code>x:200 y:200</code>。</p>
 <p><code>y</code> 是 <code>x</code> 的引用，本质上是 <code>x</code> 的别名。</p>
 </details>
 </div>
@@ -4608,12 +4649,9 @@
 <details class="success">
 <summary>答案</summary>
 <p><span class="arithmatex">\(\text{C}\)</span></p>
-</details>
-<details class="tip">
-<summary>解析</summary>
 <ul>
 <li><span class="arithmatex">\(\text{A}\)</span> 错：指针可以为空，引用不能为空</li>
-<li><span class="arithmatex">\(\text{B}\)</span> 错：指针不一定必须在定义时指向有效对象；引用必须绑定到对象</li>
+<li><span class="arithmatex">\(\text{B}\)</span> 错：指针不一定必须在定义时指向有效对象，引用必须绑定到对象</li>
 <li><span class="arithmatex">\(\text{C}\)</span> 对：引用可以看作对象的别名</li>
 <li><span class="arithmatex">\(\text{D}\)</span> 错：指针可以改指向，引用一旦绑定通常不能改绑</li>
 </ul>
@@ -4719,8 +4757,8 @@
 <li><code>-&gt; return_type</code>：返回类型，很多时候可省略</li>
 <li><code>{ body }</code>：函数体</li>
 </ul>
-<details class="quote">
-<summary>常用捕获方式</summary>
+<div class="admonition tip">
+<p class="admonition-title">常用捕获方式</p>
 <ul>
 <li><code>[]</code>：不捕获</li>
 <li><code>[x]</code>：按值捕获 <code>x</code></li>
@@ -4728,39 +4766,34 @@
 <li><code>[=]</code>：按值捕获所有外部变量</li>
 <li><code>[&amp;]</code>：按引用捕获所有外部变量</li>
 </ul>
-</details>
+</div>
 <div class="admonition example">
 <p class="admonition-title">降序排序</p>
 <div class="highlight"><pre><span></span><code><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">nums</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">};</span>
 <span class="n">sort</span><span class="p">(</span><span class="n">nums</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">nums</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span><span class="w"> </span><span class="p">[](</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">){</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="w"> </span><span class="p">});</span>
 </code></pre></div>
 </div>
-<details class="question">
-<summary>按值捕获 vs 按引用捕获</summary>
+<div class="admonition example">
+<p class="admonition-title">按值捕获 vs 按引用捕获</p>
 <div class="highlight"><span class="filename">pbfx/lec2_code/lambda.cpp</span><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
-<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">f</span><span class="o">=</span><span class="p">[</span><span class="n">x</span><span class="p">](){</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;};</span>
 
-<span class="w">    </span><span class="n">f</span><span class="p">();</span>
-<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">g</span><span class="o">=</span><span class="p">[</span><span class="o">&amp;</span><span class="n">x</span><span class="p">]{</span><span class="n">x</span><span class="o">++</span><span class="p">;};</span>
-<span class="w">    </span><span class="n">g</span><span class="p">();</span>
-<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">f</span><span class="o">=</span><span class="p">[</span><span class="n">x</span><span class="p">](){</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;};</span><span class="w">  </span><span class="c1">// 按值捕获，x 的副本 = 1</span>
+<span class="w">    </span><span class="n">f</span><span class="p">();</span><span class="w">  </span><span class="c1">// 输出 1</span>
+
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">g</span><span class="o">=</span><span class="p">[</span><span class="o">&amp;</span><span class="n">x</span><span class="p">]{</span><span class="n">x</span><span class="o">++</span><span class="p">;};</span><span class="w">  </span><span class="c1">// 按引用捕获，对内部 x 的操作会直接作用在外面的 x 上</span>
+<span class="w">    </span><span class="n">g</span><span class="p">();</span><span class="w">  </span><span class="c1">// 执行 x++，把外面的 x 从 1 变成了 2</span>
+
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span><span class="w">  </span><span class="c1">// 输出 2</span>
+
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
-<details class="success">
-<summary>运行结果</summary>
-<p>先输出 <code>1</code>，再输出 <code>2</code></p>
-</details>
-</details>
-<p>??? tip "解析"
-        * <code>f</code> 按值捕获 <code>x</code>，拿到的是定义 Lambda 时 <code>x</code> 的副本
-        * <code>g</code> 按引用捕获 <code>x</code>，修改的是外部原变量
-        * Lambda 本质上是编译器生成的匿名函数对象，每个 Lambda 都有独特类型</p>
+</div>
 <h2 id="3">3 构造与析构<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
 <h3 id="3-1">3. 1 构造函数<a class="headerlink" href="#3-1" title="Permanent link">&para;</a></h3>
 <p><strong>构造（Construction）</strong>不只是分配一块内存，更重要的是把这块原始存储初始化为一个合法、可用的对象。</p>
@@ -4788,8 +4821,8 @@
 </ul>
 </details>
 <ul>
-<li>构造函数名必须和类名相同，且没有返回值，甚至不能写 <code>void</code></li>
-<li>构造函数可以重载</li>
+<li><strong>构造函数名必须和类名相同</strong>，且<strong>没有返回值</strong>，<strong>甚至不能写 <code>void</code></strong></li>
+<li>构造函数<strong>可以重载</strong></li>
 <li>若一个构造函数可以在不传参的情况下调用，则它是<strong>默认构造函数</strong></li>
 </ul>
 <div class="admonition tip">
@@ -4808,24 +4841,27 @@
 
 <span class="k">class</span><span class="w"> </span><span class="nc">Player</span><span class="w"> </span><span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-<span class="w">    </span><span class="n">Player</span><span class="p">()</span><span class="o">=</span><span class="k">default</span><span class="p">;</span><span class="w"> </span><span class="c1">// 提示编译器生成默认构造函数</span>
-<span class="w">    </span><span class="n">Player</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">score</span><span class="p">)</span><span class="o">:</span><span class="n">score</span><span class="p">(</span><span class="n">score</span><span class="p">){</span>
+<span class="w">    </span><span class="c1">// 提示编译器生成默认构造函数</span>
+<span class="w">    </span><span class="n">Player</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// 带参数的构造函数，会用传入的值初始化 score 并打印 Constructor</span>
+<span class="w">    </span><span class="n">Player</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">score</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">score</span><span class="p">(</span><span class="n">score</span><span class="p">){</span>
 <span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Constructor&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">score</span><span class="p">;</span>
 <span class="p">};</span>
 
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span>
-<span class="w">    </span><span class="n">Player</span><span class="w"> </span><span class="n">p</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Player</span><span class="w"> </span><span class="n">p</span><span class="p">;</span><span class="w">  </span><span class="c1">// 调用的是默认构造函数</span>
 <span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">score</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
-<ul>
-<li><code>Player() = default</code> 只是让编译器生成默认构造函数</li>
-<li>对于 <code>int score</code> 这样的内置类型成员，它<strong>不会自动清零</strong>，因此 <code>p.score</code> 是<strong>未初始化值（indeterminate value）</strong></li>
-<li>实际运行时可能打印任意垃圾值；编译器也会给出“used uninitialized”的警告</li>
-</ul>
+<details class="success">
+<summary>运行结果</summary>
+<p><code>Player() = default</code> 只是让编译器生成默认构造函数，对于 <code>int score</code> 这样的内置类型成员，它<strong>不会自动清零</strong>，因此 <code>p.score</code> 是<strong>未初始化值（indeterminate value）</strong>。</p>
+<p>实际运行时可能<strong>打印任意垃圾值</strong>，编译器也会给出 <strong>used uninitialized</strong> 的警告。</p>
+</details>
 </div>
 <h3 id="3-2">3. 2 初始化列表<a class="headerlink" href="#3-2" title="Permanent link">&para;</a></h3>
 <p>初始化列表（Initializer List）在进入构造函数体之前，直接构造成员变量。</p>
@@ -4834,19 +4870,16 @@
 <div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Player</span><span class="w"> </span><span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
 <span class="w">    </span><span class="n">Player</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// 用参数 score 的值去初始化成员变量 score</span>
 <span class="w">    </span><span class="n">Player</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">score</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="n">score</span><span class="p">(</span><span class="n">score</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">score</span><span class="p">;</span>
 <span class="p">};</span>
 </code></pre></div>
 </div>
-<div class="admonition tip">
-<p class="admonition-title">为什么优先用初始化列表</p>
-<ul>
-<li>它是<strong>初始化</strong>，不是“先默认构造再赋值”</li>
-<li>效率通常更高</li>
-<li>对于 <code>const</code> 成员和引用成员，它是<strong>唯一可行</strong>的初始化方式</li>
-</ul>
-</div>
+<p>初始化列表是<strong>初始化</strong>，而不是先默认构造再赋值，效率通常更高。</p>
+<p>对于 <code>const</code> 成员和引用成员，它是<strong>唯一可行</strong>的初始化方式。</p>
 <h3 id="3-3">3. 3 析构函数<a class="headerlink" href="#3-3" title="Permanent link">&para;</a></h3>
 <p>析构函数（Destructor）在对象生命周期结束时自动调用，负责释放对象占有的资源，如堆内存、文件句柄、网络连接等，形式为 <code>~ClassName()</code>。</p>
 <p>析构函数<strong>没有参数</strong>、<strong>没有返回值</strong>、<strong>不支持重载</strong>。</p>
@@ -4877,10 +4910,16 @@
 <span class="w">    </span><span class="kt">int</span><span class="o">*</span><span class="w"> </span><span class="n">data</span><span class="p">;</span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">size</span><span class="p">;</span>
 <span class="p">};</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span>
+<span class="w">    </span><span class="n">Buffer</span><span class="w"> </span><span class="n">m1</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Buffer</span><span class="w"> </span><span class="n">m2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m1</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
 </code></pre></div>
 <details class="success">
 <summary>运行结果</summary>
-<p>在 <code>Buffer m1; Buffer m2 = m1;</code> 结束后，会输出两次 <code>Deconstructor</code>，分别对应 <code>m2</code> 和 <code>m1</code> 的析构。</p>
+<p>输出两次 <code>Deconstructor</code>，分别对应 <code>m2</code> 和 <code>m1</code> 的析构。</p>
 </details>
 </div>
 <div class="admonition tip">
@@ -4984,14 +5023,14 @@
 <span class="p">}</span>
 </code></pre></div>
 </div>
-<details class="quote">
-<summary>和拷贝构造的区别</summary>
+<div class="admonition tip">
+<p class="admonition-title">和拷贝构造的区别</p>
 <ul>
 <li>拷贝构造：目标对象<strong>还没创建完成</strong></li>
 <li>拷贝赋值：目标对象<strong>已经存在</strong>，可能已经持有旧资源</li>
 <li>因此拷贝赋值往往需要先处理旧资源，再完成深拷贝</li>
 </ul>
-</details>
+</div>
 <h3 id="54-this">5.4 <code>this</code> 指针<a class="headerlink" href="#54-this" title="Permanent link">&para;</a></h3>
 <ul>
 <li>每个非静态成员函数都有一个隐含的 <code>this</code> 指针</li>

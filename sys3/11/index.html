@@ -1,0 +1,6773 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../10/">
+      
+      
+        <link rel="next" href="../../db/1/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>Chapter 11 DLP and TLP - sodasugar的笔记本</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/web/pdf_viewer.min.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chapter-11-dlp-and-tlp" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="sodasugar的笔记本" class="md-header__button md-logo" aria-label="sodasugar的笔记本" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            sodasugar的笔记本
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chapter 11 DLP and TLP
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/sodaandsugar/sodaandsugar.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    sodasugar-notebook
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  🏡首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../physics2/1/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  ⚛️ 物理
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../interpret/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  🔤外语
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../cryptography/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  专业课
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="sodasugar的笔记本" class="md-nav__button md-logo" aria-label="sodasugar的笔记本" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    sodasugar的笔记本
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/sodaandsugar/sodaandsugar.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    sodasugar-notebook
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🏡首页
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    ⚛️ 物理
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            ⚛️ 物理
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    大物乙Ⅱ
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            大物乙Ⅱ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 静电场
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 静电场中的导体和电介质
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 电流和磁场
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 物质中的磁场
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5 电磁感应
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6 麦克斯韦方程与电磁波
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 7 光的干涉
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 8 光的衍射
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 9 光的偏振
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 10 光的量子论
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 11 玻尔的原子模型
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 12 量子力学初步
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/midterm_review/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    期中小结
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/%E7%89%A9%E7%90%86%E5%AD%A6%E5%8D%95%E4%BD%8D%E6%8D%A2%E7%AE%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    物理学单位换算
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    大物实验
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            大物实验
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cpe/final/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    期末复习
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    🔤外语
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            🔤外语
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../interpret/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    英语口译
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            英语口译
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interpret/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1 Ceremonial Speech
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interpret/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2 Tourism
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interpret/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3 Culture and Education
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interpret/5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    5 International Reports
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interpret/text/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    课堂文本
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interpret/cheatsheet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    真题
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    专业课
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            专业课
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../cryptography/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    数据安全与密码学基础
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            数据安全与密码学基础
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/resource/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    资源索引
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 概论
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 完善保密加密
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 对称密钥加密以及伪随机性
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 消息鉴别码
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5 哈希函数
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6 数论和密码学困难性假设
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/midterm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    期中考试卷
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    高级数据结构与算法分析
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            高级数据结构与算法分析
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/resource/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    资源索引
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_2" id="__nav_4_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    题目集
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            题目集
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/blank/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    程序填空题集锦
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/function/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    函数题集锦
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1 AVL Trees, Splay Trees and Amortized Analysis
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2 Red-Black Trees and B+ Trees
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3 Inverted File Index
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    4 Leftist Heaps and Skew Heaps
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    5 Binomial Queue
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    6 Backtracking
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    7 Divide and Conquer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    8 Dynamic Programming
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    9 Greedy Algorithms
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    10 P/NP Problems
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    11 Approximation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    12 Local Search
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    13 Randomized Algorithms
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    14 Parallel Algorithms
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/15/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    15 External Sorting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/cheatsheet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    期中考 cheat sheet
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/midterm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    期中考试
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    计算机系统 Ⅱ
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            计算机系统 Ⅱ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 ISA Review
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 Design of Pipelining
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 Hazard of Pipelining
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 Software-Hardware Interface
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5 Intro&Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6 Structures
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 7 Processes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 8 CPU Scheduling
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 9 Synchronization
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/pbfx/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    朋辈辅学
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    计算机系统 Ⅲ
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            计算机系统 Ⅲ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 Fundamentals of computer system
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 Instruction-Level Parallelism (ILP)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 Memory Hierarchy
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 Main Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5 Virtual Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6 Mass-Storage Structure
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 7 I/O Systems
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 8 File System Interface
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 9 File System Implementation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 10 Security and Protection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Chapter 11 DLP and TLP
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 11 DLP and TLP
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-simd-vector-processor" class="md-nav__link">
+    <span class="md-ellipsis">
+      1 SIMD: Vector Processor
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1 SIMD: Vector Processor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-1-vector-processing-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 1 Vector Processing Methods
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-2-cray-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 2 CRAY-1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-3-improving-vector-processor-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 3 Improving Vector Processor Performance
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-4-rv64v" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 4 RV64V
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-simd-array-processor" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 SIMD: Array Processor
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2 SIMD: Array Processor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2-1-basic-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 1 Basic Structure
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-2-interconnection-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 2 Interconnection Network
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-3-single-stage-interconnection-networks" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 3 Single-Stage Interconnection Networks
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 3 Single-Stage Interconnection Networks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-cube-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      ① Cube Network
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-pm2i-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      ② PM2I Network
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-shuffle-exchange-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      ③ Shuffle Exchange Network
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-others" class="md-nav__link">
+    <span class="md-ellipsis">
+      ④ Others
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-4-multi-stage-interconnection-networks" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 4 Multi-Stage Interconnection Networks
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 4 Multi-Stage Interconnection Networks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-multi-stage-cube-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      ① Multi-Stage Cube Network
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-omega-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      ② Omega Network
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-dlp-in-gpu" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 DLP in GPU
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3 DLP in GPU">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#3-1-cuda-execution-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 1 CUDA Execution Model
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-2-gpu-memory-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 2 GPU Memory Structure
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-3-gpu-organization" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 3 GPU Organization
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-loop-level-parallelism" class="md-nav__link">
+    <span class="md-ellipsis">
+      4 Loop-Level Parallelism
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-mimd-thread-level-parallelism" class="md-nav__link">
+    <span class="md-ellipsis">
+      5 MIMD: Thread-Level Parallelism
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5 MIMD: Thread-Level Parallelism">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#5-1-mimd-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 1 MIMD Architecture
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-2-shared-memory-mimd-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 2 Shared-Memory MIMD Models
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. 2 Shared-Memory MIMD Models">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-uma" class="md-nav__link">
+    <span class="md-ellipsis">
+      ① UMA
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-numa" class="md-nav__link">
+    <span class="md-ellipsis">
+      ② NUMA
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-coma" class="md-nav__link">
+    <span class="md-ellipsis">
+      ③ COMA
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-3-further-division-of-mimd-multi-computer-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 3 Further division of MIMD multi-computer system
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. 3 Further division of MIMD multi-computer system">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-mpp" class="md-nav__link">
+    <span class="md-ellipsis">
+      ① MPP
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-cow" class="md-nav__link">
+    <span class="md-ellipsis">
+      ② COW
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-4-challenges-of-parallel-processing" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 4 Challenges of Parallel Processing
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-cache-coherence" class="md-nav__link">
+    <span class="md-ellipsis">
+      6 Cache Coherence
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6 Cache Coherence">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#6-1-basic-concepts" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. 1 Basic Concepts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-2-msi-protocol" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. 2 MSI Protocol
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-3-mesi-and-moesi" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. 3 MESI and MOESI
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-4-directory-protocol" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. 4 Directory Protocol
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-memory-consistency" class="md-nav__link">
+    <span class="md-ellipsis">
+      7 Memory Consistency
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-domain-specific-architectures" class="md-nav__link">
+    <span class="md-ellipsis">
+      8 Domain-Specific Architectures
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8 Domain-Specific Architectures">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#8-1-dsa-guidelines" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. 1 DSA Guidelines
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-2-cnn-and-tpu" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. 2 CNN and TPU
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    数据库系统
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            数据库系统
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../db/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../db/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 Intro to Relational Model
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../db/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 Introduction to SQL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../db/4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 Intermediate SQL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../db/5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5 Advanced SQL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../db/6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6 Entity-Relationship Model
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../db/7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 7 Relational Database Design
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../db/12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 12&13 Storage and File Structure
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../db/14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 14 Indexing and Hashing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../db/15/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 15 Query Processing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../db/16/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 16 Query Optimization
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../db/17/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 17 Transactions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../db/18/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 18 Concurrency Control
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../db/19/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 19 Recovery System
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../db/collection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    错题集
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    隐私计算与数据合规
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            隐私计算与数据合规
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mpc/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 引言
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mpc/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 现代密码学与基础原语
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mpc/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 一个安全多方计算协议的例子
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mpc/4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 安全模型
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mpc/5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5 茫然传输和茫然传输扩展
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mpc/6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6 BGW 协议与 GMW 协议
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mpc/7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 7 通过 Beaver 三元组实现 MPC
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mpc/8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 8 基于混淆电路的协议
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mpc/9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 9 恶意安全性
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_7" id="__nav_4_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    面向对象程序设计
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_7">
+            <span class="md-nav__icon md-icon"></span>
+            面向对象程序设计
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_7_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_7_1" id="__nav_4_7_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    朋辈辅学
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_7_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_7_1">
+            <span class="md-nav__icon md-icon"></span>
+            朋辈辅学
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/pbfx/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lec 1 C++ 概述和 OOP 基础
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/pbfx/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lec 2 构造、析构、拷贝
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/pbfx/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lec3 继承与多态
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/pbfx/4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lec4 移动语义与异常处理
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/pbfx/5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lec5 模板与 STL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/pbfx/6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lec6 迭代器与智能指针
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 Using Objects
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 Class
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 Object Interaction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5 Composition and Inheritance
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6 Polymorphism
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 7 Copy Constructor
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 8 Overloaded Operators
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 9 Streams
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 10 Templates
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 11 STL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 12 Iterators
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 13 Exceptions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 14 Smart Pointers
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/15/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 15 Miscellaneous Points
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-simd-vector-processor" class="md-nav__link">
+    <span class="md-ellipsis">
+      1 SIMD: Vector Processor
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1 SIMD: Vector Processor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-1-vector-processing-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 1 Vector Processing Methods
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-2-cray-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 2 CRAY-1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-3-improving-vector-processor-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 3 Improving Vector Processor Performance
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-4-rv64v" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 4 RV64V
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-simd-array-processor" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 SIMD: Array Processor
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2 SIMD: Array Processor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2-1-basic-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 1 Basic Structure
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-2-interconnection-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 2 Interconnection Network
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-3-single-stage-interconnection-networks" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 3 Single-Stage Interconnection Networks
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 3 Single-Stage Interconnection Networks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-cube-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      ① Cube Network
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-pm2i-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      ② PM2I Network
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-shuffle-exchange-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      ③ Shuffle Exchange Network
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-others" class="md-nav__link">
+    <span class="md-ellipsis">
+      ④ Others
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-4-multi-stage-interconnection-networks" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 4 Multi-Stage Interconnection Networks
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 4 Multi-Stage Interconnection Networks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-multi-stage-cube-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      ① Multi-Stage Cube Network
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-omega-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      ② Omega Network
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-dlp-in-gpu" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 DLP in GPU
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3 DLP in GPU">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#3-1-cuda-execution-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 1 CUDA Execution Model
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-2-gpu-memory-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 2 GPU Memory Structure
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-3-gpu-organization" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 3 GPU Organization
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-loop-level-parallelism" class="md-nav__link">
+    <span class="md-ellipsis">
+      4 Loop-Level Parallelism
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-mimd-thread-level-parallelism" class="md-nav__link">
+    <span class="md-ellipsis">
+      5 MIMD: Thread-Level Parallelism
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5 MIMD: Thread-Level Parallelism">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#5-1-mimd-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 1 MIMD Architecture
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-2-shared-memory-mimd-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 2 Shared-Memory MIMD Models
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. 2 Shared-Memory MIMD Models">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-uma" class="md-nav__link">
+    <span class="md-ellipsis">
+      ① UMA
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-numa" class="md-nav__link">
+    <span class="md-ellipsis">
+      ② NUMA
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-coma" class="md-nav__link">
+    <span class="md-ellipsis">
+      ③ COMA
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-3-further-division-of-mimd-multi-computer-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 3 Further division of MIMD multi-computer system
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. 3 Further division of MIMD multi-computer system">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-mpp" class="md-nav__link">
+    <span class="md-ellipsis">
+      ① MPP
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-cow" class="md-nav__link">
+    <span class="md-ellipsis">
+      ② COW
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-4-challenges-of-parallel-processing" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 4 Challenges of Parallel Processing
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-cache-coherence" class="md-nav__link">
+    <span class="md-ellipsis">
+      6 Cache Coherence
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6 Cache Coherence">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#6-1-basic-concepts" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. 1 Basic Concepts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-2-msi-protocol" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. 2 MSI Protocol
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-3-mesi-and-moesi" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. 3 MESI and MOESI
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-4-directory-protocol" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. 4 Directory Protocol
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-memory-consistency" class="md-nav__link">
+    <span class="md-ellipsis">
+      7 Memory Consistency
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-domain-specific-architectures" class="md-nav__link">
+    <span class="md-ellipsis">
+      8 Domain-Specific Architectures
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8 Domain-Specific Architectures">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#8-1-dsa-guidelines" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. 1 DSA Guidelines
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-2-cnn-and-tpu" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. 2 CNN and TPU
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="chapter-11-dlp-and-tlp">Chapter 11 DLP and TLP<a class="headerlink" href="#chapter-11-dlp-and-tlp" title="Permanent link">&para;</a></h1>
+<p><strong>DLP（Data-Level Parallelism）</strong> 利用同一操作在大量数据元素上的重复性，例如向量运算、矩阵计算、图像和声音处理。<strong>TLP（Thread-Level Parallelism）</strong> 则把并行性提升到线程/任务层面，由软件系统或程序员识别多个可并发执行的线程。</p>
+<details class="quote">
+<summary>Flynn 分类回顾</summary>
+<p><img src="/sys3/images/image11-1.png" style="display: block; width: 70%; margin: 0 auto;" /></p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>指令流</th>
+<th>数据流</th>
+<th>典型含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>SISD</strong></td>
+<td>单</td>
+<td>单</td>
+<td>传统顺序标量处理器</td>
+</tr>
+<tr>
+<td><strong>SIMD</strong></td>
+<td>单</td>
+<td>多</td>
+<td>向量处理器、阵列处理机、GPU 中的 SIMD/SIMT</td>
+</tr>
+<tr>
+<td><strong>MISD</strong></td>
+<td>多</td>
+<td>单</td>
+<td>较少直接使用</td>
+</tr>
+<tr>
+<td><strong>MIMD</strong></td>
+<td>多</td>
+<td>多</td>
+<td>多处理器、多计算机、集群</td>
+</tr>
+</tbody>
+</table>
+</details>
+<div class="admonition tip">
+<p class="admonition-title">DLP vs TLP</p>
+<ul>
+<li><strong>DLP</strong>：一条指令作用于多个数据元素，重点是数据并行。</li>
+<li><strong>TLP</strong>：多个线程拥有各自的控制流，通常意味着多个 program counters。</li>
+<li>因此，TLP 主要通过 <strong>MIMD</strong> 结构实现，而 DLP 常通过 <strong>SIMD</strong> 结构实现。</li>
+</ul>
+</div>
+<h2 id="1-simd-vector-processor">1 SIMD: Vector Processor<a class="headerlink" href="#1-simd-vector-processor" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>向量处理器（Vector Processor）</strong>：设置了向量数据表示和对应向量指令的流水线处理器。</li>
+<li><strong>标量处理器（Scalar Processor）</strong>：没有向量数据表示和向量指令的流水线处理器。</li>
+</ul>
+<p>向量流水线的特点是同一向量内的元素在运算时通常很少相互相关，因此适合流水线化处理。但如果向量处理方式选择不当，也会引入数据相关和频繁的功能部件切换。</p>
+<h3 id="1-1-vector-processing-methods">1. 1 Vector Processing Methods<a class="headerlink" href="#1-1-vector-processing-methods" title="Permanent link">&para;</a></h3>
+<p>以 <span class="arithmatex">\(D = A \times (B + C)\)</span> 为例，其中 <span class="arithmatex">\(A\)</span>、<span class="arithmatex">\(B\)</span>、<span class="arithmatex">\(C\)</span>、<span class="arithmatex">\(D\)</span> 都是长度为 <span class="arithmatex">\(N\)</span> 的向量。</p>
+<table>
+<thead>
+<tr>
+<th>处理方式</th>
+<th>做法</th>
+<th style="text-align: right;">数据相关（次）</th>
+<th style="text-align: right;">功能切换（次）</th>
+<th>适用性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Horizontal processing</strong></td>
+<td>按元素逐行计算：先算 <span class="arithmatex">\(d_1\)</span>，再算 <span class="arithmatex">\(d_2\)</span>，直到 <span class="arithmatex">\(d_N\)</span></td>
+<td style="text-align: right;"><span class="arithmatex">\(N\)</span></td>
+<td style="text-align: right;"><span class="arithmatex">\(2N\)</span></td>
+<td>不适合向量处理器</td>
+</tr>
+<tr>
+<td><strong>Vertical processing</strong></td>
+<td>先整体计算 <span class="arithmatex">\(K = B + C\)</span>，再整体计算 <span class="arithmatex">\(D = A × K\)</span></td>
+<td style="text-align: right;"><span class="arithmatex">\(1\)</span></td>
+<td style="text-align: right;"><span class="arithmatex">\(2\)</span></td>
+<td>需要 memory-memory 结构</td>
+</tr>
+<tr>
+<td><strong>Grouping processing</strong></td>
+<td>把长向量分组，每组内部按 vertical 方式处理</td>
+<td style="text-align: right;"><span class="arithmatex">\(S + 1\)</span></td>
+<td style="text-align: right;"><span class="arithmatex">\(2(S + 1)\)</span></td>
+<td>适合 register-register 结构</td>
+</tr>
+</tbody>
+</table>
+<details class="warning">
+<summary>Horizontal processing 的问题</summary>
+<p>对每个分量都执行：</p>
+<div class="arithmatex">\[
+k_i \leftarrow b_i + c_i,\quad d_i \leftarrow a_i \times k_i
+\]</div>
+<p>每个元素内部存在 RAW 相关，流水线效率低。如果使用静态多功能流水线，功能部件还要频繁切换，吞吐率可能低于顺序串行执行。</p>
+</details>
+<details class="info">
+<summary>Vertical processing 的适用性</summary>
+<p><strong>Vertical processing</strong> 的源向量、目的向量和中间结果通常都放在内存中，因此要求处理器支持 <strong>memory-memory structure</strong>，典型如 STAR-100、CYBER-205。</p>
+<p><img src="/sys3/images/image11-3.png" style="display: block; width: 40%; margin: 0 auto;" /></p>
+</details>
+<details class="info">
+<summary>Vertical and horizontal / grouping processing 的适用性</summary>
+<p><strong>Vertical and horizontal / grouping processing</strong> 把向量长度写作：</p>
+<div class="arithmatex">\[
+N = S \times n + r
+\]</div>
+<p>其中 <span class="arithmatex">\(S\)</span> 是完整分组数量，<span class="arithmatex">\(n\)</span> 是每组长度，<span class="arithmatex">\(r\)</span> 是余数。若余数也作为一组处理，则一共 <span class="arithmatex">\(S + 1\)</span> 组。</p>
+<details class="quote">
+<summary>计算过程</summary>
+<ul>
+<li><span class="arithmatex">\(d_{1\sim n} \leftarrow a_{1\sim n} \times (b_{1\sim n} + c_{1\sim n})\)</span></li>
+<li><span class="arithmatex">\(d_{(n+1)\sim 2n} \leftarrow a_{(n+1)\sim 2n} \times (b_{(n+1)\sim 2n} + c_{(n+1)\sim 2n})\)</span></li>
+<li><span class="arithmatex">\(\dots\)</span></li>
+<li><span class="arithmatex">\(d_{(s*n+1)\sim N} \leftarrow a_{(s*n+1)\sim N} \times (b_{(s*n+1)\sim N} + c_{(s*n+1)\sim N})\)</span></li>
+</ul>
+</details>
+<p>该方式要求设置可快速访问的<strong>向量寄存器（vector registers）</strong>保存源向量、目的向量和中间结果，形成 <strong>register-register operation pipeline</strong>。典型 register-register 向量处理器包括 CRAY-1、YH-1、GRAP-3、Earth Simulator 等。</p>
+</details>
+<h3 id="1-2-cray-1">1. 2 CRAY-1<a class="headerlink" href="#1-2-cray-1" title="Permanent link">&para;</a></h3>
+<p><img src="/sys3/images/image11-2.png" style="display: block; width: 90%; margin: 0 auto;" /></p>
+<p><img src="/sys3/images/image11-4.png" style="display: block; width: 70%; margin: 0 auto;" /></p>
+<ul>
+<li>每个向量寄存器 <code>Vi</code> 有独立总线连接到 6 个 vector functional units</li>
+<li>每个 vector functional unit 也有结果返回总线连接到 vector register bus</li>
+</ul>
+<p>只要不存在 <code>Vi</code> conflict 和 functional conflict，多个向量寄存器与多个功能部件就可以并行工作。</p>
+<table>
+<thead>
+<tr>
+<th>冲突类型</th>
+<th>含义</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Vi conflict</strong></td>
+<td>并行执行的向量指令使用同一个源向量或结果向量寄存器</td>
+<td><span class="arithmatex">\(·\)</span> <code>V0 &lt;- V1 + V2</code> 与 <code>V3 &lt;- V0 × V4</code> <br> <span class="arithmatex">\(·\)</span> <code>V0 &lt;- V1 + V2</code> 与 <code>V3 &lt;- V1 × V4</code></td>
+</tr>
+<tr>
+<td><strong>Functional conflict</strong></td>
+<td>并行执行的向量指令需要同一个功能部件</td>
+<td><code>V3 &lt;- V1 × V2</code> 与 <code>V5 &lt;- V4 × V6</code></td>
+</tr>
+</tbody>
+</table>
+<p><img src="/sys3/images/image11-7.png" style="display: block; width: 70%; margin: 0 auto;" /></p>
+<h3 id="1-3-improving-vector-processor-performance">1. 3 Improving Vector Processor Performance<a class="headerlink" href="#1-3-improving-vector-processor-performance" title="Permanent link">&para;</a></h3>
+<ul>
+<li>设置多个 functional units，使它们并行且各自流水化工作。</li>
+</ul>
+<details class="example">
+<summary>示例</summary>
+<p>CRAY-1 有 4 组 12 个 single-function pipeline components：</p>
+<table>
+<thead>
+<tr>
+<th>组件组</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Vector components</strong></td>
+<td>vector addition、shift、logic operation</td>
+</tr>
+<tr>
+<td><strong>Floating point components</strong></td>
+<td>floating add、multiplication、reciprocal</td>
+</tr>
+<tr>
+<td><strong>Scalar components</strong></td>
+<td>scalar add、shift、logic operation、number <code>1</code> / count</td>
+</tr>
+<tr>
+<td><strong>Address calculation components</strong></td>
+<td>integer add、multiplication</td>
+</tr>
+</tbody>
+</table>
+</details>
+<ul>
+<li>使用 <strong>vector chaining</strong>，加速一串有生产者-消费者关系的向量指令。</li>
+</ul>
+<details class="tip">
+<summary>Vector chaining（向量链接）</summary>
+<p>若两条向量指令存在写后读关系，且没有功能部件冲突和源向量冲突，则前一条指令产生的元素结果可以直接送入后一条指令的功能部件，让多个功能部件串接成流水线。</p>
+</details>
+<details class="example">
+<summary>例题：D = A * (B + C)</summary>
+<p>假设向量长度 <code>N &lt;= 64</code>，<code>B</code> 和 <code>C</code> 已经在 <code>V0</code>、<code>V1</code> 中，用 3 条向量指令完成：</p>
+<div class="highlight"><pre><span></span><code>V3 &lt;- A          // access vector A
+V2 &lt;- V0 + V1    // Vector B and Vector C perform floating point addition
+V4 &lt;- V2 * V3    // Floating point multiplication, the result is stored in V4
+</code></pre></div>
+<p>其中 <code>V3 &lt;- A</code> 和 <code>V2 &lt;- V0 + V1</code> 无冲突可并行，<code>V4 &lt;- V2 * V3</code> 对前两条有 RAW 相关，但可以通过 chaining 边产生边消费。</p>
+<p><img src="/sys3/images/image11-8.png" style="display: block; width: 35%; margin: 0 auto;" /></p>
+<p>假设取数、送入功能部件、写回向量寄存器各有固定启动开销，则执行时间为：</p>
+<ul>
+<li><strong>三条指令串行执行</strong>：</li>
+</ul>
+<div class="arithmatex">\[
+[(1+6+1)+N-1] + [(1+6+1)+N-1] + [(1+7+1)+N-1] = 3N + 22
+\]</div>
+<ul>
+<li><strong>(1) 和 (2) 并行，之后执行 (3)</strong>：</li>
+</ul>
+<div class="arithmatex">\[
+max{[(1+6+1)+N-1], [(1+6+1)+N-1]} + [(1+7+1)+N-1] = 2N + 15
+\]</div>
+<ul>
+<li><strong>使用 vector chaining</strong>：</li>
+</ul>
+<div class="arithmatex">\[
+max{(1+6+1), (1+6+1)} + (1+7+1)+N-1 = N + 16
+\]</div>
+</details>
+<ul>
+<li>使用 <strong>segmented vector</strong> 处理长度超过向量寄存器容量的长向量，把长向量划分为固定长度的若干 segment，每次循环处理一个 segment。该机制由硬件和软件共同控制，对程序员透明。</li>
+<li>使用多处理器系统进一步提高性能。</li>
+</ul>
+<details class="example">
+<summary>示例</summary>
+<ul>
+<li>CRAY-2：内置 4 个向量处理器，浮点运算峰值速度最高可达 1800 MFLOPS。</li>
+<li>CRAY Y-MP、CRAY C90：最多可搭载 16 个向量处理器。</li>
+</ul>
+</details>
+<h3 id="1-4-rv64v">1. 4 RV64V<a class="headerlink" href="#1-4-rv64v" title="Permanent link">&para;</a></h3>
+<p>RV64V 的设计思路大体借鉴 Cray-1：</p>
+<ul>
+<li>包含 32 个 64 位向量寄存器，寄存器堆配置为 16 个读端口和 8 个写端口</li>
+<li>向量运算功能单元为全流水线设计，可检测数据冒险与控制冒险</li>
+<li>向量访存加载 / 存储单元为全流水线设计，完成初始延迟后，每个时钟周期吞吐一个字数据</li>
+<li>标量寄存器组包含 31 个通用整数寄存器和 32 个浮点寄存器</li>
+</ul>
+<p><img src="/sys3/images/image11-9.png" style="display: block; width: 50%; margin: 0 auto;" /></p>
+<details class="example">
+<summary>Example: DAXPY (Double Precision a*X plus Y)</summary>
+<ul>
+<li>普通 RISC-V 标量实现（一次只算 1 个元素）</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nf">fld</span><span class="w">     </span><span class="no">f0</span><span class="p">,</span><span class="no">a</span><span class="w">            </span><span class="c1"># 加载标量常数 a 到浮点寄存器 f0</span>
+<span class="nf">addi</span><span class="w">    </span><span class="no">x28</span><span class="p">,</span><span class="no">x5</span><span class="p">,</span><span class="mi">#256</span><span class="w">     </span><span class="c1"># 算出数组末尾地址，作为循环终止判断值</span>
+<span class="nl">Loop:</span>
+<span class="nf">fld</span><span class="w">     </span><span class="no">f1</span><span class="p">,</span><span class="mi">0</span><span class="p">(</span><span class="no">x5</span><span class="p">)</span><span class="w">        </span><span class="c1"># 从地址 x5 读取 X[i]，放入 f1</span>
+<span class="nf">fmul.d</span><span class="w">  </span><span class="no">f1</span><span class="p">,</span><span class="no">f1</span><span class="p">,</span><span class="no">f0</span><span class="w">        </span><span class="c1"># 双精度乘法：f1 = X[i] * a</span>
+<span class="nf">fld</span><span class="w">     </span><span class="no">f2</span><span class="p">,</span><span class="mi">0</span><span class="p">(</span><span class="no">x6</span><span class="p">)</span><span class="w">        </span><span class="c1"># 从地址 x6 读取 Y[i]，放入 f2</span>
+<span class="nf">fadd.d</span><span class="w">  </span><span class="no">f2</span><span class="p">,</span><span class="no">f2</span><span class="p">,</span><span class="no">f1</span><span class="w">        </span><span class="c1"># 双精度加法：f2 = Y[i] + a*X[i]</span>
+<span class="nf">fsd</span><span class="w">     </span><span class="no">f2</span><span class="p">,</span><span class="mi">0</span><span class="p">(</span><span class="no">x6</span><span class="p">)</span><span class="w">        </span><span class="c1"># 把计算结果写回 Y[i]</span>
+<span class="nf">addi</span><span class="w">    </span><span class="no">x5</span><span class="p">,</span><span class="no">x5</span><span class="p">,</span><span class="mi">#8</span><span class="w">        </span><span class="c1"># X 数组指针向后移动 1 个双精度数（double 占 8 字节）</span>
+<span class="nf">addi</span><span class="w">    </span><span class="no">x6</span><span class="p">,</span><span class="no">x6</span><span class="p">,</span><span class="mi">#8</span><span class="w">        </span><span class="c1"># Y 数组指针同步后移 8 字节</span>
+<span class="nf">bne</span><span class="w">     </span><span class="no">x28</span><span class="p">,</span><span class="no">x5</span><span class="p">,</span><span class="no">Loop</span><span class="w">     </span><span class="c1"># 如果还没走到末尾地址，跳回 Loop 继续算下一个元素</span>
+</code></pre></div>
+<ul>
+<li>RV64V 向量版（一次批量算多个元素）</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nf">vsetdcfg</span><span class="w">  </span><span class="mi">4</span><span class="p">*</span><span class="no">FP64</span><span class="w">        </span><span class="c1"># 向量配置：设置向量长度，单次可处理 4 个双精度浮点数</span>
+<span class="nf">fld</span><span class="w">       </span><span class="no">f0</span><span class="p">,</span><span class="no">a</span><span class="w">          </span><span class="c1"># 依然先把常数 a 加载到标量浮点寄存器 f0</span>
+<span class="nf">vld</span><span class="w">       </span><span class="no">v0</span><span class="p">,</span><span class="no">x5</span><span class="w">         </span><span class="c1"># 向量加载：一次性从 x5 地址读入 4 个 X 元素，存入向量寄存器 v0</span>
+<span class="nf">vmul</span><span class="w">      </span><span class="no">v1</span><span class="p">,</span><span class="no">v0</span><span class="p">,</span><span class="no">f0</span><span class="w">      </span><span class="c1"># 向量-标量乘法：v1 = a × v0（4 个元素同时并行相乘）</span>
+<span class="nf">vld</span><span class="w">       </span><span class="no">v2</span><span class="p">,</span><span class="no">x6</span><span class="w">         </span><span class="c1"># 向量加载：一次性读入4个Y元素，存入向量寄存器v2</span>
+<span class="nf">vadd</span><span class="w">      </span><span class="no">v3</span><span class="p">,</span><span class="no">v1</span><span class="p">,</span><span class="no">v2</span><span class="w">      </span><span class="c1"># 向量加法：v3 = v1 + v2（4 组 $aX_i+Y_i$ 并行算出）</span>
+<span class="nf">vst</span><span class="w">       </span><span class="no">v3</span><span class="p">,</span><span class="no">x6</span><span class="w">         </span><span class="c1"># 向量存储：一次性把 4 个结果写回 Y 数组对应位置</span>
+<span class="nf">vdisable</span><span class="w">                </span><span class="c1"># 关闭向量单元，退出向量模式</span>
+</code></pre></div>
+</details>
+<p>RV64V 的向量算术指令只允许向量寄存器中的第 <code>N</code> 个元素与其它向量寄存器中的第 <code>N</code> 个元素参与运算。这个性质让向量单元可被组织成多个并行 <strong>lanes</strong>，从而突破每周期一个元素的限制。</p>
+<p><img src="/sys3/images/image11-11.png" style="display: block; width: 50%; margin: 0 auto;" /></p>
+<h2 id="2-simd-array-processor">2 SIMD: Array Processor<a class="headerlink" href="#2-simd-array-processor" title="Permanent link">&para;</a></h2>
+<p><strong>阵列处理机（Array Processor）</strong> 重复设置 <code>N</code> 个 processing elements（<code>PE0</code> 到 <code>PEN-1</code>），通过某种互连方式组成阵列，在单一控制单元控制下，对分配到各 PE 的数据并行执行同一条指令。阵列处理机有时也称为 parallel processor。</p>
+<details class="example">
+<summary>示例：ILLIAC IV</summary>
+<p><img src="/sys3/images/image11-12.png" style="display: block; width: 80%; margin: 0 auto;" /></p>
+</details>
+<h3 id="2-1-basic-structure">2. 1 Basic Structure<a class="headerlink" href="#2-1-basic-structure" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>结构</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Distributed memory</strong></td>
+<td>每个 PE 关联自己的 memory，SIMD 阵列处理机的主流结构</td>
+</tr>
+<tr>
+<td><strong>Centralized shared memory</strong></td>
+<td>多个 PE 通过互连网络访问集中共享 memory</td>
+</tr>
+</tbody>
+</table>
+<details class="info">
+<summary>Distributed memory</summary>
+<p><img src="/sys3/images/image11-5.png" style="display: block; width: 60%; margin: 0 auto;" /></p>
+</details>
+<details class="info">
+<summary>Centralized shared memory</summary>
+<p><img src="/sys3/images/image11-6.png" style="display: block; width: 60%; margin: 0 auto;" /></p>
+</details>
+<h3 id="2-2-interconnection-network">2. 2 Interconnection Network<a class="headerlink" href="#2-2-interconnection-network" title="Permanent link">&para;</a></h3>
+<details class="quote">
+<summary>引入</summary>
+<p>如果 <code>n</code> 个处理单元之间都要求直接连接，则连接对数为：</p>
+<div class="arithmatex">\[
+P = C_n^2 = \frac{n(n - 1)}{2}
+\]</div>
+<p>直接路径难以实现，因此并行机通常通过<strong>互连网络（Interconnection Network）</strong>提供一步或少数几步的信息传输。</p>
+</details>
+<p>互连网络是在计算机系统内部，由 switching units 按照特定 topology 和 control mode 组成的网络，用于连接多个处理器、存储器或功能部件，通常由 5 个部分组成：</p>
+<table>
+<thead>
+<tr>
+<th>部分</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>CPU / memory</strong></td>
+<td>通信端点</td>
+</tr>
+<tr>
+<td><strong>Interface</strong></td>
+<td>从 CPU/memory 获取信息并发送到另一个 CPU/memory，典型如 NIC</td>
+</tr>
+<tr>
+<td><strong>Link</strong></td>
+<td>传输数据位的物理通道，可为电缆、双绞线、光纤，支持串行/并行、半双工/全双工</td>
+</tr>
+<tr>
+<td><strong>Switch node</strong></td>
+<td>多输入多输出的信息交换与控制节点，负责 buffering 和 path selection</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>设计关注方面</th>
+<th>类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Topology</strong></td>
+<td>static topology、dynamic topology</td>
+</tr>
+<tr>
+<td><strong>Timing mode</strong></td>
+<td>synchronous system、asynchronous system</td>
+</tr>
+<tr>
+<td><strong>Exchange method</strong></td>
+<td>circuit switching、packet switching</td>
+</tr>
+<tr>
+<td><strong>Control strategy</strong></td>
+<td>centralized control、distributed control</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>网络类型</th>
+<th>含义</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Static network</strong></td>
+<td>程序执行期间节点间连接路径固定</td>
+<td>linear array、ring、tree、grid、hypercube</td>
+</tr>
+<tr>
+<td><strong>Dynamic network</strong></td>
+<td>由 switches 动态改变连接状态</td>
+<td>bus、crossbar、multi-stage interconnection network</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2-3-single-stage-interconnection-networks">2. 3 Single-Stage Interconnection Networks<a class="headerlink" href="#2-3-single-stage-interconnection-networks" title="Permanent link">&para;</a></h3>
+<p>单级互连网络通过一个有限连接层实现任意两个处理单元间的一步或少数几步通信。</p>
+<details class="info">
+<summary>Single-stage interconnection network 的特点</summary>
+<ul>
+<li>结构简单，成本低</li>
+<li>连接方式灵活，能适配算法与应用需求</li>
+<li>传输步数少，可提高阵列运算速度</li>
+<li>规则性和模块化较好，利于扩展</li>
+<li>便于大规模集成</li>
+</ul>
+</details>
+<h4 id="1-cube-network">① Cube Network<a class="headerlink" href="#1-cube-network" title="Permanent link">&para;</a></h4>
+<p>设 <span class="arithmatex">\(N = 2^n\)</span>，输入和输出端口用 <span class="arithmatex">\(n\)</span> 位二进制编码：</p>
+<div class="arithmatex">\[
+P_{n-1} \cdots P_i \cdots P_1P_0
+\]</div>
+<p><span class="arithmatex">\(Cube_i\)</span> 函数翻转第 <span class="arithmatex">\(i\)</span> 位：</p>
+<div class="arithmatex">\[
+Cube_i(P_{n-1}\cdots P_i \cdots P_0)
+= P_{n-1}\cdots \overline{P_i} \cdots P_0
+\]</div>
+<details class="example">
+<summary>示例</summary>
+<ul>
+<li><span class="arithmatex">\(\mathit{cube}_0(X_2X_1X_0) = (X_2X_1\overline{X_0})\)</span></li>
+</ul>
+<p><img src="/sys3/images/image11-13.png" style="display: block; width: 50%; margin: 0 auto;" /></p>
+<ul>
+<li><span class="arithmatex">\(\mathit{cube}_0(X_2X_1X_0) = (X_2\overline{X_1}X_0)\)</span></li>
+</ul>
+<p><img src="/sys3/images/image11-14.png" style="display: block; width: 50%; margin: 0 auto;" /></p>
+<ul>
+<li><span class="arithmatex">\(\mathit{cube}_0(X_2X_1X_0) = (\overline{X_2}X_1X_0)\)</span></li>
+</ul>
+<p><img src="/sys3/images/image11-15.png" style="display: block; width: 50%; margin: 0 auto;" /></p>
+</details>
+<p>当 <span class="arithmatex">\(n &gt; 3\)</span> 时称为 <strong>hypercube network</strong>。单级 <span class="arithmatex">\(n\)</span> 维 cube network 的最大距离为 <span class="arithmatex">\(n\)</span>，任意两个 PE 之间最多经过 <span class="arithmatex">\(n\)</span> 次传输。</p>
+<h4 id="2-pm2i-network">② PM2I Network<a class="headerlink" href="#2-pm2i-network" title="Permanent link">&para;</a></h4>
+<p><strong>PM2I</strong> 单级网络包含 <span class="arithmatex">\(2n\)</span> 个互连函数：</p>
+<div class="arithmatex">\[
+PM2_{+i}(j) = (j + 2^i) \bmod N
+\]</div>
+<div class="arithmatex">\[
+PM2_{-i}(j) = (j - 2^i) \bmod N
+\]</div>
+<p>其中：</p>
+<div class="arithmatex">\[
+0 \le j \le N - 1,\quad 0 \le i \le \log_2 N - 1
+\]</div>
+<details class="example">
+<summary>示例：<span class="arithmatex">\(N = 8\)</span> 的 PM2I</summary>
+<ul>
+<li>
+<ul>
+<li><span class="arithmatex">\(PM2_{+0}(j) = (j + 2^0) \bmod 8\)</span></li>
+</ul>
+<p><span class="arithmatex">\(PM2_{+0}\)</span> / <span class="arithmatex">\(PM2_{-0}\)</span> 连接相邻节点</p>
+<p><img src="/sys3/images/image11-16.png" style="display: block; width: 50%; margin: 0 auto;" /></p>
+<ul>
+<li><span class="arithmatex">\(PM2_{-0}(j) = (j - 2^0) \bmod 8\)</span></li>
+</ul>
+<p><img src="/sys3/images/image11-17.png" style="display: block; width: 50%; margin: 0 auto;" /></p>
+</li>
+<li>
+<p><span class="arithmatex">\(PM2_{+1}\)</span> / <span class="arithmatex">\(PM2_{-1}\)</span> 连接相差 <span class="arithmatex">\(2\)</span> 的节点</p>
+<ul>
+<li><span class="arithmatex">\(PM2_{+1}(j) = (j + 2^1) \bmod 8\)</span></li>
+</ul>
+<p><img src="/sys3/images/image11-18.png" style="display: block; width: 50%; margin: 0 auto;" /></p>
+<ul>
+<li><span class="arithmatex">\(PM2_{-1}(j) = (j - 2^1) \bmod 8\)</span></li>
+</ul>
+<p><img src="/sys3/images/image11-19.png" style="display: block; width: 50%; margin: 0 auto;" />  </p>
+</li>
+<li>
+<p>`<span class="arithmatex">\(PM2_{+2}\)</span> / <span class="arithmatex">\(PM2_{-2}\)</span> 连接相差 <span class="arithmatex">\(4\)</span> 的节点</p>
+<ul>
+<li><span class="arithmatex">\(PM2_{\pm2}(j) = (j \pm 2^2) \bmod 8\)</span></li>
+</ul>
+<p><img src="/sys3/images/image11-20.png" style="display: block; width: 50%; margin: 0 auto;" /></p>
+</li>
+</ul>
+<p>节点 <span class="arithmatex">\(0\)</span> 一步可到达 <span class="arithmatex">\(1, 2, 4, 6, 7\)</span>，两步可到达 <span class="arithmatex">\(3, 5\)</span>。</p>
+<p><img src="/sys3/images/image11-21.png" style="display: block; width: 70%; margin: 0 auto;" /></p>
+</details>
+<details class="example">
+<summary>ILLIAC IV 使用 <span class="arithmatex">\(PM2_{±0}\)</span> 和 <span class="arithmatex">\(PM2_{±n/2}\)</span> 形成上下左右互连。</summary>
+<p><img src="/sys3/images/image11-24.png" style="display: block; width: 40%; margin: 0 auto;" /></p>
+</details>
+<h4 id="3-shuffle-exchange-network">③ Shuffle Exchange Network<a class="headerlink" href="#3-shuffle-exchange-network" title="Permanent link">&para;</a></h4>
+<p>Shuffle exchange network 由 <strong>shuffle</strong> 和 <strong>exchange</strong> 两部分组成。<span class="arithmatex">\(N = 2^n\)</span> 时，shuffle 函数为：</p>
+<div class="arithmatex">\[
+shuffle(P_{n-1}P_{n-2}\cdots P_1P_0)
+= P_{n-2}\cdots P_1P_0P_{n-1}
+\]</div>
+<p>即二进制编码循环左移一位。</p>
+<details class="example">
+<summary>示例：8 PEs</summary>
+<ul>
+<li><span class="arithmatex">\(\mathit{shuffle}(P_2P_1P_0) = P_1P_0P_2\)</span></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Initial Code</th>
+<th>Before Shuffle</th>
+<th>After 1st Shuffle</th>
+<th>Connected PE (1st Shuffle)</th>
+<th>After 2nd Shuffle</th>
+<th>Connected PE (2nd Shuffle)</th>
+<th>After 3rd Shuffle</th>
+<th>Connected PE (3rd Shuffle)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>000</td>
+<td>000</td>
+<td>0</td>
+<td>000</td>
+<td>0</td>
+<td>000</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>001</td>
+<td>010</td>
+<td>2</td>
+<td>100</td>
+<td>4</td>
+<td>001</td>
+<td>1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>010</td>
+<td>100</td>
+<td>4</td>
+<td>001</td>
+<td>1</td>
+<td>010</td>
+<td>2</td>
+</tr>
+<tr>
+<td>3</td>
+<td>011</td>
+<td>110</td>
+<td>6</td>
+<td>101</td>
+<td>5</td>
+<td>011</td>
+<td>3</td>
+</tr>
+<tr>
+<td>4</td>
+<td>100</td>
+<td>001</td>
+<td>1</td>
+<td>010</td>
+<td>2</td>
+<td>100</td>
+<td>4</td>
+</tr>
+<tr>
+<td>5</td>
+<td>101</td>
+<td>011</td>
+<td>3</td>
+<td>110</td>
+<td>6</td>
+<td>101</td>
+<td>5</td>
+</tr>
+<tr>
+<td>6</td>
+<td>110</td>
+<td>101</td>
+<td>5</td>
+<td>011</td>
+<td>3</td>
+<td>110</td>
+<td>6</td>
+</tr>
+<tr>
+<td>7</td>
+<td>111</td>
+<td>111</td>
+<td>7</td>
+<td>111</td>
+<td>7</td>
+<td>111</td>
+<td>7</td>
+</tr>
+</tbody>
+</table>
+</details>
+<p>经过 <span class="arithmatex">\(N\)</span> 次 shuffle 操作后，全部 <span class="arithmatex">\(N\)</span> 个 PE 恢复为初始排列顺序</p>
+<p>从编号全 <span class="arithmatex">\(0\)</span> 的节点到全 <span class="arithmatex">\(1\)</span> 的节点，最多需要：</p>
+<div class="arithmatex">\[
+n \text{ exchanges} + (n - 1) \text{ shuffles}
+\]</div>
+<p>因此最大距离为：</p>
+<div class="arithmatex">\[
+2n - 1
+\]</div>
+<h4 id="4-others">④ Others<a class="headerlink" href="#4-others" title="Permanent link">&para;</a></h4>
+<p><img src="/sys3/images/image11-25.png" style="display: block; width: 90%; margin: 0 auto;" /></p>
+<h3 id="2-4-multi-stage-interconnection-networks">2. 4 Multi-Stage Interconnection Networks<a class="headerlink" href="#2-4-multi-stage-interconnection-networks" title="Permanent link">&para;</a></h3>
+<details class="quote">
+<summary>动态网络</summary>
+<table>
+<thead>
+<tr>
+<th>动态网络</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Bus</strong></td>
+<td><span class="arithmatex">\(·\)</span> 同一时刻只能在一对 source/destination 之间传输 <br> <span class="arithmatex">\(·\)</span> 多个请求需要 arbitration <br> <span class="arithmatex">\(·\)</span> CPU 数多时总线竞争严重，通常适合 <span class="arithmatex">\(&lt;= 32\)</span> 个 CPU</td>
+</tr>
+<tr>
+<td><strong>Crossbar switches</strong></td>
+<td>可提供完全交换能力，但硬件复杂度高</td>
+</tr>
+<tr>
+<td><strong>Multi-stage network</strong></td>
+<td>用多级小交换单元串联，在复杂度和连接能力之间折中</td>
+</tr>
+</tbody>
+</table>
+<details class="question">
+<summary>Linear array 与 Bus 的区别</summary>
+<ul>
+<li><strong>Linear array</strong>：不同 source/destination 可并发使用系统的不同部分。</li>
+<li><strong>Bus</strong>：多个节点共享同一总线，时间分割使用，同一时刻只有一对节点传输。</li>
+</ul>
+</details>
+<details class="info">
+<summary>A multiprocessor system connected by bus</summary>
+<p><img src="/sys3/images/image11-26.png" style="display: block; width: 50%; margin: 0 auto;" /></p>
+</details>
+<details class="info">
+<summary>Crosspoint switches</summary>
+<p><img src="/sys3/images/image11-27.png" style="display: block; width: 80%; margin: 0 auto;" /></p>
+</details>
+</details>
+<p>拥有 <span class="arithmatex">\(m\)</span> 个输入、<span class="arithmatex">\(m\)</span> 个输出的开关单元记作 <span class="arithmatex">\(m×m\)</span> 规格开关单元，其中 <span class="arithmatex">\(m=2^k\)</span>（<span class="arithmatex">\(k\)</span> 为整数），常见的规格有 <span class="arithmatex">\(2×2\)</span>、<span class="arithmatex">\(4×4\)</span>、<span class="arithmatex">\(8×8\)</span> 等。</p>
+<p><img src="/sys3/images/image11-28.png" style="display: block; width: 60%; margin: 0 auto;" /></p>
+<p>根据开关单元的功能差异，<span class="arithmatex">\(2×2\)</span> 开关可分为二功能开关和四功能开关两类。</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>支持功能</th>
+<th>示意图</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Two-function switch</strong></td>
+<td>straight、exchange</td>
+<td><img src="/sys3/images/image11-29.png" style="display: block; width: 90%; margin: 0 auto;" /></td>
+</tr>
+<tr>
+<td><strong>Four-function switch</strong></td>
+<td>straight、exchange、upper broadcast、lower broadcast</td>
+<td><img src="/sys3/images/image11-30.png" style="display: block; width: 90%; margin: 0 auto;" /></td>
+</tr>
+</tbody>
+</table>
+<p>多级互连网络的差异主要来自 switch function、switch control method 和 topology。</p>
+<p>常见 topology 包括 multi-stage cube、multi-stage shuffle exchange、multi-stage PM2I 以及上述网络的组合。</p>
+<h4 id="1-multi-stage-cube-network">① Multi-Stage Cube Network<a class="headerlink" href="#1-multi-stage-cube-network" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Switch unit</strong></td>
+<td>two-function switch</td>
+</tr>
+<tr>
+<td><strong>Control mode</strong></td>
+<td>stage control、part stage control、unit control</td>
+</tr>
+<tr>
+<td><strong>Topology</strong></td>
+<td>cube structure</td>
+</tr>
+</tbody>
+</table>
+<p><span class="arithmatex">\(N\)</span> 节点多级立方体网络拓扑图绘制步骤：</p>
+<ol>
+<li>根据 <span class="arithmatex">\(n=\log_2 N\)</span> 确定多级立方体网络的总级数 <span class="arithmatex">\(n\)</span></li>
+<li>级数从输入端到输出端依次编号为 <span class="arithmatex">\(0, 1, \dots, n-1\)</span></li>
+<li>每一级布置 <span class="arithmatex">\(N/2\)</span> 个二功能交换单元</li>
+<li>按照 <span class="arithmatex">\(\mathit{Cube}_i\)</span>（第 <span class="arithmatex">\(i\)</span> 维立方体置换）映射关系，对第 <span class="arithmatex">\(i\)</span> 级所有交换单元的两个输入、输出端口分配编号</li>
+<li>将相邻两级之间编号相同的交换端口相互连接</li>
+</ol>
+<p><img src="/sys3/images/image11-22.png" style="display: block; width: 70%; margin: 0 auto;" /></p>
+<ul>
+<li><strong>翻转网络（Flip Network）</strong>：采用<strong>级控制方式</strong>的多级立方体网络被称为交换网络，这类网络仅能实现交换函数对应的功能。</li>
+<li><strong>交换函数（Exchange function）</strong>：对一组元素进行对称互换操作。若某一组包含 <span class="arithmatex">\(2^l\)</span> 个元素，则组内所有第 <span class="arithmatex">\(k\)</span> 位元素会和该组内第 <span class="arithmatex">\([2^l-(k+1)]\)</span> 位元素两两互换。</li>
+</ul>
+<p><img src="/sys3/images/image11-31.png" style="display: block; width: 60%; margin: 0 auto;" /></p>
+<details class="example">
+<summary>16 节点多级立方体网络实现三种对称分组交换</summary>
+<p><img src="/sys3/images/image11-32.png" style="display: block; width: 80%; margin: 0 auto;" /></p>
+<p><img src="/sys3/images/image11-33.png" style="display: block; width: 80%; margin: 0 auto;" /></p>
+<p><img src="/sys3/images/image11-34.png" style="display: block; width: 80%; margin: 0 auto;" /></p>
+</details>
+<h4 id="2-omega-network">② Omega Network<a class="headerlink" href="#2-omega-network" title="Permanent link">&para;</a></h4>
+<details class="example">
+<summary><span class="arithmatex">\(N = 8\)</span> Omega Network</summary>
+<p><img src="/sys3/images/image11-35.png" style="display: block; width: 80%; margin: 0 auto;" /></p>
+</details>
+<ul>
+<li>stage 数量为 <span class="arithmatex">\(n = log_2N\)</span></li>
+<li>从输入到输出，stage 编号为 <span class="arithmatex">\(n - 1, ..., 1, 0\)</span></li>
+<li>每级有 <span class="arithmatex">\(N/2\)</span> 个 switch units</li>
+<li>拓扑为 shuffle topology 后接 four-function switch</li>
+<li>control mode 为 unit control</li>
+</ul>
+<p><img src="/sys3/images/image11-23.png" style="display: block; width: 60%; margin: 0 auto;" /></p>
+<p>如果 Omega network 的 switching unit 只允许使用 direct connect 和 exchange，就成为 n-cube network 的 inverse network。</p>
+<p><img src="/sys3/images/image11-36.png" style="display: block; width: 70%; margin: 0 auto;" /></p>
+<table>
+<thead>
+<tr>
+<th>比较项</th>
+<th>Omega network</th>
+<th>n-cube network</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Data flow level</td>
+<td><code>n - 1, n - 2, ..., 1, 0</code></td>
+<td><code>0, 1, ..., n - 1</code></td>
+</tr>
+<tr>
+<td>Switch unit</td>
+<td>four-function switch</td>
+<td>two-function switch</td>
+</tr>
+<tr>
+<td>Broadcast</td>
+<td>可实现 one-to-many broadcast</td>
+<td>不能实现</td>
+</tr>
+</tbody>
+</table>
+<details class="question">
+<summary>冲突路由：If the connection of 5 to 0 and 7 to 1 can be realized at the same time, can the connection of 0 to 5 and 1 to 7 be realized at the same time?</summary>
+<ul>
+<li><span class="arithmatex">\(N=8\)</span> 多级 n-cube：两条路径在某一级同一个交换单元内部争夺端口资源：同一个交换单元同一时刻不能同时完成两组交叉转发，出现内部冲突（路由阻塞），因此无法同时建立两条通路。</li>
+</ul>
+<p><img src="/sys3/images/image11-38.png" style="display: block; width: 80%; margin: 0 auto;" /></p>
+<ul>
+<li><span class="arithmatex">\(N=8\)</span> Omega：两条通路到达中间级交换单元 G 时，会同时要求占用该交换单元的同一组输入 / 输出端口；一个交换单元同一时刻只能处理一组转发，无法同时满足两条路径，发生端口冲突，因此无法同时建立两条通路。</li>
+</ul>
+<p><img src="/sys3/images/image11-39.png" style="display: block; width: 80%; margin: 0 auto;" /></p>
+</details>
+<div class="admonition tip">
+<p class="admonition-title">Dynamic interconnection networks 对比</p>
+<p><img src="/sys3/images/image11-37.png" style="display: block; width: 80%; margin: 0 auto;" /></p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Advantages of SIMD</p>
+<ul>
+<li>能利用显著 DLP，尤其适合矩阵型科学计算、图像与声音等 media processing。</li>
+<li>比 MIMD 更节能：每次数据操作只需取一条指令。</li>
+<li>程序员仍可按较顺序的方式思考问题。</li>
+</ul>
+</div>
+<h2 id="3-dlp-in-gpu">3 DLP in GPU<a class="headerlink" href="#3-dlp-in-gpu" title="Permanent link">&para;</a></h2>
+<details class="quote">
+<summary>GPU 的基本思想</summary>
+<ul>
+<li><strong>异构执行模型（Heterogeneous execution model）</strong>：CPU 是 <strong>host</strong>，GPU 是 <strong>device</strong></li>
+<li>使用 C-like programming language 编写 GPU 程序</li>
+<li>把 GPU 的各种并行形式统一为 <strong>CUDA thread</strong></li>
+<li>编程模型是 <strong>SIMT（Single Instruction Multiple Thread）</strong></li>
+</ul>
+</details>
+<p><strong>CUDA（Compute Unified Device Architecture）</strong> 把 thread 作为统一抽象。执行一整个 thread block 的硬件可看作 <strong>multithreaded SIMD Processor</strong>，因此 GPU 本质上也是多线程 SIMD 处理器。</p>
+<details class="example">
+<summary>示例: DAXPY</summary>
+<p><img src="/sys3/images/image11-40.png" style="display: block; width: 80%; margin: 0 auto;" /></p>
+</details>
+<h3 id="3-1-cuda-execution-model">3. 1 CUDA Execution Model<a class="headerlink" href="#3-1-cuda-execution-model" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>层级</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Thread</strong></td>
+<td>通常对应一个数据元素</td>
+</tr>
+<tr>
+<td><strong>Thread Block</strong></td>
+<td>一组 threads</td>
+</tr>
+<tr>
+<td><strong>Grid</strong></td>
+<td>一组 thread blocks</td>
+</tr>
+</tbody>
+</table>
+<p>GPU hardware 负责 thread management，而不是应用程序或 OS。</p>
+<details class="info">
+<summary>图示</summary>
+<p><img src="/sys3/images/image11-41.png" style="display: block; width: 80%; margin: 0 auto;" /></p>
+</details>
+<h3 id="3-2-gpu-memory-structure">3. 2 GPU Memory Structure<a class="headerlink" href="#3-2-gpu-memory-structure" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>存储结构</th>
+<th>共享范围</th>
+<th>类比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>GPU memory</strong></td>
+<td>所有 grids 共享</td>
+<td>vectorized loops 之间共享</td>
+</tr>
+<tr>
+<td><strong>Local memory / shared memory</strong></td>
+<td>同一 thread block 中 SIMD instructions 的所有 threads 共享</td>
+<td>vectorized loop body 内共享</td>
+</tr>
+<tr>
+<td><strong>Private memory</strong></td>
+<td>单个 CUDA thread 私有</td>
+<td>单线程私有状态</td>
+</tr>
+</tbody>
+</table>
+<p>GPU 在 GPU 和 DRAM 之间加入 cache，利用 spatial locality 和 temporal locality。典型两级 cache 结构：</p>
+<ul>
+<li><strong>L1 Cache</strong> 位于 SM（Streaming Multiprocessor）内部</li>
+<li><strong>L2 Cache</strong> 在多个 SM 之间共享</li>
+</ul>
+<h3 id="3-3-gpu-organization">3. 3 GPU Organization<a class="headerlink" href="#3-3-gpu-organization" title="Permanent link">&para;</a></h3>
+<p>GPU 组织通常可以看作：</p>
+<div class="highlight"><pre><span></span><code>Core -&gt; SM (Streaming Multiprocessor) -&gt; GPU
+</code></pre></div>
+<details class="quote">
+<summary>不同 NVIDIA GPU 架构的演进重点</summary>
+<table>
+<thead>
+<tr>
+<th>架构</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Tesla</strong></td>
+<td>Core / SM / GPU 分层组织</td>
+</tr>
+<tr>
+<td><strong>Fermi</strong></td>
+<td>集成 L1 与 shared memory，SM 中 cores 更多</td>
+</tr>
+<tr>
+<td><strong>Kepler</strong></td>
+<td>巨型 SM，单个 SM 可有 192 cores</td>
+</tr>
+<tr>
+<td><strong>Maxwell</strong></td>
+<td>把 SM 拆为 4 个 blocks，调度和功耗控制更灵活，拆分 L1 和 shared memory</td>
+</tr>
+<tr>
+<td><strong>Pascal</strong></td>
+<td>L2 增大到 4MB，约为前代 7 倍</td>
+</tr>
+<tr>
+<td><strong>Volta</strong></td>
+<td>再次集成 L1 与 shared memory，instruction buffer 变为 L0 instruction cache</td>
+</tr>
+<tr>
+<td><strong>Ampere</strong></td>
+<td>L2 增大到 40MB，增加 global memory 与 shared memory 间的数据通路</td>
+</tr>
+<tr>
+<td><strong>Hopper</strong></td>
+<td>继续强化面向大规模并行和矩阵计算的组织</td>
+</tr>
+</tbody>
+</table>
+</details>
+<div class="admonition tip">
+<p class="admonition-title">NVIDIA GPU 与 Vector Machine</p>
+<p>相似点：</p>
+<ul>
+<li>都适合 data-level parallel problems</li>
+<li>都支持 scatter-gather transfers</li>
+<li>都有 mask registers</li>
+<li>都有 large register files</li>
+</ul>
+<p>不同点：</p>
+<ul>
+<li>GPU 没有传统意义上的 scalar processor</li>
+<li>GPU 用 multithreading 隐藏 memory latency</li>
+<li>GPU 有大量 functional units，而传统 vector processor 更像少数深流水功能部件</li>
+</ul>
+</div>
+<h2 id="4-loop-level-parallelism">4 Loop-Level Parallelism<a class="headerlink" href="#4-loop-level-parallelism" title="Permanent link">&para;</a></h2>
+<p><strong>LLP（Loop-Level Parallelism）</strong> 关注循环迭代之间是否存在数据相关。循环往往是 DLP、TLP 和静态 ILP（如 VLIW）可挖掘并行性的来源。</p>
+<p>判断重点是后续迭代的数据访问是否依赖前面迭代产生的值，即是否存在 <strong>loop-carried dependence</strong>。</p>
+<details class="example">
+<summary>Example 1：无 loop-carried dependence</summary>
+<div class="highlight"><pre><span></span><code><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">999</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
+<span class="w">    </span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">s</span><span class="p">;</span>
+</code></pre></div>
+<p>每次迭代只访问自己的 <code>x[i]</code>，没有跨迭代依赖。</p>
+</details>
+<details class="example">
+<summary>Example 2：存在 loop-carried dependence</summary>
+<div class="highlight"><pre><span></span><code><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">C</span><span class="p">[</span><span class="n">i</span><span class="p">];</span><span class="w">      </span><span class="cm">/* S1 */</span>
+<span class="w">    </span><span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">];</span><span class="w">  </span><span class="cm">/* S2 */</span>
+<span class="p">}</span>
+</code></pre></div>
+<ul>
+<li><code>S1</code> 在第 <code>i + 1</code> 次迭代会使用前一次迭代由 <code>S1</code> 写出的 <code>A[i]</code></li>
+<li><code>S2</code> 在第 <code>i + 1</code> 次迭代会使用前一次迭代由 <code>S2</code> 写出的 <code>B[i]</code></li>
+<li><code>S2</code> 在同一次迭代中还使用 <code>S1</code> 刚写出的 <code>A[i+1]</code></li>
+</ul>
+</details>
+<details class="example">
+<summary>Example 3：有跨迭代依赖但不是循环依赖</summary>
+<div class="highlight"><pre><span></span><code><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="p">];</span><span class="w">      </span><span class="cm">/* S1 */</span>
+<span class="w">    </span><span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">C</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">D</span><span class="p">[</span><span class="n">i</span><span class="p">];</span><span class="w">  </span><span class="cm">/* S2 */</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>S1</code> 会使用上一迭代 <code>S2</code> 计算出的 <code>B[i]</code>，但依赖不是 circular dependence，因此循环仍可通过适当变换并行化。</p>
+</details>
+<details class="example">
+<summary>Practice：消除名字相关</summary>
+<p>原始循环：</p>
+<div class="highlight"><pre><span></span><code><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">c</span><span class="p">;</span><span class="w">      </span><span class="cm">/* S1 */</span>
+<span class="w">    </span><span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">c</span><span class="p">;</span><span class="w">      </span><span class="cm">/* S2 */</span>
+<span class="w">    </span><span class="n">Z</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">c</span><span class="p">;</span><span class="w">      </span><span class="cm">/* S3 */</span>
+<span class="w">    </span><span class="n">Y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Y</span><span class="p">[</span><span class="n">i</span><span class="p">];</span><span class="w">      </span><span class="cm">/* S4 */</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>变量重命名后：</p>
+<div class="highlight"><pre><span></span><code><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">c</span><span class="p">;</span><span class="w">      </span><span class="cm">/* S1 */</span>
+<span class="w">    </span><span class="n">P</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">c</span><span class="p">;</span><span class="w">      </span><span class="cm">/* S2 */</span>
+<span class="w">    </span><span class="n">Z</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">c</span><span class="p">;</span><span class="w">      </span><span class="cm">/* S3 */</span>
+<span class="w">    </span><span class="n">Y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">];</span><span class="w">      </span><span class="cm">/* S4 */</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>用 <code>T</code> 和 <code>P</code> 保存中间值，可降低对 <code>Y</code>、<code>X</code> 的重复写造成的名字相关，便于并行化分析。</p>
+</details>
+<div class="admonition question">
+<p class="admonition-title">Vector Chaining Technology</p>
+<p>Assuming there is a Vector machine, having 2 load/store units with 10 clock cycles function unit time, 1 multiplier with 7 clock cycles function unit time, and 1 adder with 4 clock cycles function unit time. All the vector function units are fully pipelined that can start a new operation on every clock cycle. There is a code sequence as following, the vector length is 64.</p>
+<div class="highlight"><pre><span></span><code><span class="nf">Vld</span><span class="w"> </span><span class="no">v0</span><span class="p">,</span><span class="w"> </span><span class="no">x5</span><span class="w">            </span><span class="c1">; load vector X</span>
+<span class="nf">Vmul</span><span class="w"> </span><span class="no">v1</span><span class="p">,</span><span class="w"> </span><span class="no">v0</span><span class="p">,</span><span class="w"> </span><span class="no">f0</span><span class="w">       </span><span class="c1">; vector –scalar multiply</span>
+<span class="nf">Vld</span><span class="w"> </span><span class="no">v2</span><span class="p">,</span><span class="w"> </span><span class="no">x6</span><span class="w">            </span><span class="c1">; Load vector Y</span>
+<span class="nf">Vadd</span><span class="w"> </span><span class="no">v3</span><span class="p">,</span><span class="w"> </span><span class="no">v1</span><span class="p">,</span><span class="w"> </span><span class="no">v2</span><span class="w">       </span><span class="c1">; vector –vector add</span>
+<span class="nf">Vst</span><span class="w"> </span><span class="no">v3</span><span class="p">,</span><span class="w"> </span><span class="no">x6</span><span class="w">            </span><span class="c1">; store the sum</span>
+</code></pre></div>
+<ol>
+<li>
+<p>How many clock cycles to execute the code on a vector machine without chaining technique?</p>
+<details class="success">
+<summary>参考答案（LLM 生成）</summary>
+<p>无链接必须等待前一条向量的全部 64 个元素写入向量寄存器后，依赖它的指令才能启动，无依赖指令可利用多单元并行执行。</p>
+<ol>
+<li>两条 Load 指令（<code>Vld v0</code>、<code>Vld v2</code>）使用 2 个独立 L/S 单元，可在时钟 0 同时启动，单条 Load 耗时 <span class="arithmatex">\(10 + 64-1 = 73\)</span> 周期，两者都在第 73 周期完成。</li>
+<li><code>Vmul</code> 依赖 <code>v0</code>，只能在 73 周期启动，乘法耗时：<span class="arithmatex">\(7+63=70\)</span>，结束时刻 <span class="arithmatex">\(73+70=143\)</span>。</li>
+<li><code>Vadd</code> 依赖 <code>v1</code>（143 就绪）和 <code>v2</code>（73 就绪），取较晚的 143 周期启动，加法耗时：<span class="arithmatex">\(4+63=67\)</span>，结束时刻 <span class="arithmatex">\(143+67=210\)</span>。</li>
+<li><code>Vst</code> 依赖 <code>v3</code>，210 周期启动（L/S 单元已空闲），Store 耗时和 Load 一致为 73，结束时刻 <span class="arithmatex">\(210+73=283\)</span>。</li>
+</ol>
+</details>
+</li>
+<li>
+<p>If the above code running on a vector machine with chaining technique, how many conveys will this vector sequence take? Please showing the layout of the conveys.</p>
+<details class="success">
+<summary>参考答案（LLM 生成）</summary>
+<ol>
+<li><strong>Convey 1</strong>：内存地址x5 → L/S Load单元 → 乘法器 → 加法器（X向量的输送链路）</li>
+<li><strong>Convey 2</strong>：内存地址x6 → 第二个L/S Load单元 → 加法器（Y向量的并行输送链路）</li>
+<li><strong>Convey 3</strong>：加法器输出 → L/S Store单元 → 内存地址x6（求和结果的输出输送链路）</li>
+</ol>
+<div class="highlight"><pre><span></span><code>内存(x5)
+    ↓ Convey1：Load(10) → Mul(7)
+    ┌──────────────────────→┐
+    │                       ↓
+    │                     Add(4) ←────── Convey2：Load(10)（来自内存x6，并行启动）
+    │                       ↓
+    └────────────────────→ Convey3：Store(10) → 内存(x6)
+</code></pre></div>
+<p>时序说明：Convey1、Convey2 在时钟 0 同时并行启动流水，两者的输出送入加法器的两个输入端口；加法器的流水输出再送入 Store 流水线，完成 Convey3。</p>
+</details>
+</li>
+<li>
+<p>If an element of a result vector going from a function unit to a chaining register need 1 clock cycle, and vice versa, how many clock cycles to execute the code using chaining technique?</p>
+<details class="success">
+<summary>参考答案（LLM 生成）</summary>
+<p><span class="arithmatex">\(\text{Load(X)} \xrightarrow{+2\text{延迟}} \text{Mul} \xrightarrow{+2\text{延迟}} \text{Add} \xrightarrow{+2\text{延迟}} \text{Store}\)</span></p>
+<p>把路径中所有单元延迟 + 链路传输延迟相加：</p>
+<div class="arithmatex">\[
+10(\text{Load})+2+7(\text{Mul})+2+4(\text{Add})+2+10(\text{Store}) = 37
+\]</div>
+<p>Y 向量的路径 <span class="arithmatex">\(\text{Load(Y)}+2=12\)</span> 周期就到达加法器，早于 X 路径的 21 周期，不会拉长关键路径。</p>
+<p>流水线首元素 37 周期完成后，后续每周期输出 1 个元素，剩余 63 个元素耗时 63 周期：</p>
+<div class="arithmatex">\[
+\text{总周期}=37 + (64-1) = 100
+\]</div>
+</details>
+</li>
+</ol>
+</div>
+<h2 id="5-mimd-thread-level-parallelism">5 MIMD: Thread-Level Parallelism<a class="headerlink" href="#5-mimd-thread-level-parallelism" title="Permanent link">&para;</a></h2>
+<p><strong>Thread-level parallelism</strong> 通常由软件系统或程序员在高层识别。每个 thread 包含数百到数百万条指令，可并行执行。TLP 意味着存在多个 program counters，因此主要通过 <strong>MIMD architecture</strong> 利用。</p>
+<h3 id="5-1-mimd-architecture">5. 1 MIMD Architecture<a class="headerlink" href="#5-1-mimd-architecture" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>基础</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Multi-processor system</strong></td>
+<td>Shared memory</td>
+<td>系统只有一个统一地址空间，所有处理器共享该地址空间</td>
+</tr>
+<tr>
+<td><strong>Multi-computer system</strong></td>
+<td>Message passing</td>
+<td>每个处理器有自己的 local/private memory，其他处理器不能直接访问</td>
+</tr>
+</tbody>
+</table>
+<details class="info">
+<summary>Shared Memory System</summary>
+<p><img src="/sys3/images/image11-42.png" style="display: block; width: 60%; margin: 0 auto;" /></p>
+</details>
+<p>统一地址空间不等于物理上只有一个 memory。共享地址空间可由物理共享 memory 实现，也可由分布式 memory 加硬件/软件支持实现。</p>
+<details class="info">
+<summary>Multi-computer system based on message passing</summary>
+<p><img src="/sys3/images/image11-43.png" style="display: block; width: 60%; margin: 0 auto;" /></p>
+</details>
+<p>Multi-computer system 中，若处理器 <code>A</code> 需要把数据发给处理器 <code>B</code>，<code>A</code> 必须以 message 形式发送。</p>
+<div class="admonition tip">
+<p class="admonition-title">NORMA (No-Remote Memory Access)</p>
+<p><img src="/sys3/images/image11-44.png" style="display: block; width: 60%; margin: 0 auto;" /></p>
+<p>每个节点只能直接访问自己的 local memory，节点间通过 message passing network 通信。</p>
+</div>
+<h3 id="5-2-shared-memory-mimd-models">5. 2 Shared-Memory MIMD Models<a class="headerlink" href="#5-2-shared-memory-mimd-models" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>模型</th>
+<th>全称</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>UMA</strong></td>
+<td>Uniform Memory Access</td>
+<td>所有处理器访问任意 memory word 的时间相同</td>
+</tr>
+<tr>
+<td><strong>NUMA</strong></td>
+<td>Non-Uniform Memory Access</td>
+<td>所有 CPU 共享统一地址空间，但访问 remote memory 慢于 local memory</td>
+</tr>
+<tr>
+<td><strong>COMA</strong></td>
+<td>Cache Only Memory Access</td>
+<td>NUMA 的特殊情况，所有 caches 形成统一地址空间</td>
+</tr>
+</tbody>
+</table>
+<h4 id="1-uma">① UMA<a class="headerlink" href="#1-uma" title="Permanent link">&para;</a></h4>
+<p>UMA 又称 <strong>SMP（symmetric shared-memory multiprocessors）</strong> 或 centralized shared-memory multiprocessors。</p>
+<p><img src="/sys3/images/image11-45.png" style="display: block; width: 50%; margin: 0 auto;" /></p>
+<ul>
+<li>physical memory 被所有 processors 均匀共享</li>
+<li>所有 processors 访问任意 memory word 所需时间相同</li>
+<li>每个 processor 可以配备 private cache 或 private memory</li>
+</ul>
+<p><img src="/sys3/images/image11-46.png" style="display: block; width: 80%; margin: 0 auto;" /></p>
+<h4 id="2-numa">② NUMA<a class="headerlink" href="#2-numa" title="Permanent link">&para;</a></h4>
+<p>NUMA 又称 distributed shared-memory multiprocessor。</p>
+<p><img src="/sys3/images/image11-47.png" style="display: block; width: 50%; margin: 0 auto;" /></p>
+<ul>
+<li>所有 CPU 共享统一 address space</li>
+<li>使用 <code>LOAD</code> / <code>STORE</code> 指令访问 remote memory</li>
+<li>remote memory access 慢于 local memory access</li>
+<li>NUMA processor 可以使用 cache</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>NUMA 类型</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>NC-NUMA</strong></td>
+<td>Non Cache NUMA，没有 cache，remote memory latency 不被 cache 隐藏</td>
+</tr>
+<tr>
+<td><strong>CC-NUMA</strong></td>
+<td>Coherent Cache NUMA，使用 cache，并维护 cache coherence</td>
+</tr>
+</tbody>
+</table>
+<details class="info">
+<summary>UMA and NUMA</summary>
+<p><img src="/sys3/images/image11-48.png" style="display: block; width: 80%; margin: 0 auto;" /></p>
+</details>
+<h4 id="3-coma">③ COMA<a class="headerlink" href="#3-coma" title="Permanent link">&para;</a></h4>
+<p><img src="/sys3/images/image11-10.png" style="display: block; width: 50%; margin: 0 auto;" /></p>
+<p>COMA 是 NUMA 的特殊情况。每个 processor node 没有传统存储层次，所有 caches 形成统一地址空间。系统使用 distributed cache directory 进行 remote cache access，数据初始可任意分配，运行时会迁移到实际使用位置。</p>
+<p><img src="/sys3/images/image11-49.png" style="display: block; width: 70%; margin: 0 auto;" /></p>
+<h3 id="5-3-further-division-of-mimd-multi-computer-system">5. 3 Further division of MIMD multi-computer system<a class="headerlink" href="#5-3-further-division-of-mimd-multi-computer-system" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>全称</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>MPP</strong></td>
+<td>Massively Parallel Processors</td>
+<td>由数百个处理器组成的大规模并行计算机系统</td>
+</tr>
+<tr>
+<td><strong>COW</strong></td>
+<td>Cluster of Workstations</td>
+<td>大量 PC 或 workstations 通过商用网络连接</td>
+</tr>
+</tbody>
+</table>
+<h4 id="1-mpp">① MPP<a class="headerlink" href="#1-mpp" title="Permanent link">&para;</a></h4>
+<ul>
+<li>通常使用 standard commercial CPUs</li>
+<li>使用高性能私有 interconnection network，低延迟、高带宽传递 messages</li>
+<li>I/O 能力强</li>
+<li>支持专门 fault-tolerant processing</li>
+<li>开发困难、价格高、市场有限，常被视为国家综合实力标志之一</li>
+</ul>
+<p><img src="/sys3/images/image11-50.png" style="display: block; width: 60%; margin: 0 auto;" /></p>
+<h4 id="2-cow">② COW<a class="headerlink" href="#2-cow" title="Permanent link">&para;</a></h4>
+<ul>
+<li>可完全由 commercially available components 组装</li>
+<li>组件量产，性价比较高</li>
+<li>主要有 centralized 和 decentralized 两类</li>
+<li>通常通过 Ethernet、Myrinet、ATM 等 commodity network 连接</li>
+</ul>
+<p><img src="/sys3/images/image11-51.png" style="display: block; width: 50%; margin: 0 auto;" /></p>
+<p><img src="/sys3/images/image11-52.png" style="display: block; width: 70%; margin: 0 auto;" /></p>
+<h3 id="5-4-challenges-of-parallel-processing">5. 4 Challenges of Parallel Processing<a class="headerlink" href="#5-4-challenges-of-parallel-processing" title="Permanent link">&para;</a></h3>
+<p>多处理器应用范围很广，从几乎不需要通信的独立任务，到需要线程频繁通信的并行程序。并行处理的两个主要障碍：</p>
+<ol>
+<li>程序可利用的 parallelism 有限。</li>
+<li>communication cost 相对较高。</li>
+</ol>
+<p>这两点都可用 Amdahl's Law 解释。</p>
+<details class="example">
+<summary>100 个处理器要达到 80 倍加速，串行比例最多多少？</summary>
+<p>Amdahl's Law：</p>
+<div class="arithmatex">\[
+Speedup = \frac{1}{F_s + \frac{1 - F_s}{100}}
+\]</div>
+<p>令 <code>Speedup = 80</code>：</p>
+<div class="arithmatex">\[
+\frac{1}{80} = F_s + \frac{1 - F_s}{100}
+\]</div>
+<p>解得：</p>
+<div class="arithmatex">\[
+F_s \approx 0.0025 = 0.25\%
+\]</div>
+<p>因此要用 100 个处理器达到 80 倍加速，原始计算中最多只能有约 <code>0.25%</code> 是串行部分。</p>
+</details>
+<details class="example">
+<summary>100 处理器应用中，50 处理器阶段最多占多少？</summary>
+<p>假设 95% 时间可完美使用 100 个处理器，剩余 5% 中有 <code>x</code> 使用 50 个处理器，其余 <code>0.05 - x</code> 串行。希望加速比为 80：</p>
+<div class="arithmatex">\[
+\frac{1}{80} = \frac{0.95}{100} + \frac{x}{50} + (0.05 - x)
+\]</div>
+<p>解得：</p>
+<div class="arithmatex">\[
+x = 0.048
+\]</div>
+<p>即剩余时间中约 <code>4.8%</code> 必须仍能使用 50 个处理器，只有约 <code>0.2%</code> 能串行。</p>
+</details>
+<details class="example">
+<summary>Remote communication 的 CPI 代价</summary>
+<p>假设 32-processor multiprocessor 中 remote memory reference 延迟 <code>100 ns</code>，processor clock rate <code>4 GHz</code>，base CPI 为 <code>0.5</code>，有 <code>0.2%</code> 指令涉及 remote communication reference。</p>
+<p>cycle time：</p>
+<div class="arithmatex">\[
+\frac{1}{4GHz}=0.25ns
+\]</div>
+<p>remote request cost：</p>
+<div class="arithmatex">\[
+\frac{100ns}{0.25ns}=400 \text{ cycles}
+\]</div>
+<p>CPI：</p>
+<div class="arithmatex">\[
+CPI = 0.5 + 0.2\% \times 400 = 1.3
+\]</div>
+<p>若没有 communication，CPI 为 <code>0.5</code>，因此无通信版本快：</p>
+<div class="arithmatex">\[
+\frac{1.3}{0.5}=2.6
+\]</div>
+</details>
+<h2 id="6-cache-coherence">6 Cache Coherence<a class="headerlink" href="#6-cache-coherence" title="Permanent link">&para;</a></h2>
+<h3 id="6-1-basic-concepts">6. 1 Basic Concepts<a class="headerlink" href="#6-1-basic-concepts" title="Permanent link">&para;</a></h3>
+<p>Shared-memory multiprocessor 中，每个 core 往往有自己的 cache。同一 memory block 可能在多个 cache 中存在副本，若某个 processor 修改了自己的副本，其它副本可能过期，这就是 <strong>cache coherence problem</strong>。</p>
+<p><strong>Cache coherence protocol</strong> 是由 cache、CPU 和 memory 共同实现的一组规则，用来防止多个 caches 中出现同一数据的不同版本。</p>
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>含义</th>
+<th>需要</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Memory Consistency</strong></td>
+<td>写入值什么时候会被读到；不同地址访问之间的可见顺序</td>
+<td>Memory consistency model</td>
+</tr>
+<tr>
+<td><strong>Cache Coherence</strong></td>
+<td>同一地址的多个 cache 副本如何保持一致</td>
+<td>Cache coherence protocol</td>
+</tr>
+</tbody>
+</table>
+<p>Cache coherence 要求：</p>
+<ul>
+<li>任意 processor 的 read 都应返回该地址最近写入的值</li>
+<li>对同一地址的多个 writes，所有 processors 必须看到相同顺序</li>
+<li>正确 coherence 应让程序员无法通过 load/store 结果判断系统是否有 cache 或 cache 在哪里</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>机制</th>
+<th>含义</th>
+<th>好处</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Migration</strong></td>
+<td>数据项可移动到 local cache 中透明使用</td>
+<td>降低 remote shared data 访问延迟，减少 shared memory bandwidth demand</td>
+</tr>
+<tr>
+<td><strong>Replication</strong></td>
+<td>多个 processor 同时读共享数据时，在 local cache 中复制副本</td>
+<td>降低读共享数据的访问延迟和争用</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>系统</th>
+<th>协议</th>
+<th>做法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>UMA</strong></td>
+<td>Snoopy coherence protocols</td>
+<td>所有 processors 监听 bus；某 processor 修改 private cache 中数据时，在 bus 上广播 invalidate 或 update</td>
+</tr>
+<tr>
+<td><strong>NUMA</strong></td>
+<td>Directory protocol</td>
+<td>directory 记录哪些 processors 缓存了某个 block；写 shared block 时按 directory 点对点发送 invalidation</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>写策略</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Write-through</strong></td>
+<td>写 cache line 时同时修改 memory，memory 始终保持最新</td>
+</tr>
+<tr>
+<td><strong>Write-back</strong></td>
+<td>写操作不直接写 memory，而是把 cache line 标记为 dirty；memory 可能过期，之后再 write back</td>
+</tr>
+</tbody>
+</table>
+<p>Write-through cache coherency protocol 中，local / remote 操作大致如下：</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>Local Request</th>
+<th>Remote Request</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Read Miss</strong></td>
+<td>从 memory 取数据</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Read Hit</strong></td>
+<td>使用 local cache data</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Write Miss</strong></td>
+<td>修改 memory</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Write Hit</strong></td>
+<td>修改 cache 和 memory</td>
+<td>使对应 cache item invalid</td>
+</tr>
+</tbody>
+</table>
+<p>Write-through 基本协议可变化的点：</p>
+<ul>
+<li>remote write hit 时使用 update strategy 还是 invalidate strategy</li>
+<li>write miss 时是否把对应 word 装入 cache，即是否使用 write-allocate policy</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>协议</th>
+<th>做法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Write invalidate protocol</strong></td>
+<td>某 processor 写入时，使其它 cache 中该 block 的副本失效</td>
+</tr>
+<tr>
+<td><strong>Write update / write broadcast protocol</strong></td>
+<td>某 processor 写入时，更新所有 cache 中该数据项的副本</td>
+</tr>
+</tbody>
+</table>
+<p>Write invalidate 在 snooping bus 上常与 write-back cache 结合使用。</p>
+<h3 id="6-2-msi-protocol">6. 2 MSI Protocol<a class="headerlink" href="#6-2-msi-protocol" title="Permanent link">&para;</a></h3>
+<p>MSI 是 basic write invalidation snooping protocol，包含 3 种 block states：</p>
+<table>
+<thead>
+<tr>
+<th>状态</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Invalid (I)</strong></td>
+<td>cache item 中数据无效</td>
+</tr>
+<tr>
+<td><strong>Shared (S)</strong></td>
+<td>private cache 中该 block 可能被多个 cache 共享，memory 中值是最新的</td>
+</tr>
+<tr>
+<td><strong>Modified (M)</strong></td>
+<td>该 block 已在 private cache 中更新，memory 中值过期；同时隐含该副本是 exclusive 的</td>
+</tr>
+</tbody>
+</table>
+<details class="example">
+<summary>MSI protocol 操作示例</summary>
+<p>每个 core 有 4-line direct-mapped write-back cache，使用 basic write invalidation snooping protocol。</p>
+<p><img src="/sys3/images/image11-53.png" style="display: block; width: 60%; margin: 0 auto;" /></p>
+<ul>
+<li>
+<p>操作 1：<code>C0, R, A10C</code></p>
+<details class="success">
+<summary>答案</summary>
+<ul>
+<li><code>C0</code> read miss</li>
+<li><code>C2</code> write back <code>A10C</code></li>
+<li><code>Memory A10C: 010C -&gt; 020C</code></li>
+<li><code>C2.3</code> 变为 <code>(S, A10C, 020C)</code></li>
+<li>memory 返回 <code>020C</code> 给 <code>C0</code></li>
+<li><code>C0.3</code> 变为 <code>(S, A10C, 020C)</code></li>
+</ul>
+</details>
+</li>
+<li>
+<p>操作 2：<code>C1, W, A104, 0204</code></p>
+<details class="success">
+<summary>答案</summary>
+<ul>
+<li><code>C1</code> write hit</li>
+<li>invalidates <code>C0</code> 和 <code>C2</code> 中 <code>A104</code> 的副本</li>
+<li><code>C0.1</code> 变为 <code>(I, A104, 0104)</code></li>
+<li><code>C2.1</code> 变为 <code>(I, A104, 0104)</code></li>
+<li><code>C1.1</code> 变为 <code>(M, A104, 0204)</code></li>
+</ul>
+</details>
+</li>
+<li>
+<p>操作 3：<code>C0, W, A118, 0308</code></p>
+<details class="success">
+<summary>答案</summary>
+<ul>
+<li><code>C0</code> write miss</li>
+<li><code>C0</code> write back <code>A108</code></li>
+<li><code>Memory A108: 0108 -&gt; 0208</code></li>
+<li>memory 返回 <code>0118</code> 给 <code>C0</code></li>
+<li><code>C0.2</code> 先变为 <code>(M, A118, 0118)</code></li>
+<li>写入后 <code>C0.2</code> 变为 <code>(M, A118, 0308)</code></li>
+</ul>
+</details>
+</li>
+</ul>
+</details>
+<h3 id="6-3-mesi-and-moesi">6. 3 MESI and MOESI<a class="headerlink" href="#6-3-mesi-and-moesi" title="Permanent link">&para;</a></h3>
+<p><strong>MESI</strong> 在 MSI 基础上增加 <strong>Exclusive</strong> 状态：</p>
+<table>
+<thead>
+<tr>
+<th>状态</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Invalid</strong></td>
+<td>cache item 中数据无效</td>
+</tr>
+<tr>
+<td><strong>Shared</strong></td>
+<td>多个 cache 可能有该行副本，memory 中值最新</td>
+</tr>
+<tr>
+<td><strong>Exclusive</strong></td>
+<td>没有其它 cache 持有该行副本，memory 中值最新</td>
+</tr>
+<tr>
+<td><strong>Modified</strong></td>
+<td>本 cache 数据有效且被修改，memory 过期，没有其它 cache 副本</td>
+</tr>
+</tbody>
+</table>
+<p>若 block 只在单个 cache 中且 clean，该 cache 写入时可从 <code>Exclusive -&gt; Modified</code>，无需在 bus 上广播。</p>
+<details class="info">
+<summary>MESI protocol state transition rules</summary>
+<p><img src="/sys3/images/image11-54.png" style="display: block; width: 80%; margin: 0 auto;" /></p>
+<p><img src="/sys3/images/image11-55.png" style="display: block; width: 50%; margin: 0 auto;" /></p>
+</details>
+<details class="info">
+<summary>MESI protocol working process</summary>
+<p><img src="/sys3/images/image11-56.png" style="display: block; width: 80%; margin: 0 auto;" /></p>
+</details>
+<p><strong>MOESI</strong> 在 MESI 基础上增加 <strong>Owned</strong> 状态：表示该 cache 拥有该 block，memory 中值过期。它允许 <code>Modified -&gt; Owned</code>，不必先把 shared block 写回 memory。</p>
+<h3 id="6-4-directory-protocol">6. 4 Directory Protocol<a class="headerlink" href="#6-4-directory-protocol" title="Permanent link">&para;</a></h3>
+<p>Directory-based protocol 常用于 distributed-memory / NUMA multiprocessor。每个节点增加 directory，用来记录每个可能被缓存 block 的状态。</p>
+<p>Directory 中维护的信息包括：</p>
+<ul>
+<li>哪些 caches 有该 block 的副本</li>
+<li>该 block 是否 dirty</li>
+<li>owner node ID 或 sharer set</li>
+</ul>
+<p>每个 block 的 directory states：</p>
+<table>
+<thead>
+<tr>
+<th>状态</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Invalid / uncached</strong></td>
+<td>没有节点缓存该 block</td>
+</tr>
+<tr>
+<td><strong>Shared</strong></td>
+<td>一个或多个节点缓存该 block，memory 中值最新，directory 记录 node ID set</td>
+</tr>
+<tr>
+<td><strong>Modified / exclusive</strong></td>
+<td>恰好一个节点有该 block，memory 中值过期，directory 记录 owner node ID</td>
+</tr>
+</tbody>
+</table>
+<p>Directory 维护 block states 并发送 invalidation messages。</p>
+<table>
+<thead>
+<tr>
+<th>当前状态</th>
+<th>请求</th>
+<th>行为</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Uncached</strong></td>
+<td>Read miss</td>
+<td>给请求节点发送数据；请求节点成为唯一 sharer；block 变为 shared</td>
+</tr>
+<tr>
+<td><strong>Uncached</strong></td>
+<td>Write miss</td>
+<td>给请求节点发送数据；请求节点成为 owner；block 变为 exclusive</td>
+</tr>
+<tr>
+<td><strong>Shared</strong></td>
+<td>Read miss</td>
+<td>从 memory 给请求节点发送数据；把请求节点加入 sharing set</td>
+</tr>
+<tr>
+<td><strong>Shared</strong></td>
+<td>Write miss</td>
+<td>给请求节点发送值；向 sharing set 中所有节点发 invalidation；sharing set 只保留请求节点；block 变为 exclusive</td>
+</tr>
+<tr>
+<td><strong>Exclusive</strong></td>
+<td>Read miss</td>
+<td>向 owner 发送 data fetch；block 变为 shared；owner 把数据发给 directory 并写回 memory；sharers 包含旧 owner 和 requestor</td>
+</tr>
+<tr>
+<td><strong>Exclusive</strong></td>
+<td>Data write back</td>
+<td>block 变为 uncached，sharer set 清空</td>
+</tr>
+<tr>
+<td><strong>Exclusive</strong></td>
+<td>Write miss</td>
+<td>通知旧 owner invalidate 并把值发给 directory；requestor 成为新 owner；block 保持 exclusive</td>
+</tr>
+</tbody>
+</table>
+<h2 id="7-memory-consistency">7 Memory Consistency<a class="headerlink" href="#7-memory-consistency" title="Permanent link">&para;</a></h2>
+<p><strong>Memory consistency model</strong> 规定不同处理器上的读写操作以什么顺序对程序可见。它关注的是<strong>不同地址之间</strong>的访问顺序，而 cache coherence 主要关注<strong>同一地址</strong>多个副本的一致性。</p>
+<p>典型例子：</p>
+<div class="highlight"><pre><span></span><code>Processor 1:        Processor 2:
+A = 0               B = 0
+...
+A = 1               B = 1
+if (B == 0) ...     if (A == 0) ...
+</code></pre></div>
+<p><strong>Sequential consistency</strong> 要求执行结果等价于：</p>
+<ul>
+<li>每个 processor 内部的 memory accesses 保持程序顺序</li>
+<li>不同 processors 的 memory accesses 可以任意交错</li>
+</ul>
+<p>这会降低潜在性能，因为硬件和编译器不能随意重排读写。</p>
+<p><strong>Relaxed consistency models</strong> 的核心思想：允许 reads 和 writes 乱序完成，但通过 synchronization operations 强制关键顺序。</p>
+<p>用 <code>X -&gt; Y</code> 表示 operation <code>X</code> 必须在 operation <code>Y</code> 完成前完成。</p>
+<table>
+<thead>
+<tr>
+<th>模型/规则</th>
+<th>放松的顺序</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Sequential consistency</strong></td>
+<td>要求 <code>R -&gt; W</code>、<code>R -&gt; R</code>、<code>W -&gt; R</code>、<code>W -&gt; W</code> 全部保持</td>
+</tr>
+<tr>
+<td><strong>Total Store Ordering (TSO)</strong></td>
+<td>放松 <code>W -&gt; R</code></td>
+</tr>
+<tr>
+<td><strong>Partial Store Order (PSO)</strong></td>
+<td>放松 <code>W -&gt; W</code></td>
+</tr>
+<tr>
+<td><strong>Weak Ordering / Release Consistency</strong></td>
+<td>放松 <code>R -&gt; W</code> 和 <code>R -&gt; R</code>，依赖同步操作恢复必要顺序</td>
+</tr>
+</tbody>
+</table>
+<h2 id="8-domain-specific-architectures">8 Domain-Specific Architectures<a class="headerlink" href="#8-domain-specific-architectures" title="Permanent link">&para;</a></h2>
+<p><strong>DSA（Domain-Specific Architectures）</strong> 面向特定领域抽取性能。Moore's Law 曾让通用处理器通过 deep memory hierarchy、wide SIMD units、deep pipelines、branch prediction、out-of-order execution、speculative prefetching、multithreading、multiprocessing 等机制，从不了解底层架构的软件中榨取性能。</p>
+<p>DSA 的目标是：针对领域特征直接设计硬件和软件接口，减少通用性带来的浪费。</p>
+<h3 id="8-1-dsa-guidelines">8. 1 DSA Guidelines<a class="headerlink" href="#8-1-dsa-guidelines" title="Permanent link">&para;</a></h3>
+<ul>
+<li>使用 dedicated memories，最小化 data movement</li>
+<li>把资源投入更多 arithmetic units 或更大的 memories</li>
+<li>使用匹配领域的最简单 parallelism 形式</li>
+<li>把 data size 和 data type 降到领域所需的最简单形式</li>
+<li>使用 domain-specific programming language</li>
+</ul>
+<h3 id="8-2-cnn-and-tpu">8. 2 CNN and TPU<a class="headerlink" href="#8-2-cnn-and-tpu" title="Permanent link">&para;</a></h3>
+<p>从体系结构角度看，CNN 需要关注：</p>
+<table>
+<thead>
+<tr>
+<th>技术</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Batches</strong></td>
+<td>权重从 memory 取出后可在多个 inputs 间复用，提高 operational intensity</td>
+</tr>
+<tr>
+<td><strong>Quantization</strong></td>
+<td>使用 8-bit 或 16-bit fixed point，降低存储和计算成本</td>
+</tr>
+<tr>
+<td><strong>Common kernels</strong></td>
+<td>matrix-vector multiply、matrix-matrix multiply、ReLU、Sigmoid 等</td>
+</tr>
+</tbody>
+</table>
+<p><strong>TPU（Tensor Processing Unit）</strong> 是 Google 的 DNN ASIC：</p>
+<ul>
+<li><code>256 × 256</code> 8-bit matrix multiply unit</li>
+<li>large software-managed scratchpad</li>
+<li>作为 PCIe bus 上的 coprocessor</li>
+</ul>
+<p>TPU ISA 的主要操作：</p>
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Read_Host_Memory</strong></td>
+<td>从 CPU memory 读入 unified buffer</td>
+</tr>
+<tr>
+<td><strong>Read_Weights</strong></td>
+<td>从 weight memory 读权重到 weight FIFO，作为 matrix unit 输入</td>
+</tr>
+<tr>
+<td><strong>MatrixMatrixMultiply / Convolve</strong></td>
+<td>从 unified buffer 到 accumulators 执行矩阵乘、向量矩阵乘、element-wise 乘或卷积</td>
+</tr>
+<tr>
+<td><strong>Activate</strong></td>
+<td>计算 activation function</td>
+</tr>
+<tr>
+<td><strong>Write_Host_Memory</strong></td>
+<td>把 unified buffer 中的数据写回 host memory</td>
+</tr>
+</tbody>
+</table>
+<p>TPU 对 DSA guidelines 的体现：</p>
+<table>
+<thead>
+<tr>
+<th>Guideline</th>
+<th>TPU 实现</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dedicated memories</td>
+<td>24 MiB dedicated buffer，4 MiB accumulator buffers</td>
+</tr>
+<tr>
+<td>投入 arithmetic units / memories</td>
+<td>相比 server-class CPU，约 60% 资源用于 memory，算术单元约 250 倍</td>
+</tr>
+<tr>
+<td>匹配领域的并行形式</td>
+<td>利用 2D SIMD parallelism</td>
+</tr>
+<tr>
+<td>降低 data size/type</td>
+<td>主要使用 8-bit integers</td>
+</tr>
+<tr>
+<td>Domain-specific language</td>
+<td>使用 TensorFlow</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.top", "navigation.sidebar", "navigation.indexes"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../../javascripts/mathjax-config.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf_viewer.min.js"></script>
+      
+    
+  </body>
+</html>

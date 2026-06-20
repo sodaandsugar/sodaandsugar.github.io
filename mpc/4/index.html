@@ -2420,6 +2420,8 @@
       
         
       
+        
+      
     
     
     
@@ -2684,6 +2686,29 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys3/11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 11 DLP and TLP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -2700,6 +2725,8 @@
   
     
     
+      
+        
       
         
       
@@ -3052,6 +3079,29 @@
   
   <span class="md-ellipsis">
     Chapter 18 Concurrency Control
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../db/19/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 19 Recovery System
     
   </span>
   
@@ -3466,7 +3516,7 @@
   
   
   <span class="md-ellipsis">
-    Chapter 9 恶意安全性：GMW 编译器与切分选择（Cut-and-Choose）
+    Chapter 9 恶意安全性
     
   </span>
   
@@ -4437,6 +4487,21 @@ exec_{\Pi,\mathcal{A},\mathcal{Z}} \approx exec_{F,\mathcal{S},\mathcal{Z}},
 <ul>
 <li><strong>安全实现的传递性</strong>：假设 <span class="arithmatex">\(\Pi, \Pi', \Pi''\)</span> 是高效的混合协议．如果 <span class="arithmatex">\(\Pi\)</span> UC-安全实现了 <span class="arithmatex">\(\Pi'\)</span> 且 <span class="arithmatex">\(\Pi'\)</span> UC-安全实现了 <span class="arithmatex">\(\Pi''\)</span>，则 <span class="arithmatex">\(\Pi\)</span> UC-安全实现了 <span class="arithmatex">\(\Pi''\)</span>。</li>
 </ul>
+<div class="admonition question">
+<p class="admonition-title">不定项选择题【24-25春夏期末】</p>
+<p>Choose all correct descriptions for universal composability security framework from the followings:</p>
+<p>(A) Protocols with universal composability is information theoretical secure.</p>
+<p>(B) Protocols with universal composability can be executed concurrently.</p>
+<p>(C) Universal composability is a framework for proving protocol security.</p>
+<p>(D) Universal composability is a simulation-based security definition</p>
+<details class="success">
+<summary>参考答案（LLM生成）</summary>
+<p>(A) 错误。通用可组合（UC）安全框架并不要求协议是信息论安全的，它通常基于计算假设（如困难问题），允许计算安全性，也可以支持信息论安全，但并非必要条件。</p>
+<p>(B) 正确。UC 框架的核心优势之一是 并发组合性（concurrent composition），即一个 UC 安全的协议可以在任意其他协议或环境下并发执行，其安全性依然保持，不会因交互而产生新的风险。</p>
+<p>(C) 正确。UC 是一个用于定义和证明密码协议安全性的框架，提供了理想功能、环境机、模拟器等模型来规范化安全定义。</p>
+<p>(D) 正确。UC 安全性是一种 基于模拟 的安全定义（simulation-based security），要求真实协议与理想功能对于环境机而言不可区分，由模拟器来完成安全归约。</p>
+</details>
+</div>
 <h2 id="6">6 半诚实安全性<a class="headerlink" href="#6" title="Permanent link">&para;</a></h2>
 <details class="example">
 <summary>受限框架的真实世界</summary>

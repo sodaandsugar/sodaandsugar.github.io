@@ -2420,6 +2420,8 @@
       
         
       
+        
+      
     
     
     
@@ -2684,6 +2686,29 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sys3/11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 11 DLP and TLP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -2700,6 +2725,8 @@
   
     
     
+      
+        
       
         
       
@@ -3069,6 +3096,29 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../db/19/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 19 Recovery System
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../db/collection/" class="md-nav__link">
         
   
@@ -3350,7 +3400,7 @@
   
   
   <span class="md-ellipsis">
-    Chapter 9 恶意安全性：GMW 编译器与切分选择（Cut-and-Choose）
+    Chapter 9 恶意安全性
     
   </span>
   
@@ -3627,8 +3677,7 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="2. 2 封装">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
   <a href="#2-3" class="md-nav__link">
@@ -3636,11 +3685,6 @@
       2. 3 内存对齐
     </span>
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -4235,8 +4279,7 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="2. 2 封装">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
   <a href="#2-3" class="md-nav__link">
@@ -4244,11 +4287,6 @@
       2. 3 内存对齐
     </span>
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -4421,45 +4459,40 @@
 </ul>
 <h3 id="2-2">2. 2 封装<a class="headerlink" href="#2-2" title="Permanent link">&para;</a></h3>
 <p><strong>封装（Encapsulation）</strong>是把数据（属性）和操作这些数据的逻辑（方法）绑定在一起，并对外隐藏实现细节。</p>
-<details class="quote">
-<summary>访问控制符</summary>
+<div class="admonition info">
+<p class="admonition-title">访问控制符</p>
 <ul>
 <li><code>public</code>：任何地方都可以访问</li>
 <li><code>protected</code>：类内部和派生类可以访问</li>
 <li><code>private</code>：仅类内部可以访问</li>
 </ul>
-</details>
-<div class="admonition example">
-<p class="admonition-title">不封装：C 风格栈</p>
+</div>
+<details class="example">
+<summary>不封装：C 风格栈</summary>
 <div class="highlight"><span class="filename">pbfx/code/lec1/stack_c.cpp</span><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdbool.h&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span>
 
 <span class="cp">#define MAX_SIZE 100</span>
 
-<span class="k">typedef</span><span class="w"> </span><span class="k">struct</span>
-<span class="p">{</span>
+<span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">data</span><span class="p">[</span><span class="n">MAX_SIZE</span><span class="p">];</span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">top</span><span class="p">;</span>
 <span class="p">}</span><span class="w"> </span><span class="n">Stack</span><span class="p">;</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">initStack</span><span class="p">(</span><span class="n">Stack</span><span class="o">*</span><span class="w"> </span><span class="n">s</span><span class="p">)</span>
-<span class="p">{</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">initStack</span><span class="p">(</span><span class="n">Stack</span><span class="o">*</span><span class="w"> </span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">s</span><span class="o">-&gt;</span><span class="n">top</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="kt">bool</span><span class="w"> </span><span class="nf">isEmpty</span><span class="p">(</span><span class="n">Stack</span><span class="o">*</span><span class="w"> </span><span class="n">s</span><span class="p">)</span>
-<span class="p">{</span>
+<span class="kt">bool</span><span class="w"> </span><span class="nf">isEmpty</span><span class="p">(</span><span class="n">Stack</span><span class="o">*</span><span class="w"> </span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">s</span><span class="o">-&gt;</span><span class="n">top</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="kt">bool</span><span class="w"> </span><span class="nf">isFull</span><span class="p">(</span><span class="n">Stack</span><span class="o">*</span><span class="w"> </span><span class="n">s</span><span class="p">)</span>
-<span class="p">{</span>
+<span class="kt">bool</span><span class="w"> </span><span class="nf">isFull</span><span class="p">(</span><span class="n">Stack</span><span class="o">*</span><span class="w"> </span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">s</span><span class="o">-&gt;</span><span class="n">top</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">MAX_SIZE</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">push</span><span class="p">(</span><span class="n">Stack</span><span class="o">*</span><span class="w"> </span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">value</span><span class="p">)</span>
-<span class="p">{</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">push</span><span class="p">(</span><span class="n">Stack</span><span class="o">*</span><span class="w"> </span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isFull</span><span class="p">(</span><span class="n">s</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Stack overflow!</span><span class="se">\\</span><span class="s">n&quot;</span><span class="p">);</span>
 <span class="w">        </span><span class="k">return</span><span class="p">;</span>
@@ -4467,13 +4500,28 @@
 <span class="w">    </span><span class="n">s</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">[</span><span class="o">++</span><span class="n">s</span><span class="o">-&gt;</span><span class="n">top</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">value</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="kt">int</span><span class="w"> </span><span class="nf">pop</span><span class="p">(</span><span class="n">Stack</span><span class="o">*</span><span class="w"> </span><span class="n">s</span><span class="p">)</span>
-<span class="p">{</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">pop</span><span class="p">(</span><span class="n">Stack</span><span class="o">*</span><span class="w"> </span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isEmpty</span><span class="p">(</span><span class="n">s</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Stack underflow!</span><span class="se">\\</span><span class="s">n&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Stack underflow!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
 <span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">s</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">[</span><span class="n">s</span><span class="o">-&gt;</span><span class="n">top</span><span class="o">--</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Stack</span><span class="w"> </span><span class="n">s</span><span class="p">;</span>
+<span class="w">    </span><span class="n">initStack</span><span class="p">(</span><span class="o">&amp;</span><span class="n">s</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">push</span><span class="p">(</span><span class="o">&amp;</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">);</span>
+<span class="w">    </span><span class="n">push</span><span class="p">(</span><span class="o">&amp;</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">);</span>
+<span class="w">    </span><span class="n">push</span><span class="p">(</span><span class="o">&amp;</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="mi">30</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Popped value: %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">pop</span><span class="p">(</span><span class="o">&amp;</span><span class="n">s</span><span class="p">));</span><span class="w">  </span><span class="c1">// 输出 30</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Popped value: %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">pop</span><span class="p">(</span><span class="o">&amp;</span><span class="n">s</span><span class="p">));</span><span class="w">  </span><span class="c1">// 输出 20</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Popped value: %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">pop</span><span class="p">(</span><span class="o">&amp;</span><span class="n">s</span><span class="p">));</span><span class="w">  </span><span class="c1">// 输出 10</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Popped value: %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">pop</span><span class="p">(</span><span class="o">&amp;</span><span class="n">s</span><span class="p">));</span><span class="w">  </span><span class="c1">// 输出 -1，栈空</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
 <details class="tip">
@@ -4484,7 +4532,7 @@
 <li>需要把 <code>Stack*</code> 显式传给每个函数</li>
 </ul>
 </details>
-</div>
+</details>
 <div class="admonition example">
 <p class="admonition-title">封装后：C++ 栈类</p>
 <div class="highlight"><span class="filename">pbfx/code/lec1/stack.cpp</span><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
@@ -4493,8 +4541,7 @@
 
 <span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">MAX_SIZE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span>
 
-<span class="k">class</span><span class="w"> </span><span class="nc">Stack</span>
-<span class="p">{</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Stack</span><span class="w"> </span><span class="p">{</span>
 <span class="k">private</span><span class="o">:</span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">data</span><span class="p">[</span><span class="n">MAX_SIZE</span><span class="p">];</span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">top</span><span class="p">;</span>
@@ -4502,18 +4549,15 @@
 <span class="k">public</span><span class="o">:</span>
 <span class="w">    </span><span class="n">Stack</span><span class="p">()</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">top</span><span class="p">(</span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="p">{};</span>
 
-<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nf">isEmpty</span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
-<span class="w">    </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nf">isEmpty</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">top</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nf">isFull</span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
-<span class="w">    </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nf">isFull</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">top</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">MAX_SIZE</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">push</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">value</span><span class="p">)</span>
-<span class="w">    </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">push</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isFull</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Stack overflow!&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
 <span class="w">            </span><span class="k">return</span><span class="p">;</span>
@@ -4521,8 +4565,7 @@
 <span class="w">        </span><span class="n">data</span><span class="p">[</span><span class="o">++</span><span class="n">top</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">value</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="nf">pop</span><span class="p">()</span>
-<span class="w">    </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="nf">pop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isEmpty</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Stack underflow!&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
 <span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
@@ -4530,50 +4573,35 @@
 <span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">data</span><span class="p">[</span><span class="n">top</span><span class="o">--</span><span class="p">];</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">};</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Stack</span><span class="w"> </span><span class="n">s</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">s</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<span class="w">    </span><span class="n">s</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="mi">20</span><span class="p">);</span>
+<span class="w">    </span><span class="n">s</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="mi">30</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Popped value: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span><span class="w">  </span><span class="c1">// 输出 30</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Popped value: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span><span class="w">  </span><span class="c1">// 输出 20</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Popped value: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span><span class="w">  </span><span class="c1">// 输出 10</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Popped value: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span><span class="w">  </span><span class="c1">// 输出 -1，栈空</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
 </code></pre></div>
 <details class="tip">
 <summary>特点</summary>
 <ul>
 <li><code>data</code> 和 <code>top</code> 被藏在 <code>private</code> 中，外部不能直接乱改</li>
 <li>对外只暴露 <code>push / pop / isEmpty / isFull</code> 这些接口</li>
-<li>操作对象时写成 <code>s.push(10)</code>，更符合“对象自己负责行为”的思路</li>
+<li>操作对象时写成 <code>s.push(10)</code>，更符合对象自己负责行为的思路</li>
 </ul>
 </details>
-</div>
-<details class="question">
-<summary>两种栈实现的共同运行结果</summary>
-<p><code>stack.cpp</code> 和 <code>stack_c.cpp</code> 都会完成 3 次压栈、4 次出栈。</p>
-<p><code>stack.cpp</code> 的实际输出是：</p>
-<div class="highlight"><pre><span></span><code>Popped value: 30
-Popped value: 20
-Popped value: 10
-Popped value: Stack underflow!
--1
-</code></pre></div>
-<p><code>stack_c.cpp</code> 的实际输出是：</p>
-<div class="highlight"><pre><span></span><code>Popped value: 30
-Popped value: 20
-Popped value: 10
-Stack underflow!
-Popped value: -1
-</code></pre></div>
-</details>
-<div class="admonition warning">
-<p class="admonition-title">为什么最后一行长得不一样</p>
-<ul>
-<li>C++ 版本里，<code>cout &lt;&lt; "Popped value: " &lt;&lt; s.pop() &lt;&lt; endl;</code> 会先输出前缀，再在 <code>pop()</code> 内部输出 <code>Stack underflow!</code></li>
-<li>C 版本里，<code>printf("Popped value: %d\n", pop(&amp;s));</code> 中参数求值和输出的表现与当前实现组合后，最后形成了另一种打印顺序</li>
-<li>这说明“把报错逻辑写在底层接口里”会影响外层输出格式，真实项目中应统一设计接口行为</li>
-</ul>
 </div>
 <div class="admonition tip">
 <p class="admonition-title">C++ 中的 <code>struct</code></p>
-<ul>
-<li>C++ 里同样有 <code>struct</code></li>
-<li>C++ 的 <code>struct</code> 本质上也是类</li>
-<li>与 <code>class</code> 的核心区别只有一个：
-  未显式写访问控制符时，<code>struct</code> 默认是 <code>public</code>，<code>class</code> 默认是 <code>private</code></li>
-</ul>
+<p>C++ 里同样有 <code>struct</code>，其本质上也是类与 <code>class</code> 的核心区别只有一个：</p>
+<p>未显式写访问控制符时，<code>struct</code> 默认是 <code>public</code>，<code>class</code> 默认是 <code>private</code>。</p>
 </div>
 <div class="admonition tip">
 <p class="admonition-title">类可以嵌套</p>
@@ -4587,9 +4615,11 @@ Popped value: -1
 <li><strong>灵活性</strong>：内部实现可自由调整，而外部调用代码不必跟着改</li>
 </ol>
 </details>
+<h3 id="2-3">2. 3 内存对齐<a class="headerlink" href="#2-3" title="Permanent link">&para;</a></h3>
 <details class="question">
-<summary>课件最后的问题</summary>
-<p>C++ 的 <code>private</code> 主要是<strong>编译期访问控制</strong>，并不意味着对象内存从物理上“不可读”。</p>
+<summary>C++的 private 真的能完全避免外部访问吗？</summary>
+<p>C++ 的 <code>private</code> 主要是<strong>编译期访问控制</strong>，并不意味着对象内存从物理上不可读。</p>
+<p>即使成员是 <code>private</code>，对象依然会以某种内存布局存放在内存中。若强行把对象地址转成字节指针，就有可能观察到底层字节，但这种做法高度依赖实现细节，不应作为正常编程手段。</p>
 </details>
 <div class="admonition example">
 <p class="admonition-title">通过指针直接观察对象内存</p>
@@ -4597,16 +4627,14 @@ Popped value: -1
 
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 
-<span class="k">class</span><span class="w"> </span><span class="nc">Example</span>
-<span class="p">{</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Example</span><span class="w"> </span><span class="p">{</span>
 <span class="k">private</span><span class="o">:</span>
 <span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sc">&#39;A&#39;</span><span class="p">;</span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x12345678</span><span class="p">;</span>
 <span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sc">&#39;B&#39;</span><span class="p">;</span>
 <span class="p">};</span>
 
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span>
-<span class="p">{</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">Example</span><span class="w"> </span><span class="n">e</span><span class="p">;</span>
 <span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Size of Example: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; bytes&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
 <span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Hexadecimal representation:&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
@@ -4614,7 +4642,7 @@ Popped value: -1
 <span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="k">sizeof</span><span class="p">(</span><span class="n">e</span><span class="p">);</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%02x&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mh">0xFF</span><span class="p">));</span>
 <span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\\</span><span class="s">n&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -4626,35 +4654,21 @@ Hexadecimal representation:
 </code></pre></div>
 </details>
 </div>
-<div class="admonition tip">
-<p class="admonition-title">这段代码说明了什么</p>
-<ul>
-<li>即使成员是 <code>private</code>，对象依然会以某种内存布局存放在内存中</li>
-<li>若强行把对象地址转成字节指针，就有可能观察到底层字节</li>
-<li>但这种做法高度依赖实现细节，不应作为正常编程手段</li>
-</ul>
-</div>
-<h4 id="2-3">2. 3 内存对齐<a class="headerlink" href="#2-3" title="Permanent link">&para;</a></h4>
-<details class="quote">
+<details class="question">
 <summary>为什么 <code>Example</code> 的大小是 12 字节</summary>
-<p>课件用下面的结构说明：对象成员虽然通常按声明顺序排布，但会受到<strong>内存对齐（alignment）</strong>影响。</p>
+<p>对象成员虽然通常按声明顺序排布，但会受到<strong>内存对齐（alignment）</strong>影响。</p>
 <div class="highlight"><pre><span></span><code><span class="k">struct</span><span class="w"> </span><span class="nc">Example</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">c</span><span class="p">;</span><span class="w"> </span><span class="c1">// 1 字节</span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">;</span><span class="w">  </span><span class="c1">// 4 字节</span>
 <span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">d</span><span class="p">;</span><span class="w"> </span><span class="c1">// 1 字节</span>
 <span class="p">};</span>
 </code></pre></div>
-</details>
-<div class="admonition tip">
-<p class="admonition-title">在当前环境中的一种典型布局</p>
 <ul>
-<li><code>c</code> 占 1 字节</li>
-<li>为了让 <code>int i</code> 按 4 字节对齐，<code>c</code> 后面会补若干填充字节</li>
+<li><code>c</code> 占 1 字节，为了让 <code>int i</code> 按 4 字节对齐，<code>c</code> 后面会补若干填充字节</li>
 <li><code>i</code> 占 4 字节，且在小端机器上会表现为 <code>78 56 34 12</code></li>
-<li><code>d</code> 占 1 字节</li>
-<li>结构体尾部还可能继续补齐，使整体大小成为对齐单位的整数倍</li>
+<li><code>d</code> 占 1 字节，结构体尾部还可能继续补齐，使整体大小成为对齐单位的整数倍</li>
 </ul>
-</div>
+</details>
 <div class="admonition warning">
 <p class="admonition-title">关于输出中的那些额外字节</p>
 <p>上面十六进制结果里除了 <code>41</code>（<code>'A'</code>）、<code>78 56 34 12</code>、<code>42</code>（<code>'B'</code>）以外，其余字节主要反映了当前环境下的填充与对象表示；这些字节值本身不应被当作稳定语义去依赖。</p>

@@ -2420,6 +2420,8 @@
       
         
       
+        
+      
     
     
     
@@ -2684,6 +2686,29 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys3/11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 11 DLP and TLP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -2700,6 +2725,8 @@
   
     
     
+      
+        
       
         
       
@@ -3052,6 +3079,29 @@
   
   <span class="md-ellipsis">
     Chapter 18 Concurrency Control
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../db/19/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 19 Recovery System
     
   </span>
   
@@ -3529,7 +3579,7 @@
   
   
   <span class="md-ellipsis">
-    Chapter 9 恶意安全性：GMW 编译器与切分选择（Cut-and-Choose）
+    Chapter 9 恶意安全性
     
   </span>
   
@@ -4675,6 +4725,36 @@ h(0)=3h(1)-3h(2)+h(3)
 <div class="arithmatex">\[
 r=(3,-3,1)
 \]</div>
+<details class="quote">
+<summary>拉格朗日系数的计算</summary>
+<p>给定点 <span class="arithmatex">\(x_1=1, x_2=2, x_3=3\)</span>，拉格朗日基多项式在 <span class="arithmatex">\(x=0\)</span> 处的值就是我们要的系数。对于点 <span class="arithmatex">\(x_i\)</span>，它的系数是：</p>
+<div class="arithmatex">\[
+L_i(0) = \prod_{j \ne i} \frac{0 - x_j}{x_i - x_j}
+\]</div>
+<ul>
+<li><strong>对于 <span class="arithmatex">\(x_1=1\)</span></strong>（对应 <span class="arithmatex">\(h(1)\)</span> 的系数）：</li>
+</ul>
+<div class="arithmatex">\[
+L_1(0) = \frac{(0-2)(0-3)}{(1-2)(1-3)} = \frac{(-2)\times(-3)}{(-1)\times(-2)} = \frac{6}{2} = 3
+\]</div>
+<ul>
+<li><strong>对于 <span class="arithmatex">\(x_2=2\)</span></strong>（对应 <span class="arithmatex">\(h(2)\)</span> 的系数）：</li>
+</ul>
+<div class="arithmatex">\[
+L_2(0) = \frac{(0-1)(0-3)}{(2-1)(2-3)} = \frac{(-1)\times(-3)}{1 \times (-1)} = \frac{3}{-1} = -3
+\]</div>
+<ul>
+<li><strong>对于 <span class="arithmatex">\(x_3=3\)</span></strong>（对应 <span class="arithmatex">\(h(3)\)</span> 的系数）：</li>
+</ul>
+<div class="arithmatex">\[
+L_3(0) = \frac{(0-1)(0-2)}{(3-1)(3-2)} = \frac{(-1)\times(-2)}{2 \times 1} = \frac{2}{2} = 1
+\]</div>
+<p>把它们放在一起就是：
+$$
+h(0) = 3 \cdot h(1) - 3 \cdot h(2) + 1 \cdot h(3)
+$$
+系数向量正是 <span class="arithmatex">\((3, -3, 1)\)</span>。</p>
+</details>
 <div class="admonition example">
 <p class="admonition-title">Case 1: <span class="arithmatex">\(a=2,\ b=4\)</span></p>
 <table>

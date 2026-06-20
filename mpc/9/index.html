@@ -20,7 +20,7 @@
     
     
       
-        <title>Chapter 9 恶意安全性：GMW 编译器与切分选择（Cut-and-Choose） - sodasugar的笔记本</title>
+        <title>Chapter 9 恶意安全性 - sodasugar的笔记本</title>
       
     
     
@@ -98,7 +98,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Chapter 9 恶意安全性：GMW 编译器与切分选择（Cut-and-Choose）
+              Chapter 9 恶意安全性
             
           </span>
         </div>
@@ -2420,6 +2420,8 @@
       
         
       
+        
+      
     
     
     
@@ -2684,6 +2686,29 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys3/11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 11 DLP and TLP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -2700,6 +2725,8 @@
   
     
     
+      
+        
       
         
       
@@ -3069,6 +3096,29 @@
   
   
     <li class="md-nav__item">
+      <a href="../../db/19/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 19 Recovery System
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../db/collection/" class="md-nav__link">
         
   
@@ -3361,7 +3411,7 @@
   
   
   <span class="md-ellipsis">
-    Chapter 9 恶意安全性：GMW 编译器与切分选择（Cut-and-Choose）
+    Chapter 9 恶意安全性
     
   </span>
   
@@ -3374,7 +3424,7 @@
   
   
   <span class="md-ellipsis">
-    Chapter 9 恶意安全性：GMW 编译器与切分选择（Cut-and-Choose）
+    Chapter 9 恶意安全性
     
   </span>
   
@@ -4492,6 +4542,23 @@
 <li>核验通过则 <span class="arithmatex">\(V\)</span> 接受证明。</li>
 </ol>
 </details>
+<div class="admonition question">
+<p class="admonition-title">不定项选择题【24-25春夏期末】</p>
+<p>Choose all correct descriptions for Zero-knowledge proofs from the followings.</p>
+<p>(A) Zero-knowledge proofs have interactive and non-interactive two types.</p>
+<p>(B) All zero-knowledge proofs must repeat multiple times to have high enough soundness.</p>
+<p>(C) Zero-knowledge proofs do not leak any information to the verifier.</p>
+<p>(D) The security of zero-knowledge proofs can be guaranteed against computationally unbounded adversaries.</p>
+<details class="success">
+<summary>参考答案（LLM生成）</summary>
+<ul>
+<li>(A) 正确。零知识证明可分为交互式（Interactive）和非交互式（Non-interactive）两种类型。交互式需要证明者与验证者多轮交互；非交互式（如 zk-SNARKs）只需证明者生成一个证明，验证者可直接验证。</li>
+<li>(B) 错误。并非所有零知识证明都需要重复多次来提高可靠性（soundness）。对于具有统计可靠性或完美可靠性的证明，单次执行即可；只有某些具有计算可靠性且单次执行错误概率较高的协议（如早期的交互式零知识证明）才需要通过多次重复来放大可靠性。非交互式零知识证明通常不依赖重复。</li>
+<li>(C) 正确。这是零知识证明的核心性质——零知识性：验证者在验证过程中，除了“该陈述为真”这一事实外，不会获得任何额外信息或知识。</li>
+<li>(D) 错误。大多数实用的零知识证明的安全性依赖于计算假设（如离散对数困难问题），只能对抗计算上有界的敌手（多项式时间攻击者）。要实现对抗计算无界敌手的安全性，需要统计零知识或完美零知识，这通常需要更强的假设或带来效率上的牺牲，并非所有零知识证明都能保证这一点。</li>
+</ul>
+</details>
+</div>
 <h2 id="2-sigma">2 Sigma 协议<a class="headerlink" href="#2-sigma" title="Permanent link">&para;</a></h2>
 <p>对关系 <span class="arithmatex">\(R\)</span> 的 Sigma 协议由三部分组成：</p>
 <ul>
@@ -4514,8 +4581,10 @@ a \leftarrow C(x, w; r);\ z \leftarrow Z(x, w, r, e):\ \mathcal{V}(x, a, e, z) =
 <div class="arithmatex">\[
 \Pr\left[
 \begin{aligned}
-&amp;(x, a) \leftarrow \mathcal{A}(1^\lambda);\ e, e' \xleftarrow{\$} \{0, 1\}^\lambda; \\
-&amp;z, z' \leftarrow \mathcal{A}(e, e');\ w \leftarrow \mathcal{X}(x, a, \{e, z\}, \{e', z'\})
+&amp;(x, a) \leftarrow \mathcal{A}(1^\lambda);\  \\
+&amp;e, e' \xleftarrow{\$} \{0, 1\}^\lambda; \\
+&amp;z, z' \leftarrow \mathcal{A}(e, e'); \\
+&amp;w \leftarrow \mathcal{X}(x, a, \{e, z\}, \{e', z'\})
 \end{aligned}
 :\ 
 \begin{aligned}
