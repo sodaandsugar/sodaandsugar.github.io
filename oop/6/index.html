@@ -3462,6 +3462,12 @@
       
         
       
+        
+      
+        
+      
+        
+      
     
     
     
@@ -4129,6 +4135,75 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../collection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    错题集
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    程序输出题
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../blank/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    程序填空题
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -4457,7 +4532,7 @@
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">f</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;B::f()&quot;</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="c1">// 派生类重写虚函数 f</span>
 <span class="p">};</span>
 </code></pre></div>
-<p>当执行 <code>B b;</code> 时，构造顺序严格遵循先基类 A 构造，再派生类 B 构造」，最终输出为 <code>A::f()B::f()</code>。</p>
+<p>当执行 <code>B b;</code> 时，构造顺序严格遵循先基类 A 构造，再派生类 B 构造，最终输出为 <code>A::f()B::f()</code>。</p>
 </details>
 <ul>
 <li><strong>抽象类（Abstract Classes）</strong>通常用于建模，可以强制派生类遵守接口，定义接口而不提供完整实现，适用于当前信息不足无法给出通用实现或只想提供接口继承的场景。</li>

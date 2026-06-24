@@ -3462,6 +3462,12 @@
       
         
       
+        
+      
+        
+      
+        
+      
     
     
     
@@ -4195,6 +4201,75 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../collection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    错题集
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    程序输出题
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../blank/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    程序填空题
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -4426,8 +4501,7 @@ static_cast dynamic_cast const_cast reinterpret_cast
 <p>隐含第一个参数（即接收者 <code>this</code>），接收者不做类型转换。</p>
 <details class="example">
 <summary>示例</summary>
-<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Integer</span>
-<span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Integer</span><span class="w"> </span><span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
 <span class="w">    </span><span class="c1">// 参数 n 默认值为 0，初始化列表将成员变量 i 初始化为 n</span>
 <span class="w">    </span><span class="n">Integer</span><span class="p">(</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">i</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
@@ -4456,11 +4530,12 @@ static_cast dynamic_cast const_cast reinterpret_cast
 </ul>
 <details class="example">
 <summary>示例</summary>
-<p>```cpp
-Integer operator-() const {
-    return Integer(-i);
-}</p>
-<p>z = -x;    // 解析为 z.operator=(x.operator-())</p>
+<div class="highlight"><pre><span></span><code><span class="n">Integer</span><span class="w"> </span><span class="k">operator</span><span class="o">-</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Integer</span><span class="p">(</span><span class="o">-</span><span class="n">i</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">x</span><span class="p">;</span><span class="w">    </span><span class="c1">// 解析为 z.operator=(x.operator-())</span>
+</code></pre></div>
 </details>
 <h3 id="2-2-global-functions">2. 2 Global Functions<a class="headerlink" href="#2-2-global-functions" title="Permanent link">&para;</a></h3>
 <p>两个参数都显式写出且都可以执行类型转换，若要访问私有成员，可以声明为友元函数。</p>
