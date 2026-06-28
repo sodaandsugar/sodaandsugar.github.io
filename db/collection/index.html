@@ -3467,10 +3467,6 @@
       
         
       
-        
-      
-        
-      
     
     
     
@@ -3688,6 +3684,157 @@
   
   <span class="md-ellipsis">
     Lec6 迭代器与智能指针
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_7_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_7_2" id="__nav_4_7_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    错题集
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_7_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_7_2">
+            <span class="md-nav__icon md-icon"></span>
+            错题集
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/collection/TOF/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    判断题
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/collection/mul/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    选择题
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/collection/output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    程序输出题
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/collection/blank/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    程序填空题
     
   </span>
   
@@ -4051,75 +4198,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../oop/collection/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    错题集
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../oop/output/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    程序输出题
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../oop/blank/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    程序填空题
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -4296,6 +4374,38 @@
 <p>检查 <code>qid='22'</code> 的行，只有 <code>(55, 22)</code> 符合条件。结果为 <strong>1</strong>。</p>
 </details>
 </div>
+<details class="question">
+<summary>B+ 树索引遍历</summary>
+<p>Assuming the height of the B+-tree index on the table <code>student(ID)</code> is 4. Considering the query: <code>select * from student where ID='2020160008'</code>, the estimated cost for evaluating above query using the <strong>Index Scan algorithm</strong> is:</p>
+<p>(A) 4 block transfers + 4 seeks.</p>
+<p>(B) 5 block transfers + 5 seeks.</p>
+<p>(C) 3 block transfers + 3 seeks.</p>
+<p>(D) 5 block transfers + 4 seeks.</p>
+<details class="success">
+<summary>答案</summary>
+<p>B</p>
+</details>
+<details class="tip">
+<summary>解析</summary>
+<p>树高 4，遍历索引需 4 次块传输 + 4 次寻道，回表读取数据块再加 1 次传输 + 1 次寻道，总计 5 次块传输 + 5 次寻道。</p>
+</details>
+</details>
+<details class="question">
+<summary>Hash Join 无递归分区的条件</summary>
+<p>Assuming the table r and s has 256 and 1024 blocks respectively. Each block has 4K bytes. To do natural join r and s with the Hash Join algorithm, what is the approximate minimum memory needed to avoid recursive partitioning? </p>
+<p>(A) 64K bytes</p>
+<p>(B) 128K bytes</p>
+<p>(C) 1M bytes</p>
+<p>(D) 2M bytes</p>
+<details class="success">
+<summary>答案</summary>
+<p>A</p>
+</details>
+<details class="tip">
+<summary>解析</summary>
+<p>小表共 256 块，避免递归分区的近似条件为内存块数 <span class="arithmatex">\(M\approx\sqrt{256}=16\)</span> 块。每块 4K 字节，总内存约 <span class="arithmatex">\(16 \times 4\mathrm{K}=64\mathrm{K}\)</span> 字节。</p>
+</details>
+</details>
 
 
 

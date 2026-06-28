@@ -3770,10 +3770,6 @@
       
         
       
-        
-      
-        
-      
     
     
     
@@ -3991,6 +3987,157 @@
   
   <span class="md-ellipsis">
     Lec6 迭代器与智能指针
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_7_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_7_2" id="__nav_4_7_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    错题集
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_7_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_7_2">
+            <span class="md-nav__icon md-icon"></span>
+            错题集
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/collection/TOF/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    判断题
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/collection/mul/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    选择题
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/collection/output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    程序输出题
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/collection/blank/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    程序填空题
     
   </span>
   
@@ -4344,75 +4491,6 @@
   
   <span class="md-ellipsis">
     Chapter 15 Miscellaneous Points
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../oop/collection/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    错题集
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../oop/output/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    程序输出题
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../oop/blank/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    程序填空题
     
   </span>
   
@@ -5076,10 +5154,41 @@ R \sim R + max
 <p>因为 page 和 frame 大小相同，所以<strong>页内偏移不变</strong>，只需要把页号换成帧号。</p>
 <details class="example">
 <summary>示例</summary>
+<p><img src="/sys3/images/image4-16.png" style="display: block; width: 60%; margin: 0 auto;" /></p>
+</details>
+<details class="question">
+<summary>What is the page table?</summary>
 <p>设逻辑地址宽度 <span class="arithmatex">\(m = 4\)</span>，page size 为 <span class="arithmatex">\(4 \, \text{bytes} = 2^2\)</span>，则高 <span class="arithmatex">\(2\)</span> 位是 page number，低 <span class="arithmatex">\(2\)</span> 位是 offset。</p>
-<p><img src="/sys3/images/image4-16.png" style="display: block; width: 50%; margin: 0 auto;" /></p>
-<p><img src="/sys3/images/image4-17.png" style="display: block; width: 40%; margin: 0 auto;" /></p>
-<p>逻辑地址空间按 <span class="arithmatex">\(4\)</span>-byte pages 划分，再通过 page table 映射到物理内存中的 frames。</p>
+<p><img src="/sys3/images/image4-17.png" style="display: block; width: 60%; margin: 0 auto;" /></p>
+<details class="success">
+<summary>答案</summary>
+<table>
+<thead>
+<tr>
+<th>逻辑页号（Page No.）</th>
+<th>物理帧号（Frame No.）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>5</td>
+</tr>
+<tr>
+<td>1</td>
+<td>6</td>
+</tr>
+<tr>
+<td>2</td>
+<td>1</td>
+</tr>
+<tr>
+<td>3</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+</details>
 </details>
 <h2 id="6-paging-hardware-tlb-and-eat">6 Paging Hardware, TLB and EAT<a class="headerlink" href="#6-paging-hardware-tlb-and-eat" title="Permanent link">&para;</a></h2>
 <h3 id="6-1-page-table-hardware-support">6. 1 Page Table Hardware Support<a class="headerlink" href="#6-1-page-table-hardware-support" title="Permanent link">&para;</a></h3>
@@ -5236,8 +5345,8 @@ k + 1
 <p>单级页表的优点是概念简单，但在大地址空间下会占用大量内存。</p>
 <details class="example">
 <summary>示例：32-bit logical address space and 4KB page size</summary>
-<p><span class="arithmatex">\(4 \, \text{KB} = 2^{12}\)</span>，故页表一共有 <span class="arithmatex">\(2^{32} / 2^{12} = 2^{20}\)</span> 项 entries</p>
-<p>每个 PTE 为 <span class="arithmatex">\(4 \, \text{bytes}\)</span>，则页表大小 = <span class="arithmatex">\(2^{20} \times 4 = 2^{22}\)</span> \, \text{bytes} = <span class="arithmatex">\(4 \, \text{MB}\)</span>，也就是说，<strong>每个进程仅页表就要 4 MB</strong></p>
+<p><span class="arithmatex">\(4 \, \text{KB} = 2^{12} \, \text{bytes}\)</span>，故页表一共有 <span class="arithmatex">\(2^{32} / 2^{12} = 2^{20}\)</span> 项 entries</p>
+<p>每个 PTE 为 <span class="arithmatex">\(4 \, \text{bytes}\)</span>，则页表大小 = <span class="arithmatex">\(2^{20} \times 4 = 2^{22} \, \text{bytes} = 4 \, \text{MB}\)</span>，也就是说，<strong>每个进程仅页表就要 4 MB</strong></p>
 </details>
 <div class="admonition warning">
 <p class="admonition-title">单级页表的问题</p>
@@ -5265,8 +5374,9 @@ k + 1
 </ul>
 <details class="example">
 <summary>示例：32-bit + 4 KB page + 4-byte PTE</summary>
-<p>一个页表页能装 <span class="arithmatex">\(2^{12} \div 4 = 2^{10} = 1 \text{K}\)</span> 个 表项。</p>
-<p>整张单级页表共有 <span class="arithmatex">\(2^{20}\)</span> 项，所以可以拆成 <span class="arithmatex">\(2^{10}\)</span> 个二级页表页，再用一个一级页表去索引这些二级页表</p>
+<p>页面大小是 <span class="arithmatex">\(4\ \text{KB} = 4 \times 1024 = 2^{12} \, \text{bytes}\)</span>，页内偏移 <span class="arithmatex">\(d\)</span> 占 12 位。</p>
+<p>逻辑地址总长度是 32 位，减去 12 位的页内偏移，剩下的高位全部是页号，即 <span class="arithmatex">\(32 - 12 = 20\)</span> 位，整张单级页表总共有 <span class="arithmatex">\(2^{20}\)</span> 个表项。</p>
+<p>一个页表页能装 <span class="arithmatex">\(2^{12} \div 4 = 2^{10} = 1 \text{K}\)</span> 个 表项，总表项数 <span class="arithmatex">\(2^{20}\)</span> ÷ 每个页表页装 <span class="arithmatex">\(2^{10}\)</span> 项 = <span class="arithmatex">\(2^{10}\)</span> 个二级页表页。</p>
 <p>这就得到经典的 <span class="arithmatex">\(10 + 10 + 12\)</span> 地址划分：</p>
 <p><img src="/sys3/images/image4-21.png" style="display: block; width: 30%; margin: 0 auto;" /></p>
 </details>
@@ -5444,41 +5554,37 @@ k + 1
 </tbody>
 </table>
 <details class="question">
-<summary>In 32-bit architecture, for 1-level page table, how large is the whole page table?</summary>
-<p>对 32-bit VA + 4 KB page + 4-byte PTE：</p>
-<ul>
-<li>页数 <span class="arithmatex">\(= 2^{32} \div 2^2 = 2^{20}\)</span></li>
-<li>单级页表大小 <span class="arithmatex">\(= 2^{20} \times 4 = 4 \, \text{MB}\)</span></li>
-</ul>
+<summary>In 32-bit architecture, for 1-level page table, how large is the whole page table?（32-bit VA + 4 KB page + 4-byte PTE）</summary>
+<p>页面大小为 <span class="arithmatex">\(4\ \text{KB} = 4 \times 1024 = 2^{12} \, \text{bytes}\)</span>，因此一共有 <span class="arithmatex">\(2^{32} \div 2^{12} = 2^{20}\)</span> 个页表项，每个页表项（PTE）占 <span class="arithmatex">\(4\)</span> 字节，因此整张页表的总大小为 <span class="arithmatex">\(2^{20} \times 4 = 4 \, \text{MB}\)</span>。</p>
 </details>
 <details class="question">
 <summary>In 32-bit architecture, for 2-level page table, how large is the whole page table? How large for the 1st level PGT? How large for the 2nd level PGT?</summary>
-<p>第一级页表的大小和第二级页表的大小均为 4KB</p>
+<p><span class="arithmatex">\(10+10+12\)</span>，第一级页表的大小和第二级页表的大小均为 <span class="arithmatex">\(2^10 \times 4 \, \text{bytes} = 4 \, \text{KB}\)</span>。</p>
 </details>
 <details class="question">
 <summary>Page table base register holds 0x0061 9000, Virtual address is 0xf201 5202?</summary>
 <ul>
 <li>VA <span class="arithmatex">\(= 0xf201 5202 = 1111 0010 00 | 00 0001 0101 | 0010 0000 0010\)</span></li>
-<li>页内偏移 Offset（低 12 位）<span class="arithmatex">\(= 0xF2015202 \, \&amp; \, 0xFFF = 0x202\)</span></li>
-<li>虚拟页号VPN（高 20 位）<span class="arithmatex">\(= 0xF2015202 &gt;&gt; 12 = 0xF2015\)</span></li>
-<li>页目录索引 PDI（高 10 位）<span class="arithmatex">\(= 0xF2015 &gt;&gt; 10 = 0x3C8\)</span></li>
-<li>页表项索引 PTI（中 10 位）<span class="arithmatex">\(= 0xF2015 \, \&amp; \, 0x3FF = 0x15\)</span></li>
-<li>PDE 地址 <span class="arithmatex">\(=\)</span> PDT 基地址（PTBR） + PDI × 4 <span class="arithmatex">\(= 0x00619000 + 0x3C8 × 4 = 0x00619F20\)</span></li>
-<li>PTE 地址 <span class="arithmatex">\(= \text{PT_Base} + \text{PTI} ×\times 4 = \text{PT_Base} + 0x15 \times 4 = \text{PT_Base} + 0x54\)</span></li>
-<li>物理地址 PA <span class="arithmatex">\(=\)</span> PPN + Offset</li>
+<li>页内偏移 Offset（低 12 位）<span class="arithmatex">\(= 0x202\)</span></li>
+<li>一级页号（高 10 位）<span class="arithmatex">\(p_1 = 0x3C8\)</span></li>
+<li>二级页号（中 10 位）<span class="arithmatex">\(p_2 = 0x15\)</span></li>
+<li>一级 PTE 地址 <span class="arithmatex">\(= \text{PTBR} + p_1 × 4 = 0x00619F20\)</span></li>
+<li>从物理地址 <code>0x00619F20</code> 读取 <span class="arithmatex">\(4\)</span> 字节，得到二级页表的物理页号 PFN1，二级页表的起始物理地址为 <span class="arithmatex">\(\text{PFN1} &lt;&lt; 12\)</span>（一页 4KB，页起始地址低 12 位全为 0）</li>
+<li>二级 PTE 地址 <span class="arithmatex">\(= (\text{PFN1} &lt;&lt; 12) + p_2 \times 4 = (\text{PFN1} &lt;&lt; 12) + 0x54\)</span></li>
+<li>从二级 PTE 地址读取 <span class="arithmatex">\(4\)</span> 字节，得到的就是最终数据页的物理页号 PFN2</li>
+<li>PFN2 左移 12 位得到页起始地址，加上页内偏移就是最终的物理地址 <span class="arithmatex">\(\text{PA} = \text{PFN2} &lt;&lt; 12 + 0x202\)</span></li>
 </ul>
 </details>
 <details class="question">
 <summary>Page table base register holds 0x1051 4000, Virtual address is 0x2190 7010</summary>
 <ul>
 <li>VA <span class="arithmatex">\(= 0x2190 7010 = 0010 0001 10 | 01 0000 0111 | 0000 0001 0000\)</span></li>
-<li>页内偏移 Offset（低 12 位）<span class="arithmatex">\(= 0x010\)</span></li>
-<li>虚拟页号VPN（高 20 位）<span class="arithmatex">\(= 0x21907\)</span></li>
-<li>页目录索引 PDI（高 10 位）<span class="arithmatex">\(= 0x21907 &gt;&gt; 10 = 0x86\)</span></li>
-<li>页表项索引 PTI（中 10 位）<span class="arithmatex">\(=0x21907 \, \&amp; \, 0x3FF = 0x107\)</span></li>
-<li>PDE 地址 <span class="arithmatex">\(=\)</span> PTBR + PDI × 4 <span class="arithmatex">\(= 0x10514000 + 0x86 × 4 = 0x10514218\)</span></li>
-<li>PTE 地址 <span class="arithmatex">\(= \text{PT_Base} + \text{PTI} ×\times 4 = \text{PT_Base} + 0x107 \times 4 = \text{PT_Base} + 0x41C\)</span></li>
-<li>物理地址 PA <span class="arithmatex">\(=\)</span> PPN + Offset</li>
+<li>页内偏移 Offset（低 12 位）<span class="arithmatex">\(= 0x10\)</span></li>
+<li>一级页号（高 10 位）<span class="arithmatex">\(p_1 = 0x86\)</span></li>
+<li>二级页号（中 10 位）<span class="arithmatex">\(p_2 =  0x107\)</span></li>
+<li>一级 PTE 地址 <span class="arithmatex">\(= \text{PTBR} + p_1 × 4 = 0x10514218\)</span>，读取二级页表的物理页号 PFN1</li>
+<li>二级 PTE 地址 <span class="arithmatex">\(= (\text{PFN1} &lt;&lt; 12) + p_2 \times 4 = (\text{PFN1} &lt;&lt; 12) + 0x41C\)</span>，读取最终数据页的物理页号 PFN2</li>
+<li>物理地址 <span class="arithmatex">\(\text{PA} = \text{PFN2} &lt;&lt; 12 + 0x10\)</span></li>
 </ul>
 </details>
 <details class="example">
@@ -5492,7 +5598,7 @@ k + 1
 </details>
 <details class="question">
 <summary>How about page size is 64KB? What is the virtual address format for 32-bit? What is the virtual address format for 64-bit?</summary>
-<p>若 page size <span class="arithmatex">\(= 64 \, \text{KB} = 2^16\)</span>，PTE <span class="arithmatex">\(= 8 \, \text{bytes}\)</span>，</p>
+<p>若 page size <span class="arithmatex">\(= 64 \, \text{KB} = 2^{16}\)</span>，PTE <span class="arithmatex">\(= 8 \, \text{bytes}\)</span>，</p>
 <p>则一个页表页可容纳：<span class="arithmatex">\(2^{16} / 2^3 = 2^{13}\)</span> 个表项，因此每一级通常可索引 13 bits</p>
 <p>常见结果可写成：</p>
 <ul>

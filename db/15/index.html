@@ -3620,10 +3620,6 @@
       
         
       
-        
-      
-        
-      
     
     
     
@@ -3841,6 +3837,157 @@
   
   <span class="md-ellipsis">
     Lec6 迭代器与智能指针
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_7_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_7_2" id="__nav_4_7_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    错题集
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_7_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_7_2">
+            <span class="md-nav__icon md-icon"></span>
+            错题集
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/collection/TOF/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    判断题
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/collection/mul/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    选择题
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/collection/output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    程序输出题
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/collection/blank/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    程序填空题
     
   </span>
   
@@ -4204,75 +4351,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../oop/collection/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    错题集
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../oop/output/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    程序输出题
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../oop/blank/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    程序填空题
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -4550,10 +4628,15 @@ b \cdot t_T + S \cdot t_S
 <p class="admonition-title">多缓冲预读优化</p>
 <p>若每个有序段仅分配 <span class="arithmatex">\(1\)</span> 个数据块作为缓冲区，则会导致归并过程中磁盘寻道次数过多。作为改进，可以为每个有序段分配 <span class="arithmatex">\(b_b\)</span> 个数据块作为缓冲区，每次可批量读写 <span class="arithmatex">\(b_b\)</span> 个数据块。</p>
 <ul>
-<li>单轮归并可处理的有序段数量：<span class="arithmatex">\(\lfloor \dfrac{M}{b_b} \rfloor -1\)</span></li>
-<li>所需归并轮次总数：<span class="arithmatex">\(\lceil \log_{\lfloor \frac{M}{b_b} \rfloor -1}(\dfrac{b_r}{M}) \rceil\)</span></li>
-<li>初始有序段生成及每轮归并的数据块传输量：<span class="arithmatex">\(2b_r\)</span></li>
-<li>外排序的总数据块传输量公式：<span class="arithmatex">\(b_r\left(2 \lceil \log_{\lfloor \frac{M}{b_b} \rfloor -1}(\dfrac{b_r}{M}) \rceil + 1\right)\)</span></li>
+<li>单轮归并可处理的有序段数量 <span class="arithmatex">\(k = \lfloor \dfrac{M}{b_b} \rfloor -1\)</span></li>
+<li>初始归并段数量 <span class="arithmatex">\(r = \lceil \dfrac{b_r}{M} \rceil\)</span></li>
+<li>所需归并轮次总数 <span class="arithmatex">\(x = \lceil \log_k r \rceil\)</span></li>
+<li>初始有序段生成及每轮归并的数据块传输量 <span class="arithmatex">\(= 2b_r\)</span></li>
+<li>总数据块传输量：<ul>
+<li>默认最终结果不写回磁盘，最后一趟只读不写：<span class="arithmatex">\(b_r (2x + 1)\)</span></li>
+<li>最终结果写回磁盘，最后一趟需要增加 1 次写操作：<span class="arithmatex">\(2 b_r (x + 1)\)</span></li>
+</ul>
+</li>
 </ul>
 </div>
 <div class="admonition tip">
@@ -4561,7 +4644,13 @@ b \cdot t_T + S \cdot t_S
 <p>若算法在一次连续读写操作中可处理的块数为 <span class="arithmatex">\(b\)</span>，总共需要读写的块数为 <span class="arithmatex">\(B\)</span>，则总寻道次数为 <span class="arithmatex">\(\left\lceil \frac{B}{b} \right\rceil\)</span>。</p>
 <p>创建有序段时，每生成 <span class="arithmatex">\(1\)</span> 个有序段需要 <span class="arithmatex">\(1\)</span> 次读寻道和 <span class="arithmatex">\(1\)</span> 次写寻道，总寻道次数为 <span class="arithmatex">\(2\left\lceil \frac{b_r}{M} \right\rceil\)</span>。</p>
 <p>归并有序段时，每一轮归并需要 <span class="arithmatex">\(2\left\lceil \frac{b_r}{b_b} \right\rceil\)</span> 次寻道（实际可能更多，因为每个有序段的块数不一定是 <span class="arithmatex">\(b_b\)</span> 的整数倍），总寻道次数为：</p>
-<div class="arithmatex">\[2\left\lceil \frac{b_r}{M} \right\rceil + \left\lceil \frac{b_r}{b_b} \right\rceil \left(2\left\lceil \log_{\lfloor M/b_b \rfloor-1}\left(\frac{b_r}{M}\right) \right\rceil -1\right)\]</div>
+<div class="arithmatex">\[
+2\left\lceil \frac{b_r}{M} \right\rceil + \left\lceil \frac{b_r}{b_b} \right\rceil \left(2 x -1\right)
+\]</div>
+<p>若最终结果写回磁盘，最后一趟增加写寻道，总寻道次数为：</p>
+<div class="arithmatex">\[
+2\left\lceil \frac{b_r}{M} \right\rceil + 2x \left\lceil \frac{b_r}{b_b} \right\rceil
+\]</div>
 </div>
 <h2 id="4-join-algorithms">4 Join Algorithms<a class="headerlink" href="#4-join-algorithms" title="Permanent link">&para;</a></h2>
 <div class="admonition quote">
