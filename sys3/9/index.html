@@ -5076,7 +5076,7 @@
 <h3 id="6-1-contiguous-allocation">6. 1 Contiguous Allocation<a class="headerlink" href="#6-1-contiguous-allocation" title="Permanent link">&para;</a></h3>
 <p><strong>连续分配（Contiguous allocation）</strong> 为每个文件分配一段连续磁盘块，目录只需保存起始磁盘地址和占用磁盘块总数量。</p>
 <p><img src="/sys3/images/image9-9.png" style="display: block; width: 50%; margin: 0 auto;" /></p>
-<p>这种方法顺序读写时磁盘磁头移动少，磁盘寻道耗时短，但难以找到足够大的连续空闲空间，会产生外部碎片（external fragmentation），可能需要compaction 或 defrag，开销大。</p>
+<p>这种方法顺序读写时磁盘磁头移动少，磁盘寻道耗时短，但难以找到足够大的连续空闲空间，会产生外部碎片（external fragmentation），可能需要 compaction 或 defrag，开销大。</p>
 <div class="admonition warning">
 <p class="admonition-title">文件扩容困难</p>
 <ul>

@@ -5169,35 +5169,22 @@
 </tr>
 </tbody>
 </table>
-<details class="example">
+<details class="quote">
 <summary>Intel Pentium cache organization</summary>
 <p><img src="/sys3/images/image3-16.png" style="display: block; width: 80%; margin: 0 auto;" /></p>
 </details>
+<details class="example">
+<summary>示例：Memory Access without/with Cache</summary>
 <p>以 <code>lw t0, 0(t1)</code> 为例，若 <code>t1 = 1022</code> 且 <code>Memory[1022] = 99</code>，则：</p>
-<div class="admonition example">
-<p class="admonition-title">Memory Access without Cache</p>
-<ol>
-<li>Processor 向 Memory 发出地址 <code>1022</code></li>
-<li>Memory 读取该字</li>
-<li>Memory 把 <code>99</code> 返回给 Processor</li>
-<li>Processor 将 <code>99</code> 写入寄存器 <code>t0</code></li>
-</ol>
-</div>
-<div class="admonition example">
-<p class="admonition-title">Memory Access with Cache</p>
-<ol>
-<li>Processor 先把地址发给 Cache</li>
-<li>Cache 检查是否含有该地址的副本</li>
+<ul>
+<li><strong>Memory Access without Cache</strong>：Processor 向 Memory 发出地址 <code>1022</code>，Memory 读取该字，把 <code>99</code> 返回给 Processor，Processor 将 <code>99</code> 写入寄存器 <code>t0</code>。</li>
+<li><strong>Memory Access with Cache</strong>：Processor 先把地址发给 Cache，Cache 检查是否含有该地址的副本<ul>
 <li>若命中：直接把数据返回给处理器</li>
-<li>若未命中：<ul>
-<li>Cache 再把地址发往主存</li>
-<li>主存返回数据给 Cache</li>
-<li>Cache 更新 / 替换对应块</li>
-<li>Cache 再把数据返回给处理器</li>
+<li>若未命中：Cache 再把地址发往主存，主存返回数据给 Cache，Cache 更新 / 替换对应块，再把数据返回给处理器</li>
 </ul>
 </li>
-</ol>
-</div>
+</ul>
+</details>
 <p>读内存时会出现三种情况：</p>
 <ul>
 <li><strong>Cache hit</strong>：该块有效且地址匹配，直接读</li>
@@ -5226,16 +5213,16 @@
 </details>
 <h3 id="3-1-block-placement">3. 1 Block Placement<a class="headerlink" href="#3-1-block-placement" title="Permanent link">&para;</a></h3>
 <ul>
-<li><strong>直接映射（direct mapped）</strong>：每个主存块<strong>只能映射到 Cache 中唯一一个位置</strong>，结构简单、命中判断快，但容易发生冲突 miss</li>
+<li><strong>直接映射（direct mapped）</strong>：每个主存块<strong>只能映射到 Cache 中唯一一个位置</strong>，结构简单、命中判断快，但容易发生 conflict miss。</li>
 </ul>
 <p><img src="/sys3/images/image3-17.png" style="display: block; width: 80%; margin: 0 auto;" /></p>
 <p><img src="/sys3/images/image3-18.png" style="display: block; width: 60%; margin: 0 auto;" /></p>
 <ul>
-<li><strong>全相联（fully associative）</strong>：一个块可以被放进 Cache 的<strong>任意位置</strong>，最灵活，冲突 miss 最少，但查找硬件代价最高</li>
+<li><strong>全相联（fully associative）</strong>：一个块可以被放进 Cache 的<strong>任意位置</strong>，最灵活，冲突 miss 最少，但查找硬件代价最高。</li>
 </ul>
 <p><img src="/sys3/images/image3-19.png" style="display: block; width: 80%; margin: 0 auto;" /></p>
 <ul>
-<li><strong>组相联（set associative）</strong>：一个块先确定属于哪一个 <code>set</code>，再放入该组中的任意一个位置，若每组有 <code>n</code> 个块，则称为 <code>n-way set associative</code></li>
+<li><strong>组相联（set associative）</strong>：一个块先确定属于哪一个 <code>set</code>，再放入该组中的任意一个位置，若每组有 <code>n</code> 个块，则称为 <code>n-way set associative</code>。</li>
 </ul>
 <p><img src="/sys3/images/image3-20.png" style="display: block; width: 80%; margin: 0 auto;" /></p>
 <details class="info">
@@ -5293,8 +5280,8 @@
 <li><strong>Byte Offset field</strong>：选择块内的具体字节，位数为 <span class="arithmatex">\(\log_2(\text{block size in bytes})\)</span></li>
 <li><strong>Tag field</strong>：用于在选中的组 / 块中做地址匹配，位数为 <span class="arithmatex">\(\text{Tag size} = \text{Address size} - \text{Index size} - \text{Byte offset size}\)</span></li>
 </ul>
-<div class="admonition tip">
-<p class="admonition-title">Line Matching and Word Selection</p>
+<details class="example">
+<summary>Line Matching and Word Selection</summary>
 <ul>
 <li><strong>Direct-mapped cache</strong>：只需比较唯一候选行的 tag</li>
 </ul>
@@ -5311,14 +5298,14 @@
 <p><img src="/sys3/images/image3-27.png" style="display: block; width: 70%; margin: 0 auto;" /></p>
 <p><img src="/sys3/images/image3-28.png" style="display: block; width: 70%; margin: 0 auto;" /></p>
 <p>命中后，再通过 offset 选出块中的具体字 / 字节。</p>
-</div>
+</details>
 <details class="quote">
 <summary>Using a Finite-State Machine to Control a Simple Cache</summary>
 <p><img src="/sys3/images/image3-29.png" style="display: block; width: 70%; margin: 0 auto;" /></p>
 </details>
 <h3 id="3-3-access-data-in-a-direct-mapped-cache">3. 3 Access data in a direct mapped cache<a class="headerlink" href="#3-3-access-data-in-a-direct-mapped-cache" title="Permanent link">&para;</a></h3>
-<div class="admonition example">
-<p class="admonition-title">示例</p>
+<details class="example">
+<summary>示例</summary>
 <p><img src="/sys3/images/image3-30.png" style="display: block; width: 80%; margin: 0 auto;" /></p>
 <p>先做地址划分，因为 <span class="arithmatex">\(16 \text{KB} = 2^{14}\ \text{bytes}\)</span>，每块 <span class="arithmatex">\(4\ \text{words} = 16\ \text{bytes} = 2^4\ \text{bytes}\)</span> ，所以 Cache 块数 <span class="arithmatex">\(2^{14} / 2^4 = 2^{10} = 1024\)</span>，因此对于 <span class="arithmatex">\(32\)</span> 位地址：</p>
 <ul>
@@ -5372,31 +5359,19 @@
 </tr>
 </tbody>
 </table>
-</div>
-<details class="note">
-<summary>注意</summary>
-<ul>
-<li>同一个 <code>index</code> 上一次只能放一个块</li>
-<li>地址不同但 <code>index</code> 相同的块会发生冲突</li>
-<li>命中判断必须同时看 <code>valid bit</code>、<code>tag</code>、<code>offset</code></li>
-<li>直接映射实现简单，但冲突替换最明显</li>
-</ul>
 </details>
+<p>直接映射实现简单，但冲突替换最明显，同一个 <code>index</code> 上一次只能放一个块，地址不同但 <code>index</code> 相同的块会发生冲突，命中判断必须同时看 <code>valid bit</code>、<code>tag</code>、<code>offset</code>。</p>
 <div class="admonition tip">
-<p class="admonition-title">总结</p>
-<p>地址长度为 <span class="arithmatex">\(64-\text{bit}\)</span>，Cache 为 <span class="arithmatex">\(\text{direct-mapped}\)</span>，Cache 含 <span class="arithmatex">\(2^n\)</span> 个块，因此 index 需要 <span class="arithmatex">\(n\)</span> 位，每块大小为 <span class="arithmatex">\(2^m \text{words}\)</span></p>
-<p>由于 <span class="arithmatex">\(1\ \text{word} = 4\ \text{bytes} = 2^2\ \text{bytes}\)</span>，所以块大小 <span class="arithmatex">\(= 2^{(m+2)}\ \text{bytes}\)</span>，块内偏移需要 <span class="arithmatex">\(m + 2\)</span> 位，其中 <span class="arithmatex">\(m\)</span> 位用于 word-in-block，<span class="arithmatex">\(2\)</span> 位用于 byte-in-word，因此 tag 位数 <span class="arithmatex">\(= 64 - (n + m + 2)\)</span>。</p>
-<p>每个 Cache 块需要存：</p>
+<p class="admonition-title">Cache 总硬件位数：64-bit 地址，direct-mapped，每个 Cache 含 <span class="arithmatex">\(2^n\)</span> 个块（<span class="arithmatex">\(n\)</span> 位 index），每个块含 <span class="arithmatex">\(2^m \, \text{words}\)</span></p>
 <ul>
-<li>数据位：<span class="arithmatex">\(2^m × 32\)</span></li>
-<li>tag 位：<span class="arithmatex">\(64 - n - m - 2\)</span></li>
-<li>valid 位：<span class="arithmatex">\(1\)</span></li>
+<li>块大小 <span class="arithmatex">\(= 2^m \times 4 = 2^{m+2} \, \text{bytes} = 2^{m+5} \, \text{bits}\)</span></li>
+<li>块内偏移需要 <span class="arithmatex">\(m + 2\)</span> 位，其中 <span class="arithmatex">\(m\)</span> 位用于 word-in-block，<span class="arithmatex">\(2\)</span> 位用于 byte-in-word</li>
 </ul>
-<p>所以完整 Cache 总位数为：</p>
+<p>完整 Cache 总位数为：</p>
 <div class="arithmatex">\[
 \text{cache size}
 = 2^n × (\text{block size} + \text{tag size} + \text{valid size})
-= 2^n × (2^m × 32 + 63 - n - m)
+= 2^n × (2^{m+5} + 63 - n - m)
 \]</div>
 <p>注意区分：</p>
 <ul>
@@ -5407,13 +5382,8 @@
 <details class="question">
 <summary>How many total bits are required for a direct-mapped cache with 16 KiB of data and four-word blocks, assuming a 64-bit address?</summary>
 <ul>
-<li><span class="arithmatex">\(16\ \text{KiB} = 4096\ \text{words} = 2^{12}\ \text{words}\)</span></li>
-<li>每块 <span class="arithmatex">\(4\ \text{words} = 2^2\ \text{words}\)</span>，所以 <span class="arithmatex">\(m = 2\)</span></li>
-<li>Cache 块数 <span class="arithmatex">\(= 2^{12} / 2^2 = 2^{10}\)</span>，所以 <span class="arithmatex">\(n = 10\)</span></li>
-</ul>
-<p>因此：</p>
-<ul>
-<li><strong>data bits per block</strong>：<span class="arithmatex">\(4 × 32 = 128\)</span></li>
+<li>Cache 块数 <span class="arithmatex">\(= \frac{16 \times 2^{10}}{4 \times 4} = 2^{10}\)</span>，所以 <span class="arithmatex">\(n = 10\)</span>，<span class="arithmatex">\(m = 2\)</span></li>
+<li><strong>data bits per block</strong>：<span class="arithmatex">\(4 × 4 × 8 = 128\)</span></li>
 <li><strong>tag bits per block</strong>：<span class="arithmatex">\(64 - (10 + 2 + 2) = 50\)</span></li>
 <li><strong>valid bits per block</strong>：<span class="arithmatex">\(1\)</span></li>
 </ul>
@@ -5473,18 +5443,11 @@
 </ul>
 <p><img src="/sys3/images/image3-33.png" style="display: block; width: 80%; margin: 0 auto;" /></p>
 </details>
-<div class="admonition warning">
-<p class="admonition-title">命中率不只由替换算法决定</p>
-<p>还和<strong>访问序列本身</strong>、<strong>Cache 容量</strong>、<strong>块大小</strong>和<strong>相联度</strong>等因素强相关。同一个算法，在不同工作负载下效果可能差很多。</p>
-</div>
+<p>命中率不只由替换算法决定，还和<strong>访问序列本身</strong>、<strong>Cache 容量</strong>、<strong>块大小</strong>和<strong>相联度</strong>等因素强相关。同一个算法，在不同工作负载下效果可能差很多。</p>
 <details class="example">
 <summary>Thrashing</summary>
 <p>当程序循环访问的工作集略大于 Cache 能容纳的块数时，可能出现<strong>刚装入就被替换</strong>的情况，即 <strong>thrashing（抖动）</strong>。</p>
-<p>例如顺序循环访问：</p>
-<ul>
-<li><code>1, 2, 3, 4, 1, 2, 3, 4</code></li>
-</ul>
-<p>若 Cache 只能容纳 <code>3</code> 个块，则很容易出现<strong>每次访问都 miss</strong> 的现象；若 Cache 能容纳 <code>4</code> 个块，则装满之后后续访问就可以连续命中。</p>
+<p>例如顺序循环访问 <code>1, 2, 3, 4, 1, 2, 3, 4</code>，若 Cache 只能容纳 3 个块，则很容易出现<strong>每次访问都 miss</strong> 的现象；若 Cache 能容纳 4 个块，则装满之后后续访问就可以连续命中。</p>
 </details>
 <details class="quote">
 <summary>Stack replacement algorithm</summary>
@@ -5507,10 +5470,12 @@ B_t(n) \subseteq B_t(n+1)
 <p><img src="/sys3/images/image3-36.png" style="display: block; width: 80%; margin: 0 auto;" /></p>
 </details>
 <h3 id="3-5-hardware-implementation-of-lru">3. 5 Hardware Implementation of LRU<a class="headerlink" href="#3-5-hardware-implementation-of-lru" title="Permanent link">&para;</a></h3>
-<p><strong>Comparison Pair Method（比较对方法）</strong>是一种<strong>精确实现 LRU</strong> 的方法，其核心思想是：对每一对 Cache block 记录“谁比谁更新近”，再由这些两两比较结果组合出“谁最久未使用”。</p>
-<div class="admonition example">
-<p class="admonition-title">3 个块时的比较对表示</p>
-<p>若有三个块 <span class="arithmatex">\(A\)</span>、<span class="arithmatex">\(B\)</span>、<span class="arithmatex">\(C\)</span>，只需记录 <span class="arithmatex">\(T_AB\)</span>、<span class="arithmatex">\(T_AC\)</span>、<span class="arithmatex">\(T_BC\)</span> 三组比较关系，其中：</p>
+<ul>
+<li><strong>Comparison Pair Method（比较对方法）</strong>：<strong>精确实现</strong> LRU，对每一对 Cache block 记录谁比谁更新近，再由这些两两比较结果组合出谁最久未使用。</li>
+</ul>
+<details class="example">
+<summary>3 个块时的比较对表示</summary>
+<p>若有三个块 <span class="arithmatex">\(A\)</span>、<span class="arithmatex">\(B\)</span>、<span class="arithmatex">\(C\)</span>，只需记录 <span class="arithmatex">\(T_{AB}\)</span>、<span class="arithmatex">\(T_{AC}\)</span>、<span class="arithmatex">\(T_{BC}\)</span> 三组比较关系，其中：</p>
 <p><span class="arithmatex">\(T_{AB} = 1\)</span> 表示 <span class="arithmatex">\(A\)</span> 比 <span class="arithmatex">\(B\)</span> 更新近，<span class="arithmatex">\(T_{AB} = 0\)</span> 表示 <span class="arithmatex">\(B\)</span> 比 <span class="arithmatex">\(A\)</span> 更新近，其余两个触发器同理。</p>
 <p>根据上述定义，可写出三个块分别成为 LRU 的条件：</p>
 <div class="arithmatex">\[
@@ -5525,7 +5490,7 @@ A_{LRU} = \overline{T_{AB}} \cdot \overline{T_{AC}}，B_{LRU} = T_{AB} \cdot \ov
 </ul>
 </li>
 </ul>
-</div>
+</details>
 <p>若某组内有 <span class="arithmatex">\(p\)</span> 个块，则需要的比较对触发器数量为：<span class="arithmatex">\(\binom{p}{2} = \frac{p(p-1)}{2}\)</span>，其中：</p>
 <ul>
 <li>需要 <span class="arithmatex">\(p\)</span> 个 AND 门来分别生成每个块的可替换信号</li>
@@ -5602,10 +5567,6 @@ A_{LRU} = \overline{T_{AB}} \cdot \overline{T_{AC}}，B_{LRU} = T_{AB} \cdot \ov
 <p>但 write buffer 不是万能的，若短时间内写请求过于密集或突发写入量超过 buffer 容量，仍可能重新发生停顿。</p>
 </details>
 <details class="question">
-<summary>Which strategy updates both the cache and main memory on a write hit?</summary>
-<p>Write-Through.</p>
-</details>
-<details class="question">
 <summary>What happens if a cache block modified under the Write-Back policy is lost due to power failure before being evicted?</summary>
 <p>Data is lost, since the update existed only in the cache.</p>
 </details>
@@ -5670,7 +5631,7 @@ A_{LRU} = \overline{T_{AB}} \cdot \overline{T_{AC}}，B_{LRU} = T_{AB} \cdot \ov
 <ul>
 <li>某条后续指令所需的数据加载，不一定依赖前一条指令是否最终合法提交</li>
 <li><strong>从内存到缓存的加载过程</strong>，可能并不会验证访问的内存是否合法有效</li>
-<li>即使前面的访问最终触发异常，后续访问带来的 <strong>Cache 状态改变</strong> 可能已经留下</li>
+<li>即使前面的访问最终触发异常，后续访问带来的 <strong>Cache 状态改变</strong>可能已经留下</li>
 </ul>
 <p><img src="/sys3/images/image3-38.png" style="display: block; width: 60%; margin: 0 auto;" /></p>
 <p>因而会出现：</p>
@@ -5861,7 +5822,7 @@ A_{LRU} = \overline{T_{AB}} \cdot \overline{T_{AC}}，B_{LRU} = T_{AB} \cdot \ov
 <p><strong>完善软件硬件协作关系</strong>：</p>
 <ul>
 <li>重新思考软硬件协作方式，定义新的指令集体系结构</li>
-<li>例如通过 <strong>数据遗忘（Data Oblivious）</strong> 编程消除机密信息与执行时延差异的关联</li>
+<li>例如通过<strong>数据遗忘（Data Oblivious）</strong>编程消除机密信息与执行时延差异的关联</li>
 <li>通过优化基本块执行，减少分支预测带来的攻击机会</li>
 </ul>
 </li>
@@ -5966,7 +5927,7 @@ A_{LRU} = \overline{T_{AB}} \cdot \overline{T_{AC}}，B_{LRU} = T_{AB} \cdot \ov
 <li><strong>更好的方法</strong>：read miss 先检查 write buffer，若发生冲突则直接从 write buffer 取数据，否则继续访问主存。</li>
 </ul>
 </div>
-<details class="example">
+<details class="question">
 <summary>Performance Analysis</summary>
 <ul>
 <li><strong>基础时间参数</strong><ul>
@@ -6182,7 +6143,7 @@ opt\_rate = \frac{\frac{1}{12.07}}{\frac{1}{16.65}} = \frac{16.65}{12.07} = 1.38
 </ul>
 <p><img src="/sys3/images/image3-53.png" style="display: block; width: 40%; margin: 0 auto;" /></p>
 <h4 id="5-3-3-reducing-the-miss-rate-with-better-replacement-policies">5. 3. 3 Reducing the Miss Rate With Better Replacement Policies<a class="headerlink" href="#5-3-3-reducing-the-miss-rate-with-better-replacement-policies" title="Permanent link">&para;</a></h4>
-<p>用 LRU（最近最少使用）或 LFU（最不经常使用）等智能算法预测未来访问模式，优先替换无用数据，优于简单的 FIFO 策略。</p>
+<p>用 LRU 或 LFU 等智能算法预测未来访问模式，优先替换无用数据，优于简单的 FIFO 策略。</p>
 <ul>
 <li><strong>优点</strong>：显著降低缓存失效率。</li>
 <li><strong>缺点</strong>：增加硬件复杂度与实现开销。</li>

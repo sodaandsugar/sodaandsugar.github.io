@@ -4833,7 +4833,7 @@
 <p><strong>防御纵深（Defense in-depth）</strong> 是在系统中放置多层安全管控防护措施，当某一层控制失败或漏洞被利用时，后续层仍能继续阻止攻击或提高攻击成本。</p>
 <p><img src="/sys3/images/image10-4.png" style="display: block; width: 40%; margin: 0 auto;" /></p>
 <h2 id="4-access-control">4 Access Control<a class="headerlink" href="#4-access-control" title="Permanent link">&para;</a></h2>
-<p><strong>访问控制（Access control）</strong> 是按照访问实体的身份限制其访问对象的机制，目标是让不同 用户和程序只能访问被授权的数据、应用与系统资源。</p>
+<p><strong>访问控制（Access control）</strong> 是按照访问实体的身份限制其访问对象的机制，目标是让不同用户和程序只能访问被授权的数据、应用与系统资源。</p>
 <div class="admonition tip">
 <p class="admonition-title">简记</p>
 <ul>
@@ -5000,7 +5000,6 @@
 </ul>
 <div class="admonition info">
 <p class="admonition-title">fd V.S. Capability</p>
-</div>
 <ul>
 <li>文件描述符 fd 可以看做是一类 Capability<ul>
 <li>用户不能伪造 fd，必须通过内核打开文件</li>
@@ -5009,10 +5008,13 @@
 <li>同一个文件可以对应不同 fd，权限可以不同</li>
 </ul>
 </li>
-<li>fd 可以在进程之间传递：
-        * 父进程传递给子进程，例如 <code>fork()</code> / pipe
-        * 非父子进程通过 <code>sendmsg()</code> 传递 fd</li>
+<li>fd 可以在进程之间传递：<ul>
+<li>父进程传递给子进程，例如 <code>fork()</code> / pipe</li>
+<li>非父子进程通过 <code>sendmsg()</code> 传递 fd</li>
 </ul>
+</li>
+</ul>
+</div>
 <details class="warning">
 <summary>Linux Capability Problems</summary>
 <p>理想情况下，几十个 capabilities 能均匀拆分 root 权限，但现实中并不理想。</p>
@@ -5048,7 +5050,7 @@
 <p><strong>引用监视器（Reference monitor）</strong> 是实现访问控制的一种方式，要求主体必须通过<strong>引用（reference）</strong>间接访问对象。</p>
 <p><img src="/sys3/images/image10-6.png" style="display: block; width: 60%; margin: 0 auto;" /></p>
 <p>引用监视器位于主体和对象之间，负责 authentication 和 authorization，引用监视器机制必须保证其<strong>不可被绕过（Non-bypassable）</strong>。</p>
-<p>设计者必须考虑所有可能访问路径，保证所有路径都必须经过检查。例如，应用必须通过文件描述符访问文件，不能直接访问磁盘上的数据，也不能只凭 inode number 直接读文件内容。此时文件系统就是引用监视器，文件描述符就是 引用。</p>
+<p>设计者必须考虑所有可能访问路径，保证所有路径都必须经过检查。例如，应用必须通过文件描述符访问文件，不能直接访问磁盘上的数据，也不能只凭 inode number 直接读文件内容。此时文件系统就是引用监视器，文件描述符就是引用。</p>
 <ul>
 <li><strong>自主访问控制（DAC, Discretionary Access Control）</strong>：对象拥有者可以决定其他人是否能访问该对象。</li>
 </ul>

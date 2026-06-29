@@ -5138,7 +5138,7 @@
 
 
 <h1 id="chapter-11-dlp-and-tlp">Chapter 11 DLP and TLP<a class="headerlink" href="#chapter-11-dlp-and-tlp" title="Permanent link">&para;</a></h1>
-<p><strong>DLP（Data-Level Parallelism）</strong> 利用同一操作在大量数据元素上的重复性，例如向量运算、矩阵计算、图像和声音处理。<strong>TLP（Thread-Level Parallelism）</strong> 则把并行性提升到线程/任务层面，由软件系统或程序员识别多个可并发执行的线程。</p>
+<p><strong>DLP（Data-Level Parallelism）</strong>利用同一操作在大量数据元素上的重复性，例如向量运算、矩阵计算、图像和声音处理。<strong>TLP（Thread-Level Parallelism）</strong>则把并行性提升到线程/任务层面，由软件系统或程序员识别多个可并发执行的线程。</p>
 <details class="quote">
 <summary>Flynn 分类回顾</summary>
 <p><img src="/sys3/images/image11-1.png" style="display: block; width: 70%; margin: 0 auto;" /></p>
@@ -5333,7 +5333,7 @@ N = S \times n + r
 </details>
 <details class="example">
 <summary>例题：D = A * (B + C)</summary>
-<p>假设向量长度 <code>N &lt;= 64</code>，<code>B</code> 和 <code>C</code> 已经在 <code>V0</code>、<code>V1</code> 中，用 3 条向量指令完成：</p>
+<p>假设向量长度 <span class="arithmatex">\(N = 64\)</span>，<code>B</code> 和 <code>C</code> 已经在 <code>V0</code>、<code>V1</code> 中，用 3 条向量指令完成：</p>
 <div class="highlight"><pre><span></span><code>V3 &lt;- A          // access vector A
 V2 &lt;- V0 + V1    // Vector B and Vector C perform floating point addition
 V4 &lt;- V2 * V3    // Floating point multiplication, the result is stored in V4
@@ -5351,20 +5351,20 @@ V4 &lt;- V2 * V3    // Floating point multiplication, the result is stored in V4
 <li><strong>(1) 和 (2) 并行，之后执行 (3)</strong>：</li>
 </ul>
 <div class="arithmatex">\[
-max{[(1+6+1)+N-1], [(1+6+1)+N-1]} + [(1+7+1)+N-1] = 2N + 15
+max\{[(1+6+1)+N-1], [(1+6+1)+N-1]\} + [(1+7+1)+N-1] = 2N + 15
 \]</div>
 <ul>
 <li><strong>使用 vector chaining</strong>：</li>
 </ul>
 <div class="arithmatex">\[
-max{(1+6+1), (1+6+1)} + (1+7+1)+N-1 = N + 16
+max\{(1+6+1), (1+6+1)\} + (1+7+1)+N-1 = N + 16
 \]</div>
 </details>
 <ul>
 <li>使用 <strong>segmented vector</strong> 处理长度超过向量寄存器容量的长向量，把长向量划分为固定长度的若干 segment，每次循环处理一个 segment。该机制由硬件和软件共同控制，对程序员透明。</li>
 <li>使用多处理器系统进一步提高性能。</li>
 </ul>
-<details class="example">
+<details class="quote">
 <summary>示例</summary>
 <ul>
 <li>CRAY-2：内置 4 个向量处理器，浮点运算峰值速度最高可达 1800 MFLOPS。</li>
@@ -6322,7 +6322,7 @@ n \text{ exchanges} + (n - 1) \text{ shuffles}
 <li>communication cost 相对较高。</li>
 </ol>
 <p>这两点都可用 Amdahl's Law 解释。</p>
-<details class="example">
+<details class="question">
 <summary>100 个处理器要达到 80 倍加速，串行比例最多多少？</summary>
 <p>Amdahl's Law：</p>
 <div class="arithmatex">\[
@@ -6338,7 +6338,7 @@ F_s \approx 0.0025 = 0.25\%
 \]</div>
 <p>因此要用 100 个处理器达到 80 倍加速，原始计算中最多只能有约 <code>0.25%</code> 是串行部分。</p>
 </details>
-<details class="example">
+<details class="question">
 <summary>100 处理器应用中，50 处理器阶段最多占多少？</summary>
 <p>假设 95% 时间可完美使用 100 个处理器，剩余 5% 中有 <code>x</code> 使用 50 个处理器，其余 <code>0.05 - x</code> 串行。希望加速比为 80：</p>
 <div class="arithmatex">\[
@@ -6350,8 +6350,8 @@ x = 0.048
 \]</div>
 <p>即剩余时间中约 <code>4.8%</code> 必须仍能使用 50 个处理器，只有约 <code>0.2%</code> 能串行。</p>
 </details>
-<details class="example">
-<summary>Remote communication 的 CPI 代价</summary>
+<details class="question">
+<summary>Remote communication 的 CPI 代价？</summary>
 <p>假设 32-processor multiprocessor 中 remote memory reference 延迟 <code>100 ns</code>，processor clock rate <code>4 GHz</code>，base CPI 为 <code>0.5</code>，有 <code>0.2%</code> 指令涉及 remote communication reference。</p>
 <p>cycle time：</p>
 <div class="arithmatex">\[

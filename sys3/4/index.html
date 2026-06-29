@@ -5402,7 +5402,7 @@ k + 1
 <li><strong>ARM64（39-bit VA）</strong>：常见为 <span class="arithmatex">\(9 + 9 + 9 + 12\)</span></li>
 <li><strong>ARM64（48-bit VA）</strong>：常见为 <span class="arithmatex">\(9 + 9 + 9 + 9 + 12\)</span></li>
 </ul>
-<p>其中 <span class="arithmatex">\(12\)</span> 是 4 KB 页的 offset，<span class="arithmatex">\(9\)</span> 对应一级也表索引，因为一个 4 KB 页表页若每项 8 bytes，正好可容纳 <span class="arithmatex">\(2^{12} \div 8 = 2^{9}\)</span> 个表项</p>
+<p>其中 <span class="arithmatex">\(12\)</span> 是 4 KB 页的 offset，<span class="arithmatex">\(9\)</span> 对应一级页表索引，因为一个 4 KB 页表页若每项 8 bytes，正好可容纳 <span class="arithmatex">\(2^{12} \div 8 = 2^{9}\)</span> 个表项</p>
 <h3 id="8-3-hashed-page-table">8. 3 Hashed Page Table<a class="headerlink" href="#8-3-hashed-page-table" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>基本思路</strong>：将 <strong>virtual page number</strong> 经过 hash 映射到某个桶，桶中维护冲突链表，每个元素至少包含 virtual page number、frame number 和 ext pointer，沿链查找匹配项，找到后返回 frame number</li>
@@ -5559,7 +5559,7 @@ k + 1
 </details>
 <details class="question">
 <summary>In 32-bit architecture, for 2-level page table, how large is the whole page table? How large for the 1st level PGT? How large for the 2nd level PGT?</summary>
-<p><span class="arithmatex">\(10+10+12\)</span>，第一级页表的大小和第二级页表的大小均为 <span class="arithmatex">\(2^10 \times 4 \, \text{bytes} = 4 \, \text{KB}\)</span>。</p>
+<p><span class="arithmatex">\(10+10+12\)</span>，第一级页表的大小和第二级页表的大小均为 <span class="arithmatex">\(2^{10} \times 4 \, \text{bytes} = 4 \, \text{KB}\)</span>。</p>
 </details>
 <details class="question">
 <summary>Page table base register holds 0x0061 9000, Virtual address is 0xf201 5202?</summary>
