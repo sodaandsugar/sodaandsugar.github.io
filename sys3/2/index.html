@@ -4536,8 +4536,8 @@ FADD.D  F6,  F8, F14
   <img src="/sys3/images/image2-11.png" style="width: 45%;" />
 </div>
 
-<div class="admonition example">
-<p class="admonition-title">示例</p>
+<details class="example">
+<summary>示例</summary>
 <div class="highlight"><pre><span></span><code>FLD     F6,  34(R2)     // 加载浮点到 F6
 FLD     F2,  45(R3)     // 加载浮点到 F2
 FMUL.D  F0,  F2, F4     // F0 = F2 × F4
@@ -4577,7 +4577,13 @@ FADD.D  F6,  F8, F2     // F6 = F8 + F2
 </ul>
 <p><img src="/sys3/images/image2-9.png" style="display: block; width: 80%; margin: 0 auto;" /></p>
 <p><img src="/sys3/images/image2-10.png" style="display: block; width: 80%; margin: 0 auto;" /></p>
-</div>
+</details>
+<ul>
+<li><strong>IS 阶段</strong>：按序发射，同时检查结构冒险与 WAW 冒险，均无冲突则分配功能部件并更新状态。</li>
+<li><strong>RO 阶段</strong>：乱序等待，仅检查 RAW 冒险，源操作数全部就绪则读取并进入执行（可同步）。</li>
+<li><strong>EX 阶段</strong>：不同功能部件按各自延迟执行，完成后通知记分牌。</li>
+<li><strong>WB 阶段</strong>：仅检查 WAR 冒险，等冲突指令完成 RO 后再执行 WB，避免覆盖尚未被读取的旧值。</li>
+</ul>
 <div class="admonition question">
 <p class="admonition-title">Practice in class</p>
 <p>Suppose:
@@ -4607,29 +4613,11 @@ FADD.D  F6, F8, F2
 </details>
 <p>Tomasulo 算法在动态调度基础上加入<strong>硬件寄存器重命名（register renaming）</strong>，从而大幅缓解 <code>WAR / WAW</code>，效果通常优于 Scoreboard 算法，该算法主要分为以下三个阶段：</p>
 <p><img src="/sys3/images/image2-28.png" style="display: block; width: 70%; margin: 0 auto;" /></p>
-<ol>
-<li>
-<p><strong>发射阶段（Issue）</strong>：从指令队列（FIFO）的队首获取下一条指令。</p>
 <ul>
-<li>若存在匹配且空闲的<strong>保留站（Reservation Station）</strong>，就将指令及其当前在寄存器中的操作数一同发射到该保留站</li>
-<li>若没有空闲的保留站，则存在<strong>结构冒险（Structural Hazard）</strong>，指令将暂停，直到有保留站或缓冲区被释放</li>
-<li>如果操作数不在寄存器中，则跟踪将生成该操作数的<strong>功能单元（Functional Unit）</strong></li>
-<li>这一步会对寄存器进行重命名，消除不在寄存器中的<strong>读后写（WAR）</strong>和<strong>写后写（WAW）</strong>冒险</li>
+<li><strong>IS 阶段</strong>：按序取指，分配对应保留站，无空闲保留站则结构冒险阻塞，就绪操作数直接下发，未就绪则跟踪生成该操作数的功能单元，通过寄存器重命名消除 WAR、WAW 冒险。</li>
+<li><strong>EX 阶段</strong>：操作数全部就绪后乱序执行，<code>Load/Store</code> 指令先计算有效地址（额外 <span class="arithmatex">\(1\)</span> 拍），再存入加载/存储缓冲区。</li>
+<li><strong>WB 阶段</strong>：运算结果经<strong>公共数据总线（CDB）</strong>广播，同时写入目标寄存器与所有等待该结果的保留站（包括存储缓冲区），<code>Store</code> 指令需地址、数据均就绪且内存空闲时才写入内存。</li>
 </ul>
-</li>
-<li>
-<p><strong>执行阶段（Execute）</strong>：当所有操作数就绪后，指令开始执行。</p>
-<ul>
-<li><code>Load / Store</code> 指令一般分两步：基址寄存器就绪后，先计算<strong>有效地址（Effective Address）</strong>，随后将地址存入<strong>加载 / 存储缓冲区（Load/Store Buffer）</strong></li>
-</ul>
-</li>
-<li>
-<p><strong>写回阶段（Write results）</strong>：计算结果就绪后写入<strong>公共数据总线（CDB）</strong>，再通过 CDB 将结果写入目标寄存器，以及所有等待该结果的保留站（包括存储缓冲区）。</p>
-<ul>
-<li><code>Store</code> 指令会暂存在存储缓冲区中，直到待存储的数据和存储地址都准备就绪，且内存空闲，才能将结果写入内存</li>
-</ul>
-</li>
-</ol>
 <details class="example">
 <summary>Tomasulo 算法处理流程示例</summary>
 <ul>
@@ -4690,8 +4678,8 @@ FADD.D  F6, F8, F2
 </table>
 </details>
 </details>
-<div class="admonition example">
-<p class="admonition-title">示例</p>
+<details class="example">
+<summary>示例</summary>
 <div class="highlight"><pre><span></span><code>FLD     F6,  34(R2)
 FLD     F2,  45(R3)
 FMUL.D  F0,  F2, F4
@@ -4709,7 +4697,7 @@ FADD.D  F6,  F8, F2
 </ul>
 <p><img src="/sys3/images/image2-19.png" style="display: block; width: 80%; margin: 0 auto;" /></p>
 <p><img src="/sys3/images/image2-20.png" style="display: block; width: 80%; margin: 0 auto;" /></p>
-</div>
+</details>
 <div class="admonition question">
 <p class="admonition-title">Practice in class</p>
 <p>Suppose:
@@ -4769,14 +4757,14 @@ FADD.D  F6, F8, F2
 </ul>
 <p>关键目标是：<strong>允许乱序执行，但必须按序提交（commit）</strong>，这样一旦分支预测失败或发生异常，只需要丢弃 ROB 中尚未提交的年轻指令就能恢复到正确的体系结构状态，<code>store</code> 也要等到提交时才真正写内存，因此更容易恢复。</p>
 </div>
-<ol>
-<li><strong>Issue</strong>：从指令队列取指，分配保留站（RS）和一个新的 ROB 表项，目标寄存器不再直接绑定功能部件，而是记录为某个 <code>ROB#</code></li>
-<li><strong>Execute (EX)</strong>：当源操作数就绪后开始执行；操作数既可能来自寄存器，也可能来自保留站或 ROB 的广播结果</li>
-<li><strong>Write Result (WB)</strong>：执行完成后，结果先写入 <strong>ROB</strong>，并通过 <code>CDB</code> 广播给等待它的保留站，但此时<strong>还不更新体系结构寄存器</strong></li>
-<li><strong>Commit</strong>：只有当指令来到 ROB 队首且结果已经准备好时，才按程序顺序把结果真正写入寄存器或内存</li>
-</ol>
-<div class="admonition example">
-<p class="admonition-title">Show what the status tables look like when the <code>FMUL.D</code> is ready to commit.</p>
+<ul>
+<li><strong>IS 阶段</strong>：从指令队列取指，分配保留站（RS）和一个新的 ROB 表项，目标寄存器不再直接绑定功能部件，而是记录为某个 <code>ROB#</code>。</li>
+<li><strong>EX 阶段</strong>：当源操作数就绪后开始执行，操作数既可能来自寄存器，也可能来自保留站或 ROB 的广播结果。</li>
+<li><strong>WB 阶段</strong>：执行完成后结果先写入 ROB，并通过 CDB 广播给等待它的保留站，但此时<strong>还不更新体系结构寄存器</strong>。</li>
+<li><strong>Commit 阶段</strong>：只有当指令来到 ROB 队首且结果已经准备好时，才按程序顺序把结果真正写入寄存器或内存。</li>
+</ul>
+<details class="example">
+<summary>Show what the status tables look like when the <code>FMUL.D</code> is ready to commit.</summary>
 <div class="highlight"><pre><span></span><code>FLD     F6,  34(R2)
 FLD     F2,  45(R3)
 FMUL.D  F0,  F2, F4
@@ -4793,7 +4781,7 @@ FADD.D  F6,  F8, F2
 <li><code>ROB#6</code> 对应 <code>FADD.D</code>，结果也已经写好，但同样不能越过前面的指令提交</li>
 </ul>
 <p><img src="/sys3/images/image2-30.png" style="display: block; width: 80%; margin: 0 auto;" /></p>
-</div>
+</details>
 <div class="admonition question">
 <p class="admonition-title">Practice in class</p>
 <p>Suppose:
@@ -4934,8 +4922,8 @@ FADD.D  F6, F8, F2
   <img src="/sys3/images/image2-40.png" style="width: 45%;" />
 </div>
 
-<div class="admonition example">
-<p class="admonition-title">MIPS R4000 的 8 级流水</p>
+<details class="example">
+<summary>MIPS R4000 的 8 级流水</summary>
 <p>R4000 微处理器芯片内包含 2 个 Cache，分别是指令缓存（Instruction Cache）与数据缓存（Data Cache），容量均为 8 KB，每个缓存的数据位宽为 64 位。</p>
 <p>R4000 的核心处理部件（整数部件）包括：一个 32×32 位的通用寄存器组、ALU 和专用的乘 / 除法单元。</p>
 <p><img src="/sys3/images/image2-41.png" style="display: block; width: 80%; margin: 0 auto;" /></p>
@@ -4952,7 +4940,7 @@ FADD.D  F6, F8, F2
 <p><img src="/sys3/images/image2-42.png" style="display: block; width: 80%; margin: 0 auto;" /></p>
 <p>这种深流水设计能提高频率，但也会让 <code>load delay</code>、分支代价和冒险处理更加敏感。</p>
 <p><img src="/sys3/images/image2-43.png" style="display: block; width: 70%; margin: 0 auto;" /></p>
-</div>
+</details>
 
 
 
