@@ -5699,32 +5699,29 @@ Remote Backup Systems</p>
 <p>Analysis 决定 redo 的起点；undo 可能需要回退到最早未完成事务的开始处。</p>
 <p><img src="/db/images/image19-12.png" style="display: block; width: 80%; margin: 0 auto;" /></p>
 <h3 id="8-8-analysis-pass">8. 8 Analysis Pass<a class="headerlink" href="#8-8-analysis-pass" title="Permanent link">&para;</a></h3>
-<p>Analysis pass 从最后一个完整 checkpoint 日志记录开始：</p>
 <ol>
-<li>从 checkpoint 记录中读出 DirtyPageTable。</li>
-<li>设置 <code>RedoLSN = min(DirtyPageTable 中所有页的 RecLSN)</code>。</li>
-<li>若没有脏页，则 <code>RedoLSN</code> 设为 checkpoint 记录的 LSN。</li>
-<li>将 <code>undo-list</code> 初始化为 checkpoint 记录中的活跃事务列表。</li>
-<li>读取 <code>undo-list</code> 中每个事务的最后日志记录 LSN。</li>
-<li>从 checkpoint 向前扫描。</li>
-</ol>
-<p>向前扫描过程中：</p>
-<ul>
-<li>若发现某事务的日志记录，而该事务不在 <code>undo-list</code> 中，则将其加入 <code>undo-list</code>。</li>
-<li>遇到更新日志记录时：<ul>
-<li>若对应页不在 DirtyPageTable 中，将该页加入 DirtyPageTable。</li>
-<li>该页的 <code>RecLSN</code> 设置为该更新日志记录的 LSN。</li>
+<li><strong>初始化</strong><ul>
+<li>从最后一个完整 checkpoint 读取初始脏页表（DPT）和活跃事务列表（undo-list）</li>
+<li>计算 <code>RedoLSN = min(所有脏页的 RecLSN)</code>，无脏页时 RedoLSN 等于 checkpoint 自身的 LSN</li>
 </ul>
 </li>
-<li>遇到 transaction end 日志记录时，将该事务从 <code>undo-list</code> 中删除。</li>
-<li>持续记录 <code>undo-list</code> 中每个事务的最后日志记录，供 undo pass 使用。</li>
+<li><strong>向日志末尾扫描</strong><ul>
+<li><strong>遇到新事务的日志</strong>：加入 undo-list，同步记录该事务的 lastLSN</li>
+<li><strong>遇到页面更新记录</strong>：<ul>
+<li><strong>页面已在 DPT 中</strong>：RecLSN 保持不变，PageLSN 更新为当前日志 LSN</li>
+<li><strong>页面不在 DPT 中</strong>：新增该页，RecLSN = PageLSN = 当前日志 LSN</li>
 </ul>
-<p>Analysis pass 结束时：</p>
-<ul>
-<li><code>RedoLSN</code> 决定 redo pass 从哪里开始。</li>
-<li>DirtyPageTable 中每页的 <code>RecLSN</code> 用于减少 redo 工作。</li>
-<li><code>undo-list</code> 中所有事务都需要回滚。</li>
+</li>
+<li><strong>遇到事务结束（commit/abort）记录</strong>：将该事务从 undo-list 中移除</li>
 </ul>
+</li>
+<li><strong>输出产物</strong><ul>
+<li><strong>RedoLSN</strong>：Redo 阶段的起始扫描位置</li>
+<li><strong>最终脏页表</strong>：用于 Redo 阶段跳过无需重做的页面</li>
+<li><strong>最终 undo-list</strong>：所有需要回滚的失败事务</li>
+</ul>
+</li>
+</ol>
 <h3 id="8-9-redo-pass">8. 9 Redo Pass<a class="headerlink" href="#8-9-redo-pass" title="Permanent link">&para;</a></h3>
 <p>Redo pass 从 <code>RedoLSN</code> 向前扫描，重复历史。每遇到一条更新日志记录：</p>
 <ol>
@@ -5746,15 +5743,16 @@ Remote Backup Systems</p>
 <p>ARIES 支持部分回滚（partial rollback），例如处理死锁时只回滚到足以释放所需锁的位置。部分回滚后可以继续向前执行，之后也可以再次部分回滚或最终完全回滚。</p>
 <p><img src="/db/images/image19-13.png" style="display: block; width: 65%; margin: 0 auto;" /></p>
 <h3 id="8-11-undo-pass">8. 11 Undo Pass<a class="headerlink" href="#8-11-undo-pass" title="Permanent link">&para;</a></h3>
-<p>Undo pass 对 <code>undo-list</code> 中所有事务执行向后回滚，并通过 LSN 跳过不需要处理的日志记录：</p>
 <ol>
-<li>对每个待 undo 事务，把它下一条需要 undo 的 LSN 初始化为 analysis pass 得到的该事务最后日志记录 LSN。</li>
-<li>每一步选择这些 LSN 中最大的一个，直接跳到该日志记录并 undo。</li>
-<li>若 undo 的是普通日志记录，则该事务下一条待 undo LSN 设为该记录的 <code>PrevLSN</code>。</li>
-<li>若遇到 CLR，则下一条待 undo LSN 设为该 CLR 的 <code>UndoNextLSN</code>。</li>
-<li>中间被跳过的记录已经被 undo 过，不需要再次处理。</li>
+<li><strong>初始化</strong>：以 Analysis Pass 得到的每个待撤销事务的最后一条日志 LSN 作为该事务的初始待撤销 LSN。</li>
+<li><strong>倒序跳转处理</strong>：每一步选择所有待撤销 LSN 中最大的一个，直接跳转至该记录执行撤销，跳过中间无需重复处理的日志。</li>
+<li><strong>指针更新规则</strong>：<ul>
+<li><strong>普通更新日志</strong>：撤销完成后，该事务下一条待撤销 LSN = 当前记录的 <code>PrevLSN</code></li>
+<li><strong>CLR 补偿日志</strong>：下一条待撤销 LSN = 当前 CLR 的 <code>UndoNextLSN</code></li>
+</ul>
+</li>
+<li><strong>日志落盘</strong>：每执行一次撤销动作，就写入一条对应的 CLR，事务全部操作撤销完毕后，写入事务 Abort 记录。</li>
 </ol>
-<p>undo 动作本身按前面介绍的规则执行，并写出相应 CLR。</p>
 <details class="example">
 <summary>Recovery Actions in ARIES</summary>
 <p><img src="/db/images/image19-14.png" style="display: block; width: 50%; margin: 0 auto;" /></p>
