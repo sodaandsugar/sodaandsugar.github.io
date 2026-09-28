@@ -1,0 +1,5290 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../1/">
+      
+      
+        <link rel="next" href="../3/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>Chapter 2 Set-UID 特权程序 - sodasugar的笔记本</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/web/pdf_viewer.min.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chapter-2-set-uid" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="sodasugar的笔记本" class="md-header__button md-logo" aria-label="sodasugar的笔记本" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            sodasugar的笔记本
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chapter 2 Set-UID 特权程序
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/sodaandsugar/sodaandsugar.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    sodasugar-notebook
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  🏡首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../physics2/1/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  ⚛️ 物理
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../interpret/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  🔤外语
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../cryptography/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  专业课
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="sodasugar的笔记本" class="md-nav__button md-logo" aria-label="sodasugar的笔记本" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    sodasugar的笔记本
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/sodaandsugar/sodaandsugar.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    sodasugar-notebook
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🏡首页
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    ⚛️ 物理
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            ⚛️ 物理
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    大物乙Ⅱ
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            大物乙Ⅱ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 静电场
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 静电场中的导体和电介质
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 电流和磁场
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 物质中的磁场
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5 电磁感应
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6 麦克斯韦方程与电磁波
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 7 光的干涉
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 8 光的衍射
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 9 光的偏振
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 10 光的量子论
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 11 玻尔的原子模型
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 12 量子力学初步
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/midterm_review/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    期中小结
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics2/%E7%89%A9%E7%90%86%E5%AD%A6%E5%8D%95%E4%BD%8D%E6%8D%A2%E7%AE%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    物理学单位换算
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    大物实验
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            大物实验
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cpe/final/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    期末复习
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    🔤外语
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            🔤外语
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../interpret/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    英语口译
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            英语口译
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interpret/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1 Ceremonial Speech
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interpret/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2 Tourism
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interpret/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3 Culture and Education
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interpret/5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    5 International Reports
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interpret/text/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    课堂文本
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interpret/cheatsheet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    真题
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    专业课
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            专业课
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../cryptography/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    数据安全与密码学基础
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            数据安全与密码学基础
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/resource/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    资源索引
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 概论
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 完善保密加密
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 对称密钥加密以及伪随机性
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 消息鉴别码
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5 哈希函数
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6 数论和密码学困难性假设
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/midterm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    期中考试卷
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    高级数据结构与算法分析
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            高级数据结构与算法分析
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/resource/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    资源索引
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_2" id="__nav_4_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    题目集
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            题目集
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/blank/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    程序填空题集锦
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/function/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    函数题集锦
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1 AVL Trees, Splay Trees and Amortized Analysis
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2 Red-Black Trees and B+ Trees
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3 Inverted File Index
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    4 Leftist Heaps and Skew Heaps
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    5 Binomial Queue
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    6 Backtracking
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    7 Divide and Conquer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    8 Dynamic Programming
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    9 Greedy Algorithms
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    10 P/NP Problems
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    11 Approximation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    12 Local Search
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    13 Randomized Algorithms
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    14 Parallel Algorithms
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/Problem_Set/15/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    15 External Sorting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/cheatsheet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    期中考 cheat sheet
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ads/midterm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    期中考试
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    计算机系统 Ⅱ
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            计算机系统 Ⅱ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 ISA Review
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 Design of Pipelining
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 Hazard of Pipelining
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 Software-Hardware Interface
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5 Intro&Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6 Structures
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 7 Processes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 8 CPU Scheduling
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 9 Synchronization
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys2/pbfx/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    朋辈辅学
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    计算机系统 Ⅲ
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            计算机系统 Ⅲ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys3/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 Fundamentals of computer system
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys3/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 Instruction-Level Parallelism (ILP)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys3/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 Memory Hierarchy
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys3/4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 Main Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys3/5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5 Virtual Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys3/6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6 Mass-Storage Structure
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys3/7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 7 I/O Systems
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys3/8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 8 File System Interface
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys3/9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 9 File System Implementation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys3/10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 10 Security and Protection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sys3/11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 11 DLP and TLP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    数据库系统
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            数据库系统
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../db/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../db/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 Intro to Relational Model
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../db/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 Introduction to SQL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../db/4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 Intermediate SQL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../db/5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5 Advanced SQL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../db/6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6 Entity-Relationship Model
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../db/7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 7 Relational Database Design
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../db/12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 12&13 Storage and File Structure
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../db/14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 14 Indexing and Hashing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../db/15/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 15 Query Processing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../db/16/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 16 Query Optimization
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../db/17/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 17 Transactions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../db/18/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 18 Concurrency Control
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../db/19/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 19 Recovery System
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../db/collection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    错题集
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    隐私计算与数据合规
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            隐私计算与数据合规
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mpc/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 引言
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mpc/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 现代密码学与基础原语
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mpc/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 一个安全多方计算协议的例子
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mpc/4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 安全模型
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mpc/5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5 茫然传输和茫然传输扩展
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mpc/6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6 BGW 协议与 GMW 协议
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mpc/7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 7 通过 Beaver 三元组实现 MPC
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mpc/8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 8 基于混淆电路的协议
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mpc/9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 9 恶意安全性
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_7" id="__nav_4_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    面向对象程序设计
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_7">
+            <span class="md-nav__icon md-icon"></span>
+            面向对象程序设计
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_7_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_7_1" id="__nav_4_7_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    朋辈辅学
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_7_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_7_1">
+            <span class="md-nav__icon md-icon"></span>
+            朋辈辅学
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/pbfx/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lec 1 C++ 概述和 OOP 基础
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/pbfx/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lec 2 构造、析构、拷贝
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/pbfx/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lec3 继承与多态
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/pbfx/4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lec4 移动语义与异常处理
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/pbfx/5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lec5 模板与 STL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/pbfx/6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lec6 迭代器与智能指针
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_7_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_7_2" id="__nav_4_7_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    错题集
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_7_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_7_2">
+            <span class="md-nav__icon md-icon"></span>
+            错题集
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/collection/TOF/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    判断题
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/collection/mul/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    选择题
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/collection/output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    程序输出题
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/collection/blank/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    程序填空题
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 Using Objects
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 Class
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 Object Interaction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 5 Composition and Inheritance
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 6 Polymorphism
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 7 Copy Constructor
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 8 Overloaded Operators
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 9 Streams
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 10 Templates
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 11 STL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 12 Iterators
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 13 Exceptions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 14 Smart Pointers
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oop/15/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 15 Miscellaneous Points
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_8" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_8" id="__nav_4_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    软件安全原理和实践
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_8_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_8">
+            <span class="md-nav__icon md-icon"></span>
+            软件安全原理和实践
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 Linux 系统安全基础
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 Set-UID 特权程序
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 Set-UID 特权程序
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-set-uid" class="md-nav__link">
+    <span class="md-ellipsis">
+      1 Set-UID 机制
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-set-uid" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 Set-UID 程序的攻击面
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2 Set-UID 程序的攻击面">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 1 来自环境变量的攻击
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 2 来自用户输入的攻击
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 3 能力泄露
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 4 分析
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-posix-capabilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 POSIX Capabilities
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-review-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      4 Review Questions
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 缓冲区溢出攻击
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_9" id="__nav_4_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    面向信息安全的信号处理
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_9">
+            <span class="md-nav__icon md-icon"></span>
+            面向信息安全的信号处理
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sp/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 信号与系统
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_10" id="__nav_4_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    计算机网络
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_10">
+            <span class="md-nav__icon md-icon"></span>
+            计算机网络
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cn/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-set-uid" class="md-nav__link">
+    <span class="md-ellipsis">
+      1 Set-UID 机制
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-set-uid" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 Set-UID 程序的攻击面
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2 Set-UID 程序的攻击面">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 1 来自环境变量的攻击
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 2 来自用户输入的攻击
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 3 能力泄露
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 4 分析
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-posix-capabilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 POSIX Capabilities
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-review-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      4 Review Questions
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="chapter-2-set-uid">Chapter 2 Set-UID 特权程序<a class="headerlink" href="#chapter-2-set-uid" title="Permanent link">&para;</a></h1>
+<details class="quote">
+<summary>The Need for Privileged Programs</summary>
+<p>普通用户不能直接修改 <code>/etc/shadow</code>，因为该文件保存了系统账户的密码哈希，通常只有 <code>root</code> 能够读取或写入。</p>
+<div class="highlight"><pre><span></span><code>seed@VM:~$<span class="w"> </span>ls<span class="w"> </span>-l<span class="w"> </span>/etc/shadow
+-rw-r-----<span class="w"> </span><span class="m">1</span><span class="w"> </span>root<span class="w"> </span>shadow<span class="w"> </span>...<span class="w"> </span>/etc/shadow
+seed@VM:~$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="nb">test</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>/etc/shadow
+-bash:<span class="w"> </span>/etc/shadow:<span class="w"> </span>Permission<span class="w"> </span>denied
+</code></pre></div>
+<p>但是普通用户又必须能够修改自己的密码。</p>
+<div class="highlight"><pre><span></span><code>seed@VM:~$<span class="w"> </span>passwd
+Changing<span class="w"> </span>password<span class="w"> </span><span class="k">for</span><span class="w"> </span>seed.
+<span class="o">(</span>current<span class="o">)</span><span class="w"> </span>UNIX<span class="w"> </span>password:
+Enter<span class="w"> </span>new<span class="w"> </span>UNIX<span class="w"> </span>password:
+Retype<span class="w"> </span>new<span class="w"> </span>UNIX<span class="w"> </span>password:
+passwd:<span class="w"> </span>password<span class="w"> </span>updated<span class="w"> </span>successfully
+</code></pre></div>
+<p><code>passwd</code> 程序需要以更高的权限写入 <code>/etc/shadow</code>，但不能因此允许普通用户直接获得一个 root shell。</p>
+<p>解决这类问题需要 <strong>privileged program（特权程序）</strong>，程序本身拥有完成特定操作所需的权限，用户只能通过程序提供的功能完成操作。<code>passwd</code> 本身通常就是 root-owned 的 Set-UID 程序：</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>ls<span class="w"> </span>-l<span class="w"> </span>/usr/bin/passwd
+-rwsr-xr-x<span class="w"> </span><span class="m">1</span><span class="w"> </span>root<span class="w"> </span>root<span class="w"> </span>...<span class="w"> </span>/usr/bin/passwd
+</code></pre></div>
+<p>用户执行 <code>passwd</code> 时，程序暂时以 root 的有效身份更新密码文件，程序结束后，用户不会因此获得一个持续存在的 root shell。</p>
+</details>
+<h2 id="1-set-uid">1 Set-UID 机制<a class="headerlink" href="#1-set-uid" title="Permanent link">&para;</a></h2>
+<details class="info">
+<summary>Real User ID and Effective User ID</summary>
+<ul>
+<li><strong>Real User ID（<code>ruid</code>）</strong>：真正启动该进程的用户，表示谁运行了程序。</li>
+<li><strong>Effective User ID（<code>euid</code>）</strong>：进程执行访问控制检查时使用的用户身份，表示程序以谁的权限运行。</li>
+</ul>
+<p>普通进程通常满足 <code>ruid = euid = 当前用户</code>，执行 root 拥有的 Set-UID 程序时可能出现 <code>ruid = seed</code>、<code>euid = root</code>。</p>
+<p>文件访问权限主要依据 <code>euid</code> 判断，而不是只依据 <code>ruid</code>。因此，程序可以知道实际调用者是普通用户，同时暂时以文件拥有者的身份访问受保护资源。</p>
+</details>
+<p>Set-UID 位位于 owner 的执行权限位置，八进制表示的最高位为 <code>4</code>。</p>
+<div class="highlight"><pre><span></span><code>4 755
+│ │
+│ └── owner、group、other 的普通权限
+└──── Set-UID 位
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">使用 <code>chmod</code> 设置 Set-UID</p>
+<div class="highlight"><pre><span></span><code>chmod<span class="w"> </span><span class="m">4755</span><span class="w"> </span>file
+chmod<span class="w"> </span>u+s<span class="w"> </span>file
+</code></pre></div>
+<p>设置成功后，<code>ls -l</code> 的 owner 执行位会显示为 <code>s</code>：</p>
+<div class="highlight"><pre><span></span><code>-rwsr-xr-x 1 root root ... file
+</code></pre></div>
+</div>
+<p>文件被执行时，如果 Set-UID 位有效，进程的 <code>euid</code> 会变为文件拥有者的 UID。</p>
+<details class="example">
+<summary>观察 <code>euid</code> 的变化</summary>
+<div class="highlight"><span class="filename">文件无 Set-UID 位，进程仍以 seed 身份运行</span><pre><span></span><code>$<span class="w"> </span>cp<span class="w"> </span>/bin/id<span class="w"> </span>myid
+$<span class="w"> </span>sudo<span class="w"> </span>chown<span class="w"> </span>root<span class="w"> </span>myid
+$<span class="w"> </span>./myid
+<span class="nv">uid</span><span class="o">=</span><span class="m">1000</span><span class="o">(</span>seed<span class="o">)</span><span class="w"> </span><span class="nv">gid</span><span class="o">=</span><span class="m">1000</span><span class="o">(</span>seed<span class="o">)</span><span class="w"> </span><span class="nv">groups</span><span class="o">=</span><span class="m">1000</span><span class="o">(</span>seed<span class="o">)</span>,<span class="w"> </span>...
+</code></pre></div>
+<div class="highlight"><span class="filename">uid 仍是 seed，euid 变成了文件拥有者 root</span><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">4755</span><span class="w"> </span>myid
+$<span class="w"> </span>./myid
+<span class="nv">uid</span><span class="o">=</span><span class="m">1000</span><span class="o">(</span>seed<span class="o">)</span><span class="w"> </span><span class="nv">gid</span><span class="o">=</span><span class="m">1000</span><span class="o">(</span>seed<span class="o">)</span><span class="w"> </span><span class="nv">euid</span><span class="o">=</span><span class="m">0</span><span class="o">(</span>root<span class="o">)</span><span class="w"> </span><span class="nv">groups</span><span class="o">=</span><span class="m">1000</span><span class="o">(</span>seed<span class="o">)</span>,<span class="w"> </span>...
+</code></pre></div>
+</details>
+<div class="admonition warning">
+<p class="admonition-title">修改拥有者会清除 Set-UID</p>
+<p><code>chown</code> 改变文件拥有者时会自动清除 Set-UID 位。否则，攻击者可能先准备一个带 Set-UID 位的可执行文件，再把它改成 <code>root</code> 所有，从而把任意程序变成 root 特权程序。</p>
+</div>
+<details class="example">
+<summary>示例：Set-UID <code>cat</code></summary>
+<p>如果把 <code>/bin/cat</code> 复制出来，并将副本设置为 root 拥有的 Set-UID 程序，普通用户就可以通过这个副本读取原本无权读取的文件：</p>
+<div class="highlight"><pre><span></span><code>seed@VM:~$<span class="w"> </span>cp<span class="w"> </span>/bin/cat<span class="w"> </span>./mycat
+seed@VM:~$<span class="w"> </span>sudo<span class="w"> </span>chown<span class="w"> </span>root<span class="w"> </span>mycat
+seed@VM:~$<span class="w"> </span>sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">4755</span><span class="w"> </span>mycat
+
+seed@VM:~$<span class="w"> </span>ls<span class="w"> </span>-l<span class="w"> </span>mycat
+-rwsr-xr-x<span class="w"> </span><span class="m">1</span><span class="w"> </span>root<span class="w"> </span>seed<span class="w"> </span>...<span class="w"> </span>mycat
+
+seed@VM:~$<span class="w"> </span>cat<span class="w"> </span>/etc/shadow
+cat:<span class="w"> </span>/etc/shadow:<span class="w"> </span>Permission<span class="w"> </span>denied
+
+seed@VM:~$<span class="w"> </span>./mycat<span class="w"> </span>/etc/shadow
+root:<span class="nv">$6</span>$...:...
+daemon:*:...
+bin:*:...
+</code></pre></div>
+<p>root 拥有的 Set-UID 程序中的任何漏洞，都可能直接变成 root 权限漏洞。</p>
+</details>
+<details class="example">
+<summary>示例：Set-UID Shell</summary>
+<p>如果 Bob 可以在自己的账户中创建文件，他可以创建一个属于 Bob 的 Set-UID shell。</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 在 Bob 的账户中执行</span>
+$<span class="w"> </span>cp<span class="w"> </span>/bin/bash<span class="w"> </span>/tmp/mybash
+$<span class="w"> </span>chmod<span class="w"> </span><span class="m">4755</span><span class="w"> </span>/tmp/mybash
+</code></pre></div>
+<p>其他用户执行 <code>/tmp/mybash</code> 时，进程会以 Bob 的 <code>euid</code> 运行，因此可能获得 Bob 能访问的文件和资源。</p>
+<p>Set-UID 的权限来自<strong>文件拥有者</strong>，而不是来自执行文件的用户。</p>
+</details>
+<h2 id="2-set-uid">2 Set-UID 程序的攻击面<a class="headerlink" href="#2-set-uid" title="Permanent link">&para;</a></h2>
+<details class="quote">
+<summary>攻击面</summary>
+<p><strong>Attack surface（攻击面）</strong> 是攻击者可以向程序输入数据、影响程序行为，或从程序中提取数据的所有入口的集合。在 Set-UID 程序中，用户可以影响的输入至少包括：</p>
+<ol>
+<li><strong>Explicit user inputs</strong>：命令行参数、标准输入、配置文件、文件名等</li>
+<li><strong>System inputs controlled by users</strong>：用户能够控制的文件、目录、进程、信号和设备等</li>
+<li><strong>Environment variables</strong>：<code>PATH</code>、<code>IFS</code>、<code>LD_PRELOAD</code> 等环境变量</li>
+<li><strong>Non-privileged processes</strong>：特权程序创建或调用的、仍由用户控制的普通进程</li>
+</ol>
+<p><img src="/ssec/images/2/image1.png" style="display: block; width: 70%; margin: 0 auto;" /></p>
+<p>特权程序的攻击面比普通程序更危险，因为攻击者控制的输入会在高权限上下文中被解释或执行。</p>
+</details>
+<h3 id="2-1">2. 1 来自环境变量的攻击<a class="headerlink" href="#2-1" title="Permanent link">&para;</a></h3>
+<p>环境变量是由父进程传递给子进程的字符串，例如：</p>
+<div class="highlight"><pre><span></span><code>SHELL=/bin/bash
+PATH=/usr/local/bin:/usr/bin:/bin
+LD_PRELOAD=./libmylib.so
+</code></pre></div>
+<p>C 程序可以通过 <code>envp</code> 参数或全局变量 <code>environ</code> 访问环境变量：</p>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">argv</span><span class="p">[],</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">envp</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="p">...</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>进程启动时，环境变量字符串和 <code>argv</code> 字符串通常位于用户栈上，<code>envp</code> 和 <code>argv</code> 是指向这些字符串的指针数组。</p>
+<p><img src="/ssec/images/2/image2.png" style="display: block; width: 50%; margin: 0 auto;" /></p>
+<p>用户可以在启动程序前设置环境变量，因此 Set-UID 程序不应默认信任继承来的环境。环境变量可能影响 shell 如何查找和解释命令、应用程序如何选择文件或外部程序、动态链接器加载哪些共享库以及程序调用的库函数和外部程序的行为。</p>
+<p><img src="/ssec/images/2/image3.png" style="display: block; width: 60%; margin: 0 auto;" /></p>
+<details class="quote">
+<summary><code>system()</code> 机制</summary>
+<p><code>system()</code> 会把字符串交给 shell 执行，可以近似理解为：</p>
+<div class="highlight"><pre><span></span><code>system(&quot;cmd&quot;)  ≈  /bin/sh -c &quot;cmd&quot;
+</code></pre></div>
+<p>因此，<code>system()</code> 不只是调用一个程序，还会引入 shell 的命令搜索、变量展开、通配符、管道、重定向和命令分隔符等行为。</p>
+</details>
+<details class="example">
+<summary>示例：<code>PATH</code> 环境变量攻击</summary>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">system</span><span class="p">(</span><span class="s">&quot;cal&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>上面的程序以相对命令名调用 <code>cal</code>，当它是 root-owned Set-UID 程序时，攻击者可以在自己可写的目录中放置一个恶意的 <code>cal</code>，再修改 <code>PATH</code>，使 shell 优先找到恶意文件：</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>gcc<span class="w"> </span>-o<span class="w"> </span>vul<span class="w"> </span>vul.c
+$<span class="w"> </span>sudo<span class="w"> </span>chown<span class="w"> </span>root<span class="w"> </span>vul
+$<span class="w"> </span>sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">4755</span><span class="w"> </span>vul
+
+<span class="c1"># 准备一个名为 cal 的恶意程序，使其启动 shell</span>
+$<span class="w"> </span><span class="nb">printf</span><span class="w"> </span><span class="s1">&#39;#!/bin/sh\nexec /bin/bash -p\n&#39;</span><span class="w"> </span>&gt;<span class="w"> </span>cal
+$<span class="w"> </span>chmod<span class="w"> </span>+x<span class="w"> </span>cal
+
+$<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span>.:<span class="nv">$PATH</span>
+$<span class="w"> </span>./vul
+<span class="c1">#</span>
+</code></pre></div>
+<p>此时程序原本想运行系统的 <code>cal</code>，但 <code>system()</code> 通过 <code>PATH</code> 找到了当前目录中的恶意 <code>cal</code>，导致特权程序间接启动 root shell。</p>
+<p>为了避免 <code>PATH</code> 攻击，应当不在特权程序中使用没有路径的外部命令，如果必须调用外部程序，则使用可信的绝对路径。更好的方式是直接使用 <code>execve()</code>，避免启动 shell，也不要把当前目录 <code>.</code> 放在特权程序依赖的 <code>PATH</code> 中。</p>
+</details>
+<details class="info">
+<summary>IFS Attacks</summary>
+<p><strong>IFS（Internal Field Separator）</strong>是 shell 用来进行字段分割的环境变量。攻击者可以通过修改 <code>IFS</code> 影响某些 shell 命令的分词过程，特别是当特权程序把环境变量或用户输入再次交给 shell 展开时。</p>
+<div class="highlight"><pre><span></span><code>IFS=&quot;/&quot;
+system(&quot;/bin/cal&quot;)
+</code></pre></div>
+<p>正常情况下，<code>system</code> 会交给 shell 执行，shell 把 <code>/bin/cal</code> 当成<strong>一个完整的程序路径</strong>，直接运行 <code>/bin/cal</code>。但 IFS 把 <code>/</code> 当成分隔符，字符串被切开，shell 不再把它识别成完整路径，执行逻辑变成找命令 <code>bin</code>，参数 <code>cal</code>。</p>
+<p>IFS 对字面量命令的影响依赖具体 shell 和解析形式，它不是对所有 <code>system("/bin/cal")</code> 调用都成立的通用攻击方式，但只要程序依赖 shell 解析，就不应把继承的环境变量视为可信输入。</p>
+</details>
+<p>动态链接程序在运行时由 loader 和 dynamic linker 加载共享库，静态链接程序则把所需库代码直接放入可执行文件。通常动态链接文件更小，但运行时依赖外部共享库。</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>gcc<span class="w"> </span>-o<span class="w"> </span>hello_dynamic<span class="w"> </span>hello.c
+$<span class="w"> </span>gcc<span class="w"> </span>-static<span class="w"> </span>-o<span class="w"> </span>hello_static<span class="w"> </span>hello.c
+$<span class="w"> </span>ls<span class="w"> </span>-l
+-rwxrwxr-x<span class="w"> </span>...<span class="w"> </span>hello_dynamic
+-rwxrwxr-x<span class="w"> </span>...<span class="w"> </span>hello_static
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">使用 <code>ldd</code> 查看共享库依赖</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>ldd<span class="w"> </span>a.out
+<span class="w">        </span>linux-gate.so.1<span class="w"> </span><span class="o">=</span>&gt;<span class="w">  </span><span class="o">(</span>...<span class="o">)</span>
+<span class="w">        </span>libc.so.6<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>/lib/i386-linux-gnu/libc.so.6<span class="w"> </span><span class="o">(</span>...<span class="o">)</span>
+<span class="w">        </span>/lib/ld-linux.so.2<span class="w"> </span><span class="o">(</span>...<span class="o">)</span>
+</code></pre></div>
+</div>
+<p><img src="/ssec/images/2/image4.png" style="display: block; width: 75%; margin: 0 auto;" /></p>
+<p><code>LD_PRELOAD</code> 指定需要在其他共享库之前加载的库。预加载的库可以定义与系统库相同的函数，从而覆盖原来的实现。</p>
+<details class="example">
+<summary>示例</summary>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Hello World</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">不设置 LD_PRELOAD</span><pre><span></span><code>$<span class="w"> </span><span class="nb">unset</span><span class="w"> </span>LD_PRELOAD
+$<span class="w"> </span>./a.out
+Hello<span class="w"> </span>World
+</code></pre></div>
+<div class="highlight"><span class="filename">设置自定义库后，动态链接器会优先加载该库</span><pre><span></span><code>$<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">LD_PRELOAD</span><span class="o">=</span>./libmylib.so.7
+$<span class="w"> </span>ldd<span class="w"> </span>a.out
+<span class="w">        </span>linux-gate.so.1<span class="w"> </span><span class="o">=</span>&gt;<span class="w">  </span><span class="o">(</span>...<span class="o">)</span>
+<span class="w">        </span>./libmylib.so.7<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">(</span>...<span class="o">)</span>
+<span class="w">        </span>libc.so.6<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">(</span>...<span class="o">)</span>
+
+$<span class="w"> </span>./a.out
+Hello<span class="w"> </span>World
+I<span class="w"> </span>am<span class="w"> </span>not<span class="w"> </span>sleeping!
+</code></pre></div>
+</details>
+<p>如果动态链接器允许普通用户通过 <code>LD_PRELOAD</code> 替换 root-owned Set-UID 程序使用的库，用户就可以在库中执行任意 root 代码。因此，动态链接器对特权程序会进入 secure-execution 模式，通常忽略或清除 <code>LD_PRELOAD</code>、<code>LD_LIBRARY_PATH</code> 等危险变量。</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">LD_PRELOAD</span><span class="o">=</span>./libmylib.so.1.0.1
+$<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span>.
+$<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">LD_MYOWN</span><span class="o">=</span><span class="s2">&quot;my own value&quot;</span>
+
+$<span class="w"> </span>env<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>LD_
+<span class="nv">LD_PRELOAD</span><span class="o">=</span>./libmylib.so.1.0.1
+<span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span>.
+<span class="nv">LD_MYOWN</span><span class="o">=</span>my<span class="w"> </span>own<span class="w"> </span>value
+
+$<span class="w"> </span>myenv<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>LD_
+<span class="nv">LD_MYOWN</span><span class="o">=</span>my<span class="w"> </span>own<span class="w"> </span>value
+</code></pre></div>
+<p><code>LD_PRELOAD</code> 和 <code>LD_LIBRARY_PATH</code> 被特权程序的动态链接器过滤，而普通的、没有特殊含义的 <code>LD_MYOWN</code> 仍然可以传入程序。安全程序不能因为动态链接器过滤了部分变量，就认为整个环境是可信的。</p>
+<h3 id="2-2">2. 2 来自用户输入的攻击<a class="headerlink" href="#2-2" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">cat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;/bin/cat&quot;</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">argc</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Please type a file name.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">command</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">malloc</span><span class="p">(</span><span class="n">strlen</span><span class="p">(</span><span class="n">cat</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">strlen</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
+<span class="w">    </span><span class="n">sprintf</span><span class="p">(</span><span class="n">command</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;%s %s&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">cat</span><span class="p">,</span><span class="w"> </span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+<span class="w">    </span><span class="n">system</span><span class="p">(</span><span class="n">command</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>上面的程序把用户提供的文件名拼接进 shell 命令，当用户输入 <code>aa</code> 时，程序构造的命令是 <code>/bin/cat aa</code>。</p>
+<p>但是，用户输入的内容会被 shell 作为命令代码重新解析，<code>aa;/bin/sh</code> 最终构造出的命令是 <code>/bin/cat aa;/bin/sh</code>，分号会结束第一个命令并启动第二个 shell，这就是<strong>命令注入（Command Injection）</strong>。</p>
+<details class="example">
+<summary>攻击实验示例</summary>
+<div class="highlight"><span class="filename">将程序编译为 root-owned Set-UID 程序</span><pre><span></span><code>$<span class="w"> </span>gcc<span class="w"> </span>-o<span class="w"> </span>catall<span class="w"> </span>catall.c
+$<span class="w"> </span>sudo<span class="w"> </span>chown<span class="w"> </span>root<span class="w"> </span>catall
+$<span class="w"> </span>sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">4755</span><span class="w"> </span>catall
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>./catall<span class="w"> </span><span class="s2">&quot;aa;/bin/sh&quot;</span>
+/bin/cat:<span class="w"> </span>aa:<span class="w"> </span>No<span class="w"> </span>such<span class="w"> </span>file<span class="w"> </span>or<span class="w"> </span>directory
+<span class="c1">#</span>
+$<span class="w"> </span>id
+<span class="nv">uid</span><span class="o">=</span><span class="m">1000</span><span class="o">(</span>seed<span class="o">)</span><span class="w"> </span><span class="nv">gid</span><span class="o">=</span><span class="m">1000</span><span class="o">(</span>seed<span class="o">)</span><span class="w"> </span><span class="nv">euid</span><span class="o">=</span><span class="m">0</span><span class="o">(</span>root<span class="o">)</span><span class="w"> </span><span class="nv">groups</span><span class="o">=</span><span class="m">0</span><span class="o">(</span>root<span class="o">)</span>
+</code></pre></div>
+<p>虽然真实用户仍然是 <code>seed</code>，但被注入的 shell 继承了 root 的有效权限。</p>
+<div class="highlight"><span class="filename">先把 /bin/sh 临时链接到 zsh，以避免某些 shell 在特权场景中主动降权</span><pre><span></span><code>$<span class="w"> </span>ls<span class="w"> </span>-l<span class="w"> </span>/bin/sh
+/bin/sh<span class="w"> </span>-&gt;<span class="w"> </span>/bin/dash
+
+$<span class="w"> </span>sudo<span class="w"> </span>ln<span class="w"> </span>-sf<span class="w"> </span>/bin/zsh<span class="w"> </span>/bin/sh
+$<span class="w"> </span>ls<span class="w"> </span>-l<span class="w"> </span>/bin/sh
+/bin/sh<span class="w"> </span>-&gt;<span class="w"> </span>/bin/zsh
+</code></pre></div>
+<div class="highlight"><span class="filename">实验完成后必须恢复原来的链接</span><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>ln<span class="w"> </span>-sf<span class="w"> </span>/bin/dash<span class="w"> </span>/bin/sh
+</code></pre></div>
+</details>
+<div class="admonition warning">
+<p class="admonition-title">辨析</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>catall<span class="w"> </span>aa<span class="p">;</span>/bin/sh
+$<span class="w"> </span>catall<span class="w"> </span><span class="s2">&quot;aa;/bin/sh&quot;</span>
+</code></pre></div>
+<ul>
+<li>第一条命令中，当前 shell 会先执行 <code>catall aa</code>，再执行 <code>/bin/sh</code>，分号没有作为参数传给 <code>catall</code>。</li>
+<li>第二条命令把整个字符串作为一个参数传递给程序，程序随后把它拼进 <code>system()</code> 的命令字符串中，分号才会在第二次 shell 解析时产生命令注入。</li>
+</ul>
+</div>
+<p>漏洞的根本原因是把用户输入同时放进了用户想要读取的文件名（Data）和 shell 要执行的命令字符串（Code）中。当程序把数据拼接进 shell 命令时，用户可以通过 <code>;</code>、<code>|</code>、<code>&amp;&amp;</code>、重定向等 shell 元字符改变程序代码。安全的方式是直接调用目标程序，把用户输入作为独立的参数传递给它。</p>
+<details class="example">
+<summary>示例</summary>
+<div class="highlight"><pre><span></span><code><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">v</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+
+<span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;/bin/cat&quot;</span><span class="p">;</span>
+<span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+<span class="n">v</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="n">execve</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="w"> </span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+</code></pre></div>
+<p>此时不启动 shell，<code>argv[1]</code> 始终是一个普通参数：</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>safecatall<span class="w"> </span><span class="s2">&quot;aa;/bin/sh&quot;</span>
+/bin/cat:<span class="w"> </span><span class="s1">&#39;aa;/bin/sh&#39;</span>:<span class="w"> </span>No<span class="w"> </span>such<span class="w"> </span>file<span class="w"> </span>or<span class="w"> </span>directory
+</code></pre></div>
+<p><code>;/bin/sh</code> 会被当作文件名的一部分，而不会被解释为新的命令。</p>
+</details>
+<h3 id="2-3">2. 3 能力泄露<a class="headerlink" href="#2-3" title="Permanent link">&para;</a></h3>
+<p><strong>能力泄漏（Capability leaking）</strong> 指进程虽然已经放弃高权限，但仍然保留了在高权限状态下获得的资源访问能力。</p>
+<details class="example">
+<summary>示例：文件描述符</summary>
+<div class="highlight"><pre><span></span><code><span class="n">fd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">open</span><span class="p">(</span><span class="s">&quot;/etc/zzz&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">O_RDWR</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">O_APPEND</span><span class="p">);</span>
+
+<span class="n">setuid</span><span class="p">(</span><span class="n">getuid</span><span class="p">());</span><span class="w">       </span><span class="c1">// Dropping the privilege</span>
+
+<span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">v</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+<span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;/bin/sh&quot;</span><span class="p">;</span>
+<span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="n">execve</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="w"> </span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+</code></pre></div>
+<p><code>open()</code> 在降权之前执行，因此 <code>fd</code> 已经代表一个以 root 身份打开的文件。降权不会自动关闭或重新检查该文件描述符。</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>cat<span class="w"> </span>/etc/zzz
+bbbbbbbbbbbbbbbb
+
+$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>aaaaaaaaaaaa<span class="w"> </span>&gt;<span class="w"> </span>/etc/zzz
+bash:<span class="w"> </span>/etc/zzz:<span class="w"> </span>Permission<span class="w"> </span>denied
+
+$<span class="w"> </span>cap_leak
+fd<span class="w"> </span>is<span class="w"> </span><span class="m">3</span>
+
+$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>cccccccccccc<span class="w"> </span>&gt;<span class="p">&amp;</span><span class="m">3</span>
+$<span class="w"> </span>cat<span class="w"> </span>/etc/zzz
+bbbbbbbbbbbbbbbb
+cccccccccccc
+</code></pre></div>
+<p>普通用户不能直接写 <code>/etc/zzz</code>，但可以通过继承的文件描述符 <code>3</code> 写入该文件。</p>
+</details>
+<details class="example">
+<summary>真实案例：<code>DYLD_PRINT_TO_FILE</code></summary>
+<p><code>DYLD_PRINT_TO_FILE</code> 原本用于让动态链接器把错误信息写入指定文件，但攻击者可以把它指向一个本应只能由 root 创建或写入的文件。</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span><span class="nv">DYLD_PRINT_TO_FILE</span><span class="o">=</span>/this_system_is_vulnerable<span class="w"> </span>su<span class="w"> </span>&lt;some_username&gt;
+Password:
+
+$<span class="w"> </span>ls<span class="w"> </span>-la<span class="w"> </span>/this_system_is_vulnerable
+-rw-r--r--<span class="w"> </span><span class="m">1</span><span class="w"> </span>root<span class="w"> </span>wheel<span class="w"> </span>...<span class="w"> </span>/this_system_is_vulnerable
+
+$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Test 1&quot;</span><span class="w"> </span>&gt;<span class="p">&amp;</span><span class="m">3</span>
+$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Test 2&quot;</span><span class="w"> </span>&gt;<span class="p">&amp;</span><span class="m">3</span>
+$<span class="w"> </span>cat<span class="w"> </span>/this_system_is_vulnerable
+Test<span class="w"> </span><span class="m">1</span>
+Test<span class="w"> </span><span class="m">2</span>
+</code></pre></div>
+<p>动态链接器以高权限打开文件并留下文件描述符 <code>3</code>，后续的低权限 shell 通过 <code>&gt;&amp;3</code> 使用该描述符写入文件。</p>
+</details>
+<h3 id="2-4">2. 4 分析<a class="headerlink" href="#2-4" title="Permanent link">&para;</a></h3>
+<p>Set-UID 方式和服务端方式都可以让普通用户请求特权操作，但攻击面不同。</p>
+<p><img src="/ssec/images/2/image5.png" style="display: block; width: 78%; margin: 0 auto;" /></p>
+<ul>
+<li><strong>Set-UID 方式</strong>：普通用户直接启动特权程序，特权程序继承用户的环境变量、文件描述符和其他进程上下文，代码在用户可影响的环境中执行特权操作。</li>
+<li><strong>服务端方式</strong>：一个长期运行的特权服务拥有自己的环境，普通用户进程通过 IPC、socket 或其他接口发送请求，服务端只处理定义好的请求，不直接继承请求者的整个进程环境。</li>
+</ul>
+<p>服务端方式并不会自动安全，服务仍然需要认证、输入验证和访问控制。但从环境变量角度看，服务端的特权执行环境不直接由每个请求者控制，攻击面通常更小。</p>
+<div class="admonition tip">
+<p class="admonition-title">最小权限原则</p>
+<p>Every program and every privileged user of the system should operate using the least amount of privilege necessary to complete the job.</p>
+<p>Set-UID root 程序通常一次获得完整的 root 权限，但程序真正需要的可能只是读取某类文件、创建 raw socket 或修改少量属性。因此，Set-UID root 容易违反最小权限原则。</p>
+</div>
+<h2 id="3-posix-capabilities">3 POSIX Capabilities<a class="headerlink" href="#3-posix-capabilities" title="Permanent link">&para;</a></h2>
+<p>POSIX capabilities 将 root 的整体权限拆分成多个更小的权限单元。程序只获得完成任务所需的 capability，而不必获得完整的 root 身份。</p>
+<div class="admonition tip">
+<p class="admonition-title">查看 Linux 内核所有能力</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>man<span class="w"> </span>capabilities
+</code></pre></div>
+</div>
+<table>
+<thead>
+<tr>
+<th>Capability</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CAP_CHOWN</code></td>
+<td>任意修改文件的 UID 和 GID</td>
+</tr>
+<tr>
+<td><code>CAP_DAC_OVERRIDE</code></td>
+<td>绕过文件读、写、执行权限检查</td>
+</tr>
+<tr>
+<td><code>CAP_DAC_READ_SEARCH</code></td>
+<td>绕过文件读取和目录搜索相关的权限检查</td>
+</tr>
+<tr>
+<td><code>CAP_NET_RAW</code></td>
+<td>使用 raw socket 和 packet socket</td>
+</tr>
+</tbody>
+</table>
+<p>进程和文件都可以关联 capability。常见的 capability 集合包括：</p>
+<ul>
+<li><strong>permitted（<code>p</code>）</strong>：进程被允许使用的 capability</li>
+<li><strong>effective（<code>e</code>）</strong>：当前实际启用的 capability</li>
+<li><strong>inheritable（<code>i</code>）</strong>：允许在执行新程序时继续传递的 capability</li>
+</ul>
+<details class="example">
+<summary>示例：设置文件能力</summary>
+<div class="highlight"><span class="filename">复制 shell，默认情况下不能读取 /etc/shadow</span><pre><span></span><code>$<span class="w"> </span>cp<span class="w"> </span>/bin/bash<span class="w"> </span>./mybash
+$<span class="w"> </span>./mybash
+
+$<span class="w"> </span>cat<span class="w"> </span>&lt;<span class="w"> </span>/etc/shadow
+mybash:<span class="w"> </span>/etc/shadow:<span class="w"> </span>Permission<span class="w"> </span>denied
+</code></pre></div>
+<div class="highlight"><span class="filename">为 mybash 设置 CAP_DAC_READ_SEARCH</span><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>setcap<span class="w"> </span><span class="nv">CAP_DAC_READ_SEARCH</span><span class="o">=</span>ep<span class="w"> </span>mybash
+$<span class="w"> </span>getcap<span class="w"> </span>mybash
+<span class="nv">mybash</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>cap_dac_read_search+ep
+</code></pre></div>
+<div class="highlight"><span class="filename">使用 getpcaps 查看当前进程的能力</span><pre><span></span><code>$<span class="w"> </span>getpcaps<span class="w"> </span><span class="nv">$$</span>
+<span class="m">65331</span>:<span class="w"> </span><span class="o">=</span><span class="w"> </span>cap_dac_read_search+ep
+</code></pre></div>
+<div class="highlight"><span class="filename">再次进入 mybash</span><pre><span></span><code>$<span class="w"> </span>cat<span class="w"> </span>&lt;<span class="w"> </span>/etc/shadow
+root:!:...
+daemon:*:...
+bin:*:...
+
+$<span class="w"> </span>cat<span class="w"> </span>&gt;<span class="w"> </span>/zzzz
+mybash:<span class="w"> </span>/zzzz:<span class="w"> </span>Permission<span class="w"> </span>denied
+</code></pre></div>
+<p><code>CAP_DAC_READ_SEARCH</code> 只允许绕过读取和搜索检查，并不授予写权限。这比直接把整个 shell 设置为 root-owned Set-UID 更符合最小权限原则。</p>
+</details>
+<details class="info">
+<summary>Case Study 1: Wireshark</summary>
+<p>Wireshark 的图形界面、协议解析和展示部分不需要 root 权限，真正需要访问网络接口、执行抓包操作的是 <code>dumpcap</code>。</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>getcap<span class="w"> </span>/usr/bin/dumpcap
+/usr/bin/dumpcap<span class="w"> </span><span class="o">=</span><span class="w"> </span>cap_net_admin,cap_net_raw+eip
+</code></pre></div>
+<p>这种设计把特权操作限制在较小的辅助程序中，减少了复杂图形和解析代码运行在高权限环境中的风险。</p>
+</details>
+<details class="info">
+<summary>Case Study 2: ping</summary>
+<p><code>ping</code> 需要创建 raw socket，但不需要完整的 root 权限。</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>getcap<span class="w"> </span>/usr/bin/ping
+/usr/bin/ping<span class="w"> </span><span class="o">=</span><span class="w"> </span>cap_net_raw+ep
+</code></pre></div>
+<p><code>CAP_NET_RAW</code> 只提供创建 raw socket 等网络能力，权限范围小于完整的 root 身份。</p>
+</details>
+<details class="info">
+<summary>Case Study 3: Android Permissions</summary>
+<p>Android 采用声明式、细粒度的权限模型：</p>
+<ol>
+<li>应用在安装包中声明需要的 permissions</li>
+<li>安装时由系统和用户决定是否授予这些 permissions</li>
+<li>应用运行时只能使用已经获得的权限</li>
+</ol>
+<p><img src="/ssec/images/2/image6.png" style="display: block; width: 60%; margin: 0 auto;" /></p>
+<p>应用不能因为自身代码需要某项特权，就自动获得整个系统的 root 权限。Android 的应用权限、应用沙箱和用户授权机制体现了把大权限拆分成小权限的思想。</p>
+</details>
+<h2 id="4-review-questions">4 Review Questions<a class="headerlink" href="#4-review-questions" title="Permanent link">&para;</a></h2>
+<details class="question">
+<summary>The chown command automatically disables the Set-UID bit, when it changes the owner of a Set-UID program. Please explain why it does that.</summary>
+<p><code>chown</code> 改变文件拥有者时会清除 Set-UID 位，因为文件拥有者决定执行该文件时的 <code>euid</code>。如果 Set-UID 位在换 owner 后仍然保留，攻击者就可能先准备任意恶意程序，再把它转移为 root 所有而保留 Set-UID，最终获得 root 权限。</p>
+<p>清除 Set-UID 位可以避免权限随文件拥有者变化而被意外或恶意转移。</p>
+</details>
+<details class="question">
+<summary>When a program takes an input from users, we can redirect the input device, so the program can take the input from a file. For example, we can use <code>prog &lt; myfile</code> to provide the data from <code>myfile</code> as input to the <code>prog</code> program. Now, if <code>prog</code> is a root-owned Set-UID program, can we use <code>$ prog &lt; /etc/shadow</code> to to get this privileged program to read from the <code>/etc/shadow</code> file?</summary>
+<p>不能直接通过 <code>$ prog &lt; /etc/shadow</code> 让普通用户读取 <code>/etc/shadow</code>，因为 shell 会在启动 <code>prog</code> 之前，先以当前普通用户的权限打开 <code>/etc/shadow</code> 并完成标准输入重定向。普通用户没有打开该文件的权限，因此重定向阶段就会失败，Set-UID 程序根本还没有开始执行。如果特权程序自己打开文件，或者继承了特权状态下已经打开的文件描述符，则属于另一种情况，可能产生能力泄漏。</p>
+</details>
+<details class="question">
+<summary>When a parent Set-UID process (effective user ID is root, and the real user ID is bob) creates a child process using <code>fork()</code>, the standard input, output, and error devices of the parent will be inherited by the child. If the child process drops its root privilege, it still retains the access right to these devices. This seems to be a capability leaking, similar to the capability-leaking case covered in this chapter. Can this pose any danger?</summary>
+<p>可以。父进程的标准输入、标准输出和标准错误本质上也是文件描述符。<code>fork()</code> 创建的子进程会继承这些描述符；即使子进程随后放弃 root 权限，已经打开的设备或文件描述符仍然可能保持原来的访问能力。</p>
+<p>因此，降权后启动子进程前应当：</p>
+<ul>
+<li>关闭不需要的描述符</li>
+<li>检查标准输入、输出和错误是否指向可信对象</li>
+<li>使用 <code>FD_CLOEXEC</code> 防止描述符跨 <code>execve()</code> 泄漏</li>
+<li>重新以低权限打开需要使用的资源</li>
+</ul>
+</details>
+<details class="question">
+<summary>Assume that you have a file that you would allow other users to read, only if a user’s ID is smaller than 1000. Please describe how you can actually achieve this.</summary>
+<p>普通文件权限和 ACL 不适合直接表达“UID 小于 1000”这样的数值范围。可以编写一个最小化的 root-owned Set-UID helper：</p>
+<div class="highlight"><pre><span></span><code><span class="kt">uid_t</span><span class="w"> </span><span class="n">uid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getuid</span><span class="p">();</span><span class="w">       </span><span class="cm">/* real UID, not euid */</span>
+
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">uid</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">1000</span><span class="p">)</span>
+<span class="w">    </span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+
+<span class="cm">/* 以特权身份打开并读取目标文件 */</span>
+</code></pre></div>
+<p>该 helper 应当：</p>
+<ul>
+<li>使用 <code>getuid()</code> 检查真实调用者的 UID</li>
+<li>只允许 UID 小于 <code>1000</code> 的调用者继续</li>
+<li>只实现读取功能，不调用 shell、不执行用户提供的命令</li>
+<li>对输入路径进行限制，避免任意文件读取</li>
+<li>读取完成后尽快降权或退出</li>
+</ul>
+<p>如果允许的用户集合是固定的，也可以创建专用用户组并使用组权限；但对于动态的 UID 数值范围，受控的权限检查程序更直接。</p>
+</details>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.top", "navigation.sidebar", "navigation.indexes"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../../javascripts/mathjax-config.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf_viewer.min.js"></script>
+      
+    
+  </body>
+</html>
