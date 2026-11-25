@@ -12,6 +12,8 @@
         <link rel="prev" href="../2/">
       
       
+        <link rel="next" href="../4/">
+      
       
       <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
@@ -4449,6 +4451,8 @@
       
         
       
+        
+      
     
     
     
@@ -4682,6 +4686,29 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 量子纠错
+    
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -4983,6 +5010,10 @@ U_{QPE}|j\rangle|\mu\rangle = |\widetilde{\varphi}\rangle|\mu\rangle
 <div class="arithmatex">\[
 |j_i\rangle U^{j_i 2^{i-1}} |\mu\rangle = \frac{1}{\sqrt{2}}\big(|0\rangle + e^{2\pi i 2^{i-1}\varphi}|1\rangle\big)|\mu\rangle
 \]</div>
+<p>把 <span class="arithmatex">\(n\)</span> 个状态乘在一起，第一阶段结束时的总状态就是：</p>
+<div class="arithmatex">\[
+\frac{1}{\sqrt{2^n}}\big(|0\rangle + e^{2\pi i(2^0\varphi)}|1\rangle\big) \otimes \big(|0\rangle + e^{2\pi i(2^1\varphi)}|1\rangle\big)\cdots\otimes \big(|0\rangle + e^{2\pi i(2^{n-1}\varphi)}|1\rangle\big)|\mu\rangle
+\]</div>
 </details>
 <details class="question">
 <summary>考虑相位旋转门 <span class="arithmatex">\(P(\phi)=\begin{bmatrix}1&amp;0\\0&amp;e^{i\phi}\end{bmatrix}\)</span>，其本征态之一为 <span class="arithmatex">\(|1\rangle\)</span>，取 <span class="arithmatex">\(\phi=\frac{\pi}{4}\)</span>，即 <span class="arithmatex">\(P\left(\frac{\pi}{4}\right)=\begin{bmatrix}1&amp;0\\0&amp;e^{i\frac{\pi}{4}}\end{bmatrix}\)</span>，求其对应特征值的相位。</summary>
@@ -4993,7 +5024,7 @@ U_{QPE}|j\rangle|\mu\rangle = |\widetilde{\varphi}\rangle|\mu\rangle
 e^{2\pi i\varphi}=e^{2\pi i\frac{1}{8}}=e^{i\frac{\pi}{4}}=e^{i\phi}\]</div>
 </details>
 <p>若 <span class="arithmatex">\(\varphi=\frac{s}{2^t}\)</span> 可用 <span class="arithmatex">\(t\)</span> 位二进制精确表示，逆 QFT 后相位寄存器变为 <span class="arithmatex">\(|s\rangle\)</span>，测量必得 <span class="arithmatex">\(s\)</span>，否则结果集中在最接近 <span class="arithmatex">\(2^t\varphi\)</span> 的整数附近，增加比特数和重复测量可提高估计精度或成功率。</p>
-<p>QPE 精度取决于 qubit 数目，<span class="arithmatex">\(n\)</span> 个 qubit 可以估计相位到 <span class="arithmatex">\(\frac{1}{2^n}\)</span> 的精度。若 <span class="arithmatex">\(\phi=\frac{2\pi}{3}\)</span>，则 <span class="arithmatex">\(P\left(\frac{2\pi}{3}\right)|1\rangle=e^{i\frac{2\pi}{3}}|1\rangle=e^{2\pi i\varphi}\)</span>，<span class="arithmatex">\(\varphi=\frac13\)</span> 不能由二进制精确表示，相比而言 <span class="arithmatex">\((011)_2=\frac{3}{8}\)</span> 更接近。</p>
+<p>QPE 精度取决于 qubit 数目，<span class="arithmatex">\(n\)</span> 个 qubit 可以估计相位到 <span class="arithmatex">\(\frac{1}{2^n}\)</span> 的精度。若 <span class="arithmatex">\(\phi=\frac{2\pi}{3}\)</span>，则 <span class="arithmatex">\(P\left(\frac{2\pi}{3}\right)|1\rangle=e^{i\frac{2\pi}{3}}|1\rangle=e^{2\pi i\varphi} \lvert 1 \rangle\)</span>，<span class="arithmatex">\(\varphi=\frac13\)</span> 不能由二进制精确表示，相比而言 <span class="arithmatex">\((011)_2=\frac{3}{8}\)</span> 更接近。</p>
 <p>如果第二个寄存器初始化的不是单一的本征态，而是任意态 <span class="arithmatex">\(|b\rangle\)</span>，它可以被展开为酉矩阵所有本征态的线性组合 <span class="arithmatex">\(|b\rangle = \sum_j \beta_j |\mu_j\rangle\)</span>。运行 QPE 后，会得到所有本征态及其对应相位的纠缠态，<strong>测量得到某个相位的概率等于系数模的平方<span class="arithmatex">\(|\beta_j|^2\)</span></strong>。</p>
 <details class="example">
 <summary>示例</summary>
@@ -5015,7 +5046,7 @@ e^{2\pi i\varphi}=e^{2\pi i\frac{1}{8}}=e^{i\frac{\pi}{4}}=e^{i\phi}\]</div>
 </li>
 <li><strong>阶</strong>：<span class="arithmatex">\(a\)</span> 模 <span class="arithmatex">\(n\)</span> 的阶为令 <span class="arithmatex">\(a^r \equiv 1 \pmod{n}\)</span> 成立的最小正整数 <span class="arithmatex">\(r\)</span>，记作 <span class="arithmatex">\(\mathrm{ord}_n a\)</span></li>
 <li><strong>欧拉函数</strong>：<ul>
-<li><span class="arithmatex">\(\varphi(n)\)</span>：与 <span class="arithmatex">\(n\)</span> 互质的小于 <span class="arithmatex">\(n\)</span> 整数个数，互质即最大公约数为 <span class="arithmatex">\(1\)</span></li>
+<li><span class="arithmatex">\(\varphi(n)\)</span>：与 <span class="arithmatex">\(n\)</span> 互质的小于 <span class="arithmatex">\(n\)</span> 整数个数</li>
 <li>若 <span class="arithmatex">\(p\)</span> 是质数，显然有 <span class="arithmatex">\(\varphi(p) = p - 1\)</span></li>
 <li>欧拉函数是积性函数：若 <span class="arithmatex">\(\gcd(a,b) = 1\)</span>（<span class="arithmatex">\(a,b\)</span> 互质），则 <span class="arithmatex">\(\varphi(ab) = \varphi(a)\varphi(b)\)</span></li>
 <li>若 <span class="arithmatex">\(\gcd(a,n) = 1\)</span>，则 <span class="arithmatex">\(a^{\varphi(n)} \equiv 1 \pmod{n}\)</span></li>
@@ -5096,9 +5127,11 @@ U=\sum_{x=0}^{N-1}|f(x)\rangle\langle x|
 <div class="arithmatex">\[
 |\psi\rangle=\sqrt{\frac{N-M}{N}}|\alpha\rangle+\sqrt{\frac MN}|\beta\rangle
 \]</div>
+<p>其中 <span class="arithmatex">\(N\)</span> 是搜索空间的总大小，<span class="arithmatex">\(M\)</span> 是正确答案（解）的数量。</p>
 <p><img src="/qc/images/3/11.png" style="display: block; width: 40%; margin: 0 auto;" /></p>
-<p><span class="arithmatex">\(O_f\)</span> 关于错解轴反射，<span class="arithmatex">\(D=2|s\rangle\langle s|-I=H^{\otimes n}(2|0^n\rangle\langle0^n|-I)H^{\otimes n}\)</span> 关于 <span class="arithmatex">\(|s\rangle\)</span> 反射。</p>
-<p>作用一次 <span class="arithmatex">\(G\)</span> 算子可将量子态向 <span class="arithmatex">\(|\beta\rangle\)</span> 旋转角度 <span class="arithmatex">\(\theta\)</span>，其中 <span class="arithmatex">\(\theta = 2\arccos\sqrt{\frac{N-M}{N}}\)</span>，则作用 <span class="arithmatex">\(k\)</span> 次后有：</p>
+<p>预言机 <span class="arithmatex">\(O = I - 2|\beta\rangle\langle\beta| = \begin{bmatrix}1 &amp; 0 \\0 &amp; -1\end{bmatrix}\)</span> 关于错解轴 <span class="arithmatex">\(| \alpha \rangle\)</span> 反射。</p>
+<p>扩散算子 <span class="arithmatex">\(D=2| \psi \rangle\langle \psi|-I\)</span>，其中 <span class="arithmatex">\(|\psi\rangle = H^{\otimes n}|0\rangle^{\otimes n}\)</span>，则 <span class="arithmatex">\(D = H^{\otimes n}(2|0^n\rangle\langle0^n|-I)H^{\otimes n}\)</span> 关于 <span class="arithmatex">\(|\psi\rangle\)</span> 反射。</p>
+<p>则算子 <span class="arithmatex">\(G = DO = \big(2|\psi\rangle\langle\psi| - I\big)O\)</span>，作用一次 <span class="arithmatex">\(G\)</span> 算子可将量子态向 <span class="arithmatex">\(|\beta\rangle\)</span> 旋转角度 <span class="arithmatex">\(\theta\)</span>，其中 <span class="arithmatex">\(\theta = 2\arccos\sqrt{\frac{N-M}{N}}\)</span>，则作用 <span class="arithmatex">\(k\)</span> 次后有：</p>
 <div class="arithmatex">\[
 G^k|\psi\rangle = \cos\left(\frac{2k+1}{2}\theta\right)|\alpha\rangle + \sin\left(\frac{2k+1}{2}\theta\right)|\beta\rangle
 \]</div>

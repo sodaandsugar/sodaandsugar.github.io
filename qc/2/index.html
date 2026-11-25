@@ -4451,6 +4451,8 @@
       
         
       
+        
+      
     
     
     
@@ -4665,6 +4667,29 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 量子纠错
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -4836,8 +4861,8 @@ i\hbar\big(\ln|\psi(t_2)\rangle - \ln|\psi(t_1)\rangle\big) = H(t_2 - t_1)
 <p>矩阵乘法使得原向量发生旋转、伸缩的变化。如果矩阵对某一个向量或某些向量只发生伸缩变换，不对这些向量产生旋转的效果，那么这些向量就称为这个矩阵的特征向量，伸缩的比例就是特征值。</p>
 <p><img src="/qc/images/2/2.png" style="display: block; width: 70%; margin: 0 auto;" /></p>
 </details>
-<p>矩阵 <span class="arithmatex">\(A\)</span> 的特征向量满足 <span class="arithmatex">\(A|e_i\rangle=\lambda_i|e_i\rangle\)</span>：作用 <span class="arithmatex">\(A\)</span> 后方向不变，<span class="arithmatex">\(\lambda_i\)</span> 表示该方向上的变化系数。可对角化矩阵能写成 <span class="arithmatex">\(A=Q\Sigma Q^{-1}\)</span>，其中 <span class="arithmatex">\(Q\)</span> 的列是特征向量，<span class="arithmatex">\(\Sigma\)</span> 的对角元是特征值。特征值的集合称为<strong>谱</strong>。量子测量中的可观测量是厄米算符，因此可以选取标准正交本征基 <span class="arithmatex">\(\{|e_i\rangle\}\)</span>。</p>
-<p>标准正交基满足 <span class="arithmatex">\(\langle e_i|e_j\rangle=\delta_{ij}\)</span>。任意态 <span class="arithmatex">\(|v\rangle\)</span> 都可以展开为 <span class="arithmatex">\(\sum_i c_i|e_i\rangle\)</span>，且 <span class="arithmatex">\(c_i=\langle e_i|v\rangle\)</span>。由此得到<strong>完备性方程</strong>与可观测量的<strong>谱分解</strong>：</p>
+<p>矩阵 <span class="arithmatex">\(A\)</span> 的特征向量满足 <span class="arithmatex">\(A|e_i\rangle=\lambda_i|e_i\rangle\)</span>，作用 <span class="arithmatex">\(A\)</span> 后方向不变，<span class="arithmatex">\(\lambda_i\)</span> 表示该方向上的变化系数。可对角化矩阵能写成 <span class="arithmatex">\(A=Q\Sigma Q^{-1}\)</span>，其中 <span class="arithmatex">\(Q\)</span> 的列是特征向量，<span class="arithmatex">\(\Sigma\)</span> 的对角元是特征值。特征值的集合称为<strong>谱</strong>。量子测量中的可观测量是厄米算符，因此可以选取标准正交本征基 <span class="arithmatex">\(\{|e_i\rangle\}\)</span>。</p>
+<p>标准正交基满足 <span class="arithmatex">\(\langle e_i|e_j\rangle=\delta_{ij} = \begin{cases} 1, &amp; i = j \\ 0, &amp; i \neq j \end{cases}\)</span> ，任意态 <span class="arithmatex">\(|v\rangle\)</span> 都可以展开为 <span class="arithmatex">\(\sum_i c_i|e_i\rangle\)</span>，且 <span class="arithmatex">\(c_i=\langle e_i|v\rangle\)</span>，由此得到<strong>完备性方程</strong>与可观测量的<strong>谱分解</strong>：</p>
 <div class="arithmatex">\[
 \sum_i|e_i\rangle\langle e_i|=I,\qquad
 A=\sum_i\lambda_i|e_i\rangle\langle e_i|
@@ -4853,7 +4878,13 @@ A=\sum_i\lambda_i|e_i\rangle\langle e_i|
 \end{aligned}
 \]</div>
 </details>
-<p>定义投影算子 <span class="arithmatex">\(P_i=|e_i\rangle\langle e_i|\)</span>，则 <span class="arithmatex">\(P_i|v\rangle=c_i|e_i\rangle\)</span>，即取出 <span class="arithmatex">\(|v\rangle\)</span> 沿 <span class="arithmatex">\(|e_i\rangle\)</span> 的分量。它们满足 <span class="arithmatex">\(P_i^\dagger=P_i\)</span>、<span class="arithmatex">\(P_i^2=P_i\)</span>、<span class="arithmatex">\(P_iP_j=0\ (i\ne j)\)</span> 和 <span class="arithmatex">\(\sum_iP_i=I\)</span>。</p>
+<p>定义投影算符 <span class="arithmatex">\(P_i=|e_i\rangle\langle e_i|\)</span>，则 <span class="arithmatex">\(P_i|v\rangle=c_i|e_i\rangle\)</span>，即取出 <span class="arithmatex">\(|v\rangle\)</span> 沿 <span class="arithmatex">\(|e_i\rangle\)</span> 的分量，满足以下性质：</p>
+<ul>
+<li><strong>厄米性</strong>：<span class="arithmatex">\(P_i^\dagger = P_i\)</span> （共轭转置等于自身，代表物理可观测量，特征值为实数）</li>
+<li><strong>幂等性</strong>：<span class="arithmatex">\(P_i^2 = P_i\)</span> （投影两次等于投影一次，态在投影方向上不再改变）</li>
+<li><strong>正交性</strong>：<span class="arithmatex">\(P_i P_j = 0 \ (i \neq j)\)</span> （不同正交基方向的分量互斥，先投 <span class="arithmatex">\(i\)</span> 再投 <span class="arithmatex">\(j\)</span> 结果必为 <span class="arithmatex">\(0\)</span>）</li>
+<li><strong>完备性</strong>：<span class="arithmatex">\(\sum\limits_i P_i = I\)</span> （所有正交方向投影之和为单位阵，体现单位分解，可还原任意态）</li>
+</ul>
 <details class="example">
 <summary>投影算子示例</summary>
 <p>若两个基向量为：</p>
@@ -4886,7 +4917,7 @@ P_1P_2 = \begin{bmatrix}0 &amp; 0\\0 &amp; 0\end{bmatrix}
 p_i=\langle\psi|P_i|\psi\rangle=\lvert P_i|\psi\rangle \rvert^2,\qquad
 |\psi_i\rangle=\frac{P_i|\psi\rangle}{\sqrt{p_i}}\quad(p_i&gt;0).
 \]</div>
-<p>测量结果的期望值与标准差为：</p>
+<p>其中 <span class="arithmatex">\(P_i|\psi\rangle\)</span> 保留了原状态 <span class="arithmatex">\(|\psi\rangle\)</span> 中符合测量结果 <span class="arithmatex">\(i\)</span> 的所有信息，测量结果的期望值与标准差为：</p>
 <div class="arithmatex">\[
 \langle A\rangle=\sum_i\lambda_i p_i=\langle\psi|A|\psi\rangle,\qquad
 \Delta A=\sqrt{\langle A^2\rangle-\langle A\rangle^2}.
@@ -4926,7 +4957,7 @@ p(1) = \left\langle \psi \middle| P_1^\dagger P_1 \middle| \psi \right\rangle = 
 \frac{P_1|\psi\rangle}{\sqrt{p_1}} = \frac{P_1|\psi\rangle}{\beta} = \frac{\beta}{|\beta|}|1\rangle
 \]</div>
 </details>
-<p>在量子线路中，测量符号表示将量子态读出为经典结果。例如 <span class="arithmatex">\(|0\rangle\xrightarrow{H}(|0\rangle+|1\rangle)/\sqrt2\)</span>，随后在计算基测量，结果 <span class="arithmatex">\(0\)</span> 与 <span class="arithmatex">\(1\)</span> 的概率各为 <span class="arithmatex">\(1/2\)</span>，测后态分别为 <span class="arithmatex">\(|0\rangle\)</span> 与 <span class="arithmatex">\(|1\rangle\)</span>。</p>
+<p>在量子线路中，测量符号表示将量子态读出为经典结果。例如 <span class="arithmatex">\(|0\rangle\xrightarrow{H}\dfrac{|0\rangle+|1\rangle}{\sqrt2}\)</span>，随后在计算基测量，结果 <span class="arithmatex">\(0\)</span> 与 <span class="arithmatex">\(1\)</span> 的概率各为 <span class="arithmatex">\(1/2\)</span>，测后态分别为 <span class="arithmatex">\(|0\rangle\)</span> 与 <span class="arithmatex">\(|1\rangle\)</span>。</p>
 <p>在真实的量子计算机上，最后要对量子系统末态进行测量操作，才能得到末态的信息，因此也把测量操作作为量子线路的一部分，有时也被称为<strong>测量门</strong>。测量背后的原理就是之前讲到的<strong>投影测量</strong>。</p>
 <p>在量子电路中，一般使用带仪表符号的门来表示对该量子线路代表的量子比特进行测量操作。</p>
 <p><img src="/qc/images/2/5.png" style="display: block; width: 60%; margin: 0 auto;" /></p>
@@ -4985,7 +5016,7 @@ p(1) = \left\langle \psi \middle| P_1^\dagger P_1 \middle| \psi \right\rangle
 <summary>常见通用量子门集合</summary>
 <ul>
 <li>单量子比特门和 CNOT 门组合是通用的</li>
-<li>通用门的标准集合由H门、相位门、CNOT 门和 <span class="arithmatex">\(π/8\)</span> 门构成</li>
+<li>通用门的标准集合由 <span class="arithmatex">\(H\)</span> 门、相位门、CNOT 门和 <span class="arithmatex">\(π/8\)</span> 门构成</li>
 <li><span class="arithmatex">\(H\)</span> 门、相位门、CNOT 门和 Toffoli 门的组合也是通用的</li>
 </ul>
 <p>实际编译时，可指定设备支持的基本门（如 Qiskit 的 <code>basis_gates</code>），把电路中的门转换为这些门的组合。</p>
@@ -5002,8 +5033,10 @@ p(1) = \left\langle \psi \middle| P_1^\dagger P_1 \middle| \psi \right\rangle
 <div class="admonition tip">
 <p class="admonition-title">证明：Hadamard 门和 <span class="arithmatex">\(\frac{\pi}{8}\)</span> 门可以对任意的单比特酉操作以任意精度近似</p>
 <p>考虑 <span class="arithmatex">\(T\)</span> 门和 <span class="arithmatex">\(HTH\)</span> 门，其中 <span class="arithmatex">\(T\)</span> 的作用是在布洛赫球上进行绕 <span class="arithmatex">\(z\)</span> 轴转 <span class="arithmatex">\(\frac{\pi}{4}\)</span> 角度的操作，而 <span class="arithmatex">\(HTH\)</span> 是绕 <span class="arithmatex">\(x\)</span> 轴转 <span class="arithmatex">\(\frac{\pi}{4}\)</span> 的角度，将这两个操作组合起来，有：</p>
-<p><span class="arithmatex">\(<span class="arithmatex">\(R_z(\frac{\pi}{4})R_x(\frac{\pi}{4}) = e^{-i\frac{\pi}{8}Z}e^{-i\frac{\pi}{8}X} = \cos^2 \frac{\pi}{8}I - i\left[\cos \frac{\pi}{8}(X + Z) + \sin \frac{\pi}{8}Y\right]\sin \frac{\pi}{8}\)</span>\)</span>
-可以看出这是一个在布洛赫球面上绕轴 <span class="arithmatex">\(\hat{n} = \left(\cos \frac{\pi}{8},\sin \frac{\pi}{8},\cos \frac{\pi}{8}\right)\)</span> 旋转 <span class="arithmatex">\(\theta\)</span> 的操作，其中 <span class="arithmatex">\(\cos \frac{\theta}{2} = \cos^2 \frac{\pi}{8}\)</span>。重复进行 <span class="arithmatex">\(R_{\hat{n}}(\theta)\)</span> 操作可以以任意精度近似任意的 <span class="arithmatex">\(R_{\hat{n}}(\alpha)\)</span>。</p>
+<div class="arithmatex">\[
+R_z(\frac{\pi}{4})R_x(\frac{\pi}{4}) = e^{-i\frac{\pi}{8}Z}e^{-i\frac{\pi}{8}X} = \cos^2 \frac{\pi}{8}I - i\left[\cos \frac{\pi}{8}(X + Z) + \sin \frac{\pi}{8}Y\right]\sin \frac{\pi}{8}
+\]</div>
+<p>可以看出这是一个在布洛赫球面上绕轴 <span class="arithmatex">\(\hat{n} = \left(\cos \frac{\pi}{8},\sin \frac{\pi}{8},\cos \frac{\pi}{8}\right)\)</span> 旋转 <span class="arithmatex">\(\theta\)</span> 的操作，其中 <span class="arithmatex">\(\cos \frac{\theta}{2} = \cos^2 \frac{\pi}{8}\)</span>。重复进行 <span class="arithmatex">\(R_{\hat{n}}(\theta)\)</span> 操作可以以任意精度近似任意的 <span class="arithmatex">\(R_{\hat{n}}(\alpha)\)</span>。</p>
 </div>
 <details class="warning">
 <summary>量子门分解代价</summary>

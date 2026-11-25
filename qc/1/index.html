@@ -4451,6 +4451,8 @@
       
         
       
+        
+      
     
     
     
@@ -4782,6 +4784,29 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 量子纠错
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -5033,19 +5058,36 @@
 <p class="admonition-title">量子力学与线性代数术语对照</p>
 <p><img src="/qc/images/1/4.png" style="display: block; width: 80%; margin: 0 auto;" /></p>
 <ul>
-<li>若 <span class="arithmatex">\(a=[1,2]^T\)</span>、<span class="arithmatex">\(b=[3,4]^T\)</span>，则内积 <span class="arithmatex">\(a^Tb = 1 \times 3 + 2 \times 4 = 11\)</span>，外积 <span class="arithmatex">\(|a\rangle\langle b| = \begin{bmatrix}1\\2\end{bmatrix} \begin{bmatrix}3&amp;4\end{bmatrix} = \begin{bmatrix}3&amp;4\\6&amp;8\end{bmatrix}\)</span></li>
+<li>若 <span class="arithmatex">\(|a\rangle = \begin{bmatrix} 1 \\ 2 \end{bmatrix}\)</span>、<span class="arithmatex">\(|b\rangle = \begin{bmatrix} 3 \\ 4 \end{bmatrix}\)</span>，则内积 <span class="arithmatex">\(\langle a|b\rangle = [1 \quad 2] \begin{bmatrix} 3 \\ 4 \end{bmatrix} = 11\)</span>，外积 <span class="arithmatex">\(|a\rangle\langle b| = \begin{bmatrix}1\\2\end{bmatrix} \begin{bmatrix}3&amp;4\end{bmatrix} = \begin{bmatrix}3&amp;4\\6&amp;8\end{bmatrix}\)</span></li>
 </ul>
 <p><img src="/qc/images/1/5.png" style="display: block; width: 80%; margin: 0 auto;" /></p>
 <ul>
 <li><strong>正交矩阵</strong>：满足 <span class="arithmatex">\(AA^T=I\)</span> 的<strong>实数</strong>矩阵。</li>
-<li><strong>幺正矩阵/酉矩阵</strong>：满足 <span class="arithmatex">\(UU^\dagger=U^\dagger U=I\)</span> 的<strong>复数</strong>矩阵，其中 <span class="arithmatex">\(^\dagger\)</span> 表示共轭转置。酉矩阵的性质保证了作用在量子态上得到的结果仍然满足归一化条件，即仍然是合法的量子态。此外，酉矩阵保持内积不变，即它保持态矢量之间的正交性质。<strong>只有酉矩阵才能用作表示一个量子门</strong>。</li>
-<li><strong>厄米矩阵</strong>：满足 <span class="arithmatex">\(H=H^\dagger\)</span> 的矩阵 <span class="arithmatex">\(H\)</span>。厄米矩阵的本征值（特征值）为实数，不同本征值对应的本征向量相互正交，这确保了量子系统的物理量是可观测的。</li>
+<li><strong>酉矩阵/幺正矩阵</strong>：满足 <span class="arithmatex">\(UU^\dagger=U^\dagger U=I\)</span> 的<strong>复数</strong>矩阵，其中 <span class="arithmatex">\(^\dagger\)</span> 表示共轭转置。酉矩阵的性质保证了作用在量子态上得到的结果仍然满足归一化条件，即仍然是合法的量子态。此外，酉矩阵保持内积不变，即它保持态矢量之间的正交性质。<strong>只有酉矩阵才能用作表示一个量子门</strong>。</li>
+<li><strong>厄米矩阵</strong>：满足 <span class="arithmatex">\(H=H^\dagger\)</span> 的矩阵 <span class="arithmatex">\(H\)</span>。</li>
 </ul>
 </div>
+<details class="question">
+<summary>证明：厄米算符 <span class="arithmatex">\(A\)</span> 的任一本征值均为实数，且不同本征值对应的本征态正交。</summary>
+<p>假设 <span class="arithmatex">\(\lambda\)</span> 是厄米算符 <span class="arithmatex">\(A\)</span> 的任一本征值，对应的本征态为 <span class="arithmatex">\(|\psi\rangle\)</span>，满足：</p>
+<div class="arithmatex">\[A|\psi\rangle = \lambda|\psi\rangle\]</div>
+<p>对上式取厄米共轭得：</p>
+<div class="arithmatex">\[\langle\psi|A^\dagger = \lambda^*\langle\psi|\]</div>
+<p><span class="arithmatex">\(A\)</span> 是厄米算符，满足 <span class="arithmatex">\(A=A^\dagger\)</span>，因此有：</p>
+<div class="arithmatex">\[\langle\psi|A|\psi\rangle = \langle\psi|A^\dagger|\psi\rangle, \qquad \lambda\langle\psi|\psi\rangle = \lambda^*\langle\psi|\psi\rangle\]</div>
+<p>其中，<span class="arithmatex">\(\langle\psi|\psi\rangle\)</span> 是一个非零实数，因此 <span class="arithmatex">\(\lambda = \lambda^*\)</span>，即 <span class="arithmatex">\(\lambda\)</span> 是实数。</p>
+<p>假设 <span class="arithmatex">\(\lambda_1\)</span> 和 <span class="arithmatex">\(\lambda_2\)</span> 是厄米算符 <span class="arithmatex">\(A\)</span> 的两个不同本征值，对应的本征态分别为 <span class="arithmatex">\(|\psi_1\rangle\)</span> 和 <span class="arithmatex">\(|\psi_2\rangle\)</span>，满足：</p>
+<div class="arithmatex">\[A|\psi_1\rangle = \lambda_1|\psi_1\rangle, \qquad A|\psi_2\rangle = \lambda_2|\psi_2\rangle\]</div>
+<p>考虑：</p>
+<div class="arithmatex">\[\langle\psi_2|A|\psi_1\rangle = \langle\psi_2|A^\dagger|\psi_1\rangle\]</div>
+<div class="arithmatex">\[\lambda_1\langle\psi_2|\psi_1\rangle = \lambda_2^*\langle\psi_2|\psi_1\rangle = \lambda_2\langle\psi_2|\psi_1\rangle\]</div>
+<div class="arithmatex">\[(\lambda_1 - \lambda_2)\langle\psi_2|\psi_1\rangle = 0\]</div>
+<p>因为 <span class="arithmatex">\(\lambda_1 \neq \lambda_2\)</span>，因此 <span class="arithmatex">\(\langle\psi_2|\psi_1\rangle = 0\)</span>，即不同本征值对应的本征态正交。</p>
+</details>
 <h2 id="1">1 单量子比特<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
 <h3 id="1-1-dirac">1. 1 Dirac 记号<a class="headerlink" href="#1-1-dirac" title="Permanent link">&para;</a></h3>
 <p>量子比特的两个可能的状态为 <span class="arithmatex">\(|0\rangle\)</span> 态和 <span class="arithmatex">\(|1\rangle\)</span> 态，其中 <span class="arithmatex">\(|\cdot\rangle\)</span> 被称为 Dirac 记号。</p>
-<p>量子比特是状态的线性组合，这被称为叠加态，例如 <span class="arithmatex">\(|\psi\rangle = \alpha|0\rangle + \beta|1\rangle\)</span>，其中 <span class="arithmatex">\(\alpha,\beta\in\mathbb{C}\)</span> 是复数系数，也称为<strong>振幅</strong>，因此量子比特的状态是二维复向量空间中的向量。</p>
+<p>量子比特是状态的线性组合，这被称为<strong>叠加态</strong>，例如 <span class="arithmatex">\(|\psi\rangle = \alpha|0\rangle + \beta|1\rangle\)</span>，其中 <span class="arithmatex">\(\alpha,\beta\in\mathbb{C}\)</span> 是复数系数，也称为<strong>振幅</strong>，因此量子比特的状态是二维复向量空间中的向量。</p>
 <p>其中 <span class="arithmatex">\(|0\rangle\)</span> 和 <span class="arithmatex">\(|1\rangle\)</span> 是该叠加态的基矢态，是构成该向量空间的一组正交基，向量表示为：</p>
 <div class="arithmatex">\[
 |0\rangle = \begin{bmatrix}1\\0\end{bmatrix},\qquad
@@ -5060,17 +5102,15 @@
 =\frac{1}{\sqrt{2}}\begin{bmatrix}1\\-1\end{bmatrix}
 \]</div>
 <details class="question">
-<summary>请结合线性代数的知识，证明 <span class="arithmatex">\(|+⟩\)</span> 态和 <span class="arithmatex">\(|−⟩\)</span> 态是正交的。</summary>
+<summary>证明：<span class="arithmatex">\(|+⟩\)</span> 态和 <span class="arithmatex">\(|−⟩\)</span> 态是正交的。</summary>
 <div class="arithmatex">\[
-\langle +|-\rangle
-=\frac{1}{2}\begin{bmatrix}1&amp;1\end{bmatrix}
-\begin{bmatrix}1\\-1\end{bmatrix}= \frac{1}{2} \cdot [ 1\times 1 + 1\times(-1) ] = 0
+\langle +|-\rangle=\frac{1}{2}\begin{bmatrix}1&amp;1\end{bmatrix}\begin{bmatrix}1\\-1\end{bmatrix} = 0
 \]</div>
 </details>
 <h3 id="1-2">1. 2 内积<a class="headerlink" href="#1-2" title="Permanent link">&para;</a></h3>
 <details class="info">
 <summary>bra-ket 表示法</summary>
-<p>根据狄拉克符号定义，<strong>右矢 ket</strong> 为 <span class="arithmatex">\(|\psi\rangle = \begin{bmatrix} \alpha \\ \beta \end{bmatrix}\)</span>，代表<strong>列向量</strong>；<strong>左矢 bra</strong> <span class="arithmatex">\(\langle\psi| = [\alpha^*, \beta^*]\)</span> 是 ket 的<strong>共轭转置</strong>，代表<strong>行向量</strong>，其中 <span class="arithmatex">\(\alpha^*\)</span>、<span class="arithmatex">\(\beta^*\)</span> 为 <span class="arithmatex">\(\alpha\)</span>、<span class="arithmatex">\(\beta\)</span> 的<strong>共轭复数</strong>。</p>
+<p>根据狄拉克符号定义，<strong>右矢 ket</strong> 为 <span class="arithmatex">\(|\psi\rangle = \begin{bmatrix} \alpha \\ \beta \end{bmatrix}\)</span>，代表<strong>列向量</strong>；<strong>左矢 bra</strong> <span class="arithmatex">\(\langle\psi| = [\alpha^*, \beta^*]\)</span> 是 ket 的<strong>共轭转置</strong>，代表<strong>行向量</strong>，其中 <span class="arithmatex">\(\alpha^*\)</span>、<span class="arithmatex">\(\beta^*\)</span> 为 <span class="arithmatex">\(\alpha\)</span>、<span class="arithmatex">\(\beta\)</span> 的<strong>共轭复数</strong>，系数 <span class="arithmatex">\(i\)</span> 要变成 <span class="arithmatex">\(-i\)</span>。</p>
 </details>
 <div class="arithmatex">\[
 \langle a|=[a_0^*,a_1^*,\ldots,a_n^*],\quad
@@ -5100,23 +5140,22 @@
 <details class="info">
 <summary>欧拉公式 (Euler's Formula)</summary>
 <ul>
-<li><strong>公式</strong>：<span class="arithmatex">\(e^{j\theta} = \cos\theta + j\sin\theta\)</span></li>
-<li><strong>模长恒为 <span class="arithmatex">\(1\)</span></strong>：<span class="arithmatex">\(|e^{j\theta}| = \sqrt{\cos^2\theta + \sin^2\theta} \equiv 1\)</span>。</li>
-<li><strong>共轭变号</strong>：<span class="arithmatex">\((e^{j\theta})^* = e^{-j\theta}\)</span>，相当于顺时针旋转 <span class="arithmatex">\(\theta\)</span>。</li>
-<li>当 <span class="arithmatex">\(\theta = \pi\)</span> 时有 <span class="arithmatex">\(e^{j\pi} + 1 = 0\)</span>。</li>
+<li><strong>公式</strong>：<span class="arithmatex">\(e^{i\theta} = \cos\theta + i\sin\theta\)</span>，<span class="arithmatex">\(e^{i\pi} = -1\)</span></li>
+<li><strong>模长恒为 <span class="arithmatex">\(1\)</span></strong>：<span class="arithmatex">\(|e^{i\theta}| = \sqrt{\cos^2\theta + \sin^2\theta} \equiv 1\)</span>。</li>
+<li><strong>共轭变号</strong>：<span class="arithmatex">\((e^{i\theta})^* = e^{-i\theta}\)</span>，相当于顺时针旋转 <span class="arithmatex">\(\theta\)</span>。</li>
 </ul>
 </details>
 <p>单量子比特态的振幅可写成极坐标形式：</p>
 <div class="arithmatex">\[
-c_0=r_0e^{j\varphi_0},\qquad c_1=r_1e^{j\varphi_1}
+c_0=r_0e^{i\varphi_0},\qquad c_1=r_1e^{i\varphi_1}
 \]</div>
 <details class="tip">
-<summary>整体乘以模长为 1 的复数只产生全局相位，不改变可观测结果，即若 <span class="arithmatex">\(|e^{j\xi}|=1\)</span> 则 <span class="arithmatex">\(|\psi\rangle \sim e^{j\xi}|\psi\rangle\)</span></summary>
+<summary>整体乘以模长为 1 的复数只产生全局相位，不改变可观测结果，即若 <span class="arithmatex">\(|e^{i\xi}|=1\)</span> 则 <span class="arithmatex">\(|\psi\rangle \sim e^{i\xi}|\psi\rangle\)</span></summary>
 <p>如果取 <span class="arithmatex">\(\xi = -\varphi_0\)</span>，则有：</p>
 <div class="arithmatex">\[
 \begin{aligned}
-e^{-j\varphi_0}\cdot|\psi\rangle &amp;= e^{-j\varphi_0}\cdot\big(r_0 e^{j\varphi_0}\cdot|0\rangle + r_1 e^{j\varphi_1}\cdot|1\rangle\big) = r_0\cdot|0\rangle + r_1 e^{j(\varphi_1-\varphi_0)}\cdot|1\rangle \\
-&amp;= r_0\cdot|0\rangle + r_1 e^{j\varphi}\cdot|1\rangle \sim |\psi\rangle
+e^{-i\varphi_0}\cdot|\psi\rangle &amp;= e^{-i\varphi_0}\cdot\big(r_0 e^{i\varphi_0}\cdot|0\rangle + r_1 e^{i\varphi_1}\cdot|1\rangle\big) = r_0\cdot|0\rangle + r_1 e^{i(\varphi_1-\varphi_0)}\cdot|1\rangle \\
+&amp;= r_0\cdot|0\rangle + r_1 e^{i\varphi}\cdot|1\rangle \sim |\psi\rangle
 \end{aligned}
 \]</div>
 </details>
@@ -5130,7 +5169,7 @@ $$
 
 </div>
 
-<p>Bloch 球可视化<strong>单个</strong>量子比特的纯态，不能直接用来表示一般的多量子比特状态。</p>
+<p>Bloch 球可视化<strong>单个</strong>量子比特的纯态，对应球坐标 <span class="arithmatex">\((r, \theta, \varphi)\)</span>，不能直接用来表示一般的多量子比特状态。</p>
 <details class="quote">
 <summary>量子信息的“无限”与“有限”</summary>
 <p>单量子比特的纯态可以对应 Bloch 球上的连续多个点，振幅也可连续取值，但这不等于一次测量可以读出无限多经典信息。测量会使态坍缩，单次测量只能得到一个经典结果。只有对许多份完全相同制备的量子态进行测量统计，才能估计其振幅。多量子比特系统的态空间随量子比特数增长，振幅数量呈指数增长，但可访问的信息仍受测量概率、坍缩和量子操作限制。</p>
@@ -5227,6 +5266,45 @@ $$
 \end{aligned}
 \]</div>
 <p>它们两两正交并构成四维双量子比特空间的一组基，称为<strong>贝尔基</strong>。任意双量子比特态都可以展开为四个贝尔态的线性组合，例如 <span class="arithmatex">\(|00\rangle=\frac{|\phi^+\rangle+|\phi^-\rangle}{\sqrt{2}}\)</span>。</p>
+<div class="admonition question">
+<p class="admonition-title">证明 Bell 态是纠缠态</p>
+<p>一般而言，Bell 态定义如下：</p>
+<div class="arithmatex">\[
+|\beta_{xy}\rangle = \frac{|0y\rangle + (-1)^x|1\bar{y}\rangle}{\sqrt{2}},\quad x,y\in\{0,1\},\ \bar{y}=1-y
+\]</div>
+<details class="success">
+<summary>参考答案</summary>
+<p>假设 Bell 态不是纠缠态，则 Bell 态可以如下表示：</p>
+<div class="arithmatex">\[
+\begin{aligned}
+|\beta_{xy}\rangle &amp;= \big(a|0\rangle + b|1\rangle\big)\otimes \big(c|y\rangle + d|\bar{y}\rangle\big) \\
+&amp;= ac|0y\rangle + ad|0\bar{y}\rangle + bc|1y\rangle + bd|1\bar{y}\rangle
+\end{aligned}
+\]</div>
+<p>对比 Bell 态定义得：</p>
+<div class="arithmatex">\[
+ac = \frac{1}{\sqrt{2}}, \quad ad = 0, \quad bc = 0, \quad bd = \frac{(-1)^x}{\sqrt{2}}
+\]</div>
+<p>分别相乘有：</p>
+<div class="arithmatex">\[
+abcd = \frac{(-1)^x}{2} = 0
+\]</div>
+<p>矛盾，假设不成立，因此 Bell 态是纠缠态。</p>
+</details>
+</div>
+<details class="question">
+<summary>用 H、X 和 CNOT 门设计四个量子电路，使得初态为 <span class="arithmatex">\(|00\rangle\)</span> 的双量子比特系统经这些量子电路作用后分别演化为四个 Bell 态。</summary>
+<p>不难发现，Bell 基间有如下关系（忽略全局相位）：</p>
+<div class="arithmatex">\[
+|\beta_{xy}\rangle = (I\otimes Z^x)(I\otimes X^y)|\beta_{00}\rangle
+\]</div>
+<p>又有</p>
+<div class="arithmatex">\[
+|\beta_{00}\rangle = CNOT_{01}(H\otimes I)|00\rangle
+\]</div>
+<p>因此设计量子电路如下图：</p>
+<p><img src="/qc/images/1/18.png" style="display: block; width: 50%; margin: 0 auto;" /></p>
+</details>
 <h2 id="3">3 单量子门<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -5241,7 +5319,7 @@ $$
 <tr>
 <td><strong>Hadamard 门</strong></td>
 <td><span class="arithmatex">\(H=\frac{1}{\sqrt2}\begin{bmatrix}1&amp;1\\1&amp;-1\end{bmatrix}\)</span></td>
-<td><span class="arithmatex">\(H\lvert0\rangle=\lvert+\rangle=\frac{\lvert0\rangle+\lvert1\rangle}{\sqrt2}\)</span> <br> <span class="arithmatex">\(H\lvert1\rangle=\lvert-\rangle=\frac{\lvert0\rangle-\lvert1\rangle}{\sqrt2}\)</span></td>
+<td><span class="arithmatex">\(H\lvert0\rangle=\lvert+\rangle=\frac{\lvert0\rangle+\lvert1\rangle}{\sqrt2}\)</span> <br> <span class="arithmatex">\(H\lvert1\rangle=\lvert-\rangle=\frac{\lvert0\rangle-\lvert1\rangle}{\sqrt2}\)</span> <br> <span class="arithmatex">\(H \lvert \psi\rangle = \frac{1}{\sqrt{2}}(\alpha+\beta) \lvert 0\rangle + \frac{1}{\sqrt{2}}(\alpha-\beta) \lvert 1\rangle\)</span></td>
 <td>将量子态从 <span class="arithmatex">\(z\)</span> 基转变到 <span class="arithmatex">\(x\)</span> 基</td>
 </tr>
 <tr>
@@ -5252,9 +5330,23 @@ $$
 </tr>
 </tbody>
 </table>
-<details class="info">
-<summary>量子门与矩阵乘法</summary>
-<p><img src="/qc/images/1/2.png" style="display: block; width: 70%; margin: 0 auto;" /></p>
+<details class="question">
+<summary>算符 <span class="arithmatex">\(H = \displaystyle\frac{1}{\sqrt{2}}\begin{bmatrix}1 &amp; 1 \\1 &amp; -1\end{bmatrix}\)</span> 的本征值和本征态分别是？</summary>
+<p>由特征方程 <span class="arithmatex">\(\det(H - \lambda I) = \begin{vmatrix} \frac{1}{\sqrt{2}} - \lambda &amp; \frac{1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}} &amp; -\frac{1}{\sqrt{2}} - \lambda \end{vmatrix} = \lambda^2 - 1 = 0\)</span> 解得本征值 <span class="arithmatex">\(\lambda_1 = 1\)</span>，<span class="arithmatex">\(\lambda_2 = -1\)</span>。</p>
+<ul>
+<li>
+<p>当 <span class="arithmatex">\(\lambda_1 = 1\)</span> 时，由 <span class="arithmatex">\(\begin{bmatrix}\dfrac{1}{\sqrt{2}} - 1 &amp; \dfrac{1}{\sqrt{2}} \\[4pt]\dfrac{1}{\sqrt{2}} &amp; -\dfrac{1}{\sqrt{2}} - 1\end{bmatrix}\begin{bmatrix}x \\ y\end{bmatrix}=\begin{bmatrix}0 \\ 0\end{bmatrix}\)</span> 得 <span class="arithmatex">\((\frac{1}{\sqrt{2}} - 1)x + \frac{1}{\sqrt{2}}y = 0\)</span>，化简得 <span class="arithmatex">\(y = (\sqrt{2} - 1)x\)</span>，取 <span class="arithmatex">\(x=1\)</span> 并归一化，本征态为：</p>
+<div class="arithmatex">\[
+|\psi_1\rangle = \frac{|0\rangle + (\sqrt{2}-1)|1\rangle}{\sqrt{4 - 2\sqrt{2}}}
+\]</div>
+</li>
+<li>
+<p>当 <span class="arithmatex">\(\lambda_2 = -1\)</span> 时，由 <span class="arithmatex">\(\begin{bmatrix}\dfrac{1}{\sqrt{2}} + 1 &amp; \dfrac{1}{\sqrt{2}} \\[4pt]\dfrac{1}{\sqrt{2}} &amp; -\dfrac{1}{\sqrt{2}} + 1\end{bmatrix}\begin{bmatrix}x \\ y\end{bmatrix}=\begin{bmatrix}0 \\ 0 \end{bmatrix}\)</span> 得 <span class="arithmatex">\((\frac{1}{\sqrt{2}} + 1)x + \frac{1}{\sqrt{2}}y = 0\)</span>，化简得 <span class="arithmatex">\(y = (-\sqrt{2} - 1)x\)</span>，取 <span class="arithmatex">\(x=1\)</span> 并归一化，本征态为：</p>
+<div class="arithmatex">\[
+|\psi_2\rangle = \frac{|0\rangle + (-\sqrt{2}-1)|1\rangle}{\sqrt{4 + 2\sqrt{2}}}
+\]</div>
+</li>
+</ul>
 </details>
 <p>相位旋转门作用于量子比特的态矢量时，会引入一个特定的相位因子，改变量子态的相对相位，它可以<strong>改变量子态的相对相位</strong>，但<strong>不改变其概率分布</strong>，也<strong>不涉及量子比特的旋转操作</strong>。</p>
 <table>
@@ -5283,6 +5375,7 @@ $$
 </tr>
 </tbody>
 </table>
+<p>参数旋转门 <span class="arithmatex">\(R_{\hat{n}}(\theta) = \cos\left(\frac{\theta}{2}\right) I - i \sin\left(\frac{\theta}{2}\right) (n_x X + n_y Y + n_z Z)\)</span>，表示绕 <span class="arithmatex">\(\hat{n} = (n_x, n_y, n_z)\)</span> 旋转 <span class="arithmatex">\(\theta\)</span>。 </p>
 <table>
 <thead>
 <tr>
@@ -5305,10 +5398,14 @@ $$
 </tr>
 <tr>
 <td><span class="arithmatex">\(H\)</span> 的旋转门分解</td>
-<td><span class="arithmatex">\(H=iR_y\left(\frac{\pi}{2}\right)R_z(\pi)=iR_x(\pi)R_y\left(\frac{\pi}{2}\right)\)</span></td>
+<td><span class="arithmatex">\(H=iR_y\left(\frac{\pi}{2}\right)R_z(\pi)=iR_x(\pi)R_y\left(\frac{\pi}{2}\right)\)</span>，矩阵乘法从右往左作用在量子态上，也可理解为绕 <span class="arithmatex">\(X-Z\)</span> 中轴线旋转 <span class="arithmatex">\(\pi\)</span></td>
 </tr>
 </tbody>
 </table>
+<details class="question">
+<summary>判断题：Hadamard 门可以表示为 <span class="arithmatex">\(H = e^{i\varphi}R_z(\varphi)R_y(\varphi)R_z(\varphi)\)</span>，其中 <span class="arithmatex">\(\varphi = \frac{\pi}{4}。\)</span></summary>
+<p>错误。<span class="arithmatex">\(\det(H) = \frac{1}{2}(-1 - 1) = -1 \neq \det(e^{i\varphi}R_zR_xR_z) = (e^{i\varphi})^2 \times 1 \times 1 \times 1 = e^{2i\varphi} = i\)</span>，等式不可能成立。</p>
+</details>
 <details class="question">
 <summary>一个单量子比特操作，对应一个 2×2 的酉矩阵。由于这样的酉矩阵有无穷多个，因此理论上有无穷多个单比特门。那么，为了实现任意一种单比特门，我们需要制造出这么多的门吗？</summary>
 <p>任意单量子比特幺正矩阵都可写成 Euler 角分解：</p>
@@ -5348,15 +5445,8 @@ U_1=\begin{bmatrix}0.707&amp;0.707i\\0.707i&amp;0.707\end{bmatrix}
 </details>
 <details class="example">
 <summary>例：复合系统</summary>
-<p>对于包含多个量子比特的复合系统，我们规定态矢量中的每个量子比特按从左到右的顺序依次编号，记为 <span class="arithmatex">\(q_0\)</span>、<span class="arithmatex">\(q_1\)</span>、……，并在量子电路图中从上至下依次绘制每个量子比特。</p>
-<p>下图展示了双量子比特构成的复合系统，初态为 <span class="arithmatex">\(|00\rangle\)</span>，<span class="arithmatex">\(q_0\)</span> 经过 X 门状态变为 <span class="arithmatex">\(|1\rangle\)</span>，<span class="arithmatex">\(q_1\)</span> 经过 Z 门状态变为 <span class="arithmatex">\(|0\rangle\)</span>。</p>
-<div class="arithmatex">\[
-\begin{aligned}
-q_0&amp;:|0\rangle-\fbox{X}-|1\rangle\\
-q_1&amp;:|0\rangle-\fbox{Z}-|0\rangle
-\end{aligned}
-\]</div>
-<p><img src="/qc/images/1/3.png" style="display: block; width: 15%; margin: 0 auto;" /></p>
+<p>对于包含多个量子比特的复合系统，我们规定态矢量中的每个量子比特按从左到右的顺序依次编号，记为 <span class="arithmatex">\(q_0\)</span>、<span class="arithmatex">\(q_1\)</span>、……，并在量子电路图中从上至下依次绘制每个量子比特。下图展示了双量子比特构成的复合系统，初态为 <span class="arithmatex">\(|00\rangle\)</span>，<span class="arithmatex">\(q_0\)</span> 经过 X 门状态变为 <span class="arithmatex">\(|1\rangle\)</span>，<span class="arithmatex">\(q_1\)</span> 经过 Z 门状态变为 <span class="arithmatex">\(|0\rangle\)</span>。</p>
+<p><img src="/qc/images/1/3.png" style="display: block; width: 20%; margin: 0 auto;" /></p>
 <p>若将两个单量子门视作一个整体，可以通过张量积的形式构成一个双量子门。</p>
 <div class="arithmatex">\[
 X \otimes Z
@@ -5405,29 +5495,21 @@ X\otimes Z|00\rangle
 \]</div>
 </details>
 <h3 id="4-1-cnot">4. 1 CNOT 门<a class="headerlink" href="#4-1-cnot" title="Permanent link">&para;</a></h3>
-<p>CNOT（Controlled-NOT）门当控制比特为 <span class="arithmatex">\(|1\rangle\)</span> 时翻转目标比特，为 <span class="arithmatex">\(|0\rangle\)</span> 时保持目标不变。</p>
+<p>CNOT（Controlled-NOT）门当控制比特为 <span class="arithmatex">\(|1\rangle\)</span> 时翻转目标比特，为 <span class="arithmatex">\(|0\rangle\)</span> 时保持目标不变。其中 <span class="arithmatex">\(CNOT_{01}\)</span> 表示 <span class="arithmatex">\(q_0\)</span> 控制 <span class="arithmatex">\(q_1\)</span>，<span class="arithmatex">\(CNOT_{10}\)</span> 表示 <span class="arithmatex">\(q_1\)</span> 控制 <span class="arithmatex">\(q_0\)</span>。</p>
 <div class="arithmatex">\[
-\operatorname{CNOT}=
-\begin{bmatrix}
-1&amp;0&amp;0&amp;0\\
-0&amp;1&amp;0&amp;0\\
-0&amp;0&amp;0&amp;1\\
-0&amp;0&amp;1&amp;0
-\end{bmatrix}
+CNOT_{01} = \begin{bmatrix} 1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 1 \\ 0 &amp; 0 &amp; 1 &amp; 0 \end{bmatrix} \quad CNOT_{10} = \begin{bmatrix} 1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 1 \\ 0 &amp; 0 &amp; 1 &amp; 0 \\ 0 &amp; 1 &amp; 0 &amp; 0 \end{bmatrix}
 \]</div>
-<p>以第一个比特为控制比特、第二个比特为目标比特，并按 <span class="arithmatex">\(|00\rangle\)</span>、<span class="arithmatex">\(|01\rangle\)</span>、<span class="arithmatex">\(|10\rangle\)</span>、<span class="arithmatex">\(|11\rangle\)</span> 排列基底时，对于一般态 <span class="arithmatex">\(|a\rangle=\alpha_{00}|00\rangle+\alpha_{01}|01\rangle+\alpha_{10}|10\rangle+\alpha_{11}|11\rangle\)</span>，有：</p>
+<p>对于 <span class="arithmatex">\(CNOT_{01}\)</span>，按 <span class="arithmatex">\(|00\rangle\)</span>、<span class="arithmatex">\(|01\rangle\)</span>、<span class="arithmatex">\(|10\rangle\)</span>、<span class="arithmatex">\(|11\rangle\)</span> 排列基底时，对于一般态 <span class="arithmatex">\(|a\rangle=\alpha_{00}|00\rangle+\alpha_{01}|01\rangle+\alpha_{10}|10\rangle+\alpha_{11}|11\rangle\)</span>，有：</p>
 <div class="arithmatex">\[
-\operatorname{CNOT}|a\rangle
+CNOT_{01}|a\rangle
 =\alpha_{00}|00\rangle+\alpha_{01}|01\rangle
 +\alpha_{11}|10\rangle+\alpha_{10}|11\rangle
 \]</div>
-<p>即交换 <span class="arithmatex">\(|10\rangle\)</span> 和 <span class="arithmatex">\(|11\rangle\)</span> 的振幅。</p>
-<div class="admonition tip">
-<p class="admonition-title">CNOT 制备贝尔态</p>
-<div class="arithmatex">\[
-|00\rangle = |q_0\rangle \otimes |q_1\rangle \xrightarrow{\text{H gate on } q_0} \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) \otimes |0\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |10\rangle) \xrightarrow{\text{CNOT gate}} \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)
-\]</div>
-</div>
+<p>即交换 <span class="arithmatex">\(|10\rangle\)</span> 和 <span class="arithmatex">\(|11\rangle\)</span> 的振幅。同理可得 <span class="arithmatex">\(CNOT_{10}\)</span> 交换 <span class="arithmatex">\(|01\rangle\)</span> 和 <span class="arithmatex">\(|11\rangle\)</span> 的振幅。</p>
+<details class="question">
+<summary>判断题：CNOT 门可以分解为两个单比特门的张量积形式。</summary>
+<p>错误。CNOT 门的矩阵表示为 <span class="arithmatex">\(CNOT =\begin{bmatrix}1 &amp; 0 &amp; 0 &amp; 0 \\0 &amp; 1 &amp; 0 &amp; 0 \\0 &amp; 0 &amp; 0 &amp; 1 \\0 &amp; 0 &amp; 1 &amp; 0\end{bmatrix}=\begin{bmatrix}I &amp; 0 \\0 &amp; X\end{bmatrix}\)</span>，<span class="arithmatex">\(I\)</span> 和 <span class="arithmatex">\(X\)</span> 不可能成比例关系，因此无法找到对应的单比特矩阵 <span class="arithmatex">\(A\)</span> 和 <span class="arithmatex">\(B\)</span> 来构造它，CNOT 门不是两个单比特门的张量积形式。</p>
+</details>
 <h3 id="4-2">4. 2 量子隐形传态<a class="headerlink" href="#4-2" title="Permanent link">&para;</a></h3>
 <p>量子隐形传态利用<strong>预先共享的纠缠态</strong>和经典通信，把<strong>未知量子态</strong>从 Alice 端传到 Bob 端。它传输的是量子态，不是对未知态的复制。</p>
 <p>设 Alice 想传输 <span class="arithmatex">\(|\psi\rangle=\alpha|0\rangle+\beta|1\rangle\)</span>，Alice 与 Bob 预先共享贝尔态 <span class="arithmatex">\(|\phi_{AB} \rangle=\frac{|00\rangle+|11\rangle}{\sqrt2}\)</span>，其中 Alice 持有贝尔态 <span class="arithmatex">\(|\phi_{AB}\rangle\)</span> 的第一个量子比特，Bob 持有第二个量子比特，则三量子比特初态为：</p>
@@ -5599,9 +5681,48 @@ H^{\otimes n}|0\rangle^{\otimes n}
 \pm|0\rangle \left[\dfrac{|0\rangle-|1\rangle}{\sqrt{2}}\right] &amp; \text{if } f(0)=f(1)\\[6pt]
 \pm|1\rangle \left[\dfrac{|0\rangle-|1\rangle}{\sqrt{2}}\right] &amp; \text{if } f(0)\neq f(1)
 \end{cases}
-= \pm |(f(0)) \oplus (f(1))\rangle \left[\frac{|0\rangle - |1\rangle}{\sqrt{2}}\right]
+= \pm |f(0) \oplus f(1)\rangle \left[\frac{|0\rangle - |1\rangle}{\sqrt{2}}\right]
 \]</div>
 <p>最终的系统量子态中，第二个量子比特的态是固定的，而第一个量子比特的状态与 <span class="arithmatex">\(f(0)\)</span> 和 <span class="arithmatex">\(f(1)\)</span> 都有关。对第一个量子比特进行测量，如果结果为 <span class="arithmatex">\(|0\rangle\)</span>，那么说明 <span class="arithmatex">\(f\)</span> 是常数函数，反之为平衡函数。这意味着我们可以通过<strong>一次计算、一次测量</strong>确定函数 <span class="arithmatex">\(f\)</span> 的一个全局性质。</p>
+<div class="admonition question">
+<p class="admonition-title">Deutsch-Jozsa 算法</p>
+<p>Deutsch 算法展示了量子计算机强大的并行计算能力。Deutsch-Jozsa 算法是其推广形式，将可分类的函数推广至多比特情形。</p>
+<p>已知函数 <span class="arithmatex">\(f:\{0,1\}^n \to \{0,1\}\)</span>，该函数是常数函数（对所有输入均输出 0，或对所有输入均输出 1）或平衡函数（对恰好一半的输入输出 0，对另一半输入输出 1）。Deutsch-Jozsa 算法只需对实现函数 <span class="arithmatex">\(f\)</span> 的结构进行一次查询，即可判断 <span class="arithmatex">\(f\)</span> 是常数函数还是平衡函数。</p>
+<p>下图是实现 Deutsch-Jozsa 算法的量子线路。其中，<span class="arithmatex">\(U_f:|x,y\rangle \to |x,y \oplus f(x)\rangle\)</span> 是实现函数 <span class="arithmatex">\(f\)</span> 的 <span class="arithmatex">\(n+1\)</span> 比特的量子门。</p>
+<p><img src="/qc/images/1/19.png" style="display: block; width: 50%; margin: 0 auto;" /></p>
+<p>推导该量子电路中量子态的演化过程，并说明如何基于测量结果判断 <span class="arithmatex">\(f\)</span> 是常数函数还是平衡函数。（提示：计算 <span class="arithmatex">\(f\)</span> 为常数函数或平衡函数时的测量结果）</p>
+<details class="success">
+<summary>答案</summary>
+<p>初始化态：</p>
+<div class="arithmatex">\[
+|\psi_0\rangle = |0\rangle^{\otimes n}|1\rangle
+\]</div>
+<p>利用 <span class="arithmatex">\(H\)</span> 门制备叠加态：</p>
+<div class="arithmatex">\[
+\begin{aligned}
+|\psi_1\rangle &amp;= (H|0\rangle)^{\otimes n} H|1\rangle \\
+&amp;= \sum_{x\in\{0,1\}^n} \frac{|x\rangle}{\sqrt{2^n}} \frac{|0\rangle - |1\rangle}{\sqrt{2}}
+\end{aligned}
+\]</div>
+<p>利用 <span class="arithmatex">\(U_f\)</span> 计算函数 <span class="arithmatex">\(f\)</span>：</p>
+<div class="arithmatex">\[
+\begin{aligned}
+|\psi_2\rangle &amp;= U_f|\psi_1\rangle \\
+&amp;= \sum_{x\in\{0,1\}^n} \frac{|x\rangle}{\sqrt{2^n}} \left[ \frac{(-1)^{f(x)}|0\rangle - |1\rangle}{\sqrt{2}} \right]
+\end{aligned}
+\]</div>
+<p>对高位的 <span class="arithmatex">\(n\)</span> 个量子比特作用 <span class="arithmatex">\(H\)</span> 门：</p>
+<div class="arithmatex">\[
+\begin{aligned}
+|\psi_3\rangle &amp;= \sum_{x\in\{0,1\}^n} \left[ \frac{(-1)^{f(x)} H^{\otimes n}|x\rangle}{\sqrt{2^n}} \right] \frac{|0\rangle - |1\rangle}{\sqrt{2}} \\
+&amp;= \sum_{x\in\{0,1\}^n} \left[ \frac{(-1)^{f(x)}}{\sqrt{2^n}} \sum_{z\in\{0,1\}^n} \frac{(-1)^{x\cdot z}|z\rangle}{\sqrt{2^n}} \right] \frac{|0\rangle - |1\rangle}{\sqrt{2}} \\
+&amp;= \sum_{z\in\{0,1\}^n}\sum_{x\in\{0,1\}^n} \left[ \frac{(-1)^{f(x)+x\cdot z}|z\rangle}{2^n} \right] \frac{|0\rangle - |1\rangle}{\sqrt{2}}
+\end{aligned}
+\]</div>
+<p>其中，<span class="arithmatex">\(x\cdot z\)</span> 表示 <span class="arithmatex">\(x\)</span> 和 <span class="arithmatex">\(z\)</span> 的按位模2的内积。考虑对 <span class="arithmatex">\(|\psi_3\rangle\)</span> 高位的 <span class="arithmatex">\(n\)</span> 个量子比特进行测量，若 <span class="arithmatex">\(f\)</span> 为常数函数，对任意 <span class="arithmatex">\(|z\rangle\neq|0\rangle^{\otimes n}\)</span> 有 <span class="arithmatex">\(\sum_{x\in\{0,1\}^n} (-1)^{f(x)+x\cdot z}=0\)</span>，因此测量结果必为 <span class="arithmatex">\(|0\rangle^{\otimes n}\)</span>；若 <span class="arithmatex">\(f\)</span> 为平衡函数，考虑 <span class="arithmatex">\(|0\rangle^{\otimes n}\)</span> 的振幅，易知 <span class="arithmatex">\(\sum_{x\in\{0,1\}^n} (-1)^{f(x)}=0\)</span>，因此测量结果中至少有一个量子比特为 <span class="arithmatex">\(1\)</span>。</p>
+<p>综上，若高位的 <span class="arithmatex">\(n\)</span> 个量子比特测量结果为全为 <span class="arithmatex">\(0\)</span>，则 <span class="arithmatex">\(f\)</span> 为常数函数；若测量结果中至少有一个量子比特为 <span class="arithmatex">\(1\)</span>，则 <span class="arithmatex">\(f\)</span> 为平衡函数。</p>
+</details>
+</div>
 <h3 id="5-3-oracle">5. 3 Oracle 线路设计与简化<a class="headerlink" href="#5-3-oracle" title="Permanent link">&para;</a></h3>
 <p>Oracle 是只知道输入输出行为、但不关心内部实现的黑盒。</p>
 <div class="arithmatex">\[

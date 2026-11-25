@@ -16,7 +16,7 @@
     
     
       
-        <title>Hw - sodasugar的笔记本</title>
+        <title>Temp - sodasugar的笔记本</title>
       
     
     
@@ -59,11 +59,6 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
-        
-        <a href="#5" class="md-skip">
-          Skip to content
-        </a>
-      
     </div>
     <div data-md-component="announce">
       
@@ -94,7 +89,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Hw
+              Temp
             
           </span>
         </div>
@@ -4436,6 +4431,8 @@
       
         
       
+        
+      
     
     
     
@@ -4539,6 +4536,29 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 量子纠错
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -4572,23 +4592,6 @@
   
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#5" class="md-nav__link">
-    <span class="md-ellipsis">
-      5 课件作业
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -4606,38 +4609,10 @@
   
 
 
-  <h1>Hw</h1>
+  <h1>Temp</h1>
 
-<h2 id="5">5 课件作业<a class="headerlink" href="#5" title="Permanent link">&para;</a></h2>
-<p><img alt="alt text" src="../image.png" /></p>
-<ol>
-<li>分析将 <span class="arithmatex">\(|1\rangle\)</span> 作为本征态时，给定 <span class="arithmatex">\(H,T,S,X\)</span> 的测量或相位估计结果；须先区分普通计算基测量与 QPE，并确认输入是否为该算符本征态。</li>
-<li>用两次反射证明 Grover 算子每次使态朝正解方向旋转 <span class="arithmatex">\(2\vartheta\)</span>，并推出上节矩阵。</li>
-<li>证明 RSA 解密关系 <span class="arithmatex">\(C^d\equiv a\pmod n\)</span>，以及 Shor 求阶中 <span class="arithmatex">\(|u_s\rangle\)</span> 的本征态性质与 <span class="arithmatex">\(|1\rangle\)</span> 的等幅展开。</li>
-</ol>
-<details class="question">
-<summary>作业 1：以 <span class="arithmatex">\(|1\rangle\)</span> 为输入做相位估计，会得到什么？</summary>
-<p><span class="arithmatex">\(T|1\rangle=e^{i\pi/4}|1\rangle\)</span>，故相位为 <span class="arithmatex">\(1/8\)</span>；<span class="arithmatex">\(S|1\rangle=i|1\rangle\)</span>，故相位为 <span class="arithmatex">\(1/4\)</span>。<span class="arithmatex">\(|1\rangle\)</span> 不是 <span class="arithmatex">\(X\)</span> 或 <span class="arithmatex">\(H\)</span> 的本征态，必须按本征态分解：<span class="arithmatex">\(X\)</span> 的相位 <span class="arithmatex">\(0,1/2\)</span> 各以 <span class="arithmatex">\(1/2\)</span> 概率出现；<span class="arithmatex">\(H\)</span> 的相位 <span class="arithmatex">\(0,1/2\)</span> 分别以 <span class="arithmatex">\((1-1/\sqrt2)/2\)</span>、<span class="arithmatex">\((1+1/\sqrt2)/2\)</span> 概率出现。这些是理想 QPE、相位寄存器足够精确时的结果；若只在计算基直接测量 <span class="arithmatex">\(U|1\rangle\)</span>，则是另一项实验。</p>
-</details>
-<details class="question">
-<summary>作业 2：Grover 算子为何是旋转？</summary>
-<p>令 <span class="arithmatex">\(\sin\vartheta=\sqrt{\gamma}\)</span>、<span class="arithmatex">\(\cos\vartheta=\sqrt{1-\gamma}\)</span>，其中 <span class="arithmatex">\(\gamma=M/N\)</span>。在 <span class="arithmatex">\(\{|\alpha\rangle,|\beta\rangle\}\)</span> 基下，<span class="arithmatex">\(O_f=\operatorname{diag}(1,-1)\)</span>，<span class="arithmatex">\(D=2|s\rangle\langle s|-I\)</span>，故</p>
-<div class="arithmatex">\[
-DO_f=\begin{bmatrix}
-\cos2\vartheta&amp;-\sin2\vartheta\\
-\sin2\vartheta&amp;\cos2\vartheta
-\end{bmatrix}
-=\begin{bmatrix}
-1-2\gamma&amp;-2\sqrt{\gamma(1-\gamma)}\\
-2\sqrt{\gamma(1-\gamma)}&amp;1-2\gamma
-\end{bmatrix}.
-\]</div>
-<p>因而每次迭代使态在这个二维平面中朝 <span class="arithmatex">\(|\beta\rangle\)</span> 旋转 <span class="arithmatex">\(2\vartheta\)</span>。</p>
-</details>
-<details class="question">
-<summary>作业 3：RSA 解密与 Shor 本征态的验证</summary>
-<p>写 <span class="arithmatex">\(ed=1+k\varphi(n)\)</span>。分别模 <span class="arithmatex">\(p\)</span>、模 <span class="arithmatex">\(q\)</span> 讨论：若 <span class="arithmatex">\(a\)</span> 是该质数的倍数，两边都为 <span class="arithmatex">\(0\)</span>；否则由费马小定理及 <span class="arithmatex">\((p-1),(q-1)\mid\varphi(n)\)</span> 得 <span class="arithmatex">\(a^{ed}\equiv a\)</span>。中国剩余定理给出 <span class="arithmatex">\(a^{ed}\equiv a\pmod n\)</span>，所以 <span class="arithmatex">\(C^d\equiv a\)</span>。对 <span class="arithmatex">\(|u_s\rangle\)</span>，把模乘作用到求和各项并将求和指标 <span class="arithmatex">\(k\)</span> 循环平移一位，即得 <span class="arithmatex">\(U_a|u_s\rangle=e^{2\pi is/r}|u_s\rangle\)</span>；再对 <span class="arithmatex">\(s\)</span> 求和，利用 <span class="arithmatex">\(\sum_{s=0}^{r-1}e^{-2\pi isk/r}=r\delta_{k0}\)</span>，得 <span class="arithmatex">\(r^{-1/2}\sum_s|u_s\rangle=|1\rangle\)</span>。</p>
-</details>
+<p>c1,4.2
+c3,1.2,3</p>
 
 
 
